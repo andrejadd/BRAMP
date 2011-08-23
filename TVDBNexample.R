@@ -36,6 +36,9 @@ source(paste(codePath,"runtvDBN.R",sep=""))
 # read in the data
 indata = paste(path,"../Data/Data_id", modelid, ".Rdata",sep="")
 cat("read Rdata file : ", indata, "\n")
+
+## the main sample data that is loaded is a target/predictor matrix [nodes x locations] and a SAC (spatial autocorrelation) matrix with
+## dame size. The SAC matrix has for each target and location a SAC node which is included into the linear regression 
 load(indata)
 
 # total sample points
@@ -79,6 +82,5 @@ runtvDBN(fullData=Model$Ymatrix,
          niter=niter,  
 	 outputFile=outputFile, 
 	 modelid=modelid, target=target, runid=runid )
-
 
 }

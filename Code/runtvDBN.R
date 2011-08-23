@@ -138,8 +138,8 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   ## extract only predictors (excluding the target defined in posTF) and scale
   X = scale(t(fullData[posTF,]))
   
-  ## add a constant vector to predictor data (representing the bias nodes) and the spatial autocorrelation Data (sacData nodes)
-  X = cbind(X,array(1,length(X[,1])), scale(sacData))
+  ## add a constant vector to predictor data (representing the bias nodes) and the spatial autocorrelation data of the target node
+  X = cbind(X,array(1,length(X[,1])), as.vector(scale(sacData[target,])))
 
   ## NOTE: use this block if to calculate the SAC right here (based on the grid if there is no sacData vector)
   # spatAC = spatAutoCorrelation(Y,GLOBvar$xlocs,GLOBvar$ylocs)
