@@ -6,7 +6,6 @@ codePath=paste(getwd(),"/Code/",sep="")
 print(codePath)
 
   # +  main functions
-  source(paste(codePath,"buildXY.R",sep=""))  
   source(paste(codePath,"init.R",sep=""))
   source(paste(codePath,"moves.R",sep=""))
   source(paste(codePath,"main.R",sep=""))
@@ -131,13 +130,15 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   ### Create HyperParms Variables used in all functions
   HYPERvar = HyperParms(alphaCP, betaCP, alphaTF, betaTF, pkCP, pkTF, kpriorsfile, n, q, kmax, smax, dyn, BFOut)
 
+  ## NOTE: fullData and sacData are already scaled for the hebrides data, doing it again via scale() does not bring changes
+  ##       just keeping it for other maybe not scaled data
   ## Build response Y and predictor X
   ## extract the target values and scale
   Y = as.vector(scale(fullData[target,]))
 
   ## extract only predictors (excluding the target defined in posTF) and scale
   X = scale(t(fullData[posTF,]))
-  
+
   ## add a constant vector to predictor data (representing the bias nodes) and the spatial autocorrelation data of the target node
   X = cbind(X,array(1,length(X[,1])), as.vector(scale(sacData[target,])))
 
@@ -145,7 +146,7 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   # spatAC = spatAutoCorrelation(Y,GLOBvar$xlocs,GLOBvar$ylocs)
   # scale the SAC node and add to X
   # X = cbind(X, scale(spatAC))
-  browser()
+
   print("Extract data ok")
     
   ## initialize system
