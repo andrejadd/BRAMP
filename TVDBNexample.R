@@ -2,17 +2,14 @@
 
 TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){
 
-## remove (almost) everything in the working environment.
-#rm(list = ls())
-  
 # remove all but arguments  
 rm(list= ls()[ls()!="modelid" && ls()!= "target" && ls()!="runid" && ls()!="niter"])
 
 # modeltype means static (0 would be dynamic, only used to read in appropriate ymatrix .Rdata files)
 modeltype = 1
 
-cat("modelid   : ", modelid, "\n")
-cat("modeltype : ", modeltype, "\n")
+cat("dataid   : ", modelid, "\n")
+cat("type : ", modeltype, "\n")
 cat("target    : ", target, "\n")
 cat("runid     : ", runid, "\n")
 
@@ -37,26 +34,17 @@ source(paste(codePath,"runtvDBN.R",sep=""))
 #choosePriors(5,paste(codePath,"k_priors.txt",sep=""))
 
 # read in the data
-indata = paste(path,"../Data/Model_id", modelid, ".Rdata",sep="")
+indata = paste(path,"../Data/Data_id", modelid, ".Rdata",sep="")
 cat("read Rdata file : ", indata, "\n")
 load(indata)
 
-# assign node values to data 
-data = Model$Ymatrix
+# total sample points
+n=Model$xlocs*Model$ylocs
 
-#############################
-## Detailing the 'runtvDBN' function parameters :
-
-
-#length of the time series
-xlocs = Model$xlocs
-ylocs = Model$ylocs
-n=xlocs*ylocs
-
-cat("total location points: " , n, " with x: ", xlocs, " , y: ", ylocs, "\n")
+cat("total location points: " , n, " with x: ",  Model$xlocs, " , y: ",  Model$ylocs, "\n")
 
 # number of parent nodes
-q=dim(data)[1]-1
+q=dim(Model$Ymatrix)[1]-1
 
 cat("nr. parent nodes: ", q, "\n")
 
@@ -66,7 +54,7 @@ cat("nr. parent nodes: ", q, "\n")
 smax = min(8,q);
 
 # maximal number of CPs, tweak this, One option: make dependent of number of locations -> but then each axis should have its own kmax (FIXME)
-kmax = max(floor(((xlocs+ylocs)/2) / 10), 5)
+kmax = max(floor((( Model$xlocs+ Model$ylocs)/2) / 10), 5)
 
 # minima length of a segment (or a phase)
 minPhase=2
@@ -78,9 +66,11 @@ alphaTF=1
 betaTF=0.5
 
 #1# run TVDBN procedure:
-runtvDBN(targetdata=data,
+runtvDBN(fullData=Model$Ymatrix,
+         sacData=Model$SAC.nodes,
          n=n,
-         xlocs=xlocs, ylocs=ylocs,
+         xlocs=Model$xlocs,
+         ylocs= Model$ylocs,
          q=q,
          minPhase=minPhase, 
          kmax=kmax,

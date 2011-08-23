@@ -33,7 +33,7 @@ print(codePath)
 ##modifie par Sophie 01/03/09: ajout de parametres
 ##modifie par Sophie 01/03/09: ajout de targetNamesFile
 ##### Main function to use to run the whole program
-runtvDBN <- function(targetdata, preddata=NULL, q, n, xlocs, ylocs, m,
+runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
                      multipleVar=TRUE, minPhase=2, smax, kmax, 
                      alphaCP=1, betaCP=0.5, alphaTF=1, betaTF=0.5,
                      pkCP=NULL, pkTF=NULL, bestPosMatFile=NULL, 
@@ -101,44 +101,11 @@ runtvDBN <- function(targetdata, preddata=NULL, q, n, xlocs, ylocs, m,
   }
 
   
-  ## Read input data, if its already a matrix (like right now), return same matrix
-  targetData = readInput(targetdata)
-  
-  if(is.null(preddata)){
-	predData=targetData
-  }else{
-	predData = readInput(preddata)
-  }
-
-  
-  # few tests :
-  # targetData and predData must have the same number of columns
-  if(ncol(targetData) != ncol(predData)) stop("Target data and Pred data don t have the same number of columns\n")
-
-
-  # the number of columns corresponds to n (timepoints) x m (repetitions)
-  if(ncol(targetData) != n*m) stop("Number of columns incompatible with n and m\n")
-
-  # names of predictors
-#  if(is.null(predNamesFile)){
-#    # take rownames of predData
-#    predNames = row.names(predData)
-#  } else {
-#    # unless specified otherwise (names of q predictors for each gene)(matrix [nrow(predData) x q])
-#    if(is.character(predNamesFile) & file.exists(predNamesFile)){
-#      predNames = as.matrix(read.table(predNamesFile)[,1])
-#    } else {
-#      stop(paste("File", predNamesFile,"is incorrect or does not exist\n"))
-#    }
-#  }
-  
-  ## AA: set targetNames, needed??
-  targetNames = row.names(targetData)
- 
   ## The predictor nodes for the target (default all) except the target itself
   ## posTF is an array with the predictor indices, simple from 1 to q-1 (with excluded target) 
   posTF=c(1:(q+1))[-c(target)]
-  # in case a predictor file is specified, try to read it and set posTF again 
+
+  ## in case a predictor file is specified, try to read it and set posTF again 
   if(!is.null(bestPosMatFile)) {
 
     ## check if valid, read it and set posTF
@@ -158,18 +125,29 @@ runtvDBN <- function(targetdata, preddata=NULL, q, n, xlocs, ylocs, m,
   ### modifie par Sophie 02/07/09 :Ajout de PredNames et TargetNames
   GLOBvar = list(n=n, xlocs=xlocs, ylocs=ylocs,m=m, p=1, q=q, smax=smax, kmax=kmax, dyn=dyn, 
     minPhase=minPhase, nbVarMax=nbVarMax, XMphase=XMphase, YMphase=YMphase, posTF=posTF, 
-    niter=niter, #predNames=predNames, targetNames=targetNames, 
-    birth_proposals=birth_proposals, modelid=modelid, runid=runid, target=target)
+    niter=niter, birth_proposals=birth_proposals, modelid=modelid, runid=runid, target=target)
 
-  ##modifie par Sophie 01/03/09
+  ## modifie par Sophie 01/03/09
   ### Create HyperParms Variables used in all functions
   HYPERvar = HyperParms(alphaCP, betaCP, alphaTF, betaTF, pkCP, pkTF, kpriorsfile, n, q, kmax, smax, dyn, BFOut)
-      
-  ## build response Y and predictor X
-  input = buildXY(targetData, predData, GLOBvar)
-  X = input$X
-  Y = input$Y
+
+  ## Build response Y and predictor X
+  ## extract the target values and scale
+  Y = as.vector(scale(fullData[target,]))
+
+  ## extract only predictors (excluding the target defined in posTF) and scale
+  X = scale(t(fullData[posTF,]))
   
+  ## add a constant vector to predictor data (representing the bias nodes) and the spatial autocorrelation Data (sacData nodes)
+  X = cbind(X,array(1,length(X[,1])), scale(sacData))
+
+  ## NOTE: use this block if to calculate the SAC right here (based on the grid if there is no sacData vector)
+  # spatAC = spatAutoCorrelation(Y,GLOBvar$xlocs,GLOBvar$ylocs)
+  # scale the SAC node and add to X
+  # X = cbind(X, scale(spatAC))
+  browser()
+  print("Extract data ok")
+    
   ## initialize system
   initiation = init(X, Y, GLOBvar, HYPERvar)
   print("Initialisation ok")
