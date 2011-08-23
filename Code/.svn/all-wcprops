@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DBNnetwork/!svn/ver/66/TVDBN/branches/Andrej/TVDBN_static/Code
+END
+choosePriors.R
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/choosePriors.R
+END
+convert.R
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/convert.R
+END
+buildXY.R
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/buildXY.R
+END
+main.R
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DBNnetwork/!svn/ver/66/TVDBN/branches/Andrej/TVDBN_static/Code/main.R
+END
+output_functions.R
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/output_functions.R
+END
+fast.svd.R
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/fast.svd.R
+END
+bp.computeAlpha_updated.R
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/bp.computeAlpha_updated.R
+END
+moves.R
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/moves.R
+END
+hyperParms.R
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/hyperParms.R
+END
+pseudoinverse.R
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/pseudoinverse.R
+END
+simulate_network.R
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/simulate_network.R
+END
+invGamma.R
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/invGamma.R
+END
+output_functions_V2.R
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/output_functions_V2.R
+END
+mvrnorm.R
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/mvrnorm.R
+END
+.Rhistory
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/.Rhistory
+END
+runtvDBN.R
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/DBNnetwork/!svn/ver/66/TVDBN/branches/Andrej/TVDBN_static/Code/runtvDBN.R
+END
+init.R
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DBNnetwork/!svn/ver/66/TVDBN/branches/Andrej/TVDBN_static/Code/init.R
+END
+output_main.R
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/output_main.R
+END
+sample_and_update.R
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/sample_and_update.R
+END
+k_priors.txt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/k_priors.txt
+END
+.RData
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/.RData
+END
+util.R
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DBNnetwork/!svn/ver/37/TVDBN/branches/Andrej/TVDBN_static/Code/util.R
+END

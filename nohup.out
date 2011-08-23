@@ -1,0 +1,5014 @@
+Starting with job-id 17731
+adding job: 17731, model: 16, node: 13,run: 1
+adding job: 17732, model: 16, node: 13,run: 2
+adding job: 17733, model: 17, node: 13,run: 1
+adding job: 17734, model: 17, node: 13,run: 2
+adding job: 17735, model: 18, node: 13,run: 1
+adding job: 17736, model: 18, node: 13,run: 2
+adding job: 17737, model: 19, node: 13,run: 1
+adding job: 17738, model: 19, node: 13,run: 2
+adding job: 17739, model: 20, node: 13,run: 1
+adding job: 17740, model: 20, node: 13,run: 2
+adding job: 17741, model: 21, node: 13,run: 1
+adding job: 17742, model: 21, node: 13,run: 2
+adding job: 17743, model: 22, node: 13,run: 1
+adding job: 17744, model: 22, node: 13,run: 2
+adding job: 17745, model: 23, node: 13,run: 1
+adding job: 17746, model: 23, node: 13,run: 2
+adding job: 17747, model: 24, node: 13,run: 1
+adding job: 17748, model: 24, node: 13,run: 2
+adding job: 17749, model: 25, node: 13,run: 1
+adding job: 17750, model: 25, node: 13,run: 2
+adding job: 17751, model: 26, node: 13,run: 1
+adding job: 17752, model: 26, node: 13,run: 2
+adding job: 17753, model: 27, node: 13,run: 1
+adding job: 17754, model: 27, node: 13,run: 2
+adding job: 17755, model: 28, node: 13,run: 1
+adding job: 17756, model: 28, node: 13,run: 2
+adding job: 17757, model: 29, node: 13,run: 1
+adding job: 17758, model: 29, node: 13,run: 2
+adding job: 17759, model: 30, node: 13,run: 1
+adding job: 17760, model: 30, node: 13,run: 2
+adding job: 17761, model: 31, node: 13,run: 1
+adding job: 17762, model: 31, node: 13,run: 2
+adding job: 17763, model: 32, node: 13,run: 1
+adding job: 17764, model: 32, node: 13,run: 2
+adding job: 17765, model: 33, node: 13,run: 1
+adding job: 17766, model: 33, node: 13,run: 2
+adding job: 17767, model: 34, node: 13,run: 1
+adding job: 17768, model: 34, node: 13,run: 2
+adding job: 17769, model: 35, node: 13,run: 1
+adding job: 17770, model: 35, node: 13,run: 2
+adding job: 17771, model: 36, node: 13,run: 1
+adding job: 17772, model: 36, node: 13,run: 2
+adding job: 17773, model: 37, node: 13,run: 1
+adding job: 17774, model: 37, node: 13,run: 2
+adding job: 17775, model: 38, node: 13,run: 1
+adding job: 17776, model: 38, node: 13,run: 2
+adding job: 17777, model: 39, node: 13,run: 1
+adding job: 17778, model: 39, node: 13,run: 2
+adding job: 17779, model: 40, node: 13,run: 1
+adding job: 17780, model: 40, node: 13,run: 2
+adding job: 17781, model: 41, node: 13,run: 1
+adding job: 17782, model: 41, node: 13,run: 2
+adding job: 17783, model: 42, node: 13,run: 1
+adding job: 17784, model: 42, node: 13,run: 2
+adding job: 17785, model: 43, node: 13,run: 1
+adding job: 17786, model: 43, node: 13,run: 2
+adding job: 17787, model: 44, node: 13,run: 1
+adding job: 17788, model: 44, node: 13,run: 2
+adding job: 17789, model: 45, node: 13,run: 1
+adding job: 17790, model: 45, node: 13,run: 2
+adding job: 17791, model: 46, node: 13,run: 1
+adding job: 17792, model: 46, node: 13,run: 2
+adding job: 17793, model: 47, node: 13,run: 1
+adding job: 17794, model: 47, node: 13,run: 2
+adding job: 17795, model: 48, node: 13,run: 1
+adding job: 17796, model: 48, node: 13,run: 2
+adding job: 17797, model: 49, node: 13,run: 1
+adding job: 17798, model: 49, node: 13,run: 2
+adding job: 17799, model: 50, node: 13,run: 1
+adding job: 17800, model: 50, node: 13,run: 2
+adding job: 17801, model: 51, node: 13,run: 1
+adding job: 17802, model: 51, node: 13,run: 2
+adding job: 17803, model: 52, node: 13,run: 1
+adding job: 17804, model: 52, node: 13,run: 2
+adding job: 17805, model: 53, node: 13,run: 1
+adding job: 17806, model: 53, node: 13,run: 2
+adding job: 17807, model: 54, node: 13,run: 1
+adding job: 17808, model: 54, node: 13,run: 2
+adding job: 17809, model: 55, node: 13,run: 1
+adding job: 17810, model: 55, node: 13,run: 2
+adding job: 17811, model: 56, node: 13,run: 1
+adding job: 17812, model: 56, node: 13,run: 2
+adding job: 17813, model: 57, node: 13,run: 1
+adding job: 17814, model: 57, node: 13,run: 2
+adding job: 17815, model: 58, node: 13,run: 1
+adding job: 17816, model: 58, node: 13,run: 2
+adding job: 17817, model: 59, node: 13,run: 1
+adding job: 17818, model: 59, node: 13,run: 2
+adding job: 17819, model: 60, node: 13,run: 1
+adding job: 17820, model: 60, node: 13,run: 2
+adding job: 17821, model: 61, node: 13,run: 1
+adding job: 17822, model: 61, node: 13,run: 2
+adding job: 17823, model: 62, node: 13,run: 1
+adding job: 17824, model: 62, node: 13,run: 2
+adding job: 17825, model: 63, node: 13,run: 1
+adding job: 17826, model: 63, node: 13,run: 2
+adding job: 17827, model: 64, node: 13,run: 1
+adding job: 17828, model: 64, node: 13,run: 2
+adding job: 17829, model: 65, node: 13,run: 1
+adding job: 17830, model: 65, node: 13,run: 2
+adding job: 17831, model: 66, node: 13,run: 1
+adding job: 17832, model: 66, node: 13,run: 2
+adding job: 17833, model: 67, node: 13,run: 1
+adding job: 17834, model: 67, node: 13,run: 2
+adding job: 17835, model: 68, node: 13,run: 1
+adding job: 17836, model: 68, node: 13,run: 2
+adding job: 17837, model: 69, node: 13,run: 1
+adding job: 17838, model: 69, node: 13,run: 2
+adding job: 17839, model: 70, node: 13,run: 1
+adding job: 17840, model: 70, node: 13,run: 2
+adding job: 17841, model: 71, node: 13,run: 1
+adding job: 17842, model: 71, node: 13,run: 2
+adding job: 17843, model: 72, node: 13,run: 1
+adding job: 17844, model: 72, node: 13,run: 2
+adding job: 17845, model: 73, node: 13,run: 1
+adding job: 17846, model: 73, node: 13,run: 2
+adding job: 17847, model: 74, node: 13,run: 1
+adding job: 17848, model: 74, node: 13,run: 2
+adding job: 17849, model: 75, node: 13,run: 1
+adding job: 17850, model: 75, node: 13,run: 2
+adding job: 17851, model: 76, node: 13,run: 1
+adding job: 17852, model: 76, node: 13,run: 2
+adding job: 17853, model: 77, node: 13,run: 1
+adding job: 17854, model: 77, node: 13,run: 2
+adding job: 17855, model: 78, node: 13,run: 1
+adding job: 17856, model: 78, node: 13,run: 2
+adding job: 17857, model: 79, node: 13,run: 1
+adding job: 17858, model: 79, node: 13,run: 2
+adding job: 17859, model: 80, node: 13,run: 1
+adding job: 17860, model: 80, node: 13,run: 2
+adding job: 17861, model: 81, node: 13,run: 1
+adding job: 17862, model: 81, node: 13,run: 2
+adding job: 17863, model: 82, node: 13,run: 1
+adding job: 17864, model: 82, node: 13,run: 2
+adding job: 17865, model: 83, node: 13,run: 1
+adding job: 17866, model: 83, node: 13,run: 2
+adding job: 17867, model: 84, node: 13,run: 1
+adding job: 17868, model: 84, node: 13,run: 2
+adding job: 17869, model: 85, node: 13,run: 1
+adding job: 17870, model: 85, node: 13,run: 2
+adding job: 17871, model: 86, node: 13,run: 1
+adding job: 17872, model: 86, node: 13,run: 2
+adding job: 17873, model: 87, node: 13,run: 1
+adding job: 17874, model: 87, node: 13,run: 2
+adding job: 17875, model: 88, node: 13,run: 1
+adding job: 17876, model: 88, node: 13,run: 2
+adding job: 17877, model: 89, node: 13,run: 1
+adding job: 17878, model: 89, node: 13,run: 2
+adding job: 17879, model: 90, node: 13,run: 1
+adding job: 17880, model: 90, node: 13,run: 2
+adding job: 17881, model: 91, node: 13,run: 1
+adding job: 17882, model: 91, node: 13,run: 2
+adding job: 17883, model: 92, node: 13,run: 1
+adding job: 17884, model: 92, node: 13,run: 2
+adding job: 17885, model: 93, node: 13,run: 1
+adding job: 17886, model: 93, node: 13,run: 2
+adding job: 17887, model: 94, node: 13,run: 1
+adding job: 17888, model: 94, node: 13,run: 2
+adding job: 17889, model: 95, node: 13,run: 1
+adding job: 17890, model: 95, node: 13,run: 2
+adding job: 17891, model: 96, node: 13,run: 1
+adding job: 17892, model: 96, node: 13,run: 2
+adding job: 17893, model: 97, node: 13,run: 1
+adding job: 17894, model: 97, node: 13,run: 2
+adding job: 17895, model: 98, node: 13,run: 1
+adding job: 17896, model: 98, node: 13,run: 2
+adding job: 17897, model: 99, node: 13,run: 1
+adding job: 17898, model: 99, node: 13,run: 2
+adding job: 17899, model: 100, node: 13,run: 1
+adding job: 17900, model: 100, node: 13,run: 2
+adding job: 17901, model: 101, node: 13,run: 1
+adding job: 17902, model: 101, node: 13,run: 2
+adding job: 17903, model: 102, node: 13,run: 1
+adding job: 17904, model: 102, node: 13,run: 2
+adding job: 17905, model: 103, node: 13,run: 1
+adding job: 17906, model: 103, node: 13,run: 2
+adding job: 17907, model: 104, node: 13,run: 1
+adding job: 17908, model: 104, node: 13,run: 2
+adding job: 17909, model: 105, node: 13,run: 1
+adding job: 17910, model: 105, node: 13,run: 2
+adding job: 17911, model: 106, node: 13,run: 1
+adding job: 17912, model: 106, node: 13,run: 2
+adding job: 17913, model: 107, node: 13,run: 1
+adding job: 17914, model: 107, node: 13,run: 2
+adding job: 17915, model: 108, node: 13,run: 1
+adding job: 17916, model: 108, node: 13,run: 2
+adding job: 17917, model: 109, node: 13,run: 1
+adding job: 17918, model: 109, node: 13,run: 2
+adding job: 17919, model: 110, node: 13,run: 1
+adding job: 17920, model: 110, node: 13,run: 2
+adding job: 17921, model: 111, node: 13,run: 1
+adding job: 17922, model: 111, node: 13,run: 2
+adding job: 17923, model: 112, node: 13,run: 1
+adding job: 17924, model: 112, node: 13,run: 2
+adding job: 17925, model: 113, node: 13,run: 1
+adding job: 17926, model: 113, node: 13,run: 2
+adding job: 17927, model: 114, node: 13,run: 1
+adding job: 17928, model: 114, node: 13,run: 2
+adding job: 17929, model: 115, node: 13,run: 1
+adding job: 17930, model: 115, node: 13,run: 2
+adding job: 17931, model: 116, node: 13,run: 1
+adding job: 17932, model: 116, node: 13,run: 2
+adding job: 17933, model: 117, node: 13,run: 1
+adding job: 17934, model: 117, node: 13,run: 2
+adding job: 17935, model: 118, node: 13,run: 1
+adding job: 17936, model: 118, node: 13,run: 2
+adding job: 17937, model: 119, node: 13,run: 1
+adding job: 17938, model: 119, node: 13,run: 2
+adding job: 17939, model: 120, node: 13,run: 1
+adding job: 17940, model: 120, node: 13,run: 2
+adding job: 17941, model: 121, node: 13,run: 1
+adding job: 17942, model: 121, node: 13,run: 2
+adding job: 17943, model: 122, node: 13,run: 1
+adding job: 17944, model: 122, node: 13,run: 2
+adding job: 17945, model: 123, node: 13,run: 1
+adding job: 17946, model: 123, node: 13,run: 2
+adding job: 17947, model: 124, node: 13,run: 1
+adding job: 17948, model: 124, node: 13,run: 2
+adding job: 17949, model: 125, node: 13,run: 1
+adding job: 17950, model: 125, node: 13,run: 2
+adding job: 17951, model: 126, node: 13,run: 1
+adding job: 17952, model: 126, node: 13,run: 2
+adding job: 17953, model: 127, node: 13,run: 1
+adding job: 17954, model: 127, node: 13,run: 2
+adding job: 17955, model: 128, node: 13,run: 1
+adding job: 17956, model: 128, node: 13,run: 2
+adding job: 17957, model: 129, node: 13,run: 1
+adding job: 17958, model: 129, node: 13,run: 2
+adding job: 17959, model: 130, node: 13,run: 1
+adding job: 17960, model: 130, node: 13,run: 2
+adding job: 17961, model: 131, node: 13,run: 1
+adding job: 17962, model: 131, node: 13,run: 2
+adding job: 17963, model: 132, node: 13,run: 1
+adding job: 17964, model: 132, node: 13,run: 2
+adding job: 17965, model: 133, node: 13,run: 1
+adding job: 17966, model: 133, node: 13,run: 2
+adding job: 17967, model: 134, node: 13,run: 1
+adding job: 17968, model: 134, node: 13,run: 2
+adding job: 17969, model: 135, node: 13,run: 1
+adding job: 17970, model: 135, node: 13,run: 2
+adding job: 17971, model: 136, node: 13,run: 1
+adding job: 17972, model: 136, node: 13,run: 2
+adding job: 17973, model: 137, node: 13,run: 1
+adding job: 17974, model: 137, node: 13,run: 2
+adding job: 17975, model: 138, node: 13,run: 1
+adding job: 17976, model: 138, node: 13,run: 2
+adding job: 17977, model: 139, node: 13,run: 1
+adding job: 17978, model: 139, node: 13,run: 2
+adding job: 17979, model: 140, node: 13,run: 1
+adding job: 17980, model: 140, node: 13,run: 2
+adding job: 17981, model: 141, node: 13,run: 1
+adding job: 17982, model: 141, node: 13,run: 2
+adding job: 17983, model: 142, node: 13,run: 1
+adding job: 17984, model: 142, node: 13,run: 2
+adding job: 17985, model: 143, node: 13,run: 1
+adding job: 17986, model: 143, node: 13,run: 2
+adding job: 17987, model: 144, node: 13,run: 1
+adding job: 17988, model: 144, node: 13,run: 2
+adding job: 17989, model: 145, node: 13,run: 1
+adding job: 17990, model: 145, node: 13,run: 2
+adding job: 17991, model: 146, node: 13,run: 1
+adding job: 17992, model: 146, node: 13,run: 2
+adding job: 17993, model: 147, node: 13,run: 1
+adding job: 17994, model: 147, node: 13,run: 2
+adding job: 17995, model: 148, node: 13,run: 1
+adding job: 17996, model: 148, node: 13,run: 2
+adding job: 17997, model: 149, node: 13,run: 1
+adding job: 17998, model: 149, node: 13,run: 2
+adding job: 17999, model: 150, node: 13,run: 1
+adding job: 18000, model: 150, node: 13,run: 2
+adding job: 18001, model: 151, node: 13,run: 1
+adding job: 18002, model: 151, node: 13,run: 2
+adding job: 18003, model: 152, node: 13,run: 1
+adding job: 18004, model: 152, node: 13,run: 2
+adding job: 18005, model: 153, node: 13,run: 1
+adding job: 18006, model: 153, node: 13,run: 2
+adding job: 18007, model: 154, node: 13,run: 1
+adding job: 18008, model: 154, node: 13,run: 2
+adding job: 18009, model: 155, node: 13,run: 1
+adding job: 18010, model: 155, node: 13,run: 2
+adding job: 18011, model: 156, node: 13,run: 1
+adding job: 18012, model: 156, node: 13,run: 2
+adding job: 18013, model: 157, node: 13,run: 1
+adding job: 18014, model: 157, node: 13,run: 2
+adding job: 18015, model: 158, node: 13,run: 1
+adding job: 18016, model: 158, node: 13,run: 2
+adding job: 18017, model: 159, node: 13,run: 1
+adding job: 18018, model: 159, node: 13,run: 2
+adding job: 18019, model: 160, node: 13,run: 1
+adding job: 18020, model: 160, node: 13,run: 2
+adding job: 18021, model: 161, node: 13,run: 1
+adding job: 18022, model: 161, node: 13,run: 2
+adding job: 18023, model: 162, node: 13,run: 1
+adding job: 18024, model: 162, node: 13,run: 2
+adding job: 18025, model: 163, node: 13,run: 1
+adding job: 18026, model: 163, node: 13,run: 2
+adding job: 18027, model: 164, node: 13,run: 1
+adding job: 18028, model: 164, node: 13,run: 2
+adding job: 18029, model: 165, node: 13,run: 1
+adding job: 18030, model: 165, node: 13,run: 2
+adding job: 18031, model: 166, node: 13,run: 1
+adding job: 18032, model: 166, node: 13,run: 2
+adding job: 18033, model: 167, node: 13,run: 1
+adding job: 18034, model: 167, node: 13,run: 2
+adding job: 18035, model: 168, node: 13,run: 1
+adding job: 18036, model: 168, node: 13,run: 2
+adding job: 18037, model: 169, node: 13,run: 1
+adding job: 18038, model: 169, node: 13,run: 2
+adding job: 18039, model: 170, node: 13,run: 1
+adding job: 18040, model: 170, node: 13,run: 2
+adding job: 18041, model: 171, node: 13,run: 1
+adding job: 18042, model: 171, node: 13,run: 2
+adding job: 18043, model: 172, node: 13,run: 1
+adding job: 18044, model: 172, node: 13,run: 2
+adding job: 18045, model: 173, node: 13,run: 1
+adding job: 18046, model: 173, node: 13,run: 2
+adding job: 18047, model: 174, node: 13,run: 1
+adding job: 18048, model: 174, node: 13,run: 2
+adding job: 18049, model: 175, node: 13,run: 1
+adding job: 18050, model: 175, node: 13,run: 2
+adding job: 18051, model: 176, node: 13,run: 1
+adding job: 18052, model: 176, node: 13,run: 2
+adding job: 18053, model: 177, node: 13,run: 1
+adding job: 18054, model: 177, node: 13,run: 2
+adding job: 18055, model: 178, node: 13,run: 1
+adding job: 18056, model: 178, node: 13,run: 2
+adding job: 18057, model: 179, node: 13,run: 1
+adding job: 18058, model: 179, node: 13,run: 2
+adding job: 18059, model: 180, node: 13,run: 1
+adding job: 18060, model: 180, node: 13,run: 2
+adding job: 18061, model: 181, node: 13,run: 1
+adding job: 18062, model: 181, node: 13,run: 2
+adding job: 18063, model: 182, node: 13,run: 1
+adding job: 18064, model: 182, node: 13,run: 2
+adding job: 18065, model: 183, node: 13,run: 1
+adding job: 18066, model: 183, node: 13,run: 2
+adding job: 18067, model: 184, node: 13,run: 1
+adding job: 18068, model: 184, node: 13,run: 2
+adding job: 18069, model: 185, node: 13,run: 1
+adding job: 18070, model: 185, node: 13,run: 2
+adding job: 18071, model: 186, node: 13,run: 1
+adding job: 18072, model: 186, node: 13,run: 2
+adding job: 18073, model: 187, node: 13,run: 1
+adding job: 18074, model: 187, node: 13,run: 2
+adding job: 18075, model: 188, node: 13,run: 1
+adding job: 18076, model: 188, node: 13,run: 2
+adding job: 18077, model: 189, node: 13,run: 1
+adding job: 18078, model: 189, node: 13,run: 2
+adding job: 18079, model: 190, node: 13,run: 1
+adding job: 18080, model: 190, node: 13,run: 2
+adding job: 18081, model: 191, node: 13,run: 1
+adding job: 18082, model: 191, node: 13,run: 2
+adding job: 18083, model: 192, node: 13,run: 1
+adding job: 18084, model: 192, node: 13,run: 2
+adding job: 18085, model: 193, node: 13,run: 1
+adding job: 18086, model: 193, node: 13,run: 2
+adding job: 18087, model: 194, node: 13,run: 1
+adding job: 18088, model: 194, node: 13,run: 2
+adding job: 18089, model: 195, node: 13,run: 1
+adding job: 18090, model: 195, node: 13,run: 2
+adding job: 18091, model: 196, node: 13,run: 1
+adding job: 18092, model: 196, node: 13,run: 2
+adding job: 18093, model: 197, node: 13,run: 1
+adding job: 18094, model: 197, node: 13,run: 2
+adding job: 18095, model: 198, node: 13,run: 1
+adding job: 18096, model: 198, node: 13,run: 2
+adding job: 18097, model: 199, node: 13,run: 1
+adding job: 18098, model: 199, node: 13,run: 2
+adding job: 18099, model: 200, node: 13,run: 1
+adding job: 18100, model: 200, node: 13,run: 2
+adding job: 18101, model: 201, node: 13,run: 1
+adding job: 18102, model: 201, node: 13,run: 2
+adding job: 18103, model: 202, node: 13,run: 1
+adding job: 18104, model: 202, node: 13,run: 2
+adding job: 18105, model: 203, node: 13,run: 1
+adding job: 18106, model: 203, node: 13,run: 2
+adding job: 18107, model: 204, node: 13,run: 1
+adding job: 18108, model: 204, node: 13,run: 2
+adding job: 18109, model: 205, node: 13,run: 1
+adding job: 18110, model: 205, node: 13,run: 2
+adding job: 18111, model: 206, node: 13,run: 1
+adding job: 18112, model: 206, node: 13,run: 2
+adding job: 18113, model: 207, node: 13,run: 1
+adding job: 18114, model: 207, node: 13,run: 2
+adding job: 18115, model: 208, node: 13,run: 1
+adding job: 18116, model: 208, node: 13,run: 2
+adding job: 18117, model: 209, node: 13,run: 1
+adding job: 18118, model: 209, node: 13,run: 2
+adding job: 18119, model: 210, node: 13,run: 1
+adding job: 18120, model: 210, node: 13,run: 2
+adding job: 18121, model: 211, node: 13,run: 1
+adding job: 18122, model: 211, node: 13,run: 2
+adding job: 18123, model: 212, node: 13,run: 1
+adding job: 18124, model: 212, node: 13,run: 2
+adding job: 18125, model: 213, node: 13,run: 1
+adding job: 18126, model: 213, node: 13,run: 2
+adding job: 18127, model: 214, node: 13,run: 1
+adding job: 18128, model: 214, node: 13,run: 2
+adding job: 18129, model: 215, node: 13,run: 1
+adding job: 18130, model: 215, node: 13,run: 2
+adding job: 18131, model: 216, node: 13,run: 1
+adding job: 18132, model: 216, node: 13,run: 2
+adding job: 18133, model: 217, node: 13,run: 1
+adding job: 18134, model: 217, node: 13,run: 2
+adding job: 18135, model: 218, node: 13,run: 1
+adding job: 18136, model: 218, node: 13,run: 2
+adding job: 18137, model: 219, node: 13,run: 1
+adding job: 18138, model: 219, node: 13,run: 2
+adding job: 18139, model: 220, node: 13,run: 1
+adding job: 18140, model: 220, node: 13,run: 2
+adding job: 18141, model: 221, node: 13,run: 1
+adding job: 18142, model: 221, node: 13,run: 2
+adding job: 18143, model: 222, node: 13,run: 1
+adding job: 18144, model: 222, node: 13,run: 2
+adding job: 18145, model: 223, node: 13,run: 1
+adding job: 18146, model: 223, node: 13,run: 2
+adding job: 18147, model: 224, node: 13,run: 1
+adding job: 18148, model: 224, node: 13,run: 2
+adding job: 18149, model: 225, node: 13,run: 1
+adding job: 18150, model: 225, node: 13,run: 2
+adding job: 18151, model: 226, node: 13,run: 1
+adding job: 18152, model: 226, node: 13,run: 2
+adding job: 18153, model: 227, node: 13,run: 1
+adding job: 18154, model: 227, node: 13,run: 2
+adding job: 18155, model: 228, node: 13,run: 1
+adding job: 18156, model: 228, node: 13,run: 2
+adding job: 18157, model: 229, node: 13,run: 1
+adding job: 18158, model: 229, node: 13,run: 2
+adding job: 18159, model: 230, node: 13,run: 1
+adding job: 18160, model: 230, node: 13,run: 2
+adding job: 18161, model: 231, node: 13,run: 1
+adding job: 18162, model: 231, node: 13,run: 2
+adding job: 18163, model: 232, node: 13,run: 1
+adding job: 18164, model: 232, node: 13,run: 2
+adding job: 18165, model: 233, node: 13,run: 1
+adding job: 18166, model: 233, node: 13,run: 2
+adding job: 18167, model: 234, node: 13,run: 1
+adding job: 18168, model: 234, node: 13,run: 2
+adding job: 18169, model: 235, node: 13,run: 1
+adding job: 18170, model: 235, node: 13,run: 2
+adding job: 18171, model: 236, node: 13,run: 1
+adding job: 18172, model: 236, node: 13,run: 2
+adding job: 18173, model: 237, node: 13,run: 1
+adding job: 18174, model: 237, node: 13,run: 2
+adding job: 18175, model: 238, node: 13,run: 1
+adding job: 18176, model: 238, node: 13,run: 2
+adding job: 18177, model: 239, node: 13,run: 1
+adding job: 18178, model: 239, node: 13,run: 2
+adding job: 18179, model: 240, node: 13,run: 1
+adding job: 18180, model: 240, node: 13,run: 2
+adding job: 18181, model: 241, node: 13,run: 1
+adding job: 18182, model: 241, node: 13,run: 2
+adding job: 18183, model: 242, node: 13,run: 1
+adding job: 18184, model: 242, node: 13,run: 2
+adding job: 18185, model: 243, node: 13,run: 1
+adding job: 18186, model: 243, node: 13,run: 2
+adding job: 18187, model: 244, node: 13,run: 1
+adding job: 18188, model: 244, node: 13,run: 2
+adding job: 18189, model: 245, node: 13,run: 1
+adding job: 18190, model: 245, node: 13,run: 2
+adding job: 18191, model: 246, node: 13,run: 1
+adding job: 18192, model: 246, node: 13,run: 2
+adding job: 18193, model: 247, node: 13,run: 1
+adding job: 18194, model: 247, node: 13,run: 2
+adding job: 18195, model: 248, node: 13,run: 1
+adding job: 18196, model: 248, node: 13,run: 2
+adding job: 18197, model: 249, node: 13,run: 1
+adding job: 18198, model: 249, node: 13,run: 2
+adding job: 18199, model: 250, node: 13,run: 1
+adding job: 18200, model: 250, node: 13,run: 2
+adding job: 18201, model: 251, node: 13,run: 1
+adding job: 18202, model: 251, node: 13,run: 2
+adding job: 18203, model: 252, node: 13,run: 1
+adding job: 18204, model: 252, node: 13,run: 2
+adding job: 18205, model: 253, node: 13,run: 1
+adding job: 18206, model: 253, node: 13,run: 2
+adding job: 18207, model: 254, node: 13,run: 1
+adding job: 18208, model: 254, node: 13,run: 2
+adding job: 18209, model: 255, node: 13,run: 1
+adding job: 18210, model: 255, node: 13,run: 2
+adding job: 18211, model: 256, node: 13,run: 1
+adding job: 18212, model: 256, node: 13,run: 2
+adding job: 18213, model: 257, node: 13,run: 1
+adding job: 18214, model: 257, node: 13,run: 2
+adding job: 18215, model: 258, node: 13,run: 1
+adding job: 18216, model: 258, node: 13,run: 2
+adding job: 18217, model: 259, node: 13,run: 1
+adding job: 18218, model: 259, node: 13,run: 2
+adding job: 18219, model: 260, node: 13,run: 1
+adding job: 18220, model: 260, node: 13,run: 2
+['node013', 'node014', 'node015', 'node016', 'node017', 'node018', 'node019', 'node020', 'node021', 'node022', 'node023', 'node024', 'node025', 'node026', 'node027', 'node028', 'node029', 'node030', 'node031', 'node032', 'node065', 'node066', 'node067', 'node068', 'node069', 'node070', 'node071', 'node072', 'node073', 'node074', 'node075', 'node076', 'node077', 'node078', 'node079', 'node080', 'node081', 'node082', 'node083', 'node084', 'node085', 'node086', 'node087', 'node088', 'node089', 'node090', 'node091', 'node092', 'node093', 'node094', 'node095', 'node096', 'node097', 'node098', 'node099', 'node249', 'node250', 'node251', '']
+failure on cpuinfo node013: ssh: connect to host node013 port 22: No route to host
+
+
+failure on cpuinfo node014: ssh: connect to host node014 port 22: No route to host
+
+
+failure on cpuinfo node015: ssh: connect to host node015 port 22: No route to host
+
+
+failure on cpuinfo node016: ssh: connect to host node016 port 22: No route to host
+
+
+cnode: node017 , nr. CPUs: 4
+cnode: node018 , nr. CPUs: 4
+cnode: node019 , nr. CPUs: 4
+cnode: node020 , nr. CPUs: 4
+cnode: node021 , nr. CPUs: 4
+cnode: node022 , nr. CPUs: 4
+cnode: node023 , nr. CPUs: 4
+cnode: node024 , nr. CPUs: 4
+cnode: node025 , nr. CPUs: 4
+cnode: node026 , nr. CPUs: 4
+cnode: node027 , nr. CPUs: 4
+cnode: node028 , nr. CPUs: 4
+failure on cpuinfo node029: ssh: connect to host node029 port 22: No route to host
+
+
+failure on cpuinfo node030: ssh: connect to host node030 port 22: No route to host
+
+
+failure on cpuinfo node031: ssh: connect to host node031 port 22: No route to host
+
+
+failure on cpuinfo node032: ssh: connect to host node032 port 22: No route to host
+
+
+cnode: node065 , nr. CPUs: 1
+cnode: node066 , nr. CPUs: 1
+cnode: node067 , nr. CPUs: 1
+cnode: node068 , nr. CPUs: 1
+cnode: node069 , nr. CPUs: 1
+cnode: node070 , nr. CPUs: 1
+cnode: node071 , nr. CPUs: 1
+cnode: node072 , nr. CPUs: 1
+cnode: node073 , nr. CPUs: 1
+failure on cpuinfo node074: ssh_exchange_identification: Connection closed by remote host
+
+
+cnode: node075 , nr. CPUs: 1
+cnode: node076 , nr. CPUs: 1
+cnode: node077 , nr. CPUs: 1
+cnode: node078 , nr. CPUs: 1
+cnode: node079 , nr. CPUs: 1
+cnode: node080 , nr. CPUs: 1
+cnode: node081 , nr. CPUs: 1
+cnode: node082 , nr. CPUs: 1
+cnode: node083 , nr. CPUs: 1
+cnode: node084 , nr. CPUs: 1
+cnode: node085 , nr. CPUs: 1
+cnode: node086 , nr. CPUs: 1
+cnode: node087 , nr. CPUs: 1
+cnode: node088 , nr. CPUs: 1
+failure on cpuinfo node089: ssh: connect to host node089 port 22: No route to host
+
+
+failure on cpuinfo node090: ssh: connect to host node090 port 22: No route to host
+
+
+failure on cpuinfo node091: ssh: connect to host node091 port 22: No route to host
+
+
+failure on cpuinfo node092: ssh: connect to host node092 port 22: No route to host
+
+
+failure on cpuinfo node093: ssh: connect to host node093 port 22: No route to host
+
+
+cnode: node094 , nr. CPUs: 2
+cnode: node095 , nr. CPUs: 2
+cnode: node096 , nr. CPUs: 2
+cnode: node097 , nr. CPUs: 2
+cnode: node098 , nr. CPUs: 2
+cnode: node099 , nr. CPUs: 2
+cnode: node249 , nr. CPUs: 16
+cnode: node250 , nr. CPUs: 16
+cnode: node251 , nr. CPUs: 16
+failure on cpuinfo : ssh: Could not resolve hostname grep: Name or service not known
+
+
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.1
+load avg 1min: 0.1
+load avg 1min: 0.2
+load avg 1min: 0.0
+load avg 1min: 0.3
+load avg 1min: 0.3
+load avg 1min: 0.4
+load avg 1min: 0.4
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.1
+load avg 1min: 0.0
+load avg 1min: 0.1
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.1
+load avg 1min: 0.1
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 8.0
+load avg 1min: 8.0
+cnode: node017, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17731, 16, 13, 1, 20, 100000]
+	push job: [17732, 16, 13, 2, 20, 100000]
+	push job: [17733, 17, 13, 1, 20, 100000]
+cnode: node018, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17734, 17, 13, 2, 20, 100000]
+	push job: [17735, 18, 13, 1, 20, 100000]
+	push job: [17736, 18, 13, 2, 20, 100000]
+cnode: node019, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17737, 19, 13, 1, 20, 100000]
+	push job: [17738, 19, 13, 2, 20, 100000]
+	push job: [17739, 20, 13, 1, 20, 100000]
+cnode: node020, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17740, 20, 13, 2, 20, 100000]
+	push job: [17741, 21, 13, 1, 20, 100000]
+	push job: [17742, 21, 13, 2, 20, 100000]
+cnode: node021, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17743, 22, 13, 1, 20, 100000]
+	push job: [17744, 22, 13, 2, 20, 100000]
+	push job: [17745, 23, 13, 1, 20, 100000]
+cnode: node022, cpus: 4, lavg: 0.0, slots: 4
+	push job: [17746, 23, 13, 2, 20, 100000]
+	push job: [17747, 24, 13, 1, 20, 100000]
+	push job: [17748, 24, 13, 2, 20, 100000]
+	push job: [17749, 25, 13, 1, 20, 100000]
+cnode: node023, cpus: 4, lavg: 0.0, slots: 4
+	push job: [17750, 25, 13, 2, 20, 100000]
+	push job: [17751, 26, 13, 1, 20, 100000]
+	push job: [17752, 26, 13, 2, 20, 100000]
+	push job: [17753, 27, 13, 1, 20, 100000]
+cnode: node024, cpus: 4, lavg: 0.0, slots: 4
+	push job: [17754, 27, 13, 2, 20, 100000]
+	push job: [17755, 28, 13, 1, 20, 100000]
+	push job: [17756, 28, 13, 2, 20, 100000]
+	push job: [17757, 29, 13, 1, 20, 100000]
+cnode: node025, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17758, 29, 13, 2, 20, 100000]
+	push job: [17759, 30, 13, 1, 20, 100000]
+	push job: [17760, 30, 13, 2, 20, 100000]
+cnode: node026, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17761, 31, 13, 1, 20, 100000]
+	push job: [17762, 31, 13, 2, 20, 100000]
+	push job: [17763, 32, 13, 1, 20, 100000]
+cnode: node027, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17764, 32, 13, 2, 20, 100000]
+	push job: [17765, 33, 13, 1, 20, 100000]
+	push job: [17766, 33, 13, 2, 20, 100000]
+cnode: node028, cpus: 4, lavg: 1.0, slots: 3
+	push job: [17767, 34, 13, 1, 20, 100000]
+	push job: [17768, 34, 13, 2, 20, 100000]
+	push job: [17769, 35, 13, 1, 20, 100000]
+cnode: node065, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17770, 35, 13, 2, 20, 100000]
+cnode: node066, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17771, 36, 13, 1, 20, 100000]
+cnode: node067, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17772, 36, 13, 2, 20, 100000]
+cnode: node068, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17773, 37, 13, 1, 20, 100000]
+cnode: node069, cpus: 1, lavg: 0.3, slots: 1
+	push job: [17774, 37, 13, 2, 20, 100000]
+cnode: node070, cpus: 1, lavg: 0.3, slots: 1
+	push job: [17775, 38, 13, 1, 20, 100000]
+cnode: node071, cpus: 1, lavg: 0.4, slots: 1
+	push job: [17776, 38, 13, 2, 20, 100000]
+cnode: node072, cpus: 1, lavg: 0.4, slots: 1
+	push job: [17777, 39, 13, 1, 20, 100000]
+cnode: node073, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17778, 39, 13, 2, 20, 100000]
+cnode: node075, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17779, 40, 13, 1, 20, 100000]
+cnode: node076, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17780, 40, 13, 2, 20, 100000]
+cnode: node077, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17781, 41, 13, 1, 20, 100000]
+cnode: node078, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17782, 41, 13, 2, 20, 100000]
+cnode: node079, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17783, 42, 13, 1, 20, 100000]
+cnode: node080, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17784, 42, 13, 2, 20, 100000]
+cnode: node081, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17785, 43, 13, 1, 20, 100000]
+cnode: node082, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17786, 43, 13, 2, 20, 100000]
+cnode: node083, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17787, 44, 13, 1, 20, 100000]
+cnode: node084, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17788, 44, 13, 2, 20, 100000]
+cnode: node085, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17789, 45, 13, 1, 20, 100000]
+cnode: node086, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17790, 45, 13, 2, 20, 100000]
+cnode: node087, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17791, 46, 13, 1, 20, 100000]
+cnode: node088, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17792, 46, 13, 2, 20, 100000]
+cnode: node094, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17793, 47, 13, 1, 20, 100000]
+	push job: [17794, 47, 13, 2, 20, 100000]
+cnode: node095, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17795, 48, 13, 1, 20, 100000]
+	push job: [17796, 48, 13, 2, 20, 100000]
+cnode: node096, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17797, 49, 13, 1, 20, 100000]
+	push job: [17798, 49, 13, 2, 20, 100000]
+cnode: node097, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17799, 50, 13, 1, 20, 100000]
+	push job: [17800, 50, 13, 2, 20, 100000]
+cnode: node098, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17801, 51, 13, 1, 20, 100000]
+	push job: [17802, 51, 13, 2, 20, 100000]
+cnode: node099, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17803, 52, 13, 1, 20, 100000]
+	push job: [17804, 52, 13, 2, 20, 100000]
+cnode: node249, cpus: 16, lavg: 0.0, slots: 16
+	push job: [17805, 53, 13, 1, 20, 100000]
+	push job: [17806, 53, 13, 2, 20, 100000]
+	push job: [17807, 54, 13, 1, 20, 100000]
+	push job: [17808, 54, 13, 2, 20, 100000]
+	push job: [17809, 55, 13, 1, 20, 100000]
+	push job: [17810, 55, 13, 2, 20, 100000]
+	push job: [17811, 56, 13, 1, 20, 100000]
+	push job: [17812, 56, 13, 2, 20, 100000]
+	push job: [17813, 57, 13, 1, 20, 100000]
+	push job: [17814, 57, 13, 2, 20, 100000]
+	push job: [17815, 58, 13, 1, 20, 100000]
+	push job: [17816, 58, 13, 2, 20, 100000]
+	push job: [17817, 59, 13, 1, 20, 100000]
+	push job: [17818, 59, 13, 2, 20, 100000]
+	push job: [17819, 60, 13, 1, 20, 100000]
+	push job: [17820, 60, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 8.0, slots: 8
+	push job: [17821, 61, 13, 1, 20, 100000]
+	push job: [17822, 61, 13, 2, 20, 100000]
+	push job: [17823, 62, 13, 1, 20, 100000]
+	push job: [17824, 62, 13, 2, 20, 100000]
+	push job: [17825, 63, 13, 1, 20, 100000]
+	push job: [17826, 63, 13, 2, 20, 100000]
+	push job: [17827, 64, 13, 1, 20, 100000]
+	push job: [17828, 64, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 8.0, slots: 8
+	push job: [17829, 65, 13, 1, 20, 100000]
+	push job: [17830, 65, 13, 2, 20, 100000]
+	push job: [17831, 66, 13, 1, 20, 100000]
+	push job: [17832, 66, 13, 2, 20, 100000]
+	push job: [17833, 67, 13, 1, 20, 100000]
+	push job: [17834, 67, 13, 2, 20, 100000]
+	push job: [17835, 68, 13, 1, 20, 100000]
+	push job: [17836, 68, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.3
+load avg 1min: 3.8
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 3.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.4
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.9
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 13.0
+load avg 1min: 11.0
+load avg 1min: 14.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.3, slots: 0
+cnode: node021, cpus: 4, lavg: 3.8, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 3.9, slots: 0
+cnode: node024, cpus: 4, lavg: 3.0, slots: 1
+	push job: [17837, 69, 13, 1, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 3.9, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 1.0, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.4, slots: 0
+cnode: node069, cpus: 1, lavg: 1.1, slots: 0
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.2, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 0.9, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 13.0, slots: 3
+	push job: [17838, 69, 13, 2, 20, 100000]
+	push job: [17839, 70, 13, 1, 20, 100000]
+	push job: [17840, 70, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 11.0, slots: 5
+	push job: [17841, 71, 13, 1, 20, 100000]
+	push job: [17842, 71, 13, 2, 20, 100000]
+	push job: [17843, 72, 13, 1, 20, 100000]
+	push job: [17844, 72, 13, 2, 20, 100000]
+	push job: [17845, 73, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 14.0, slots: 2
+	push job: [17846, 73, 13, 2, 20, 100000]
+	push job: [17847, 74, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 3.9
+load avg 1min: 3.9
+load avg 1min: 4.1
+load avg 1min: 4.2
+load avg 1min: 4.2
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.4
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 0.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.3
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 17.0
+load avg 1min: 16.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 3.9, slots: 0
+cnode: node020, cpus: 4, lavg: 3.9, slots: 0
+cnode: node021, cpus: 4, lavg: 3.9, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.2, slots: 0
+cnode: node024, cpus: 4, lavg: 4.2, slots: 0
+cnode: node025, cpus: 4, lavg: 3.9, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.0, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.4, slots: 0
+cnode: node069, cpus: 1, lavg: 1.1, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17848, 74, 13, 2, 20, 100000]
+cnode: node079, cpus: 1, lavg: 1.3, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.1, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.1, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 17.0, slots: 0
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17849, 75, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.4
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 16.0
+load avg 1min: 17.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.2, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 3.9, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.0, slots: 0
+cnode: node067, cpus: 1, lavg: 1.4, slots: 0
+cnode: node068, cpus: 1, lavg: 1.3, slots: 0
+cnode: node069, cpus: 1, lavg: 1.1, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.2, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.1, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.1, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.1, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 17.0, slots: 0
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 16.0
+load avg 1min: 17.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 3.9, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 3.9, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.1, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 3.9, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 1.0, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.0, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.1, slots: 0
+cnode: node075, cpus: 1, lavg: 1.2, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.1, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.2, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 17.0, slots: 0
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 3.9
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 3.3
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 16.0
+load avg 1min: 16.0
+load avg 1min: 17.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.2, slots: 0
+cnode: node021, cpus: 4, lavg: 3.9, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 3.3, slots: 1
+	push job: [17850, 75, 13, 2, 20, 100000]
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 3.9, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.3, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.0, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.2, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.1, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.1, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 17.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.4
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 16.0
+load avg 1min: 17.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.2, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.4, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.0, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.2, slots: 0
+cnode: node072, cpus: 1, lavg: 1.3, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.2, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 1.2, slots: 1
+	push job: [17851, 76, 13, 1, 20, 100000]
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17852, 76, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 17.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.2
+load avg 1min: 4.0
+load avg 1min: 4.3
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 13.0
+load avg 1min: 16.0
+load avg 1min: 17.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.2, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.1, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.2, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.3, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.1, slots: 0
+cnode: node088, cpus: 1, lavg: 1.2, slots: 0
+cnode: node094, cpus: 2, lavg: 2.1, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.1, slots: 0
+cnode: node249, cpus: 16, lavg: 13.0, slots: 3
+	push job: [17853, 77, 13, 1, 20, 100000]
+	push job: [17854, 77, 13, 2, 20, 100000]
+	push job: [17855, 78, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 17.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.4
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.3
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.8
+load avg 1min: 0.8
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 16.0
+load avg 1min: 17.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 3.9, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.0, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.4, slots: 0
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 1.0, slots: 0
+cnode: node073, cpus: 1, lavg: 1.1, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.3, slots: 0
+cnode: node079, cpus: 1, lavg: 0.8, slots: 0
+cnode: node080, cpus: 1, lavg: 0.8, slots: 0
+cnode: node082, cpus: 1, lavg: 1.2, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.1, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.1, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17856, 78, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 17.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 0.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 0.6
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.1
+load avg 1min: 0.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 17.0
+load avg 1min: 15.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.1, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.2, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.1, slots: 0
+cnode: node065, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17857, 79, 13, 1, 20, 100000]
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.0, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 0.6, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 1.0, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17858, 79, 13, 2, 20, 100000]
+cnode: node080, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17859, 80, 13, 1, 20, 100000]
+cnode: node082, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17860, 80, 13, 2, 20, 100000]
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.1, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.1, slots: 0
+cnode: node249, cpus: 16, lavg: 17.0, slots: 0
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17861, 81, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 2.6
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 0.9
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 0.4
+load avg 1min: 0.2
+load avg 1min: 0.2
+load avg 1min: 0.2
+load avg 1min: 0.4
+load avg 1min: 0.3
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.1
+load avg 1min: 0.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 1.1
+load avg 1min: 1.9
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 13.0
+load avg 1min: 15.0
+load avg 1min: 14.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.1, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 2.6, slots: 1
+	push job: [17862, 81, 13, 2, 20, 100000]
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 0.9, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 0.4, slots: 1
+	push job: [17863, 82, 13, 1, 20, 100000]
+cnode: node069, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17864, 82, 13, 2, 20, 100000]
+cnode: node070, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17865, 83, 13, 1, 20, 100000]
+cnode: node071, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17866, 83, 13, 2, 20, 100000]
+cnode: node072, cpus: 1, lavg: 0.4, slots: 1
+	push job: [17867, 84, 13, 1, 20, 100000]
+cnode: node073, cpus: 1, lavg: 0.3, slots: 1
+	push job: [17868, 84, 13, 2, 20, 100000]
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17869, 85, 13, 1, 20, 100000]
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17870, 85, 13, 2, 20, 100000]
+cnode: node086, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17871, 86, 13, 1, 20, 100000]
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.1, slots: 0
+cnode: node096, cpus: 2, lavg: 1.1, slots: 1
+	push job: [17872, 86, 13, 2, 20, 100000]
+cnode: node097, cpus: 2, lavg: 1.9, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 13.0, slots: 3
+	push job: [17873, 87, 13, 1, 20, 100000]
+	push job: [17874, 87, 13, 2, 20, 100000]
+	push job: [17875, 88, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17876, 88, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 14.0, slots: 2
+	push job: [17877, 89, 13, 1, 20, 100000]
+	push job: [17878, 89, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 3.2
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 0.4
+load avg 1min: 0.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 0.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.9
+load avg 1min: 0.2
+load avg 1min: 0.4
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 0.2
+load avg 1min: 0.2
+load avg 1min: 2.0
+load avg 1min: 1.4
+load avg 1min: 1.4
+load avg 1min: 0.0
+load avg 1min: 2.0
+load avg 1min: 1.9
+load avg 1min: 12.0
+load avg 1min: 15.0
+load avg 1min: 13.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 3.9, slots: 0
+cnode: node021, cpus: 4, lavg: 4.1, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 3.2, slots: 1
+	push job: [17879, 90, 13, 1, 20, 100000]
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 3.9, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 0.4, slots: 1
+	push job: [17880, 90, 13, 2, 20, 100000]
+cnode: node067, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17881, 91, 13, 1, 20, 100000]
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.0, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17882, 91, 13, 2, 20, 100000]
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 0.9, slots: 0
+cnode: node083, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17883, 92, 13, 1, 20, 100000]
+cnode: node084, cpus: 1, lavg: 0.4, slots: 1
+	push job: [17884, 92, 13, 2, 20, 100000]
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.1, slots: 0
+cnode: node087, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17885, 93, 13, 1, 20, 100000]
+cnode: node088, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17886, 93, 13, 2, 20, 100000]
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 1.4, slots: 1
+	push job: [17887, 94, 13, 1, 20, 100000]
+cnode: node096, cpus: 2, lavg: 1.4, slots: 1
+	push job: [17888, 94, 13, 2, 20, 100000]
+cnode: node097, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17889, 95, 13, 1, 20, 100000]
+	push job: [17890, 95, 13, 2, 20, 100000]
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 1.9, slots: 0
+cnode: node249, cpus: 16, lavg: 12.0, slots: 4
+	push job: [17891, 96, 13, 1, 20, 100000]
+	push job: [17892, 96, 13, 2, 20, 100000]
+	push job: [17893, 97, 13, 1, 20, 100000]
+	push job: [17894, 97, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17895, 98, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 13.0, slots: 3
+	push job: [17896, 98, 13, 2, 20, 100000]
+	push job: [17897, 99, 13, 1, 20, 100000]
+	push job: [17898, 99, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.0
+load avg 1min: 4.0
+load avg 1min: 2.3
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.4
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.9
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 1.9
+load avg 1min: 0.1
+load avg 1min: 0.0
+load avg 1min: 13.0
+load avg 1min: 4.4
+load avg 1min: 7.3
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.1, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 3.0, slots: 1
+	push job: [17899, 100, 13, 1, 20, 100000]
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 2.3, slots: 2
+	push job: [17900, 100, 13, 2, 20, 100000]
+	push job: [17901, 101, 13, 1, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.1, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 3.9, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.0, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.1, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.4, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 0.9, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 1.1, slots: 1
+	push job: [17902, 101, 13, 2, 20, 100000]
+cnode: node095, cpus: 2, lavg: 1.1, slots: 1
+	push job: [17903, 102, 13, 1, 20, 100000]
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 1.9, slots: 0
+cnode: node098, cpus: 2, lavg: 0.1, slots: 2
+	push job: [17904, 102, 13, 2, 20, 100000]
+	push job: [17905, 103, 13, 1, 20, 100000]
+cnode: node099, cpus: 2, lavg: 0.0, slots: 2
+	push job: [17906, 103, 13, 2, 20, 100000]
+	push job: [17907, 104, 13, 1, 20, 100000]
+cnode: node249, cpus: 16, lavg: 13.0, slots: 3
+	push job: [17908, 104, 13, 2, 20, 100000]
+	push job: [17909, 105, 13, 1, 20, 100000]
+	push job: [17910, 105, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 4.4, slots: 12
+	push job: [17911, 106, 13, 1, 20, 100000]
+	push job: [17912, 106, 13, 2, 20, 100000]
+	push job: [17913, 107, 13, 1, 20, 100000]
+	push job: [17914, 107, 13, 2, 20, 100000]
+	push job: [17915, 108, 13, 1, 20, 100000]
+	push job: [17916, 108, 13, 2, 20, 100000]
+	push job: [17917, 109, 13, 1, 20, 100000]
+	push job: [17918, 109, 13, 2, 20, 100000]
+	push job: [17919, 110, 13, 1, 20, 100000]
+	push job: [17920, 110, 13, 2, 20, 100000]
+	push job: [17921, 111, 13, 1, 20, 100000]
+	push job: [17922, 111, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 7.3, slots: 9
+	push job: [17923, 112, 13, 1, 20, 100000]
+	push job: [17924, 112, 13, 2, 20, 100000]
+	push job: [17925, 113, 13, 1, 20, 100000]
+	push job: [17926, 113, 13, 2, 20, 100000]
+	push job: [17927, 114, 13, 1, 20, 100000]
+	push job: [17928, 114, 13, 2, 20, 100000]
+	push job: [17929, 115, 13, 1, 20, 100000]
+	push job: [17930, 115, 13, 2, 20, 100000]
+	push job: [17931, 116, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.1
+load avg 1min: 4.2
+load avg 1min: 3.6
+load avg 1min: 4.9
+load avg 1min: 4.5
+load avg 1min: 1.3
+load avg 1min: 3.5
+load avg 1min: 3.4
+load avg 1min: 4.6
+load avg 1min: 4.3
+load avg 1min: 4.5
+load avg 1min: 4.1
+load avg 1min: 1.4
+load avg 1min: 1.5
+load avg 1min: 1.8
+load avg 1min: 1.4
+load avg 1min: 1.4
+load avg 1min: 1.5
+load avg 1min: 1.7
+load avg 1min: 1.4
+load avg 1min: 1.3
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 0.7
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.3
+load avg 1min: 1.3
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.5
+load avg 1min: 1.3
+load avg 1min: 1.4
+load avg 1min: 1.3
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 2.5
+load avg 1min: 2.3
+load avg 1min: 1.1
+load avg 1min: 2.5
+load avg 1min: 2.4
+load avg 1min: 2.5
+load avg 1min: 14.0
+load avg 1min: 13.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.1, slots: 0
+cnode: node018, cpus: 4, lavg: 4.2, slots: 0
+cnode: node019, cpus: 4, lavg: 3.6, slots: 0
+cnode: node020, cpus: 4, lavg: 4.9, slots: 0
+cnode: node021, cpus: 4, lavg: 4.5, slots: 0
+cnode: node022, cpus: 4, lavg: 1.3, slots: 3
+	push job: [17932, 116, 13, 2, 20, 100000]
+	push job: [17933, 117, 13, 1, 20, 100000]
+	push job: [17934, 117, 13, 2, 20, 100000]
+cnode: node023, cpus: 4, lavg: 3.5, slots: 1
+	push job: [17935, 118, 13, 1, 20, 100000]
+cnode: node024, cpus: 4, lavg: 3.4, slots: 1
+	push job: [17936, 118, 13, 2, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.6, slots: 0
+cnode: node026, cpus: 4, lavg: 4.3, slots: 0
+cnode: node027, cpus: 4, lavg: 4.5, slots: 0
+cnode: node028, cpus: 4, lavg: 4.1, slots: 0
+cnode: node065, cpus: 1, lavg: 1.4, slots: 0
+cnode: node066, cpus: 1, lavg: 1.5, slots: 0
+cnode: node067, cpus: 1, lavg: 1.8, slots: 0
+cnode: node068, cpus: 1, lavg: 1.4, slots: 0
+cnode: node069, cpus: 1, lavg: 1.4, slots: 0
+cnode: node070, cpus: 1, lavg: 1.5, slots: 0
+cnode: node071, cpus: 1, lavg: 1.7, slots: 0
+cnode: node072, cpus: 1, lavg: 1.4, slots: 0
+cnode: node073, cpus: 1, lavg: 1.3, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 0.7, slots: 0
+cnode: node079, cpus: 1, lavg: 1.3, slots: 0
+cnode: node080, cpus: 1, lavg: 1.3, slots: 0
+cnode: node082, cpus: 1, lavg: 1.5, slots: 0
+cnode: node083, cpus: 1, lavg: 1.3, slots: 0
+cnode: node084, cpus: 1, lavg: 1.4, slots: 0
+cnode: node085, cpus: 1, lavg: 1.3, slots: 0
+cnode: node086, cpus: 1, lavg: 1.3, slots: 0
+cnode: node087, cpus: 1, lavg: 1.2, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 2.5, slots: 0
+cnode: node095, cpus: 2, lavg: 2.3, slots: 0
+cnode: node096, cpus: 2, lavg: 1.1, slots: 1
+	push job: [17937, 119, 13, 1, 20, 100000]
+cnode: node097, cpus: 2, lavg: 2.5, slots: 0
+cnode: node098, cpus: 2, lavg: 2.4, slots: 0
+cnode: node099, cpus: 2, lavg: 2.5, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [17938, 119, 13, 2, 20, 100000]
+	push job: [17939, 120, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 13.0, slots: 3
+	push job: [17940, 120, 13, 2, 20, 100000]
+	push job: [17941, 121, 13, 1, 20, 100000]
+	push job: [17942, 121, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17943, 122, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 2.0
+load avg 1min: 2.9
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 0.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 2.1
+load avg 1min: 1.5
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 14.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.1, slots: 0
+cnode: node019, cpus: 4, lavg: 2.0, slots: 2
+	push job: [17944, 122, 13, 2, 20, 100000]
+	push job: [17945, 123, 13, 1, 20, 100000]
+cnode: node020, cpus: 4, lavg: 2.9, slots: 1
+	push job: [17946, 123, 13, 2, 20, 100000]
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 1.1, slots: 3
+	push job: [17947, 124, 13, 1, 20, 100000]
+	push job: [17948, 124, 13, 2, 20, 100000]
+	push job: [17949, 125, 13, 1, 20, 100000]
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.1, slots: 0
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 1.0, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17950, 125, 13, 2, 20, 100000]
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.1, slots: 0
+cnode: node087, cpus: 1, lavg: 1.1, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.1, slots: 0
+cnode: node095, cpus: 2, lavg: 1.5, slots: 1
+	push job: [17951, 126, 13, 1, 20, 100000]
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [17952, 126, 13, 2, 20, 100000]
+	push job: [17953, 127, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17954, 127, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17955, 128, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 2.2
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 3.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 3.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 3.2
+load avg 1min: 3.1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 2.1
+load avg 1min: 1.9
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 14.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 2.2, slots: 2
+	push job: [17956, 128, 13, 2, 20, 100000]
+	push job: [17957, 129, 13, 1, 20, 100000]
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 3.9, slots: 0
+cnode: node020, cpus: 4, lavg: 3.1, slots: 1
+	push job: [17958, 129, 13, 2, 20, 100000]
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 3.0, slots: 1
+	push job: [17959, 130, 13, 1, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 3.2, slots: 1
+	push job: [17960, 130, 13, 2, 20, 100000]
+cnode: node028, cpus: 4, lavg: 3.1, slots: 1
+	push job: [17961, 131, 13, 1, 20, 100000]
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.1, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.1, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.1, slots: 0
+cnode: node095, cpus: 2, lavg: 1.9, slots: 0
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [17962, 131, 13, 2, 20, 100000]
+	push job: [17963, 132, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17964, 132, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17965, 133, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.3
+load avg 1min: 3.9
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 16.0
+load avg 1min: 16.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 3.9, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.1, slots: 0
+cnode: node021, cpus: 4, lavg: 4.1, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 1.3, slots: 3
+	push job: [17966, 133, 13, 2, 20, 100000]
+	push job: [17967, 134, 13, 1, 20, 100000]
+	push job: [17968, 134, 13, 2, 20, 100000]
+cnode: node028, cpus: 4, lavg: 3.9, slots: 0
+cnode: node065, cpus: 1, lavg: 1.3, slots: 0
+cnode: node066, cpus: 1, lavg: 1.0, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.0, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 1.1, slots: 1
+	push job: [17969, 135, 13, 1, 20, 100000]
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17970, 135, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 3.0
+load avg 1min: 3.0
+load avg 1min: 3.9
+load avg 1min: 3.1
+load avg 1min: 1.3
+load avg 1min: 4.1
+load avg 1min: 3.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.3
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.2
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.9
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 14.0
+load avg 1min: 16.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 3.0, slots: 1
+	push job: [17971, 136, 13, 1, 20, 100000]
+cnode: node018, cpus: 4, lavg: 3.0, slots: 1
+	push job: [17972, 136, 13, 2, 20, 100000]
+cnode: node019, cpus: 4, lavg: 3.9, slots: 0
+cnode: node020, cpus: 4, lavg: 3.1, slots: 1
+	push job: [17973, 137, 13, 1, 20, 100000]
+cnode: node021, cpus: 4, lavg: 1.3, slots: 3
+	push job: [17974, 137, 13, 2, 20, 100000]
+	push job: [17975, 138, 13, 1, 20, 100000]
+	push job: [17976, 138, 13, 2, 20, 100000]
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 3.1, slots: 1
+	push job: [17977, 139, 13, 1, 20, 100000]
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 3.3, slots: 1
+	push job: [17978, 139, 13, 2, 20, 100000]
+cnode: node027, cpus: 4, lavg: 3.9, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.3, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.2, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.1, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.1, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 1.9, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [17979, 140, 13, 1, 20, 100000]
+	push job: [17980, 140, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 2.2
+load avg 1min: 3.1
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 3.1
+load avg 1min: 2.0
+load avg 1min: 4.2
+load avg 1min: 4.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.4
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 16.0
+load avg 1min: 16.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 2.2, slots: 2
+	push job: [17981, 141, 13, 1, 20, 100000]
+	push job: [17982, 141, 13, 2, 20, 100000]
+cnode: node019, cpus: 4, lavg: 3.1, slots: 1
+	push job: [17983, 142, 13, 1, 20, 100000]
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 3.9, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 3.9, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 3.1, slots: 1
+	push job: [17984, 142, 13, 2, 20, 100000]
+cnode: node026, cpus: 4, lavg: 2.0, slots: 2
+	push job: [17985, 143, 13, 1, 20, 100000]
+	push job: [17986, 143, 13, 2, 20, 100000]
+cnode: node027, cpus: 4, lavg: 4.2, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.0, slots: 0
+cnode: node066, cpus: 1, lavg: 1.0, slots: 0
+cnode: node067, cpus: 1, lavg: 1.1, slots: 0
+cnode: node068, cpus: 1, lavg: 1.3, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.4, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.2, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.1, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.1, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 2.1, slots: 0
+cnode: node095, cpus: 2, lavg: 2.1, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 3.7
+load avg 1min: 4.0
+load avg 1min: 4.3
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 2.1
+load avg 1min: 0.6
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.6
+load avg 1min: 1.3
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.2
+load avg 1min: 0.1
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 3.7, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.3, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 2.1, slots: 2
+	push job: [17987, 144, 13, 1, 20, 100000]
+	push job: [17988, 144, 13, 2, 20, 100000]
+cnode: node065, cpus: 1, lavg: 0.6, slots: 0
+cnode: node066, cpus: 1, lavg: 1.3, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.6, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.2, slots: 0
+cnode: node080, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17989, 145, 13, 1, 20, 100000]
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.1, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.1, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17990, 145, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [17991, 146, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.2
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 3.2
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 0.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.5
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.5
+load avg 1min: 0.2
+load avg 1min: 0.4
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 0.3
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 1.5
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 14.0
+load avg 1min: 15.0
+load avg 1min: 13.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 3.2, slots: 1
+	push job: [17992, 146, 13, 2, 20, 100000]
+cnode: node020, cpus: 4, lavg: 4.1, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 3.2, slots: 1
+	push job: [17993, 147, 13, 1, 20, 100000]
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 0.1, slots: 1
+	push job: [17994, 147, 13, 2, 20, 100000]
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.5, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.5, slots: 0
+cnode: node072, cpus: 1, lavg: 0.2, slots: 1
+	push job: [17995, 148, 13, 1, 20, 100000]
+cnode: node073, cpus: 1, lavg: 0.4, slots: 1
+	push job: [17996, 148, 13, 2, 20, 100000]
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 0.0, slots: 1
+	push job: [17997, 149, 13, 1, 20, 100000]
+cnode: node080, cpus: 1, lavg: 1.2, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.1, slots: 0
+cnode: node086, cpus: 1, lavg: 0.3, slots: 1
+	push job: [17998, 149, 13, 2, 20, 100000]
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 1.5, slots: 1
+	push job: [17999, 150, 13, 1, 20, 100000]
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.1, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18000, 150, 13, 2, 20, 100000]
+	push job: [18001, 151, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18002, 151, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18003, 152, 13, 1, 20, 100000]
+	push job: [18004, 152, 13, 2, 20, 100000]
+	push job: [18005, 153, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 0.5
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 0.1
+load avg 1min: 0.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 0.3
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.0
+load avg 1min: 1.0
+load avg 1min: 0.0
+load avg 1min: 0.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 1.1
+load avg 1min: 0.0
+load avg 1min: 2.2
+load avg 1min: 1.3
+load avg 1min: 14.0
+load avg 1min: 13.0
+load avg 1min: 12.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.1, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 0.5, slots: 1
+	push job: [18006, 153, 13, 2, 20, 100000]
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 0.1, slots: 1
+	push job: [18007, 154, 13, 1, 20, 100000]
+cnode: node071, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18008, 154, 13, 2, 20, 100000]
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 0.3, slots: 1
+	push job: [18009, 155, 13, 1, 20, 100000]
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18010, 155, 13, 2, 20, 100000]
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18011, 156, 13, 1, 20, 100000]
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18012, 156, 13, 2, 20, 100000]
+cnode: node088, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18013, 157, 13, 1, 20, 100000]
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.1, slots: 0
+cnode: node096, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18014, 157, 13, 2, 20, 100000]
+cnode: node097, cpus: 2, lavg: 0.0, slots: 2
+	push job: [18015, 158, 13, 1, 20, 100000]
+	push job: [18016, 158, 13, 2, 20, 100000]
+cnode: node098, cpus: 2, lavg: 2.2, slots: 0
+cnode: node099, cpus: 2, lavg: 1.3, slots: 1
+	push job: [18017, 159, 13, 1, 20, 100000]
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18018, 159, 13, 2, 20, 100000]
+	push job: [18019, 160, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18020, 160, 13, 2, 20, 100000]
+	push job: [18021, 161, 13, 1, 20, 100000]
+	push job: [18022, 161, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 12.0, slots: 4
+	push job: [18023, 162, 13, 1, 20, 100000]
+	push job: [18024, 162, 13, 2, 20, 100000]
+	push job: [18025, 163, 13, 1, 20, 100000]
+	push job: [18026, 163, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 0.1
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 0.4
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 0.4
+load avg 1min: 0.5
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.9
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 1.7
+load avg 1min: 2.1
+load avg 1min: 12.0
+load avg 1min: 13.0
+load avg 1min: 12.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 3.9, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 3.9, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 0.1, slots: 1
+	push job: [18027, 164, 13, 1, 20, 100000]
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.1, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 0.4, slots: 1
+	push job: [18028, 164, 13, 2, 20, 100000]
+cnode: node072, cpus: 1, lavg: 1.3, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.1, slots: 0
+cnode: node083, cpus: 1, lavg: 0.4, slots: 1
+	push job: [18029, 165, 13, 1, 20, 100000]
+cnode: node084, cpus: 1, lavg: 0.5, slots: 1
+	push job: [18030, 165, 13, 2, 20, 100000]
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 0.9, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 1.7, slots: 0
+cnode: node099, cpus: 2, lavg: 2.1, slots: 0
+cnode: node249, cpus: 16, lavg: 12.0, slots: 4
+	push job: [18031, 166, 13, 1, 20, 100000]
+	push job: [18032, 166, 13, 2, 20, 100000]
+	push job: [18033, 167, 13, 1, 20, 100000]
+	push job: [18034, 167, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18035, 168, 13, 1, 20, 100000]
+	push job: [18036, 168, 13, 2, 20, 100000]
+	push job: [18037, 169, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 12.0, slots: 4
+	push job: [18038, 169, 13, 2, 20, 100000]
+	push job: [18039, 170, 13, 1, 20, 100000]
+	push job: [18040, 170, 13, 2, 20, 100000]
+	push job: [18041, 171, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 3.3
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 0.3
+load avg 1min: 0.5
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 0.2
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 0.6
+load avg 1min: 1.0
+load avg 1min: 15.0
+load avg 1min: 13.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 3.9, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 3.3, slots: 1
+	push job: [18042, 171, 13, 2, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.1, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 0.3, slots: 1
+	push job: [18043, 172, 13, 1, 20, 100000]
+cnode: node069, cpus: 1, lavg: 0.5, slots: 1
+	push job: [18044, 172, 13, 2, 20, 100000]
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18045, 173, 13, 1, 20, 100000]
+cnode: node095, cpus: 2, lavg: 0.2, slots: 2
+	push job: [18046, 173, 13, 2, 20, 100000]
+	push job: [18047, 174, 13, 1, 20, 100000]
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 0.6, slots: 1
+	push job: [18048, 174, 13, 2, 20, 100000]
+cnode: node099, cpus: 2, lavg: 1.0, slots: 1
+	push job: [18049, 175, 13, 1, 20, 100000]
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18050, 175, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18051, 176, 13, 1, 20, 100000]
+	push job: [18052, 176, 13, 2, 20, 100000]
+	push job: [18053, 177, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18054, 177, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 2.9
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 1.0
+load avg 1min: 2.1
+load avg 1min: 14.0
+load avg 1min: 13.0
+load avg 1min: 14.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 3.9, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 2.9, slots: 1
+	push job: [18055, 178, 13, 1, 20, 100000]
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 4.1, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.2, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.1, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.2, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 1.0, slots: 1
+	push job: [18056, 178, 13, 2, 20, 100000]
+cnode: node099, cpus: 2, lavg: 2.1, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18057, 179, 13, 1, 20, 100000]
+	push job: [18058, 179, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18059, 180, 13, 1, 20, 100000]
+	push job: [18060, 180, 13, 2, 20, 100000]
+	push job: [18061, 181, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18062, 181, 13, 2, 20, 100000]
+	push job: [18063, 182, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 3.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.2
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 14.0
+load avg 1min: 15.0
+load avg 1min: 14.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18064, 182, 13, 2, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.1, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.0, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.2, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.1, slots: 0
+cnode: node085, cpus: 1, lavg: 1.1, slots: 0
+cnode: node086, cpus: 1, lavg: 1.1, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.2, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18065, 183, 13, 1, 20, 100000]
+	push job: [18066, 183, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18067, 184, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18068, 184, 13, 2, 20, 100000]
+	push job: [18069, 185, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.4
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.3
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 0.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 16.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 3.4, slots: 1
+	push job: [18070, 185, 13, 2, 20, 100000]
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.2, slots: 0
+cnode: node025, cpus: 4, lavg: 4.1, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.0, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.1, slots: 0
+cnode: node068, cpus: 1, lavg: 1.0, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 1.3, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.2, slots: 0
+cnode: node077, cpus: 1, lavg: 0.1, slots: 1
+	push job: [18071, 186, 13, 1, 20, 100000]
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.1, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18072, 186, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18073, 187, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 2.3
+load avg 1min: 2.3
+load avg 1min: 2.9
+load avg 1min: 3.3
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.4
+load avg 1min: 1.0
+load avg 1min: 1.4
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.4
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.3
+load avg 1min: 14.0
+load avg 1min: 15.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.1, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.1, slots: 0
+cnode: node022, cpus: 4, lavg: 2.3, slots: 2
+	push job: [18074, 187, 13, 2, 20, 100000]
+	push job: [18075, 188, 13, 1, 20, 100000]
+cnode: node023, cpus: 4, lavg: 2.3, slots: 2
+	push job: [18076, 188, 13, 2, 20, 100000]
+	push job: [18077, 189, 13, 1, 20, 100000]
+cnode: node024, cpus: 4, lavg: 2.9, slots: 1
+	push job: [18078, 189, 13, 2, 20, 100000]
+cnode: node025, cpus: 4, lavg: 3.3, slots: 1
+	push job: [18079, 190, 13, 1, 20, 100000]
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.4, slots: 0
+cnode: node070, cpus: 1, lavg: 1.0, slots: 0
+cnode: node071, cpus: 1, lavg: 1.4, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.2, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.2, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 1.4, slots: 1
+	push job: [18080, 190, 13, 2, 20, 100000]
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.3, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18081, 191, 13, 1, 20, 100000]
+	push job: [18082, 191, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18083, 192, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.1
+load avg 1min: 4.9
+load avg 1min: 4.1
+load avg 1min: 4.8
+load avg 1min: 4.6
+load avg 1min: 4.8
+load avg 1min: 3.4
+load avg 1min: 3.1
+load avg 1min: 4.1
+load avg 1min: 4.2
+load avg 1min: 4.6
+load avg 1min: 4.2
+load avg 1min: 1.6
+load avg 1min: 1.4
+load avg 1min: 1.6
+load avg 1min: 1.4
+load avg 1min: 1.4
+load avg 1min: 1.6
+load avg 1min: 1.5
+load avg 1min: 1.4
+load avg 1min: 1.3
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.2
+load avg 1min: 1.3
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 2.4
+load avg 1min: 2.3
+load avg 1min: 2.3
+load avg 1min: 2.4
+load avg 1min: 2.3
+load avg 1min: 2.2
+load avg 1min: 16.0
+load avg 1min: 16.0
+load avg 1min: 14.0
+cnode: node017, cpus: 4, lavg: 4.1, slots: 0
+cnode: node018, cpus: 4, lavg: 4.9, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.8, slots: 0
+cnode: node021, cpus: 4, lavg: 4.6, slots: 0
+cnode: node022, cpus: 4, lavg: 4.8, slots: 0
+cnode: node023, cpus: 4, lavg: 3.4, slots: 1
+	push job: [18084, 192, 13, 2, 20, 100000]
+cnode: node024, cpus: 4, lavg: 3.1, slots: 1
+	push job: [18085, 193, 13, 1, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.1, slots: 0
+cnode: node026, cpus: 4, lavg: 4.2, slots: 0
+cnode: node027, cpus: 4, lavg: 4.6, slots: 0
+cnode: node028, cpus: 4, lavg: 4.2, slots: 0
+cnode: node065, cpus: 1, lavg: 1.6, slots: 0
+cnode: node066, cpus: 1, lavg: 1.4, slots: 0
+cnode: node067, cpus: 1, lavg: 1.6, slots: 0
+cnode: node068, cpus: 1, lavg: 1.4, slots: 0
+cnode: node069, cpus: 1, lavg: 1.4, slots: 0
+cnode: node070, cpus: 1, lavg: 1.6, slots: 0
+cnode: node071, cpus: 1, lavg: 1.5, slots: 0
+cnode: node072, cpus: 1, lavg: 1.4, slots: 0
+cnode: node073, cpus: 1, lavg: 1.3, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.2, slots: 0
+cnode: node080, cpus: 1, lavg: 1.3, slots: 0
+cnode: node082, cpus: 1, lavg: 1.3, slots: 0
+cnode: node083, cpus: 1, lavg: 1.2, slots: 0
+cnode: node084, cpus: 1, lavg: 1.3, slots: 0
+cnode: node085, cpus: 1, lavg: 1.3, slots: 0
+cnode: node086, cpus: 1, lavg: 1.2, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 2.4, slots: 0
+cnode: node095, cpus: 2, lavg: 2.3, slots: 0
+cnode: node096, cpus: 2, lavg: 2.3, slots: 0
+cnode: node097, cpus: 2, lavg: 2.4, slots: 0
+cnode: node098, cpus: 2, lavg: 2.3, slots: 0
+cnode: node099, cpus: 2, lavg: 2.2, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18086, 193, 13, 2, 20, 100000]
+	push job: [18087, 194, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 3.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.4
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.4
+load avg 1min: 1.4
+load avg 1min: 1.1
+load avg 1min: 1.3
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.0
+load avg 1min: 2.0
+load avg 1min: 2.2
+load avg 1min: 1.4
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 16.0
+load avg 1min: 14.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.1, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.2, slots: 0
+cnode: node023, cpus: 4, lavg: 3.9, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 3.1, slots: 1
+	push job: [18088, 194, 13, 2, 20, 100000]
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.0, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.4, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.0, slots: 0
+cnode: node071, cpus: 1, lavg: 1.4, slots: 0
+cnode: node072, cpus: 1, lavg: 1.4, slots: 0
+cnode: node073, cpus: 1, lavg: 1.1, slots: 0
+cnode: node075, cpus: 1, lavg: 1.3, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.1, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18089, 195, 13, 1, 20, 100000]
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.2, slots: 0
+cnode: node096, cpus: 2, lavg: 1.4, slots: 1
+	push job: [18090, 195, 13, 2, 20, 100000]
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18091, 196, 13, 1, 20, 100000]
+	push job: [18092, 196, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18093, 197, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 3.2
+load avg 1min: 4.2
+load avg 1min: 4.1
+load avg 1min: 3.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.4
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.3
+load avg 1min: 0.4
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 14.0
+load avg 1min: 15.0
+load avg 1min: 13.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 3.2, slots: 1
+	push job: [18094, 197, 13, 2, 20, 100000]
+cnode: node021, cpus: 4, lavg: 4.2, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 3.1, slots: 1
+	push job: [18095, 198, 13, 1, 20, 100000]
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.3, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.1, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.4, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.3, slots: 0
+cnode: node080, cpus: 1, lavg: 0.4, slots: 1
+	push job: [18096, 198, 13, 2, 20, 100000]
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.1, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.1, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.1, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18097, 199, 13, 1, 20, 100000]
+	push job: [18098, 199, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18099, 200, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18100, 200, 13, 2, 20, 100000]
+	push job: [18101, 201, 13, 1, 20, 100000]
+	push job: [18102, 201, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.2
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 0.1
+load avg 1min: 1.2
+load avg 1min: 0.7
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 0.2
+load avg 1min: 1.0
+load avg 1min: 0.3
+load avg 1min: 0.2
+load avg 1min: 0.8
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.7
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 1.1
+load avg 1min: 14.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.1, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18103, 202, 13, 1, 20, 100000]
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.2, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 0.1, slots: 1
+	push job: [18104, 202, 13, 2, 20, 100000]
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 0.7, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 0.2, slots: 1
+	push job: [18105, 203, 13, 1, 20, 100000]
+cnode: node071, cpus: 1, lavg: 1.0, slots: 0
+cnode: node072, cpus: 1, lavg: 0.3, slots: 1
+	push job: [18106, 203, 13, 2, 20, 100000]
+cnode: node073, cpus: 1, lavg: 0.2, slots: 1
+	push job: [18107, 204, 13, 1, 20, 100000]
+cnode: node075, cpus: 1, lavg: 0.8, slots: 0
+cnode: node077, cpus: 1, lavg: 1.2, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 0.7, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.1, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.1, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18108, 204, 13, 2, 20, 100000]
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18109, 205, 13, 1, 20, 100000]
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18110, 205, 13, 2, 20, 100000]
+	push job: [18111, 206, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18112, 206, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18113, 207, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 3.1
+load avg 1min: 3.9
+load avg 1min: 3.9
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 0.1
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 0.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 0.0
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.8
+load avg 1min: 1.1
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 1.9
+load avg 1min: 16.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.2, slots: 0
+cnode: node019, cpus: 4, lavg: 3.1, slots: 1
+	push job: [18114, 207, 13, 2, 20, 100000]
+cnode: node020, cpus: 4, lavg: 3.9, slots: 0
+cnode: node021, cpus: 4, lavg: 3.9, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.1, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: nWrite failed: Broken pipe
+ode065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.0, slots: 0
+cnode: node067, cpus: 1, lavg: 0.1, slots: 1
+	push job: [18115, 208, 13, 1, 20, 100000]
+cnode: node068, cpus: 1, lavg: 1.0, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 1.0, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18116, 208, 13, 2, 20, 100000]
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18117, 209, 13, 1, 20, 100000]
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 0.1, slots: 1
+	push job: [18118, 209, 13, 2, 20, 100000]
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.1, slots: 0
+cnode: node086, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18119, 210, 13, 1, 20, 100000]
+cnode: node087, cpus: 1, lavg: 1.2, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 1.8, slots: 0
+cnode: node095, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18120, 210, 13, 2, 20, 100000]
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 1.9, slots: 0
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18121, 211, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18122, 211, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 2.5
+load avg 1min: 3.0
+load avg 1min: 3.2
+load avg 1min: 3.3
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.3
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 0.6
+load avg 1min: 0.9
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 0.1
+load avg 1min: 0.0
+load avg 1min: 0.4
+load avg 1min: 1.1
+load avg 1min: 0.5
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 0.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 13.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 2.5, slots: 2
+	push job: [18123, 212, 13, 1, 20, 100000]
+	push job: [18124, 212, 13, 2, 20, 100000]
+cnode: node018, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18125, 213, 13, 1, 20, 100000]
+cnode: node019, cpus: 4, lavg: 3.2, slots: 1
+	push job: [18126, 213, 13, 2, 20, 100000]
+cnode: node020, cpus: 4, lavg: 3.3, slots: 1
+	push job: [18127, 214, 13, 1, 20, 100000]
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 3.3, slots: 1
+	push job: [18128, 214, 13, 2, 20, 100000]
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 0.6, slots: 0
+cnode: node069, cpus: 1, lavg: 0.9, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.2, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 0.1, slots: 1
+	push job: [18129, 215, 13, 1, 20, 100000]
+cnode: node084, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18130, 215, 13, 2, 20, 100000]
+cnode: node085, cpus: 1, lavg: 0.4, slots: 1
+	push job: [18131, 216, 13, 1, 20, 100000]
+cnode: node086, cpus: 1, lavg: 1.1, slots: 0
+cnode: node087, cpus: 1, lavg: 0.5, slots: 1
+	push job: [18132, 216, 13, 2, 20, 100000]
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 1.0, slots: 1
+	push job: [18133, 217, 13, 1, 20, 100000]
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 0.0, slots: 2
+	push job: [18134, 217, 13, 2, 20, 100000]
+	push job: [18135, 218, 13, 1, 20, 100000]
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18136, 218, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18137, 219, 13, 1, 20, 100000]
+	push job: [18138, 219, 13, 2, 20, 100000]
+	push job: [18139, 220, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18140, 220, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 3.0
+load avg 1min: 3.9
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.1
+load avg 1min: 4.0
+load avg 1min: 2.9
+load avg 1min: 3.1
+load avg 1min: 3.3
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 0.0
+load avg 1min: 0.2
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.9
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 12.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18141, 221, 13, 1, 20, 100000]
+cnode: node018, cpus: 4, lavg: 3.9, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.1, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 3.1, slots: 1
+	push job: [18142, 221, 13, 2, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 2.9, slots: 1
+	push job: [18143, 222, 13, 1, 20, 100000]
+cnode: node027, cpus: 4, lavg: 3.1, slots: 1
+	push job: [18144, 222, 13, 2, 20, 100000]
+cnode: node028, cpus: 4, lavg: 3.3, slots: 1
+	push job: [18145, 223, 13, 1, 20, 100000]
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18146, 223, 13, 2, 20, 100000]
+cnode: node069, cpus: 1, lavg: 0.2, slots: 1
+	push job: [18147, 224, 13, 1, 20, 100000]
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 0.9, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.1, slots: 0
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 12.0, slots: 4
+	push job: [18148, 224, 13, 2, 20, 100000]
+	push job: [18149, 225, 13, 1, 20, 100000]
+	push job: [18150, 225, 13, 2, 20, 100000]
+	push job: [18151, 226, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18152, 226, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18153, 227, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.2
+load avg 1min: 1.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.3
+load avg 1min: 3.3
+load avg 1min: 4.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.4
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.2
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.2
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 14.0
+load avg 1min: 13.0
+load avg 1min: 15.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.2, slots: 0
+cnode: node021, cpus: 4, lavg: 1.1, slots: 3
+	push job: [18154, 227, 13, 2, 20, 100000]
+	push job: [18155, 228, 13, 1, 20, 100000]
+	push job: [18156, 228, 13, 2, 20, 100000]
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.0, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 3.3, slots: 1
+	push job: [18157, 229, 13, 1, 20, 100000]
+cnode: node027, cpus: 4, lavg: 3.3, slots: 1
+	push job: [18158, 229, 13, 2, 20, 100000]
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.0, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.0, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.1, slots: 0
+cnode: node070, cpus: 1, lavg: 1.4, slots: 0
+cnode: node071, cpus: 1, lavg: 1.0, slots: 0
+cnode: node072, cpus: 1, lavg: 1.2, slots: 0
+cnode: node073, cpus: 1, lavg: 1.1, slots: 0
+cnode: node075, cpus: 1, lavg: 1.2, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.2, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18159, 230, 13, 1, 20, 100000]
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18160, 230, 13, 2, 20, 100000]
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18161, 231, 13, 1, 20, 100000]
+	push job: [18162, 231, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18163, 232, 13, 1, 20, 100000]
+	push job: [18164, 232, 13, 2, 20, 100000]
+	push job: [18165, 233, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18166, 233, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 3.2
+load avg 1min: 4.0
+load avg 1min: 1.2
+load avg 1min: 0.3
+load avg 1min: 1.5
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 0.2
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 0.2
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.2
+load avg 1min: 1.0
+load avg 1min: 1.3
+load avg 1min: 13.0
+load avg 1min: 14.0
+load avg 1min: 14.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 3.9, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 3.9, slots: 0
+cnode: node027, cpus: 4, lavg: 3.2, slots: 1
+	push job: [18167, 234, 13, 1, 20, 100000]
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.2, slots: 0
+cnode: node066, cpus: 1, lavg: 0.3, slots: 1
+	push job: [18168, 234, 13, 2, 20, 100000]
+cnode: node067, cpus: 1, lavg: 1.5, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 0.2, slots: 1
+	push job: [18169, 235, 13, 1, 20, 100000]
+cnode: node072, cpus: 1, lavg: 1.3, slots: 0
+cnode: node073, cpus: 1, lavg: 1.1, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 0.2, slots: 1
+	push job: [18170, 235, 13, 2, 20, 100000]
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.2, slots: 0
+cnode: node098, cpus: 2, lavg: 1.0, slots: 1
+	push job: [18171, 236, 13, 1, 20, 100000]
+cnode: node099, cpus: 2, lavg: 1.3, slots: 1
+	push job: [18172, 236, 13, 2, 20, 100000]
+cnode: node249, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18173, 237, 13, 1, 20, 100000]
+	push job: [18174, 237, 13, 2, 20, 100000]
+	push job: [18175, 238, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18176, 238, 13, 2, 20, 100000]
+	push job: [18177, 239, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18178, 239, 13, 2, 20, 100000]
+	push job: [18179, 240, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.0
+load avg 1min: 4.5
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 1.1
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 1.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 16.0
+load avg 1min: 13.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18180, 240, 13, 2, 20, 100000]
+cnode: node020, cpus: 4, lavg: 4.5, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.0, slots: 0
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 4.1, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.2, slots: 0
+cnode: node067, cpus: 1, lavg: 1.1, slots: 0
+cnode: node068, cpus: 1, lavg: 1.1, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 1.2, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.1, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.1, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.1, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 1.0, slots: 1
+	push job: [18181, 241, 13, 1, 20, 100000]
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18182, 241, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 16.0, slots: 0
+cnode: node251, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18183, 242, 13, 1, 20, 100000]
+	push job: [18184, 242, 13, 2, 20, 100000]
+	push job: [18185, 243, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 2.9
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 2.9
+load avg 1min: 2.8
+load avg 1min: 4.1
+load avg 1min: 3.8
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+load avg 1min: 13.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 2.9, slots: 1
+	push job: [18186, 243, 13, 2, 20, 100000]
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 2.9, slots: 1
+	push job: [18187, 244, 13, 1, 20, 100000]
+cnode: node023, cpus: 4, lavg: 2.8, slots: 1
+	push job: [18188, 244, 13, 2, 20, 100000]
+cnode: node024, cpus: 4, lavg: 4.1, slots: 0
+cnode: node025, cpus: 4, lavg: 3.8, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 1.3, slots: 0
+cnode: node071, cpus: 1, lavg: 1.1, slots: 0
+cnode: node072, cpus: 1, lavg: 1.0, slots: 0
+cnode: node073, cpus: 1, lavg: 1.0, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.1, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.1, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.1, slots: 0
+cnode: node094, cpus: 2, lavg: 1.1, slots: 1
+	push job: [18189, 245, 13, 1, 20, 100000]
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.1, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18190, 245, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18191, 246, 13, 1, 20, 100000]
+cnode: node251, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18192, 246, 13, 2, 20, 100000]
+	push job: [18193, 247, 13, 1, 20, 100000]
+	push job: [18194, 247, 13, 2, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.1
+load avg 1min: 3.1
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 3.0
+load avg 1min: 4.1
+load avg 1min: 4.0
+load avg 1min: 3.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 2.8
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.1
+load avg 1min: 1.4
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.2
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 15.0
+load avg 1min: 13.0
+cnode: node017, cpus: 4, lavg: 4.1, slots: 0
+cnode: node018, cpus: 4, lavg: 3.1, slots: 1
+	push job: [18195, 248, 13, 1, 20, 100000]
+cnode: node019, cpus: 4, lavg: 4.0, slots: 0
+cnode: node020, cpus: 4, lavg: 4.1, slots: 0
+cnode: node021, cpus: 4, lavg: 4.1, slots: 0
+cnode: node022, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18196, 248, 13, 2, 20, 100000]
+cnode: node023, cpus: 4, lavg: 4.1, slots: 0
+cnode: node024, cpus: 4, lavg: 4.0, slots: 0
+cnode: node025, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18197, 249, 13, 1, 20, 100000]
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 2.8, slots: 1
+	push job: [18198, 249, 13, 2, 20, 100000]
+cnode: node065, cpus: 1, lavg: 1.0, slots: 0
+cnode: node066, cpus: 1, lavg: 1.1, slots: 0
+cnode: node067, cpus: 1, lavg: 1.3, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.2, slots: 0
+cnode: node070, cpus: 1, lavg: 1.1, slots: 0
+cnode: node071, cpus: 1, lavg: 1.4, slots: 0
+cnode: node072, cpus: 1, lavg: 1.3, slots: 0
+cnode: node073, cpus: 1, lavg: 1.1, slots: 0
+cnode: node075, cpus: 1, lavg: 1.0, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.2, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.1, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 1.0, slots: 0
+cnode: node094, cpus: 2, lavg: 2.1, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.1, slots: 0
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18199, 250, 13, 1, 20, 100000]
+cnode: node250, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18200, 250, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 13.0, slots: 3
+	push job: [18201, 251, 13, 1, 20, 100000]
+	push job: [18202, 251, 13, 2, 20, 100000]
+	push job: [18203, 252, 13, 1, 20, 100000]
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 3.0
+load avg 1min: 2.1
+load avg 1min: 1.9
+load avg 1min: 3.9
+load avg 1min: 4.1
+load avg 1min: 4.1
+load avg 1min: 3.0
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.2
+load avg 1min: 1.2
+load avg 1min: 1.3
+load avg 1min: 0.3
+load avg 1min: 1.3
+load avg 1min: 0.3
+load avg 1min: 0.4
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.1
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 0.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 2.0
+load avg 1min: 15.0
+load avg 1min: 14.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 4.1, slots: 0
+cnode: node020, cpus: 4, lavg: 3.9, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18204, 252, 13, 2, 20, 100000]
+cnode: node023, cpus: 4, lavg: 2.1, slots: 2
+	push job: [18205, 253, 13, 1, 20, 100000]
+	push job: [18206, 253, 13, 2, 20, 100000]
+cnode: node024, cpus: 4, lavg: 1.9, slots: 2
+	push job: [18207, 254, 13, 1, 20, 100000]
+	push job: [18208, 254, 13, 2, 20, 100000]
+cnode: node025, cpus: 4, lavg: 3.9, slots: 0
+cnode: node026, cpus: 4, lavg: 4.1, slots: 0
+cnode: node027, cpus: 4, lavg: 4.1, slots: 0
+cnode: node028, cpus: 4, lavg: 3.0, slots: 1
+	push job: [18209, 255, 13, 1, 20, 100000]
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.3, slots: 0
+cnode: node067, cpus: 1, lavg: 1.2, slots: 0
+cnode: node068, cpus: 1, lavg: 1.2, slots: 0
+cnode: node069, cpus: 1, lavg: 1.3, slots: 0
+cnode: node070, cpus: 1, lavg: 0.3, slots: 1
+	push job: [18210, 255, 13, 2, 20, 100000]
+cnode: node071, cpus: 1, lavg: 1.3, slots: 0
+cnode: node072, cpus: 1, lavg: 0.3, slots: 1
+	push job: [18211, 256, 13, 1, 20, 100000]
+cnode: node073, cpus: 1, lavg: 0.4, slots: 1
+	push job: [18212, 256, 13, 2, 20, 100000]
+cnode: node075, cpus: 1, lavg: 1.1, slots: 0
+cnode: node077, cpus: 1, lavg: 1.1, slots: 0
+cnode: node079, cpus: 1, lavg: 1.0, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.0, slots: 0
+cnode: node088, cpus: 1, lavg: 0.0, slots: 1
+	push job: [18213, 257, 13, 1, 20, 100000]
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.0, slots: 0
+cnode: node096, cpus: 2, lavg: 2.0, slots: 0
+cnode: node097, cpus: 2, lavg: 2.0, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 2.0, slots: 0
+cnode: node249, cpus: 16, lavg: 15.0, slots: 1
+	push job: [18214, 257, 13, 2, 20, 100000]
+cnode: node250, cpus: 16, lavg: 14.0, slots: 2
+	push job: [18215, 258, 13, 1, 20, 100000]
+	push job: [18216, 258, 13, 2, 20, 100000]
+cnode: node251, cpus: 16, lavg: 16.0, slots: 0
+
+sleeping 180 seconds
+
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 3.9
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.1
+load avg 1min: 4.2
+load avg 1min: 2.9
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 4.0
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.1
+load avg 1min: 1.3
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 0.6
+failure getting uptime: 
+	  ssh_exchange_identification: Connection closed by remote host
+	  .. set lavg to -1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node078 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.1
+load avg 1min: 1.0
+failure getting uptime: 
+	  ssh: connect to host node081 port 22: No route to host
+	  .. set lavg to -1
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.0
+load avg 1min: 1.1
+load avg 1min: 0.9
+load avg 1min: 2.0
+load avg 1min: 2.1
+load avg 1min: 0.1
+load avg 1min: 2.1
+load avg 1min: 2.0
+load avg 1min: 1.3
+load avg 1min: 16.0
+load avg 1min: 14.0
+load avg 1min: 16.0
+cnode: node017, cpus: 4, lavg: 4.0, slots: 0
+cnode: node018, cpus: 4, lavg: 4.0, slots: 0
+cnode: node019, cpus: 4, lavg: 3.9, slots: 0
+cnode: node020, cpus: 4, lavg: 4.0, slots: 0
+cnode: node021, cpus: 4, lavg: 4.0, slots: 0
+cnode: node022, cpus: 4, lavg: 4.1, slots: 0
+cnode: node023, cpus: 4, lavg: 4.2, slots: 0
+cnode: node024, cpus: 4, lavg: 2.9, slots: 1
+	push job: [18217, 259, 13, 1, 20, 100000]
+cnode: node025, cpus: 4, lavg: 4.0, slots: 0
+cnode: node026, cpus: 4, lavg: 4.0, slots: 0
+cnode: node027, cpus: 4, lavg: 4.0, slots: 0
+cnode: node028, cpus: 4, lavg: 4.0, slots: 0
+cnode: node065, cpus: 1, lavg: 1.1, slots: 0
+cnode: node066, cpus: 1, lavg: 1.3, slots: 0
+cnode: node067, cpus: 1, lavg: 1.1, slots: 0
+cnode: node068, cpus: 1, lavg: 1.3, slots: 0
+cnode: node069, cpus: 1, lavg: 1.0, slots: 0
+cnode: node070, cpus: 1, lavg: 1.0, slots: 0
+cnode: node071, cpus: 1, lavg: 1.0, slots: 0
+cnode: node072, cpus: 1, lavg: 1.0, slots: 0
+cnode: node073, cpus: 1, lavg: 1.1, slots: 0
+cnode: node075, cpus: 1, lavg: 0.6, slots: 0
+cnode: node077, cpus: 1, lavg: 1.0, slots: 0
+cnode: node079, cpus: 1, lavg: 1.1, slots: 0
+cnode: node080, cpus: 1, lavg: 1.0, slots: 0
+cnode: node082, cpus: 1, lavg: 1.0, slots: 0
+cnode: node083, cpus: 1, lavg: 1.0, slots: 0
+cnode: node084, cpus: 1, lavg: 1.0, slots: 0
+cnode: node085, cpus: 1, lavg: 1.0, slots: 0
+cnode: node086, cpus: 1, lavg: 1.0, slots: 0
+cnode: node087, cpus: 1, lavg: 1.1, slots: 0
+cnode: node088, cpus: 1, lavg: 0.9, slots: 0
+cnode: node094, cpus: 2, lavg: 2.0, slots: 0
+cnode: node095, cpus: 2, lavg: 2.1, slots: 0
+cnode: node096, cpus: 2, lavg: 0.1, slots: 2
+	push job: [18218, 259, 13, 2, 20, 100000]
+	push job: [18219, 260, 13, 1, 20, 100000]
+cnode: node097, cpus: 2, lavg: 2.1, slots: 0
+cnode: node098, cpus: 2, lavg: 2.0, slots: 0
+cnode: node099, cpus: 2, lavg: 1.3, slots: 1
+	push job: [18220, 260, 13, 2, 20, 100000]
+cnode: node249, cpus: 16, lavg: 16.0, slots: 0
+cnode: node250, cpus: 16, lavg: 14.0, slots: 2
+no more jobs, finishing

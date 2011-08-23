@@ -1,0 +1,265 @@
+####
+####
+####
+#### main function
+
+
+main <- function(X, Y, initiation, GLOBvar, HYPERvar){
+
+  ## AA: some debug print switches
+  DEBUG_PHASEUPDATE = FALSE
+  DEBUG_BIRTH = FALSE
+  DEBUG_BIRTH_EXT = FALSE
+  DEBUG_DEATH = FALSE
+ 
+
+  ## AA: this is a list with CPs of each gene
+  MakeCPSamples = FALSE
+  CPsamples = list()
+  takesampleeach = 1000
+  startTakenSamples = 10000
+  
+  ## AA:DEBUG - just to keep track
+  sampletaken = 0
+
+  ## AA: keep track of convergence through psrf
+  CALC_PSRF = TRUE
+  PSRF_start = 1000
+  PSRF_takesampleeach = 2000
+  psrflist = list(start=PSRF_start, each=PSRF_takesampleeach, data=c() )
+
+  
+  ## AA: just count the accepted birth moves for this target
+  acceptedBirthMoves = 0
+  acceptedDeathMoves = 0
+    
+  ### assignement of global variables used here ###
+  niter = GLOBvar$niter
+  smax = GLOBvar$smax
+  q = GLOBvar$q
+  birth_proposals = GLOBvar$birth_proposals
+  ### end assignement ###
+
+  ### assignement of hyperparameters variables used here ###
+  cD = HYPERvar$cD
+  alphaD = HYPERvar$alphaD
+  betaD = HYPERvar$betaD
+  ### end assignement ###
+  
+  ### assignement of initiation variables used here ###
+  # initial state
+  E = initiation$initState$E
+  Sall = initiation$initState$Sall
+  Ball = initiation$initState$Ball
+  Sig2all = initiation$initState$Sig2all
+  s = initiation$initState$s
+  # counters
+  cptMove = initiation$counters$cptMove
+  acceptMove = initiation$counters$acceptMove
+  cptMove2 = initiation$counters$cptMove2
+  acceptMove2 = initiation$counters$acceptMove2
+  # storage matrices
+  Estock = initiation$listStock$Estock
+  Sstock = initiation$listStock$Sstock
+  Bstock = initiation$listStock$Bstock
+  Sig2stock = initiation$listStock$Sig2stock
+  # Proposal probabilities using posterior probability without changepoints 
+  # (if appropriate)
+  if(birth_proposals == 4) {
+  	post_probs = initiation$post_probs;
+  }
+
+  
+  ### end assignement ###
+
+
+  par(mfrow=c(1,1),cex=1.5)
+  Structlist = list()       
+  
+  # do niter interations
+  for (r in 2:niter){
+    ## Print percentage of accomplished iteration 
+
+    ## Print percentage of accomplished iteration and Memusage
+    if((r %% 200) == 0) {
+
+      cat("r: ", r, "\n")
+    }
+
+    
+    #if ( ( r %% ( round(niter/10) ) )  == 0 ) {
+    #   cat(round(10 * r/(round(niter/10))), "% \n")
+    # }
+   
+    D = rgamma(1, shape=s+alphaD, rate = 1+betaD)
+
+    rho = computeRho4(s, 0, smax, cD, D)
+
+    ## Sample u to choose one of the 4 moves : CP birth, CP death, CP shift, Update phases.
+    u1 = runif(1, 0, 1)
+
+    ## Run 1 out of the 4 moves (depending on the value of u)
+    if (u1 < rho[1]){
+      ## CP birth move: return the new model if the move is accepted, the previous model otherwise.
+      if(DEBUG_BIRTH) { cat("\niteration:", r, " -> birth\n") }
+
+      out = cp.birth(E, Sall, Ball, Sig2all, X, Y, D, GLOBvar, HYPERvar, post_probs, DEBUG_BIRTH_EXT)
+
+      # print out Ball, Sall and some additional stuff
+      if(DEBUG_BIRTH_EXT) {
+
+        # this is set later [Sall = (abs(out$Ball)>0)*1)], which is the same as [Sall = out$Sall]
+        cat("[end birth] Sall:     \n")
+        print.table( (abs(out$Ball)>0)*1)
+
+        cat("[end birth] s - nr. of CPs  (length(out$E) - 2): ", (length(out$E) - 2), "\n")
+      }
+                               
+      acceptedBirthMoves = acceptedBirthMoves + out$accept
+      
+     } else {
+      if(u1 < rho[2]){
+        ## CP death move: return the new model if the move is accepted, the previous model otherwise.
+        if(DEBUG_DEATH) { cat("\niteration:", r, " -> death\n") }
+
+        out = cp.death(E, Sall, Ball, Sig2all, X, Y, D, GLOBvar, HYPERvar, post_probs)
+
+        acceptedDeathMoves = acceptedDeathMoves + out$accept
+      } else {
+        if(u1 < rho[3]){
+          ## CP shift move: return the new model if the move is accepted, the previous model otherwise.
+          #print("shift")
+          out = cp.shift(E, Sall, Ball, Sig2all, X, Y, GLOBvar, HYPERvar)
+          
+        } else {
+          ## Update phases: return the new model if the move is accepted, the previous model otherwise.
+          #print("update")
+          
+          if(DEBUG_PHASEUPDATE == TRUE) { cat("--------------------\niteration:", r, " -> phase update\n") }
+
+          out = phase.update(E, Sall, Ball, Sig2all, X, Y, GLOBvar, HYPERvar)
+          
+          cptMove[out$move1] = cptMove[out$move1]+1
+          acceptMove[out$move1] = acceptMove[out$move1]+out$accept1
+        }
+      }
+    }
+
+    ## Apply changes to the current model
+    E = out$E
+    Ball = out$Ball
+
+    # AA: This is not necessary, because Sall is already set like this in the cp functions
+    #     Instead replace with:
+    #     Sall = out$Sall
+    
+    Sall = (abs(out$Ball)>0)*1
+
+    Sig2all = out$Sig2all
+
+   
+    s = length(E)-2
+   
+    ## Update moves counts
+    cptMove2[out$move] = cptMove2[out$move]+1
+    acceptMove2[out$move] = acceptMove2[out$move]+out$accept
+
+    ## Stock model and parameters
+    Estock[r-1,1:(s+2)] = E
+    
+    # encode with power of 2 and store
+    Sstock[r-1,1:(s+1)] = Sall[,1:q]  %*% 2^(0:(q-1))
+    
+    # only the first one
+    Structlist[[r-1]] = Sall[1,1:q]
+    
+    # store the
+    # AATOOBIG: Bstock[r,1:((s+1)*(q+1))] = c(t(Ball))
+
+    # AATOOBIG: Sig2stock[r,1:length(Sig2all)] = Sig2all
+    sum(is.na(Ball))
+    sum(is.na(Sall))
+
+
+    if(CALC_PSRF) {
+                                        # calculate the PSRF
+      if( (r >= PSRF_start) && ((r %% PSRF_takesampleeach) == 0)) {
+
+        #cat("CALC_PSRF is TRUE, Structlist:\n")
+        #for(iter in 1:length(Structlist)) {
+        #  print.table(Structlist[[iter]])
+        #}
+        
+                                        # if fixedWndSize is not set, it will be calculated starting with the first iteration
+        currpsrf = calcPSRFWrapperSPEED(Sstock=Structlist)
+      
+                                        # save
+        psrflist$data[length(psrflist$data)+1] = currpsrf
+
+        cat("r: ", r, " currpsrf ", currpsrf, "\n")
+
+      
+
+        if( (currpsrf < 1.05) && (currpsrf > 0) ) {
+          cat("hit below 1.05: ", r, " ", currpsrf, "\n")
+	  break	
+        }
+      }
+    }
+          
+     if(MakeCPSamples) {
+      ## AA: take a sample of the CP positions
+      if ( (r %% takesampleeach)  == 0) {
+        
+                                        # consider burnin
+        if(r > startTakenSamples) {
+          sampletaken = sampletaken + 1
+                                        #        cat("attend to take CP sample at r=", r, " with nr. of CPs:" , ( length(E)-1 ), "\n" )
+          
+                                        # if there are CPs (do not count CP at start and end
+          if(length(E) > 2) {
+            
+            CPsamples[[length(CPsamples)+1]] = c(E[3:length(E)-1] - 1)
+            
+            cat("take CP sample at r=", r, "\tCPsamples size now = " , length(CPsamples) , "\n")
+            
+          }
+        }
+      }
+    }
+
+  } # end iteration
+
+   if(MakeCPSamples) {
+     cat("[Summary] CP samples take attempt: " , sampletaken, "\n")
+     cat("[Summary] CP samples really taken: " , length(CPsamples), "\n")
+  
+     ## AA: save CP samples
+     save(CPsamples, file = paste("./Results/CPsamples/CPsamples_n", GLOBvar$networkid, "_i", GLOBvar$target, sep=""))
+   }
+
+    if(CALC_PSRF) {
+      print.table(psrflist)
+
+      
+
+      
+      psrffile = paste("./Results/PSRF/PSRF_n", GLOBvar$networkid, "_i", GLOBvar$target, sep="")
+      
+      save(psrflist, file = psrffile)
+
+      cat("[Summary] PSRFs saved to ", psrffile, "\n")
+
+      
+    }
+  
+  counters = list(cptMove2=cptMove2, acceptMove2=acceptMove2, cptMove=cptMove, acceptMove=acceptMove)
+# AATOOBIG:  listStock = list(Estock=Estock, Sstock=Sstock, Bstock=Bstock, Sig2stock=Sig2stock)
+  listStock = list(Estock=Estock, Sstock=Sstock)
+
+  # AA: output some infos
+  cat("[Summary] acceptedBirthMoves: ", acceptedBirthMoves, "\n" )
+  cat("[Summary] acceptedDeathMoves: ", acceptedDeathMoves, "\n" )
+  
+  return(list(counters=counters, listStock=listStock))
+}

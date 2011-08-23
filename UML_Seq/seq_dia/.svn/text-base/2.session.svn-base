@@ -1,0 +1,11 @@
+window_sizes 1280 750 208 1066 556 120
+diagrams
+  active  sequencediagram_ref 128002 // main iteration
+    1066 571 89 4 0 0
+end
+show_stereotypes
+selected classinstance_ref 128130 // main.R
+open
+  usecaseview_ref 128002 // flow
+end
+end

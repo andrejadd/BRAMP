@@ -1,0 +1,306 @@
+
+
+  ###### product of posterior prob of current state : Phi_h
+  ##
+  #prodPhi = 1     # product over current state
+  sumPhi = 0
+  
+  ## 1. extract parameters that are in the segment
+  if(ALTERX) { xsegid = poskl } else { ysegid = poskl }
+  
+  for(i in 1:(length(OtherE)-1)) {
+
+    if(ALTERX) { ysegid = i } else { xsegid = i }
+    
+     ## get segment coordinates
+    segcoord = c(XMphase[XE[xsegid]], YMphase[YE[ysegid]],XMphase[XE[xsegid+1]]-1, YMphase[YE[ysegid+1]]-1)
+
+
+    if(DEBUG_BIRTH_EXT == TRUE) { cat("xsegid: ", xsegid, ", ysegid: ", ysegid, "\n");
+                                  cat("prodPhi: segcoord ")
+                                  print.table(segcoord) }
+    
+    ## get the predictor data
+    x = extractXPredictors(X, segcoord, xlocs,F)
+
+    ## get the target data
+    y = extractYTargets(Y, segcoord, xlocs,F)
+   
+    ## number of locations
+    omega = length(y)
+
+    ## calculate projection matrix
+    Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)
+
+    #prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
+    sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+
+  
+  }
+
+
+  ###### product of posterior prob of next state : Phi^+_h
+  ##
+  #prodPhiPlus = 1 # over next state
+  sumPhiPlus = 0
+  
+  for(xsegid in poskl:(poskl+1)) {
+
+    for(i in 1:(length(OtherE)-1)) {
+
+      ## we need to replace one of the CP vectors with the new Eplus vector temporary for the segcoord extraction
+      if(ALTERX) { ysegid = i; tmpXE = Eplus; tmpYE = OtherE } else { xsegid = i;  tmpXE = OtherE; tmpYE = Eplus }
+    
+      ## get segment coordinates
+      segcoord = c(XMphase[tmpXE[xsegid]], YMphase[tmpYE[ysegid]],XMphase[tmpXE[xsegid+1]]-1, YMphase[tmpYE[ysegid+1]]-1)
+
+      if(DEBUG_BIRTH_EXT == TRUE) { cat("xsegid: ", xsegid, ", ysegid: ", ysegid, "\n");
+                                    cat("prodPhiPlus: segcoord ")
+                                    print.table(segcoord) }
+      ## get the predictor data
+      x = extractXPredictors(X, segcoord, xlocs,F)
+      
+      ## get the target data
+      y = extractYTargets(Y, segcoord, xlocs,F)
+      
+      ## number of locations
+      omega = length(y)
+      
+      ## calculate projection matrix
+      Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)
+
+    #  prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
+      sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+
+
+    }
+}
+
+  ## nr edges s
+  s = sum(S2Dall) - 1
+
+  ## nr CPs k
+  k = length(E) - 2
+
+  ## this is the exponent |Phi+| - |Phi| = |Phi| = k of other axis, in eq. (15), since |Phi+| = 2|Phi| and |Phi_h| = |CPs other axis|   
+  dSegmentNr = length(OtherE) - 1
+
+#  alpha1a =  D / (c - 1 - k) * ( (gamma0/2)^(v0/2) / (gamma(v0/2) * (delta2+1)^((s+1)/2) ))
+#  alpha1b = prodPhiPlus / prodPhi
+  
+#  alpha2a =  log(D / (c - 1 - k))+(v0/2)*log(gamma0/2) - lgamma(v0/2) - log((delta2+1)^((s+1)/2)) 
+#  alpha2b = sumPhiPlus - sumPhi
+
+#  alpha1 = D / (c - 1 - k) * ( (gamma0/2)^(v0/2) / (gamma(v0/2) * (delta2+1)^((s+1)/2) ))^dSegmentNr *  prodPhiPlus / prodPhi
+  alpha = exp(  log(D / (c - 1 - k)) + dSegmentNr *( (v0/2)*log(gamma0/2) - lgamma(v0/2) - log((delta2+1)^((s+1)/2))) + sumPhiPlus - sumPhi)
+
+
+
+
+
+
+
+  if(nbVarMax > 1){
+    # Get the Sigma2 of the segment that would be kept (expanded) -> segment id is segidexpand
+    Sig2 = Sig2_2Dall[ which(Sig2_2Dall[,1] == segidexpand), 2]  # the 2nd column holds the actual Sig2 Value
+  } else {
+    Sig2 = Sig2_2Dall
+  }
+
+  ## Update delta, use segment id which would be kept in case segments merge
+  delta2 = sampleDelta2(segidexpand, x2, q, B2Dall, S2Dall, Sig2, alphad2, betad2)
+  
+  ## Compute projection of the matrices required for the computation of the acceptation probability alpha
+                                        #modif 17 avril 
+  #Px2 = computePx(length(y2), as.matrix(x2[,which(Sall[poskstar-1+newRight,] == 1)]), delta2) 
+  #PxL = computePx(length(yL), as.matrix(xL[,which(Sall[poskstar-1,] == 1)]), delta2)
+  #PxR = computePx(length(yR), as.matrix(xR[,which(Sall[poskstar,] == 1)]), delta2)
+
+
+  ## Get the structures for the left and right side
+  sL = S2Dall[which(S2Dall[,1] == mergepair[1]), 2:dim(S2Dall)[2]]
+  sR = S2Dall[which(S2Dall[,1] == mergepair[2]), 2:dim(S2Dall)[2]]
+  
+  ## This is the structure that would be kept for the merged phase 
+  sPreserve = S2Dall[which(S2Dall[,1] == segidexpand), 2:dim(S2Dall)[2]]
+  
+  if(DEBUG_BIRTH_EXT == TRUE) {
+    cat("S2Dall (all structures): ")
+    print.table(S2Dall)
+    cat("sL (left structure): ")
+    print.table(sL)
+    cat("sR (right structure): ")
+    print.table(sR)
+    cat("sPreserve (structure to keep): ")
+    print.table(sPreserve)
+                                
+  }
+
+  
+  ## These are the left/top and right/bottom projection matrices
+  PxL = computePx(length(yL), as.matrix(xL[,which(sL == 1)]), delta2)
+  PxR = computePx(length(yR), as.matrix(xR[,which(sR == 1)]), delta2)
+  
+  ## This is the projection of both segments merged together
+  Px2 = computePx(length(y2), as.matrix(x2[,which(sPreserve == 1)]), delta2)
+
+  if(DEBUG_BIRTH_EXT == TRUE) {
+    cat("[cp.birth] dim(PxL):\n")
+    print.table(dim(PxL))
+    cat("[cp.birth] dim(PxR):\n")
+   print.table(dim(PxR))
+    cat("[cp.birth] dim(Px2):\n")
+    print.table(dim(Px2))
+  }
+  
+  ## Compute the acceptation probability alpha (this corresponse to birth proposal=2
+  ## do not use phase boundaries but total nr of locations in the new phases instead
+  tmpekl = 0
+  tmpestar = length(yL)
+  tmpekr = tmpestar + length(yR)
+                                  
+  ## eq (4.23) - Compute the acceptation probability alpha
+  alpha = bp.computeAlpha_updated(-11, sum(sPreserve)-1, tmpekl, tmpestar, tmpekr, yL, PxL, yR, PxR, y2, Px2, D, delta2, q, smax, v0, gamma0)
+
+#  alpha = bp.computeAlpha_updated(-1, sum(Sall[poskstar-1+newRight,])-1, s-1, Mphase[E[poskstar-1]], Mphase[estar], Mphase[E[poskstar+1]], yL, PxL, yR, PxR, y2, Px2, D, delta2, q, smax, v0, gamma0)
+
+
+
+
+
+
+
+
+
+cp.shift <- function(
+
+
+  ## get pairs of segments that can be merged ( = deleting CPs), Elements = (segid1, segid2, [Xaxis=1, Yaxis=0]))
+  pairsegments = matrix(nrow=0,ncol=3)
+  
+  ## Note: each segment has to be compared with each other segment. e.g. 1 with 2 but also 2 with 1. because 1 with 2 will only check if 1 left/bottom of 2
+  ##       if this is not the case the 2 with 1 will check if 2 left/bottom of 1 - this is also useful because the resulting pairs also tell how both
+  ##       segments are positioned to each other (left/top vs right/bottom )
+  for (segidref in Segments[,1]) {  # for each segment
+
+    # get the reference coordinates
+    coordref = Segments[which(Segments[,1] == segidref),]
+    
+    if(DEBUG_BIRTH_EXT == TRUE) {
+      cat("\ncoordref: ")
+      print.table(coordref)
+    }
+
+    for (segidcomp in Segments[,1]) {
+      
+      if (segidref == segidcomp) { next }
+
+      coordcomp = Segments[which(Segments[,1] == segidcomp),]  
+
+      if(DEBUG_BIRTH_EXT == TRUE) {
+        cat("coordcomp: ")
+        print.table(coordcomp)
+      }
+    
+      
+      ## Y Axis check - X coords have to be the same and Y coords differ in 1 (adjacent)
+      if( (coordref[2] == coordcomp[2]) && (coordref[4] == coordcomp[4]) && (abs(coordref[5]-coordcomp[3]) == 1) ) {
+
+        ## check if the segments are big enough to shift the CP (minPhase): delta of Y coords > 2 
+        if( ( abs(coordref[3] - coordref[5]) < minPhase) && (abs(coordcomp[3] - coordcomp[5]) < minPhase)) {
+          if(DEBUG_BIRTH_EXT == TRUE) { cat("both segments to small, try next..") }
+          next
+        }
+        
+        if(DEBUG_BIRTH_EXT == TRUE) { cat("-> found Y pair: ", segidref, " - ", segidcomp, "\n") }
+
+        ## append to valid segments pairs, third parameter is axis (x = 1, y = 0) - important!
+        pairsegments = rbind(pairsegments, c(segidref, segidcomp,0))
+        next
+      }
+
+      ## X Axis check - Y coords are the same and X coords differ by 1 (adjacent)
+      if( (coordref[3] == coordcomp[3]) && (coordref[5] == coordcomp[5]) && (abs(coordref[4]-coordcomp[2]) == 1) ) {
+
+        ## check if the segments are big enough to shift the CP (minPhase): delta of X coords > 2
+        if( ( abs(coordref[4] - coordref[2]) < minPhase) && (abs(coordcomp[4] - coordcomp[2]) < minPhase)) {
+          if(DEBUG_BIRTH_EXT == TRUE) { cat("both segments to small, try next..") }
+          next
+        }
+
+        
+        if(DEBUG_BIRTH_EXT == TRUE) { cat("found X pair: ", segidref, " - ", segidcomp, "\n") }
+
+        ## append to valid segments pairs, third parameter is axis (x = 1, y = 0) - important!
+        pairsegments = rbind(pairsegments, c(segidref, segidcomp,1))
+      }
+
+      
+    }
+  }
+
+  ## check if pairs exist at all, if not no merge can be made, aka, no CP can be removed (only happens with one single segment!)
+  if(dim(pairsegments)[1] == 0) {
+    if(DEBUG_BIRTH_EXT == TRUE) {
+      cat("\nno pairs, return..\n")
+      return(list(Segments=Segments, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=0, move=3))
+
+    }
+  }
+
+  
+  ## Choose one segment pair that is merged by chance
+  ## Note: the segments position in this vector already indicate if it is to the left/top or right/bottom of the other
+  ## (id1, id2) -> (right/top, left/bottom)
+  shiftpair = pairsegments[sample(1:dim(pairsegments)[1],1),]
+
+  ## get IDs, need later for extractions
+  leftsegid = shiftpair[1]
+  rightsegid = shiftpair[2]
+  
+  ## get the segment coordinates of both segments
+  leftsegment =  Segments[which(Segments[,1] == leftsegid ),]
+  rightsegment = Segments[which(Segments[,1] == rightsegid),]
+
+  if(DEBUG_BIRTH_EXT == TRUE) {
+    cat("\nshift pair: ")
+    print.table(shiftpair)
+    cat("leftsegment: ")
+    print.table(leftsegment)
+    cat("rightsegment: ")
+    print.table(rightsegment)
+  }
+ 
+
+  ## Choose a new CP to whom to shift:
+  ## SHIFT step is only of length 1 (W = 2 as in the default 1D: p.65, S.Lebre, Two Steps Rev.JumpMCMC
+  ##
+  ## AA POSSIBLE UPGRADE: to larger shift windows (i.e., CP +/- W/2 with W > 2)
+  ##
+  if(shiftpair[3] == 1) {   # shift along X axis
+
+    ## possible shift position are CP - 1 or CP + 1 , CP here is start X1 of the right segment
+    abound1 = leftsegment[2]  # left segment x1
+    bbound2 = rightsegment[4] # right segment x2
+    estar = rightsegment[2]   # right segment x1: CP
+    
+  } else {   # shift along Y axis
+
+    ## possible shift position are CP - 1 or CP + 1 , CP here is start X1 of the right segment
+    abound1 = leftsegment[3]  # upper segment y1
+    bbound2 = rightsegment[5] # lower segment y2
+    estar = rightsegment[3]   # lower segment y1: CP
+  
+  }
+
+  ## possible new positions for the new CP
+  newCPs = c(estar - 1, estar + 1)
+ 
+  ## exclude the CP that overlap with the minPhase space next to the outer borders of the two segments (abound1, bbound2)
+  newCPs = newCPs[which( !(newCPs %in% c(seq(abound1,abound1+minPhase-1), seq(bbound2-minPhase+1,bbound2)) ) )]
+
+  ## check again if at least one putative CP still exists
+  if(length(newCPs) < 1) {
+    if(DEBUG_BIRTH_EXT == TRUE) { cat("no shift possible in both segments, overlapping with minPhase, FIXFIX, This shouldn't happen (and never happened so far :)\n") }
+    return(list(Segments=Segments, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=0, move=3))
+  }

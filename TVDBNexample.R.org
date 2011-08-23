@@ -1,0 +1,161 @@
+
+
+TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL){
+
+
+## remove (almost) everything in the working environment.
+#rm(list = ls())
+  
+# remove all but arguments  
+rm(list= ls()[ls()!="modelid" && ls()!= "target" && ls()!="runid"])
+
+# modeltype means static (0 would be dynamic, only used to read in appropriate ymatrix .Rdata files)
+modeltype = 1
+
+cat("modelid   : ", modelid, "\n")
+cat("modeltype : ", modeltype, "\n")
+cat("target    : ", target, "\n")
+cat("runid     : ", runid, "\n")
+
+
+
+### specify here the TVDBN directory 
+path="./"
+
+#set.seed(100);
+
+## Import code
+# code path
+codePath=paste(path,"Code/",sep="")
+source(paste(codePath,"runtvDBN.R",sep=""))
+
+## function choosePriors:
+## This function plots some examples of prior distribution for the number of breakpoints (changepoints, CP) and the number of incoming edges. 
+## The prior distribution for the number of CP is a truncated poisson, with maximum=maxCP and mean= lambda which sampled from a Gamma distribution:
+##  k ~ Gamma(alphaCP,betaCP)  (default: alphaCP=0.5, betaCP =1)
+## same thing for the number of incoming edge with maximum= maxTF (for Transcription Factor) and hyperparameters (alphaTF, betaTF)
+## (Remark: truncated Poisson could be changed into a uniform ditribution)
+## example with maxCP=5
+choosePriors(5,paste(codePath,"k_priors.txt",sep=""))
+
+# read in the data
+indata = paste(path,"Data/Model_id", modelid, "_type", modeltype, ".Rdata",sep="")
+cat("read Rdata file : ", indata, "\n")
+load(indata)
+
+# assign node values to data 
+data = Model$Ymatrix
+
+
+#############################
+## Detailing the 'runtvDBN' function parameters :
+
+
+#length of the time serie
+n=dim(data)[2]
+cat("data location points: " , n, "\n")
+
+# number of parent nodes
+q=dim(data)[1]-1
+
+cat("nr. parent nodes: ", q, "\n")
+
+# Maximum number of parent nodes (fan-in restriction). A low limit is needed 
+# for birth proposals based on precomupted posterior distribution (method 4),
+# otherwise you can set lmax = q
+lmax = min(5,q);
+
+#number of repeated measurements (=1 when no repetition)
+m=1
+
+# lag for the DBN model (usually =1 when X(t) depends on the previous measurement X(t-1), but dyn can be chosen equal to 2, 3, ... )
+dyn=0
+
+# minima length of a segment (or a phase)
+minPhase=2
+
+#maximal number of CP
+maxCP=10
+
+#maximal number of incoming edges (TF) for each node 
+maxTF=5
+
+#hyperparameters for the number of CP and incoming edges (TF) 
+alphaCP=1
+betaCP=0.5
+alphaTF=1
+betaTF=0.5
+
+
+# Do you want a 'simple' Result analysis ? If TRUE, the selected model is the one with the greatest posterior probability 
+simpleOut=FALSE
+
+# Do you want a 'BF' Result analysis ? If TRUE, the selected model is the one with the greatest Bayes Factor (see Kass and Raftery, 1995)
+BFOut=FALSE
+
+# path for the file containing the prior: t be specfied when BFOut=TRUE only.
+kpriorsfile=paste(codePath,"k_priors.txt",sep="")
+
+#Do you want plots in the output ?
+Picture=FALSE
+
+# Do you want to store all iterations ?
+WriteStock=FALSE
+
+# outputfile name
+outputFile="test"
+
+# data path
+#data = paste(path,"Data/original.data.filled.in.MF.txt",sep="")
+
+#niter=200000
+niter=100000
+
+# end of the burn-in (here burn-in period ends after the 500th iteration)
+ndeb=50
+
+# Which method to use for proposing a new network structure in the CP birth 
+# move:
+#      1 - Old (incorrect) method
+#      2 - Sample from prior (correctly)
+#      3 - Sample based on Hamming Distance
+#      4 - Sample based on posterior distribution (calculated with no 
+#          changepoints)
+#      5 - Sample based on mixturee of prior and Hamming distance (2+3)
+birth_proposals = 2
+
+# optional : you may specify the number of changepoint at iteration 1
+nbCPinit=NULL
+
+# optional : you may specify the initial changepoint vector at iteration 1
+CPinit=c(1+dyn, n+1)
+
+##### Important remark ####
+#if you know the changepoint position, and you want to run the procedure only for estimating the model within phases, 
+# you can  set the variable 'CPinit' to the known CP position  set the variable 'cD=0' in the file 'hyperparms.R' 
+# then CP move will never be considered (only the 4th move 'phase.update' will be considered).
+# however there is still some probleme with the 'output' fonctions in this case, I can help updating this when I will be back to work. 
+
+
+#1# run TVDBN procedure:
+runtvDBN(targetdata=data, n=n, q=q, m=m, dyn=dyn, minPhase=minPhase, 
+  maxCP=maxCP, maxTF=maxTF, nbCPinit=nbCPinit, CPinit=CPinit, alphaCP=alphaCP, 
+	betaCP=betaCP, alphaTF=alphaTF, betaTF=betaTF, niter=niter, ndeb=ndeb, 
+	simpleOut=simpleOut, BFOut=BFOut, Picture=Picture, WriteStock=WriteStock, 
+	outputFile=outputFile, kpriorsfile=kpriorsfile, 
+	birth_proposals = birth_proposals, lmax=lmax, modelid=modelid, target=target, runid=runid )
+
+# these are the real CPs
+# print(sim_net$epsilon)
+
+## Output Details :
+# runtvDBN iterates the rjMCMC procedure in order to estimate the posterior distrbution 
+# and gives several ouput (.txt files and .eps files) in the directory 'Results' which is automatically created in the directory where R is launched
+
+# You will find the main results in directory 'MainResults' with files for each gene detailing its changepoint position
+# and incoming edges for each phase delimited by the changepoints.
+# Global results are listed in 
+# "TVDBNoutput_drosophila_0_OutBF_CPlist.txt" and "TVDBNoutput_drosophila_0_OutBF_Edgeslist.txt" (for the BF output)
+# and in "TVDBNoutput_drosophila_0_OutSimple_CPlist.txt" and "TVDBNoutput_drosophila_0_OutSimple_Edgeslist.txt" (for the Simple output)
+
+}

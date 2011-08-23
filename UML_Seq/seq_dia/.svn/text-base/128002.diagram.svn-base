@@ -1,0 +1,40 @@
+format 70
+
+classinstancecanvas 128130 classinstance_ref 128002 // moves.R
+  xyz 435.103 5.07789 2005 life_line_z 2000
+end
+note 128770 "- choose possible CP (estar)
+- get phase containing CP (poskl)
+- sample lambda from rgamma (lambda)
+"
+  xyzwh 498.05 107.623 2015 238 65
+classinstancecanvas 128898 classinstance_ref 128130 // main.R
+  xyz 46.65 5.49 2000 life_line_z 2000
+end
+classinstancecanvas 129410 classinstance_ref 128258 // sample_and_update.R
+  xyz 698.36 4.28 2000 life_line_z 2000
+end
+note 130690 ""
+  xyzwh 787 222 2015 35 35
+durationcanvas 129026 classinstance_ref 128898 // main.R:main
+  xyzwh 80 79.71 2010 11 40
+end
+durationcanvas 129154 classinstance_ref 128130 // moves.R:cp.birth
+  xyzwh 481 82.7 2010 11 273
+end
+durationcanvas 129538 classinstance_ref 129410 // sample_and_update.R:sampleK
+  xyzwh 783 201.28 2010 11 47
+end
+msg 129282 synchronous
+  from durationcanvas_ref 129026
+  to durationcanvas_ref 129154
+  yz 98 2015 explicitmsg "E,Sall,Ball,X,Y,D,GLOBvar,HYPERvar,post_probs"
+  show_full_operations_definition default drawing_language default
+  label_xy 150 85
+msg 129666 synchronous
+  from durationcanvas_ref 129154
+  to durationcanvas_ref 129538
+  yz 202 2015 explicitmsg "0,qmax,lambda, 1"
+  show_full_operations_definition default drawing_language default
+  label_xy 588 187
+end

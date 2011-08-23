@@ -1,0 +1,15 @@
+
+--This line, and those below, will be ignored--
+
+D    StructData/Struct_Network_3
+D    StructData/Struct_Network_4
+D    StructData/Struct_Network_7
+D    StructData/realNetAndCPs_niche_n3
+A    StructData/realNet_statn2n7_hartemink
+M    StructData/roc_prec.R
+A    StructData/realNet_statn3_niche
+D    StructData/realNetAndCPs_harteminkfix_n7
+A    StructData/realNet_statn1_andrej
+A    StructData/create_statn1_andrejData.R
+D    StructData/Struct_Network_1
+D    StructData/realNetAndCPs_andrejfix_n3

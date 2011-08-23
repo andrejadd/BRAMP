@@ -1,0 +1,512 @@
+cp_dist_tmp
+cp_dist_tmp = matrix(0:3,1,10)
+cp_dist_tmp = matrix(0:9,1,10)
+cp_dist_tmp
+cp_dist_tmp / 5
+cp_dist_tmp = matrix(0,1,10)
+cp_dist_tmp = matrix(0:9,1,10)
+cp_dist = matrix(0,1,10)
+cp_dist
+cp_dist_tmp
+cp_dist + (cp_dist_tmp/1000)
+cp_stockcp_dist + (cp_dist_tmp/1000) - (cp_dist_tmp/1000)*cp_dist
+cp_stock = list()
+cp_stock[0] = cp_dist + (cp_dist_tmp/1000) - (cp_dist_tmp/1000)*cp_dist
+cp_stock
+cp_stock[0]
+cp_stock[0]
+cp_stock[[0]] = cp_dist + (cp_dist_tmp/1000) - (cp_dist_tmp/1000)*cp_dist
+cp_stock[[1]] = matrix(0,1,10)
+cp_stock
+cp_stock[[1]] = cp_dist + (cp_dist_tmp/1000) - (cp_dist_tmp/1000)*cp_dist
+cp_stock
+cp_stock[1][1:9]
+quit
+quit()
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+a = list()
+length(a)
+a[0] = 8
+length(a)
+length(a[0])
+mode(a)
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+load("CPsamples")
+E
+CPsamples
+CPsamples[0]
+CPsamples[1]
+CPsamples[2]
+CPsamples[3]
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+quit()
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+source("TVDBNexample.R")
+ls()
+source("TVDBNexample.R")
+TVDBNexample(networkid=2)
+list()
+ls()
+ls()[ls()!="WriteStock"]
+source("TVDBNexample.R")
+TVDBNexample(networkid=2)
+quit()
+source("TVDBNexample.R")
+TVDBNexample(30)
+source("TVDBNexample.R")
+TVDBNexample(30)
+source("TVDBNexample.R")
+TVDBNexample(30)
+source("TVDBNexample.R")
+TVDBNexample(30)
+a = 76
+save(a, "testout")
+save(a, file="testout")
+dump(a, file="testout")
+cat(a,file="testout", append=TRUE)
+cat(a,file="testout", append=TRUE)
+cat(a,file="testout", append=TRUE)
+cat(a,file="testout", append=TRUE)
+cat(a, "\n" ,file="testout", append=TRUE)
+cat(a, "\n" ,file="testout", append=TRUE)
+source("TVDBNexample.R")
+TVDBNexample(30)
+source("TVDBNexample.R")
+TVDBNexample(30)
+TVDBNexample(30,target=6)
+TVDBNexample(30,target=6)
+TVDBNexample(30)
+quit()
+source("TVDBNexample.R")
+TVDBNexample(1,target=1)
+quit()
+source("TVDBNexample.R")
+source("batch_singleNet.R")
+quit()
+source("TVDBNexample.R")
+TVDBNexample(networkid=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=2)
+TVDBNexample(networkid=2)
+quit()
+source("TVDBNexample.R")
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+quit()
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+?lapply
+samplelist
+matrix(c(0,1,0,1,1,0,0,1,0,0,1,1),4,3)
+matrix(c(0,1,1,1,1,0,0,1,0,0,1,1),4,3)
+a= matrix(c(0,1,1,1,1,0,0,1,0,0,0,1),4,3)
+a
+apply(a,1,"+")
+col(a)
+sum
+apply(a,1,sum)
+apply(a,2,sum)
+a= matrix(c(0,1,1,1,1,0,0,1,1,1,1,1),4,3)
+apply(a,2,sum)
+apply(a,2,sum)
+dim(a)[1]
+dim(a)[2]
+apply(a,2,sum) / dim(a)[1]
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1,target=2)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+?plot
+plot(c(2,3), c(5,8))
+TVDBNexample(networkid=1)
+a
+apply(a, c(1,2),sum)
+apply(a, 3,if()sum)
+apply(a, 3,sum)
+apply(a, 1,sum)
+sum.plus.2 <- function(x){
+sum(x) + 2
+}
+apply(a, 1,sum.plus.2)
+thresh <- function(x){
+if(x == 1) {
+return(2)
+}
+return(x)
+}
+apply(a, 1,thresh)
+apply(a, c(1,2),thresh)
+thresh <- function(x){
+thresh <- function(x,th){
+if(x == th) { return(2) }
+return(x)
+}
+apply(a, c(1,2),thresh,1)
+apply(a, c(1,2),thresh,0)
+thresh
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+a
+a * a
+b = a
+b[1,1]
+b[1,1] = 1
+b
+a
+a * b
+b[1,2] 
+b[1,2] = 0
+b
+a
+b
+a * b
+b[1,2] = 2
+a * b
+a
+b
+apply(a,c(1,2),sum)
+apply(a,c(1),sum)
+apply(a,c(2),sum)
+sum(a)
+sum(b)
+TVDBNexample(networkid=1)
+a
+b
+b[1,2] = 0
+b
+b - a
+apply(b-a, c(1,2), function(x))
+apply(b-a, c(1,2), function(x){})
+apply(b-a, c(1,2), function(x){x})
+apply(b-a, c(1,2), function(x){if(x=-1)return 0} x)
+apply(b-a, c(1,2), function(x){if(x==-1)return 0} x)
+apply(b-a, c(1,2), function(x){ if(x==-1){return 0} x} )
+apply(b-a, c(1,2), function(x){ if(x==-1){return 0} return x} )
+apply(b-a, c(1,2), function(x){ if(x==-1){return(0)} return(x)} )
+apply(b-a, c(1,2), function(x){ if(x==-1){ return(0)} return(x)} )
+apply(b-a, c(1,2), function(x){ if(x==-1){ return(x)} )
+apply(b-a, c(1,2), function(x){ if(x == -1) return(x) } )
+apply(b-a, c(1,2), function(x){ if(x == -1) return(0) else return(x)} )
+TVDBNexample(networkid=1)
+b
+apply(b, c(1,2), function(x) { if(x==1) return(0) else return (1)})
+binv = apply(b, c(1,2), function(x) { if(x==1) return(0) else return (1)})
+a
+apply(a, c(1,2), function(x) { if(x==1) return(0) else return (1)})
+ainv = apply(a, c(1,2), function(x) { if(x==1) return(0) else return (1)})
+a
+ainv
+ainv * binv
+binv
+a
+b
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=1)
+TVDBNexample(networkid=3)
+TVDBNexample(networkid=3)
+source("TVDBNexample.R")
+TVDBNexample(networkid=3)
+TVDBNexample(networkid=3)
+source("TVDBNexample.R")
+TVDBNexample(networkid=3)
+TVDBNexample(networkid=3)
+aa = list(t)
+aa$t
+aa$t = 5
+aa
+aa$t
+aa$b = 4
+aa
+aa$b[[1]] = 4
+aa$b[[2]] = 3
+aa$b[[2]] = c(3,5)
+source("TVDBNexample.R")
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+TVDBNexample(networkid=3, target=2)
+source("TVDBNexample.R")
+TVDBNexample(networkid=7)
+setwd("Results/ROCsamples/")
+ls()
+load("ROCsamples_n7_i")
+list()
+ls()
+StructCP
+attributes(StructCP)
+dim(StructCP$Sstocks)
+dim(StructCP$Stocks)
+dim(StructCP$Estocks)
+StructCP$Estocks
+StructCP$Sstocks
+StructCP$Estocks
+StructCP$Estocks[[1]]
+dim(StructCP$Estocks[[1]])
+length(StructCP$Estocks)
+   
+  refnetwork = matrix(nrow=0, ncol=10)
+  refnetwork = rbind(refnetwork, c(0,0,0,0,1,0,0,0,0,0))
+  refnetwork = rbind(refnetwork, c(0,0,0,0,0,0,0,0,0,0))
+  refnetwork = rbind(refnetwork, c(0,1,0,1,0,0,0,0,0,0))
+  refnetwork = rbind(refnetwork, c(0,0,0,0,0,0,1,1,0,0))
+  refnetwork = rbind(refnetwork, c(1,0,0,0,0,0,0,0,0,0))
+  refnetwork = rbind(refnetwork, c(0,0,0,0,0,0,0,0,1,1))
+  refnetwork = rbind(refnetwork, c(0,0,0,0,0,0,0,0,0,0))
+  refnetwork = rbind(refnetwork, c(0,0,0,0,0,0,0,0,1,0))
+  refnetwork = rbind(refnetwork, c(0,0,0,0,0,1,0,0,0,0))
+  refnetwork = rbind(refnetwork, c(0,0,0,0,0,0,0,0,0,1))
+refnetwork
+networks = refnetwork
+realStructAndCPs = list(networks=list(), CPs = c(30,75))
+realStructAndCPs
+realStructAndCPs$networks[[1]] = refnetwork
+realStructAndCPs
+net2 = matrix(nrow=0, ncol=10)
+net2 = rbind(net2, c(0,0,0,0,1,0,0,1,0,0))
+getwd()
+setwd("../../Code/Helper/")
+source("createAndrejfixData.R")
+ls()
+rm(list=ls())
+ls()
+source("createAndrejfixData.R")
+ls()
+realStructAndCPs
+source("createAndrejfixData.R")
+realStructAndCPs
+quit()
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+Coordlist
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+Coordlist
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+?plot
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_andrejfix_n3", "ROCsamples_n3")
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+source("roc.R")
+createROCPR("realNetAndCPs_harteminkfix_n7", "ROCsamples_n7")
+q()

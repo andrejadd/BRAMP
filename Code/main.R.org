@@ -1,0 +1,210 @@
+####
+####
+####
+#### main function
+
+
+main <- function(X, Y, initiation, GLOBvar, HYPERvar){
+
+  ## AA: some debug print switches
+  DEBUG_PHASEUPDATE = FALSE
+  DEBUG_BIRTH = FALSE
+  DEBUG_BIRTH_EXT = FALSE
+  DEBUG_DEATH = FALSE
+  
+  ## AA: just count the accepted birth moves for this target
+  acceptedBirthMoves = 0
+  acceptedDeathMoves = 0
+    
+  ### assignement of global variables used here ###
+  niter = GLOBvar$niter
+  smax = GLOBvar$smax
+  q = GLOBvar$q
+  birth_proposals = GLOBvar$birth_proposals
+  ### end assignement ###
+
+  ### assignement of hyperparameters variables used here ###
+  cD = HYPERvar$cD
+  alphaD = HYPERvar$alphaD
+  betaD = HYPERvar$betaD
+  ### end assignement ###
+  
+  ### assignement of initiation variables used here ###
+  # initial state
+  E = initiation$initState$E
+  Sall = initiation$initState$Sall
+  Ball = initiation$initState$Ball
+  Sig2all = initiation$initState$Sig2all
+  s = initiation$initState$s
+  # counters
+  cptMove = initiation$counters$cptMove
+  acceptMove = initiation$counters$acceptMove
+  cptMove2 = initiation$counters$cptMove2
+  acceptMove2 = initiation$counters$acceptMove2
+  # storage matrices
+  Estock = initiation$listStock$Estock
+  Sstock = initiation$listStock$Sstock
+  Bstock = initiation$listStock$Bstock
+  Sig2stock = initiation$listStock$Sig2stock
+  # Proposal probabilities using posterior probability without changepoints 
+  # (if appropriate)
+  if(birth_proposals == 4) {
+  	post_probs = initiation$post_probs;
+  }
+
+
+  ## AA DATA DEFINITIONS
+
+  Structsamples = list(struct = list(), cps = list(), iter=list())
+  avgtimeiter = 0
+
+  avgt.phase.update = 0
+  avgt.cp.birth = 0
+  
+  # do niter interations
+  for (r in 2:niter){
+  # start measure time
+    timestartiter = proc.time()[3]
+
+    
+    
+    #if ( ( r %% ( round(niter/10) ) )  == 0 ) {
+    #   cat(round(10 * r/(round(niter/10))), "% \n")
+    # }
+   
+    D = rgamma(1, shape=s+alphaD, rate = 1+betaD)
+
+    rho = computeRho4(s, 0, smax, cD, D)
+
+    ## Sample u to choose one of the 4 moves : CP birth, CP death, CP shift, Update phases.
+    u1 = runif(1, 0, 1)
+
+    ## Run 1 out of the 4 moves (depending on the value of u)
+    if (u1 < rho[1]){
+      ## CP birth move: return the new model if the move is accepted, the previous model otherwise.
+      if(DEBUG_BIRTH) { cat("\niteration:", r, " -> birth\n") }
+startupb = proc.time()[3]
+      out = cp.birth(E, Sall, Ball, Sig2all, X, Y, D, GLOBvar, HYPERvar, post_probs, DEBUG_BIRTH_EXT)
+      if(r == 2) {
+        avgt.cp.birth = startupb
+      } else {
+        avgt.cp.birth = (avgt.cp.birth + (proc.time()[3] - startupb)) / 2
+      }
+      
+      # print out Ball, Sall and some additional stuff
+      if(DEBUG_BIRTH_EXT) {
+
+        # this is set later [Sall = (abs(out$Ball)>0)*1)], which is the same as [Sall = out$Sall]
+        cat("[end birth] Sall:     \n")
+        print.table( (abs(out$Ball)>0)*1)
+
+        cat("[end birth] s - nr. of CPs  (length(out$E) - 2): ", (length(out$E) - 2), "\n")
+      }
+                               
+      acceptedBirthMoves = acceptedBirthMoves + out$accept
+      
+     } else {
+      if(u1 < rho[2]){
+        ## CP death move: return the new model if the move is accepted, the previous model otherwise.
+        if(DEBUG_DEATH) { cat("\niteration:", r, " -> death\n") }
+
+        out = cp.death(E, Sall, Ball, Sig2all, X, Y, D, GLOBvar, HYPERvar, post_probs)
+
+        acceptedDeathMoves = acceptedDeathMoves + out$accept
+      } else {
+        if(u1 < rho[3]){
+          ## CP shift move: return the new model if the move is accepted, the previous model otherwise.
+          #print("shift")
+          out = cp.shift(E, Sall, Ball, Sig2all, X, Y, GLOBvar, HYPERvar)
+          
+        } else {
+
+          startupt = proc.time()[3]
+          ## Update phases: return the new model if the move is accepted, the previous model otherwise.
+          #print("update")
+          
+          if(DEBUG_PHASEUPDATE == TRUE) { cat("--------------------\niteration:", r, " -> phase update\n") }
+          
+          out = phase.update(E, Sall, Ball, Sig2all, X, Y, GLOBvar, HYPERvar)
+          
+          cptMove[out$move1] = cptMove[out$move1]+1
+          acceptMove[out$move1] = acceptMove[out$move1]+out$accept1
+
+          if(r == 2) {
+            avgt.phase.update = startupt
+          } else {
+            avgt.phase.update = (avgt.phase.update + (proc.time()[3] - startupt)) / 2
+          }
+
+        }
+      }
+    }
+
+    
+    ## Apply changes to the current model
+    E = out$E
+    Ball = out$Ball
+    Sall = out$Sall
+    Sig2all = out$Sig2all
+   
+    s = length(E)-2
+   
+    ## Update moves counts
+    cptMove2[out$move] = cptMove2[out$move]+1
+    acceptMove2[out$move] = acceptMove2[out$move]+out$accept
+
+    sum(is.na(Ball))
+    sum(is.na(Sall))
+
+
+    ## AA GET DATA
+    # every 10 iteration (to allow thin out)
+    if((r %% 10) == 0) {
+
+      # save network structure
+      Structsamples$struct[[length(Structsamples$struct) + 1]] = Sall
+
+      # save Changepoints
+      Structsamples$cps[[length(Structsamples$cps) + 1]] = E
+
+      # current iteration
+      Structsamples$iter[[length(Structsamples$iter) + 1]] = r
+
+    }
+
+    # give a sign
+    if((r %% 200) == 0) {
+      cat("r: ", r, "\t")
+      cat("mem(Structsamples): ", object.size(Structsamples)/1048600, "\n")
+
+      # Check memory
+              memsum = sum(sapply(ls(), fcta <- function(i){
+          objs = object.size(get(i))/1048600
+                                        # report objects greater than 10MB
+          if( objs > 1) { cat("\t", i, " : ", objs, " MB\n" ) }
+          return(objs)
+        } ))
+
+
+      # print time
+      cat("avg time/iteration: ", avgtimeiter, ", avgt.phase.update: ", avgt.phase.update, ", avgt.cp.birth: ", avgt.cp.birth, "\n")
+    }
+
+
+
+     # end measure time for iteration, calc. avg.
+    if(r == 2) {  # if first iteration, note r=2 was used to calc percentage of progress(!)
+      avgtimeiter = proc.time()[3] - timestartiter
+    } else {
+      avgtimeiter = (avgtimeiter + (proc.time()[3] - timestartiter)) / 2
+    }
+  } # end iteration
+          
+  structoutfile = paste("./Results/Network_And_CPs/Structsamples_n", GLOBvar$modelid, "_i", GLOBvar$target, "_run", GLOBvar$runid, sep="")
+  cat("\n[END] attempting to write Structsamples to: ", structoutfile, "\n")
+  save(Structsamples, file = structoutfile)
+    
+  counters = list(cptMove2=cptMove2, acceptMove2=acceptMove2, cptMove=cptMove, acceptMove=acceptMove)
+
+  return(list(counters=counters, listStock=list))
+}
