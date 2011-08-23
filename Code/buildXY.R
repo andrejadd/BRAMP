@@ -1,3 +1,4 @@
+## edit buildXY on ecoSAC branch
 
 readDataTS <- function(data, posI, t0, tf, m, n){
   # data = matrix to read
