@@ -314,7 +314,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         ## calculate projection matrix
         Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
 
-        if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
+        if( (dim(Pr)[1] != length(y)) ) {
           browser()
         }
         

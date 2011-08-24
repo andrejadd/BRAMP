@@ -403,6 +403,12 @@ computeProjection = function(x, delta2){
 
   Px=diag(1,len)-moins
 
+
+  if(dim(Px)[1] != len) {
+    cat("inside computeProjection\n")
+    browser()
+  }
+  
   return(Px)
 }
 
