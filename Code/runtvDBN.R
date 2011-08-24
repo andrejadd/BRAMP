@@ -10,7 +10,7 @@ source(paste(codePath,"init.R",sep=""))
 source(paste(codePath,"moves.R",sep=""))
 source(paste(codePath,"main.R",sep=""))
 source(paste(codePath,"output_main.R",sep=""))
-source(paste(codePath,"output_functions.R", sep=""))
+#source(paste(codePath,"output_functions.R", sep=""))
 
 ## +  useful tools
 source(paste(codePath,"hyperParms.R", sep=""))
@@ -34,9 +34,9 @@ source(paste(codePath,"convert.R",sep=""))
 ##modifie par Sophie 01/03/09: ajout de targetNamesFile
 ##### Main function to use to run the whole program
 runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
-                     multipleVar=TRUE, minPhase=2, smax, kmax, 
+                     multipleVar=TRUE, minPhase=2, smax, kmax.x, kmax.y, 
                      alphaCP=1, betaCP=0.5, alphaTF=1, betaTF=0.5,
-                     pkCP=NULL, pkTF=NULL, bestPosMatFile=NULL, 
+                     bestPosMatFile=NULL, 
                      niter=0, predNamesFile=NULL, 
                      targetNamesFile=NULL,
                      kpriorsfile=paste(codePath,"k_priors.txt",sep=""), 
@@ -56,11 +56,10 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
                                         
   # multipleVar = TRUE when a specific variance is estimated for each phase, FALSE otherwise (default: TRUE).
   # minPhase = minimal length of a phase (>1 if no repetition, default: 2)
-  # kmax = maximal number of CP 
+  # kmax.x and kmax.y = maximal number of CP along x and y axis 
   # smax = maximal number of TF 
   # alphaCP, betaCP = hyperparms for sampling the number k of CP : k ~ Gamma(alphaCP,betaCP)  (default: alphaCP=0.5, betaCP =1). You can use function choosePriors to set alphaCP and  betaCP according to the desired dimension penalisation.
   # alphaTF, betaTF= hyperparms for sampling the number l of TF : l ~ Gamma(alphaTF,betaTF) (default: alphaTF=0.5, betaTF =1).  You can use function choosePriors to set alphaTF and  betaTF according to the desired dimension penalisation.
-  # pkCP, pkTF = prior distribution for the nulmber of CP or TF (default=NULL, necessary when BFOut = TRUE and the hyperparameters alpha, beta are note among the one provided by the package, see choosePriors for the list of available hyperparameters).
   # posResponse = row position (in targetdata) of targets to be analyzed (default: analize all genes)
   # bestPosMatFile = file containing row position of predictors for each gene (see default below)
   # niter = number of iterations (default: 20000)
@@ -92,13 +91,6 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   ##  Mphase=seq(1,n*m+1,by=m)-dyn*m
   XMphase=seq(1,xlocs * m+1,by=m) - dyn * m
   YMphase=seq(1,ylocs * m+1,by=m) - dyn * m
-  
-  # nbVarMax = maximal number of variances (default: kmax, put it to 1 if the variance is the same for all phases)
-  if(multipleVar){
-	nbVarMax=kmax+1
-  }else{ 
-	nbVarMax=1
-  }
 
   
   ## The predictor nodes for the target (default all) except the target itself
@@ -123,13 +115,13 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   
   ### Create Global Variables used in all functions
   ### modifie par Sophie 02/07/09 :Ajout de PredNames et TargetNames
-  GLOBvar = list(n=n, xlocs=xlocs, ylocs=ylocs,m=m, p=1, q=q, smax=smax, kmax=kmax, dyn=dyn, 
-    minPhase=minPhase, nbVarMax=nbVarMax, XMphase=XMphase, YMphase=YMphase, posTF=posTF, 
-    niter=niter, birth_proposals=birth_proposals, modelid=modelid, runid=runid, target=target)
+  GLOBvar = list(n=n, xlocs=xlocs, ylocs=ylocs,m=m, p=1, q=q, smax=smax, kmax.x=kmax.x, kmax.y=kmax.y, dyn=dyn, 
+    minPhase=minPhase, XMphase=XMphase, YMphase=YMphase, posTF=posTF, niter=niter, birth_proposals=birth_proposals,
+    modelid=modelid, runid=runid, target=target)
 
   ## modifie par Sophie 01/03/09
   ### Create HyperParms Variables used in all functions
-  HYPERvar = HyperParms(alphaCP, betaCP, alphaTF, betaTF, pkCP, pkTF, kpriorsfile, n, q, kmax, smax, dyn, BFOut)
+  HYPERvar = HyperParms(alphaCP, betaCP, alphaTF, betaTF)
 
   ## NOTE: fullData and sacData are already scaled for the hebrides data, doing it again via scale() does not bring changes
   ##       just keeping it for other maybe not scaled data

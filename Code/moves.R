@@ -8,7 +8,6 @@ cp.birth <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
   q = GLOBvar$q
   qmax = GLOBvar$qmax
   minPhase = GLOBvar$minPhase
-  nbVarMax = GLOBvar$nbVarMax
   smax = GLOBvar$smax
   dyn = GLOBvar$dyn
   XMphase = GLOBvar$XMphase
@@ -130,7 +129,6 @@ cp.death <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
 
   ### assignement of global variables used here ###
   q = GLOBvar$q
-  nbVarMax = GLOBvar$nbVarMax
   smax = GLOBvar$smax
   qmax = GLOBvar$qmax
   xlocs = GLOBvar$xlocs
@@ -217,7 +215,6 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
   ### assignement of global variables used here ###
   q = GLOBvar$q
   minPhase = GLOBvar$minPhase
-  nbVarMax = GLOBvar$nbVarMax
   smax = GLOBvar$smax
   xlocs = GLOBvar$xlocs
   ylocs = GLOBvar$ylocs
@@ -316,9 +313,24 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         
         ## calculate projection matrix
         Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
+
+        if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
+          browser()
+        }
         
 #        prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
-        sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+
+        tryCatch({
+          
+          sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+
+        }, error = function(e) {
+          cat("Caught error \n ")
+          print(e)
+          browser()
+        })
+
+
 
       }
     }
@@ -357,7 +369,18 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
 
 #        prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
-        sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+
+        if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
+          browser()
+        }
+        
+        tryCatch({
+          sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+        }, error = function(e) {
+          cat("Caught error \n ")
+          print(e)
+          browser()
+        })
 
       }
     }
@@ -483,7 +506,6 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
   YMphase = GLOBvar$YMphase
   xlocs = GLOBvar$xlocs
   ylocs = GLOBvar$ylocs
-  nbVarMax = GLOBvar$nbVarMax
   delta2 = HYPERvar$delta2
 	
   ## Variable move describing the move type  (1= Edge birth, 2= Edge death, 3= Update coefficient, default=3)
@@ -570,8 +592,15 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
           })
 
 	# log version
-          rfliplog = rfliplog + (-(length(y) + v0)/2) * ( log(gamma0 + t(y) %*% Prstar %*% y) - log(gamma0 + t(y) %*% Pr %*% y))
-
+          
+          tryCatch({
+             rfliplog = rfliplog + (-(length(y) + v0)/2) * ( log(gamma0 + t(y) %*% Prstar %*% y) - log(gamma0 + t(y) %*% Pr %*% y))
+           }, error = function(e) {
+             cat("Caught error \n ")
+             print(e)
+             browser()
+           })
+          
 	}
     }   
 
@@ -641,7 +670,13 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
           ## orig 1D homog.:
           ##rbirth =    rbirth * ((gamma0 + t(y) %*% Pxlp1 %*% y) /(gamma0 + t(y) %*% Pxl %*% y))^(-(length(y) + v0)/2)/sqrt(1 + delta2)
 
-          rbirth =rbirth * ((gamma0 + t(y) %*% Prplus %*% y) / (gamma0 + t(y) %*% Pr %*% y))^(-(v0 + omega)/2)/sqrt(1 + delta2)
+          tryCatch({
+            rbirth =rbirth * ((gamma0 + t(y) %*% Prplus %*% y) / (gamma0 + t(y) %*% Pr %*% y))^(-(v0 + omega)/2)/sqrt(1 + delta2)
+          }, error = function(e) {
+            cat("Caught error \n ")
+            print(e)
+            browser()
+          })
         
         }
       }
@@ -703,7 +738,13 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
             Prminus = computeProjection(as.matrix(x[,which(stmp == 1)]), delta2)   # + 1 edge
           
             ## complies to TVDBN_SH1D
-            rdeath = rdeath * ( (gamma0 + t(y) %*% Pr %*% y) / (gamma0 + t(y) %*% Prminus %*% y))^((length(y) + v0)/2)*(sqrt(1 + delta2))
+            tryCatch({
+              rdeath = rdeath * ( (gamma0 + t(y) %*% Pr %*% y) / (gamma0 + t(y) %*% Prminus %*% y))^((length(y) + v0)/2)*(sqrt(1 + delta2))
+            }, error = function(e) {
+              cat("Caught error \n ")
+              print(e)
+              browser()
+            })
         
           }
         }

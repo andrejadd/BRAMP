@@ -8,7 +8,7 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
   ### assignement of global variables used here ###
   niter = GLOBvar$niter
   smax = GLOBvar$smax
-  kmax = GLOBvar$kmax
+  
   q = GLOBvar$q
   birth_proposals = GLOBvar$birth_proposals
   ### end assignement ###
@@ -35,8 +35,7 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
   cptMove = array(0,3)
   acceptMove = array(0,3)
   
-## AA DATA DEFINITIONS, THESE ARE SAVED AT THE END OF THIS FUNCTION
-
+  ## everything important stored here and saved at the end to a file
   Structsamples = list(struct = list(), XE = list(), YE = list(), iter=list())
   counters = list()
 
@@ -49,24 +48,16 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
     ## decide by same chance which axis to alter: x or y 
     ALTERX = T
     k = length(XE) - 2  # need this for next rgamma calculation
+    kmax = GLOBvar$kmax.x       # need this for rho calculation (move prob)
     
     if(runif(1,0,1) < 0.5) {
       ALTERX = F
       k = length(YE) - 2
+      kmax = GLOBvar$kmax.y
     }
     
     ## mean nr. of changepoints (lambda)    
     D = rgamma(1, shape= k + alphaD, rate = 1+betaD)
-
-    
-### DEBUG START
- 
-                                        #    B2Dall = out$B2Dall
-                                        #    S2Dall = out$S2Dall
-                                        #    Sig2_2Dall = out$Sig2_2Dall
-                                        #    cptMove2[out$move] = cptMove2[out$move]+1
-                                        #    acceptMove2[out$move] = acceptMove2[out$move]+out$accept
-### DEBUG END
 
     ## the move probabilities
     rho = computeRho4(k, 0, kmax, cD, D)
@@ -123,11 +114,10 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
     ## Update delta2, global
     ##
     HYPERvar$delta2 = sampledelta2Global( X, Y, XE, YE, S2Dall, B2Dall, Sig2_2Dall, GLOBvar, HYPERvar, F)
-    
-    ##
+        
     ##
     ## Save Data
-    ## every X iteration (to save memory)
+    ## every 10th iteration (to save memory and MCMC thin-out)
 
     if((r %% 10) == 0) {
 
@@ -143,46 +133,10 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
     #  print status every X and save data to disk iteration 
     if((r %% 500) == 0) {
        cat("\nr: ", r, "\t")
-
-       cat("mem(Structsamples): ", object.size(Structsamples)/1048600, "\n")
-      # writeDataOut(GLOBvar, Structsamples, counters)
-
+       cat("mem(Structsamples): ", object.size(Structsamples)/1048600)
        
      }
-    
-       #lastedges = array()
-       #for(e in 1:dim(Sall)[1]) {
         
-       #  pos = which(Sall[e,1:q] == 1)
-
-       #  for(pp in 1:length(pos)) { cat(pos[pp], " ") }
-         
-       #  cat(" | ")
-         
-                                        # first
-       #  if(e == 1) {
-       #    lastedges = pos
-       #  } else {
-       #    if(length(intersect(lastedges, pos)) != length(pos)) {
-             
-       #      cat("-> different phases found in Sall:\n")
-             
-       #    }
-       #  }
-         
-       #}
-       
-       #cat("\n")
-
-#       structoutfile = paste("./Results/Network_And_CPs/Structsamples_n", GLOBvar$networkid, "_i", GLOBvar$target, "_run", GLOBvar$runid, sep="")
-#       cat("[SAVE] attempting to write Structsamples to: ", structoutfile, "\n\n")
-
-#       predictorSet = GLOBvar$posTF # copy out in order to write
-#       save(Structsamples, counters, predictorSet, file = structoutfile)
-              
-#     }
-    
-    
   } # end iteration
 
   writeDataOut(GLOBvar, Structsamples, counters)

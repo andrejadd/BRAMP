@@ -27,7 +27,8 @@ readInput <- function(data){
 
 }
 
-
+## AA: not used, but maybe later for defining priors in text file
+##
 # function which show teh available prior distributions for kmax given as a parameter
 choosePriors<-function(kmax,priorsPath=paste(priorsPath,"k_priors.txt",sep="")){
 	priors=read.table(priorsPath,header=T)
@@ -169,8 +170,17 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
     ## original equation  without log transform (makes it necessary to multiply)
     ## prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
 
-    sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
-
+    if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
+      browser()
+    }
+    
+    tryCatch({
+      sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+    }, error = function(e) {
+      cat("Caught error \n ")
+      print(e)
+      browser()
+    })
   
   }
 
@@ -208,7 +218,13 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
       omega = length(y)
 
       ##  prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
-      sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+      tryCatch({
+        sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
+      }, error = function(e) {
+          cat("Caught error \n ")
+          print(e)
+          browser()
+        })
 
 
     }

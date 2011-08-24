@@ -91,13 +91,11 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
   smax = GLOBvar$smax
   q = GLOBvar$q
   smax = GLOBvar$smax
-  kmax = GLOBvar$kmax
   n = GLOBvar$n
   xlocs = GLOBvar$xlocs
   ylocs = GLOBvar$ylocs
   XMphase = GLOBvar$XMphase
   YMphase = GLOBvar$YMphase
-  nbVarMax = GLOBvar$nbVarMax
   dyn = GLOBvar$dyn
   minPhase = GLOBvar$minPhase
   ### end assignement ###
@@ -115,8 +113,8 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
 ### end assignement ###
 
   ## sample the number of expected (mean) changepoints with rgamma and then the number of changepoints for the x and y axis
-  k_x <- sampleK(0,kmax, rgamma(1, shape=alphaD, rate = betaD),1) # scale s= 1/rate => f(x)= 1/(s^a Gamma(a)) x^(a-1) e^-(x/s)
-  k_y <- sampleK(0,kmax, rgamma(1, shape=alphaD, rate = betaD),1)
+  k_x <- sampleK(0,GLOBvar$kmax.x, rgamma(1, shape=alphaD, rate = betaD),1) # scale s= 1/rate => f(x)= 1/(s^a Gamma(a)) x^(a-1) e^-(x/s)
+  k_y <- sampleK(0,GLOBvar$kmax.y, rgamma(1, shape=alphaD, rate = betaD),1)
     
   ## AA: init CP vectors for x and y axis
   XE = c(1+dyn, xlocs+1)

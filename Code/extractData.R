@@ -40,7 +40,7 @@ extractNodes <- function(nodeData, coords, xlocations, DEBUGINFOS=F) {
         node.values = c(node.values, elem.tmp[which(!is.nan(elem.tmp))])
       }
     }
-
+  
   return(node.values)
 }
 
