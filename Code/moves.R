@@ -102,8 +102,8 @@ cp.birth <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
                                     print.table(segcoord) }
       
       
-      x = extractXPredictors(X, segcoord, xlocs,F)
-      y = extractYTargets(Y, segcoord, xlocs,F)
+      x = extractNodes(X, segcoord, xlocs,F)
+      y = extractNodes(Y, segcoord, xlocs,F)
       Pr = computePx(length(y), as.matrix(x[,which(S2Dall == 1)]), delta2)
 
       ## regression coefficient
@@ -306,10 +306,10 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         if(DEBUG_BIRTH_EXT == TRUE) {  cat("[prodPhi] xsegid: ", xsegid, ", ysegid: ", ysegid, ",  segcoord ")
                                        print.table(segcoord) }
         ## get the predictor data
-        x = extractXPredictors(X, segcoord, xlocs,F)
+        x = extractNodes(X, segcoord, xlocs,F)
         
         ## get the target data
-        y = extractYTargets(Y, segcoord, xlocs,F)
+        y = extractNodes(Y, segcoord, xlocs,F)
         
         ## number of locations
         omega = length(y)
@@ -345,10 +345,10 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         if(DEBUG_BIRTH_EXT == TRUE) {  cat("[prodPhi] xsegid: ", xsegid, ", ysegid: ", ysegid, ",  segcoord ")
                                        print.table(segcoord) }
         ## get the predictor data
-        x = extractXPredictors(X, segcoord, xlocs,F)
+        x = extractNodes(X, segcoord, xlocs,F)
       
         ## get the target data
-        y = extractYTargets(Y, segcoord, xlocs,F)
+        y = extractNodes(Y, segcoord, xlocs,F)
       
         ## number of locations
         omega = length(y)
@@ -539,8 +539,8 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
                            print.table(segcoord) }
           
           ## get the predictor and target data
-          x = extractXPredictors(X, segcoord, xlocs,F)
-          y = extractYTargets(Y, segcoord, xlocs,F)
+          x = extractNodes(X, segcoord, xlocs,F)
+          y = extractNodes(Y, segcoord, xlocs,F)
           
 	  ## number of locations
           omega = length(y)
@@ -627,8 +627,8 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
                            print.table(segcoord) }
           
           ## get the predictor and target data
-          x = extractXPredictors(X, segcoord, xlocs,F)
-          y = extractYTargets(Y, segcoord, xlocs,F)
+          x = extractNodes(X, segcoord, xlocs,F)
+          y = extractNodes(Y, segcoord, xlocs,F)
 
           ## number of locations
           omega = length(y)
@@ -695,8 +695,8 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
                              print.table(segcoord) }
           
             ## get the predictor and target data
-            x = extractXPredictors(X, segcoord, xlocs,F)
-            y = extractYTargets(Y, segcoord, xlocs,F)
+            x = extractNodes(X, segcoord, xlocs,F)
+            y = extractNodes(Y, segcoord, xlocs,F)
 
             ## number of locations
             omega = length(y)
@@ -747,8 +747,8 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
                        print.table(segcoord) }
       
       ## get the predictor and target data
-      x = extractXPredictors(X, segcoord, xlocs,F)
-      y = extractYTargets(Y, segcoord, xlocs,F)
+      x = extractNodes(X, segcoord, xlocs,F)
+      y = extractNodes(Y, segcoord, xlocs,F)
                               
       ## sample edge weights
       ## AA22.02.2011, +2 because of additional bias and SAC edge

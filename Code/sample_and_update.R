@@ -61,8 +61,8 @@ sampledelta2Global <- function(X, Y, XE, YE, S2Dall, B2Dall, Sig2_2Dall, GLOBvar
                        print.table(segcoord) }
       
       ## get the predictor and target data
-      x = extractXPredictors(X, segcoord, xlocs,F)
-      y = extractYTargets(Y, segcoord, xlocs,F)
+      x = extractNodes(X, segcoord, xlocs,F)
+      y = extractNodes(Y, segcoord, xlocs,F)
       
       scaleForHomogeneousStruct= scaleForHomogeneousStruct + B[which(S2Dall==1)] %*% t(x[,which(S2Dall==1)]) %*% x[,which(S2Dall==1)] %*% B[which(S2Dall==1)] / (2*Sig2_2Dall) 
       	
@@ -210,7 +210,7 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
       segcoord = c(XMphase[XE[xsegid]], YMphase[YE[ysegid]],XMphase[XE[xsegid+1]]-1, YMphase[YE[ysegid+1]]-1)
         
       ## get the predictor data
-      x = extractXPredictors(X, segcoord, xlocs,F)
+      x = extractNodes(X, segcoord, xlocs,F)
 
       ## this works only if there is no CP inbetween, E is a helper here but everything should be considered using XE and YE
       newB = sampleBinit( S[1,], Sig2_2Dall, delta2, x , q)
@@ -264,8 +264,8 @@ updateSigGlobal <- function(xlocs,XMphase, YMphase, XE, YE, X, Y, S, delta2, v0,
       segcoord = c(XMphase[XE[xsegid]], YMphase[YE[ysegid]],XMphase[XE[xsegid+1]]-1, YMphase[YE[ysegid+1]]-1)
 
       ## get the predictor and target data
-      x = extractXPredictors(X, segcoord, xlocs,F)
-      y = extractYTargets(Y, segcoord, xlocs,F)
+      x = extractNodes(X, segcoord, xlocs,F)
+      y = extractNodes(Y, segcoord, xlocs,F)
 
       matPx = computePx(length(y), x[, which(S == 1)], delta2)
     

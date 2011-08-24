@@ -155,10 +155,10 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
                                   print.table(segcoord) }
     
     ## get the predictor data
-    x = extractXPredictors(X, segcoord, xlocs,F)
+    x = extractNodes(X, segcoord, xlocs,F)
 
     ## get the target data
-    y = extractYTargets(Y, segcoord, xlocs,F)
+    y = extractNodes(Y, segcoord, xlocs,F)
    
     ## number of locations
     omega = length(y)
@@ -194,10 +194,10 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
       if(DEBUG_BIRTH_EXT == TRUE) {  cat("[prodPhiPlus] xsegid: ", xsegid, ", ysegid: ", ysegid, ",  segcoord ")
                                      print.table(segcoord) }
       ## get the predictor data
-      x = extractXPredictors(X, segcoord, xlocs,F)
+      x = extractNodes(X, segcoord, xlocs,F)
       
       ## get the target data
-      y = extractYTargets(Y, segcoord, xlocs,F)
+      y = extractNodes(Y, segcoord, xlocs,F)
       
       ## number of locations
       omega = length(y)
