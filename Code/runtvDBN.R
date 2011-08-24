@@ -5,29 +5,30 @@
 codePath=paste(getwd(),"/Code/",sep="")
 print(codePath)
 
-  # +  main functions
-  source(paste(codePath,"init.R",sep=""))
-  source(paste(codePath,"moves.R",sep=""))
-  source(paste(codePath,"main.R",sep=""))
-  source(paste(codePath,"output_main.R",sep=""))
-  source(paste(codePath,"output_functions.R", sep=""))
-  # +  useful tools
-  source(paste(codePath,"hyperParms.R", sep=""))
-  source(paste(codePath,"util.R",sep=""))#requires pseudoinverse
-  source(paste(codePath,"sample_and_update.R",sep=""))#requires pseudoinverse  
-  source(paste(codePath,"extractData.R",sep=""))
+## +  main functions
+source(paste(codePath,"init.R",sep=""))
+source(paste(codePath,"moves.R",sep=""))
+source(paste(codePath,"main.R",sep=""))
+source(paste(codePath,"output_main.R",sep=""))
+source(paste(codePath,"output_functions.R", sep=""))
+
+## +  useful tools
+source(paste(codePath,"hyperParms.R", sep=""))
+source(paste(codePath,"util.R",sep=""))#requires pseudoinverse
+source(paste(codePath,"sample_and_update.R",sep=""))#requires pseudoinverse  
+source(paste(codePath,"extractData.R",sep=""))
+source(paste(codePath, "spatAutoCorrelation.R", sep=""))
 
 ## +  external functions
-  source(paste(codePath,"invGamma.R",sep=""))
-  source(paste(codePath,"mvrnorm.R",sep=""))
-  source(paste(codePath,"fast.svd.R",sep=""))
-  source(paste(codePath,"pseudoinverse.R",sep=""))
-  source(paste(codePath,"simulate_network.R",sep=""))
-  source(paste(codePath,"convert.R",sep=""))
+source(paste(codePath,"invGamma.R",sep=""))
+source(paste(codePath,"mvrnorm.R",sep=""))
+source(paste(codePath,"fast.svd.R",sep=""))
+source(paste(codePath,"pseudoinverse.R",sep=""))
+source(paste(codePath,"simulate_network.R",sep=""))
+source(paste(codePath,"convert.R",sep=""))
   
-  ## AA: added - my PSRF edge functions
-  source(paste(codePath,"Helper/psrf.R",sep=""))
-  source(paste(codePath, "spatAutoCorrelation.R", sep=""))
+
+
 
 ##modifie par Sophie 01/03/09: ajout de parametres
 ##modifie par Sophie 01/03/09: ajout de targetNamesFile

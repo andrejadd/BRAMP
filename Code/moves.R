@@ -104,10 +104,10 @@ cp.birth <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
       
       x = extractNodes(X, segcoord, xlocs,F)
       y = extractNodes(Y, segcoord, xlocs,F)
-      Pr = computePx(length(y), as.matrix(x[,which(S2Dall == 1)]), delta2)
+      Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
 
       ## regression coefficient
-      ## AA22.02.2011, take the additional SAC edge into account
+      ## AA22.02.2011, takes the additional SAC edge into account
       newB = array(0, q + 2)      
 
       newB[which(S2Dall == 1)] = sampleBxy(x[,which(S2Dall==1)], y, Sig2_2Dall, delta2)
@@ -315,7 +315,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         omega = length(y)
         
         ## calculate projection matrix
-        Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)
+        Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
         
 #        prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
         sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
@@ -354,7 +354,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         omega = length(y)
       
         ## calculate projection matrix
-        Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)
+        Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
 
 #        prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
         sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
@@ -546,8 +546,8 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
           omega = length(y)
           
           ## calculate projection matrix
-          Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)       # current structure 
-          Prstar = computePx(omega, as.matrix(x[,which(stmp == 1)]), delta2) # proposed structure
+          Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)       # current structure 
+          Prstar = computeProjection(as.matrix(x[,which(stmp == 1)]), delta2) # proposed structure
 
 #	  rflip = rflip * ((gamma0 + t(y) %*% Prstar %*% y)/(gamma0 + t(y) %*% Pr %*% y))^(-(length(y) + v0)/2)
 
@@ -629,14 +629,14 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
           ## get the predictor and target data
           x = extractNodes(X, segcoord, xlocs,F)
           y = extractNodes(Y, segcoord, xlocs,F)
+          
+          ## calculate projection matrix
+          Pr =     computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)       # current structure 
+          Prplus = computeProjection(as.matrix(x[,which(stmp == 1)]), delta2)     # + 1 edge
 
           ## number of locations
           omega = length(y)
-          
-          ## calculate projection matrix
-          Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)       # current structure 
-          Prplus = computePx(omega, as.matrix(x[,which(stmp == 1)]), delta2)     # + 1 edge
-          
+
           ## Compute birth ratio, no log needed because no critical gamma() calculation
           ## orig 1D homog.:
           ##rbirth =    rbirth * ((gamma0 + t(y) %*% Pxlp1 %*% y) /(gamma0 + t(y) %*% Pxl %*% y))^(-(length(y) + v0)/2)/sqrt(1 + delta2)
@@ -697,13 +697,10 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
             ## get the predictor and target data
             x = extractNodes(X, segcoord, xlocs,F)
             y = extractNodes(Y, segcoord, xlocs,F)
-
-            ## number of locations
-            omega = length(y)
           
             ## calculate projection matrix
-            Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)       # current structure 
-            Prminus = computePx(omega, as.matrix(x[,which(stmp == 1)]), delta2)   # + 1 edge
+            Pr =      computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)       # current structure 
+            Prminus = computeProjection(as.matrix(x[,which(stmp == 1)]), delta2)   # + 1 edge
           
             ## complies to TVDBN_SH1D
             rdeath = rdeath * ( (gamma0 + t(y) %*% Pr %*% y) / (gamma0 + t(y) %*% Prminus %*% y))^((length(y) + v0)/2)*(sqrt(1 + delta2))

@@ -159,14 +159,16 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
 
     ## get the target data
     y = extractNodes(Y, segcoord, xlocs,F)
-   
-    ## number of locations
-    omega = length(y)
 
     ## calculate projection matrix
-    Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)
+    Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
+    
+    ## number of locations 
+    omega = length(y)
 
-    #prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
+    ## original equation  without log transform (makes it necessary to multiply)
+    ## prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
+
     sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
 
   
@@ -199,13 +201,13 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
       ## get the target data
       y = extractNodes(Y, segcoord, xlocs,F)
       
+      ## calculate projection matrix
+      Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
+
       ## number of locations
       omega = length(y)
-      
-      ## calculate projection matrix
-      Pr = computePx(omega, as.matrix(x[,which(S2Dall == 1)]), delta2)
 
-    #  prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
+      ##  prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
       sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
 
 
@@ -367,17 +369,24 @@ computePostProbNoChangePoints <- function(n, v0, delta2, D, q, l, y, Px) {
   return(res)
 }
 
-computePx = function(len, x, delta2){
+computeProjection = function(x, delta2){
   # INPUT: len, delimiting breakpoints.
   #        x, the observations of X in the corresponding state
   #        delta2.
   # OUTPUT: the projection matrix Px.
-  # depends on: . 
+  # depends on: .
+
+  ## the number of rows == number of locations == number of elements in the target vector == dim of projection matrix
+  len = dim(x)[1]
+  
   moins = matrix(0,len,len)
+
   if(prod(dim(x))>0){
     moins = (delta2/(delta2+1))* x%*%pseudoinverse(t(x)%*%x)%*%t(x)
   }
+
   Px=diag(1,len)-moins
+
   return(Px)
 }
 

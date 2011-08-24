@@ -63,7 +63,7 @@ sampledelta2Global <- function(X, Y, XE, YE, S2Dall, B2Dall, Sig2_2Dall, GLOBvar
       ## get the predictor and target data
       x = extractNodes(X, segcoord, xlocs,F)
       y = extractNodes(Y, segcoord, xlocs,F)
-      
+    
       scaleForHomogeneousStruct= scaleForHomogeneousStruct + B[which(S2Dall==1)] %*% t(x[,which(S2Dall==1)]) %*% x[,which(S2Dall==1)] %*% B[which(S2Dall==1)] / (2*Sig2_2Dall) 
       	
     }
@@ -189,8 +189,8 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
   }
 
   ## we assume that there is a constant in each model, this is the last element that corresponds to the bias
-  S[, q+1] = array(1,1)
-  S[, q+2] = array(1,1)
+  S[, q+1] = array(1,1)    ## bias edge
+  S[, q+2] = array(1,1)    ## and this is the SAC node edge
 
   ## Here start the real interesting segment dependend data, first read out how many segments we have, then give each segment a id
   ## Finally each segment specific parameter (set) is assigned a matrix where the first column states the segment id and the rest are the parameter(s)
@@ -213,6 +213,7 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
       x = extractNodes(X, segcoord, xlocs,F)
 
       ## this works only if there is no CP inbetween, E is a helper here but everything should be considered using XE and YE
+      ## S[1,] refers to the first row of the Struct matrix, for homogeneous we only have one row used - keeping for hetereogenous cases
       newB = sampleBinit( S[1,], Sig2_2Dall, delta2, x , q)
 
       B = rbind(B, c(xsegid, ysegid, newB))
@@ -266,8 +267,8 @@ updateSigGlobal <- function(xlocs,XMphase, YMphase, XE, YE, X, Y, S, delta2, v0,
       ## get the predictor and target data
       x = extractNodes(X, segcoord, xlocs,F)
       y = extractNodes(Y, segcoord, xlocs,F)
-
-      matPx = computePx(length(y), x[, which(S == 1)], delta2)
+      
+      matPx = computeProjection(as.matrix(x[, which(S == 1)]), delta2)
     
       sumP = sumP + (t(y) %*% matPx %*% y)
 
@@ -323,7 +324,7 @@ old_updateSigMulti <- function(x, y, S, B, Sig2, delta2, alphad2, betad2, v0, ga
 
   ##  delta2 = rinvgamma(1, shape= s + alphad2, scale=betad2 + B[which(S == 1)] %*% t(x[, which(S == 1)]) %*% x[,which(S == 1)] %*% B[which(S == 1)] / (2 * Sig2) )
   
-  matPx = computePx(length(y), x[, which(S == 1)], delta2)
+  matPx = computeProjection(as.matrix(x[, which(S == 1)]), delta2)
     
   total = t(y) %*% matPx %*%y
 
@@ -345,7 +346,7 @@ old_updateSigSolo <- function(X, Y, E, Sall, Ball, Sig2, Mphase, alphad2, betad2
     y = Y[(Mphase[phase]:(Mphase[E[posPhase+1]]-1))]
     x = X[(Mphase[phase]:(Mphase[E[posPhase+1]]-1)),]
     delta2 = rinvgamma(1, shape=k + alphad2, scale=betad2 + Ball[posPhase, which(S == 1)] %*% t(x[, which(S == 1)]) %*% x[, which(S == 1)] %*% Ball[posPhase, which(S == 1)] / (2 * Sig2) )
-    matPx = computePx(length(y), x[,which(S == 1)], delta2)
+    matPx = computeProjection(as.matrix(x[,which(S == 1)]), delta2)
     total = total + t(y) %*% matPx %*%y
   }
   
@@ -379,7 +380,7 @@ old_updateSig <- function(u, rho, X, Y, Sall, Ball, Sig2all){
     y = Y[Mphase[phase]:(Mphase[Eall[posPhase+1]]-1)]
     x = X[Mphase[phase]:(Mphase[Eall[posPhase+1]]-1),]
     delta2 = rinvgamma(1, shape=k + alphad2, scale=betad2 + Ball[posPhase, which(S==1)] %*% t(x[, which(S == 1)]) %*% x[,which(S == 1)] %*% Ball[posPhase,which(S == 1)] / (2 * Sig2all[target]))
-    matPx = computePx(length(y), x[,which(S == 1)], delta2)
+    matPx = computeProjection(as.matrix(x[,which(S == 1)]), delta2)
     
     total = total + t(y) %*% matPx %*% y
   }

@@ -14,7 +14,7 @@ extractNodes <- function(nodeData, coords, xlocations, DEBUGINFOS=F) {
   ##  coords : coordinates of a segment that is to be extracted, format = c(segid, x1,y1,x2,y2)
   ##  xlocations : the number of location along the X axis (of the grid)
 
-  node.values = c()
+  node.values = c()  ## becomes matrix with a rbind() below (in the case nodeData is a matrix)
 
   for (y in coords[2]:coords[4]) {
 
@@ -24,9 +24,20 @@ extractNodes <- function(nodeData, coords, xlocations, DEBUGINFOS=F) {
       if(DEBUGINFOS) { cat("startindex ", startindex, ", endindex ", endindex, "\n") }
 
       if(is.matrix(nodeData)) {   ## in case its a matrix (predictors)
-        node.values = rbind(node.values, Y[startindex:endindex,])
+
+        ## get the rows of interest
+        rows.tmp = nodeData[startindex:endindex,]
+
+        ## extract rows without any NaNs (these are rows were no measurement was made, hence, should be ignored)
+        ## then append to return matrix
+        node.values = rbind(node.values, rows.tmp[apply(rows.tmp, 1, function(x) all(!is.nan(x))),] )
       } else {
-        node.values = c(node.values, Y[startindex:endindex])
+
+        ## extract target elements
+        elem.tmp = nodeData[startindex:endindex]
+
+        ## exclude all NaNs (unsampled nodes)
+        node.values = c(node.values, elem.tmp[which(!is.nan(elem.tmp))])
       }
     }
 
