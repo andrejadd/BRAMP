@@ -29,9 +29,9 @@ idfile = BEOWULFDIR + '/jobid.last'
 
 
 interDispatchTime = 180          # time in seconds to wait until a full dispatch attempt is made again 
-nr_runs = 2                     # number of runs per unique job 
-defaultnodes = range(13,14)       # the nodes to compute
-maxiter = 100000                 # nr. of MCMC iteration steps
+nr_runs = 3                     # number of runs per unique job 
+defaultnodes = range(13,23)       # the nodes to compute
+maxiter = 300000                 # nr. of MCMC iteration steps
 
 bestPredictors = 20 ## is obselete, keep for larger networks or remove
 
@@ -39,7 +39,7 @@ bestPredictors = 20 ## is obselete, keep for larger networks or remove
 
 ############# THE DATA ------------------------------------------
 
-networks = range(16,261) 
+networks = range(1,2) 
 
 #networks = range(161,171)
 
@@ -348,15 +348,7 @@ while len(JOBs) > 0:
 
                         f = open(runfile, 'w')
 
-                        #f.write('cd ' + basedir + '\n')
-
-                        # remember the node lock (created next, deleted at the end)
-                        #f.write('nodelock=' + nodelock + '\n')
-                        
-                        # create lock file (content here is not important, just info)
-                        #f.write('echo ' + nodelog + ' ' + nodelogerr + ' > ' + nodelock + '\n')
-
-                        # run the R code (nice this!)
+                        # run the R code (niced)
                         f.write('nice -n 19 cat Rstarter_beowulf.R | nice -n 19 R --vanilla --args ' + str(nextjob[1]) + " " +  str(nextjob[2]) + " " + str(nextjob[3]) + " " + str(nextjob[4]) + " " + str(nextjob[5])+  " >> " + nodelogstd + " 2>> " + nodelogerr + "\n")
                 
                         f.close()
@@ -367,8 +359,8 @@ while len(JOBs) > 0:
                         # exec the shell script on the node
                         cmttmp = 'dsh -m ' + cnode + ' -- \" cd ' + WORKINGDIR + ' ; ' + runfile + ' \"  &'
  			subprocess.Popen(cmttmp, shell=True)
-#			pdb.set_trace()
-			# need to sleep just a little, or subprocess will get mixed up with different versions of the starting script because its non-blocking
+
+			# no need to sleep but doing it anyways
 			time.sleep(1)
 
 
