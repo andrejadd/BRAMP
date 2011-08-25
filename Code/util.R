@@ -128,7 +128,7 @@ bp.computeHammingAlpha<-function(birth,lNew,kminus,Ekl,Estar,Ekr,yL,PxL,yR,PxR,y
   return(res)
 }
 
-cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase, E, Eplus, OtherE,  poskl, HYPERvar, S2Dall, D, DEBUG_BIRTH_EXT=F) {
+cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase, E, Eplus, E.other,  poskl, HYPERvar, S2Dall, D, DEBUG_BIRTH_EXT=F) {
 
   gamma0 = HYPERvar$gamma0
   v0 = HYPERvar$v0
@@ -141,9 +141,9 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
   sumPhi = 0
   
   ## 1. extract parameters that are in the current state segments
-  if(ALTERX) { xsegid = poskl; tmpYE = OtherE; tmpXE = E } else { ysegid = poskl; tmpXE = OtherE; tmpYE = E  }
+  if(ALTERX) { xsegid = poskl; tmpYE = E.other; tmpXE = E } else { ysegid = poskl; tmpXE = E.other; tmpYE = E  }
   
-  for(i in 1:(length(OtherE)-1)) {
+  for(i in 1:(length(E.other)-1)) {
 
     ## Assign proper segment id
     if(ALTERX) { ysegid = i } else { xsegid = i }
@@ -191,11 +191,11 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
   sumPhiPlus = 0
 
   ## Assign proper CP vector to temporary type (used in segcoord extraction)
-  if(ALTERX) {tmpYE = OtherE; tmpXE = Eplus } else { tmpXE = OtherE; tmpYE = Eplus }
+  if(ALTERX) {tmpYE = E.other; tmpXE = Eplus } else { tmpXE = E.other; tmpYE = Eplus }
   
   for(j in poskl:(poskl+1)) {
 
-    for(i in 1:(length(OtherE)-1)) {
+    for(i in 1:(length(E.other)-1)) {
 
       ## Assign proper segment id
       if(ALTERX) { xsegid = j; ysegid = i } else { xsegid = i; ysegid = j}
@@ -237,7 +237,7 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
   k = length(E) - 2
 
   ## this is the exponent |Phi+| - |Phi| = |Phi| = k of other axis, in eq. (15), since |Phi+| = 2|Phi| and |Phi_h| = |CPs other axis|   
-  dSegmentNr = length(OtherE) - 1
+  dSegmentNr = length(E.other) - 1
 
 #  alpha1a =  D / (c - 1 - k) * ( (gamma0/2)^(v0/2) / (gamma(v0/2) * (delta2+1)^((s+1)/2) ))
 #  alpha1b = prodPhiPlus / prodPhi
@@ -445,6 +445,78 @@ LtoS = function(L){
 
 
 
+sampleValidateCPs <-function (candidateCPs, min.seglocs, E, E.other, Y, ALTERX, xlocs, type, cp.pos) {
+
+  ##
+  ## This part is specific to 2D change-points and for the case that not all locations in the grid a valid (sampled) patches
+  ##   With small segments it can happen that only very little actual sampled locations exist, if there is only 1 location for instance
+  ##   the method will crash after calculating the projection matrix.
+  ##   The code here makes sure each segment will have a minimum number of valid locations to work with, if not the change-point is rejected
+
+  ## this is returned
+  cp.new = NaN
+
+  ## loop as long no CP was valid and elements in candidateCPs exist
+  while(length(candidateCPs) > 0) {
+
+    ## flag for invalid cp found
+    invalid.cp = FALSE
+
+    ## sample the new changepoint uniformly
+    cp.tmp = sample(c(candidateCPs, candidateCPs),1)
+
+    ## remove in the case cp.tmp was invalid and while continuous
+    candidateCPs = candidateCPs[-which(candidateCPs == cp.tmp)]
+
+    ## create candidate changepoint vector E
+    if(type == "shift") {     ## replace the cp when shifted 
+      E.tmp = E
+      E.tmp[cp.pos] = cp.tmp
+    } else {                  ## insert the cp 
+      
+      E.tmp = sort(c(E,cp.tmp))
+    }
+
+    ## get position of new cp
+    E.new.pos = which(E.tmp == cp.tmp)
+    
+    ## extract cp of affected segments (left and right of new one )
+    E.tmp = E.tmp[c(E.new.pos - 1, E.new.pos, E.new.pos + 1)]
 
 
+    for(a.coord in 1:(length(E.tmp)-1)) {
+      start.c1 = E.tmp[a.coord]
+      end.c1 = E.tmp[a.coord+1]
+      
+      for (b.coord in 1:(length(E.other)-1) ) {
+        
+        start.c2 = E.other[b.coord]
+        end.c2 = E.other[b.coord+1]
 
+        ## construct actual coordinates, note the 3rd and 4th coord. are -1 because the segment only extends but not includes the right/bottom changepoint
+        if(ALTERX) { segcoord = c(start.c1, start.c2, end.c1-1, end.c2-1) }
+        else { segcoord = c( start.c2, start.c1, end.c2-1, end.c1-1) }
+
+        ## extract valid locations
+        y = extractNodes(Y, segcoord, xlocs, F)
+
+        ## check if size is sufficient, then mark as invalid
+        if(length(y) < min.seglocs) {
+          #cat("nonvalid: ", length(y), " - ", type, ", ALTERX: ", ALTERX, "\n") 
+          invalid.cp = TRUE
+          break
+        }
+      }
+    }
+
+    ## check if cp creates valid segments
+    if(!invalid.cp) {
+
+      cp.new = cp.tmp
+      break
+    }
+      
+  }
+
+  return(cp.new)
+}

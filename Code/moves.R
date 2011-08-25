@@ -32,7 +32,7 @@ cp.birth <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
   if(DEBUG_BIRTH_EXT == TRUE) { cat("\n START CP.BIRTH\n\n") }
 
   ## assign the changepoint vector of interest
-  if(ALTERX) { E = XE } else { E = YE } 
+  if(ALTERX) { E = XE; E.other = YE } else { E = YE; E.other = XE } 
   
   ## search for possible CP, not in E and not close to E if minPhase (length of phase) is > than 1
   toremove = E
@@ -45,20 +45,24 @@ cp.birth <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
   if(length(possibleCP)== 0) {
     return(list(XE=XE, YE=YE, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=0, move=1, alpha=0, estar=-1))
   }
+
+  ## sample uniformly new cp, returns NaN in the case that all cp produce invalid segments (constraint to min.seglocs)
+  cp.new = sampleValidateCPs(candidateCPs=possibleCP, min.seglocs = minPhase*minPhase, E, E.other, Y, ALTERX, xlocs, type="birth") 
   
-  # sample the new CP "estar"
-  # AA: returns 1 (size=1) random CP from the possibleCP list
-  #  why is the possibleCP list doubled?
-  estar = sample(c(possibleCP, possibleCP),1)
+  ## if no valid changepoint could be found, return
+  if(is.nan(cp.new)) {
+    cat("giving up new cp\n") 
+    return(list(XE=XE, YE=YE, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=0, move=1, alpha=0, estar=-1))
+  }
+ 
 
   ## Create next state CP vector
-  Eplus = sort(c(E,estar))
+  Eplus = sort(c(E,cp.new))
     
   ## Position of the phase containing the new CP
-  poskl = sum(E < estar)
+  poskl = sum(E < cp.new)
 
-  if(ALTERX) {OtherE = YE} else { OtherE = XE}
-  alpha = cp.computeAlpha(1, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase, E, Eplus, OtherE,  poskl, HYPERvar, S2Dall, D, DEBUG_BIRTH_EXT) 
+  alpha = cp.computeAlpha(1, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase, E, Eplus, E.other,  poskl, HYPERvar, S2Dall, D, DEBUG_BIRTH_EXT) 
   
   ## Sample u to conclude either to  acceptation or to rejection
   u = runif(1,0,1)
@@ -116,7 +120,7 @@ cp.birth <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
 
   ##  Return all variables
   ## (+ variable move describing the move type  (1= CP birth, 2= CP death, 3= CP shift, 4= Update phases)
-  return(list(XE=XE, YE=YE, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=accept, move=1, alpha=alpha, estar=estar))
+  return(list(XE=XE, YE=YE, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=accept, move=1, alpha=alpha, estar=cp.new))
 
 }
 
@@ -147,7 +151,7 @@ cp.death <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
 
   if(DEBUG_BIRTH_EXT == TRUE) { cat("\n START CP.DEATH\n\n") }
 
-  if(ALTERX) { E = XE;   if(DEBUG_BIRTH_EXT == TRUE) { cat("ALTERX = TRUE\n") } } else { E = YE;   if(DEBUG_BIRTH_EXT == TRUE) { cat("ALTERX = FALSE\n") } }
+  if(ALTERX) { E = XE; E.other = YE } else { E = YE; E.other = XE }
   
   ## check if there are at least one possible CP (should never happen that this fct gets selected for run but just to prevent worsed case and crash)
   if(length(E) < 3) {
@@ -162,12 +166,9 @@ cp.death <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
 
   ## CP changepoint vector without the CP
   Eminus = E[-which(E == estar)]
-
-  ## Prepare the data,
-  if(ALTERX) {OtherE = YE} else { OtherE = XE}
-
+  
   ## compute the acceptance probability
-  alpha = cp.computeAlpha(-1, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase, E=Eminus, Eplus=E, OtherE,  poskl=(poskstar-1), HYPERvar, S2Dall, D, DEBUG_BIRTH_EXT) 
+  alpha = cp.computeAlpha(-1, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase, E=Eminus, Eplus=E, E.other,  poskl=(poskstar-1), HYPERvar, S2Dall, D, DEBUG_BIRTH_EXT) 
 
   ## Sample u to conclude either to  acceptation or to rejection
   u = runif(1,0,1)
@@ -237,29 +238,23 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
 
   if(DEBUG_BIRTH_EXT == TRUE) { cat("\n START CP.SHIFT\n\n") }
 
-  if(ALTERX) { E = XE;   if(DEBUG_BIRTH_EXT == TRUE) { cat("ALTERX = TRUE\n") } } else { E = YE;   if(DEBUG_BIRTH_EXT == TRUE) { cat("ALTERX = FALSE\n") } }
-  if(DEBUG_BIRTH_EXT == TRUE) { cat("E: "); print.table(E) }
+  ## assign changepoint vectors depending on axis of interest (ALTERX)
+  if(ALTERX) { E = XE; E.other = YE } else { E = YE; E.other = XE }
     
   ## check if there are at least one possible CP to shift 
   if(length(E) < 3) {
     if(DEBUG_BIRTH_EXT == TRUE) { cat("nothing to shift, returning..\n") }
     return(list(XE=XE, YE=YE, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=0, move=2, alpha=0, estar=-1))
   }
-
-
-  ## Sample the CP to be shifted
+  
+  ## extract the CP to be shifted
   estar = sample(c(E[2:(length(E)-1)], E[2:(length(E)-1)]), 1)
-  if(DEBUG_BIRTH_EXT == TRUE) { cat("estar: ", estar, "\n") }
 
   ## Position of the phase starting at the selected CP
   poskstar = sum(E <= estar)
-  if(DEBUG_BIRTH_EXT == TRUE) { cat("poskstar: ", poskstar, "\n") }
 
   ## Possible new position for the selected CP (CP-1, CP+1)
   newCPs = c(E[poskstar]-1,E[poskstar]+1)
-  if(DEBUG_BIRTH_EXT == TRUE) { cat("newCPs: ", newCPs, "\n") }
-
-  if(DEBUG_BIRTH_EXT == TRUE) { cat("newCPs: "); print.table(c(E[poskstar-1],E[poskstar-1]+minPhase-1, E[poskstar+1],E[poskstar+1]-minPhase+1,E)) }
   
   ## remove positions that create too short segments (minPhase)
   newCPs = newCPs[which( !( newCPs %in% c(E[poskstar-1],E[poskstar-1]+minPhase-1, E[poskstar+1],E[poskstar+1]-minPhase+1,E)))]
@@ -271,28 +266,30 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
   ## If there is at least one option to shift the selected CP 
   if(length(newCPs) > 0){
 
-    ## Sample new CP position
-    newCP = sample( c(newCPs, newCPs), 1)
-    if(DEBUG_BIRTH_EXT == TRUE) { cat("newCP: ", newCP, "\n") }
+    ## sample new CP position and check if shift produces valid segments
+    cp.new = sampleValidateCPs(candidateCPs=newCPs, min.seglocs = minPhase*minPhase, E, E.other, Y, ALTERX, xlocs,  type="shift", cp.pos = poskstar) 
     
+    ## if no valid shift could be found, return
+    if(is.nan(cp.new)) {
+      #cat("giving up new cp - shift\n") 
+      return(list(XE=XE, YE=YE, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=0, move=2, alpha=0, estar=-1))
+    }
+
     ## new CP vector
     Eshift = E
-    Eshift[poskstar] = newCP
-    if(DEBUG_BIRTH_EXT == TRUE) { cat("Eshift: "); print.table(Eshift)  }
-    
+    Eshift[poskstar] = cp.new
+        
     ###
     ## Calculate the current state posterior, unshifted
   #  prodPhi = 1     # product over current state
     sumPhi = 0
   
     ## Assign proper CP vector to temporary type (used in segcoord extraction)
-    if(ALTERX) {tmpYE = OtherE = YE; tmpXE = E } else { tmpXE = OtherE = XE; tmpYE = E }
-    if(DEBUG_BIRTH_EXT == TRUE) { cat("OtherE: "); print.table(OtherE)  }
-    
-    
+    if(ALTERX) {tmpYE = YE; tmpXE = E } else { tmpXE = XE; tmpYE = E }
+        
     for(j in (poskstar-1):poskstar) {
       
-      for(i in 1:(length(OtherE)-1)) {
+      for(i in 1:(length(E.other)-1)) {
 
         ## Assign proper segment id
         if(ALTERX) { xsegid = j; ysegid = i } else { xsegid = i; ysegid = j}
@@ -346,7 +343,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
     
     for(j in (poskstar-1):poskstar) {
       
-      for(i in 1:(length(OtherE)-1)) {
+      for(i in 1:(length(E.other)-1)) {
 
         ## Assign proper segment id
         if(ALTERX) { xsegid = j; ysegid = i } else { xsegid = i; ysegid = j}

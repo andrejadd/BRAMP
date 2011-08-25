@@ -42,12 +42,6 @@ extractNodes <- function(nodeData, coords, xlocations, DEBUGINFOS=F) {
         
       }
     }
-
-  if(!is.matrix(node.values)) {
-    if(length(node.values) == 1) {
-      browser()
-    }
-  }
   
   return(node.values)
 }
