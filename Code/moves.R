@@ -51,7 +51,7 @@ cp.birth <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, D, GLOBva
   
   ## if no valid changepoint could be found, return
   if(is.nan(cp.new)) {
-    cat("giving up new cp\n") 
+    #cat("giving up new cp\n") 
     return(list(XE=XE, YE=YE, S2Dall=S2Dall, B2Dall=B2Dall, Sig2_2Dall=Sig2_2Dall, accept=0, move=1, alpha=0, estar=-1))
   }
  
