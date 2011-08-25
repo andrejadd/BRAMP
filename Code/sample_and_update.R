@@ -136,10 +136,22 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
       break;
     }
 
-    ## sample one CP in possibleCP (the vector is double for sake of function sample when size is = to 1)
-    cp = sample( c(possibleCP, possibleCP), 1)
+    ## sample uniformly new cp, returns NaN in the case that all cp produce invalid segments (constraint to min.seglocs)
+    ## Note, a single row from the full data matrix X is passed, this is because sampleValidateCPs expects actually the target vector but it
+    ## makes no difference which node, it will b either sampled or not
+    cp.new = sampleValidateCPs(candidateCPs=possibleCP, min.seglocs = minPhase*minPhase, E=XE, E.other=YE, Y=as.vector(X[1,]), ALTERX=T, xlocs, type="birth") 
     
-    XE=sort(c(XE, cp))
+    ## sample one CP in possibleCP (the vector is double for sake of function sample when size is = to 1)
+    ##cp = sample( c(possibleCP, possibleCP), 1)
+
+    ## only add when cp is creating no invalid segment (which could lead to a later crash)
+    if(!is.nan(cp.new)) {
+      XE=sort(c(XE, cp.new))
+
+    } else {
+      cat("\n!not added inital XE cp\n")
+    }
+    
     cpt = cpt-1
   }
 
@@ -160,10 +172,21 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
       break;
     }
 
-    ## sample one CP in possibleCP (the vector is double for sake of function sample when size is = to 1)
-    cp = sample( c(possibleCP, possibleCP), 1)
-    
-    YE=sort(c(YE, cp))
+    ## simple sampling, without check for segment integrity
+    #cp = sample( c(possibleCP, possibleCP), 1)
+
+    ## correct sampling
+    cp.new = sampleValidateCPs(candidateCPs=possibleCP, min.seglocs = minPhase*minPhase, E=YE, E.other=XE, Y=as.vector(X[1,]), ALTERX=F, xlocs, type="birth") 
+
+    ## only add when cp is creating no invalid segment (which could lead to a later crash)
+    if(!is.nan(cp.new)) {
+      YE=sort(c(YE, cp.new))
+      
+    } else {
+      cat("\n!!not added inital YE cp\n")
+    }
+      
+
     cpt = cpt-1
   }
 
