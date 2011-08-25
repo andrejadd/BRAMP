@@ -315,7 +315,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
 
         if( (dim(Pr)[1] != length(y)) ) {
-          browser()
+          #browser()
         }
         
 #        prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
@@ -327,7 +327,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         }, error = function(e) {
           cat("Caught error \n ")
           print(e)
-          browser()
+          #browser()
         })
 
 
@@ -371,7 +371,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
 #        prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
 
         if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
-          browser()
+          #browser()
         }
         
         tryCatch({
@@ -379,7 +379,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         }, error = function(e) {
           cat("Caught error \n ")
           print(e)
-          browser()
+          #browser()
         })
 
       }
@@ -598,7 +598,7 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
            }, error = function(e) {
              cat("Caught error \n ")
              print(e)
-             browser()
+             #browser()
            })
           
 	}
@@ -675,7 +675,7 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
           }, error = function(e) {
             cat("Caught error \n ")
             print(e)
-            browser()
+            #browser()
           })
         
         }
@@ -743,7 +743,7 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
             }, error = function(e) {
               cat("Caught error \n ")
               print(e)
-              browser()
+              #browser()
             })
         
           }

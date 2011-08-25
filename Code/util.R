@@ -171,7 +171,7 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
     ## prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
 
     if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
-      browser()
+      #browser()
     }
     
     tryCatch({
@@ -179,7 +179,7 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
     }, error = function(e) {
       cat("Caught error \n ")
       print(e)
-      browser()
+      #browser()
     })
   
   }
@@ -223,7 +223,7 @@ cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase,
       }, error = function(e) {
           cat("Caught error \n ")
           print(e)
-          browser()
+          #browser()
         })
 
 
@@ -406,9 +406,11 @@ computeProjection = function(x, delta2){
 
   if(dim(Px)[1] != len) {
     cat("inside computeProjection\n")
+    #browser()
+  }
+  if(len==1) {
     browser()
   }
-  
   return(Px)
 }
 

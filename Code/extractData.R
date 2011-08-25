@@ -38,8 +38,16 @@ extractNodes <- function(nodeData, coords, xlocations, DEBUGINFOS=F) {
 
         ## exclude all NaNs (unsampled nodes)
         node.values = c(node.values, elem.tmp[which(!is.nan(elem.tmp))])
+
+        
       }
     }
+
+  if(!is.matrix(node.values)) {
+    if(length(node.values) == 1) {
+      browser()
+    }
+  }
   
   return(node.values)
 }

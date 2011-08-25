@@ -61,7 +61,7 @@ TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){
   
   
   ## minima length of a segment (or a phase)
-  minPhase=3
+  minPhase=2
 
   ## hyperparameters for the number of CP and incoming edges (TF) 
   alphaCP=1
