@@ -251,25 +251,39 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
 sampleBxy <- function(xi, y, Sig2_2Dall, delta2){
  
     tryCatch({
+    
+      Ml = (delta2 / (delta2+1)) * pseudoinverse( t(xi) %*% xi)
 
-      Ml = (delta2 / (delta2+1)) * pseudoinverse(t(xi) %*% xi)
-      out = mvrnorm(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
-	
+      eS <- eigen(Sig2_2Dall * Ml, symmetric = TRUE, EISPACK = TRUE)
+
+      if (!all(eS$values >= -tol * abs(eS$values[1]))) {
+        Ml = Ml + diag(rnorm(dim(xi)[2],0,0.00001))
+        cat("tol fail in sampleBxy\n")
+      }
+      
+      ## using this for all will cause Eigenvalue out of tolerance error in mvrnorm
+      #Ml = (delta2 / (delta2+1)) * pseudoinverse(t(xi) %*% xi + diag(rnorm(dim(xi)[2],0,0.00001)))
+
+      ## this is the original that will stop even when Sigma is ok
+      # out = mvrnorm(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
+      
+      ## ignores tolerance
+      out = mvrnorm.toleranceoff(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
+    
     }, error = function(e) {
-	cat("Caught error while doing sampleBxy: ")
-       	print(e)
+      cat("Caught error while doing sampleBxy: ")
+      print(e)
 
-        cat("delta2: ", delta2, "\n") 
-
-	cat("saving all parameters to file debugsave1: ")
-	save(delta2, xi, y, Sig2, Ml, file="debugsave1")
-
-    	stop("DEBUG-E1: failed because of wrong Sigma , see output")    
-
+      cat("saving all parameters to file debugsave1: ")
+      save(delta2, xi, y, Sig2_2Dall, Ml, file="debugsave1")
+      
+      stop("DEBUG-E1: failed because of wrong Sigma , see output")    
+      
     })
+    
+    return(out)
+  }
 
-  return(out)
-}
 
 
 ## AA, change arguments, instead of extracting from Sall, Ball, X, Y - directly pass from moves.R since they are already used there
