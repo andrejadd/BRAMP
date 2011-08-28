@@ -398,7 +398,7 @@ computeProjection = function(x, delta2){
   moins = matrix(0,len,len)
 
   if(prod(dim(x))>0){
-    moins = (delta2/(delta2+1))* x%*%pseudoinverse(t(x)%*%x)%*%t(x)
+    moins = (delta2/(delta2+1))* x%*%ginv(t(x)%*%x)%*%t(x)
   }
 
   Px=diag(1,len)-moins

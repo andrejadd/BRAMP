@@ -9,8 +9,7 @@ print(codePath)
 source(paste(codePath,"init.R",sep=""))
 source(paste(codePath,"moves.R",sep=""))
 source(paste(codePath,"main.R",sep=""))
-source(paste(codePath,"output_main.R",sep=""))
-#source(paste(codePath,"output_functions.R", sep=""))
+source(paste(codePath,"output_functions.R", sep=""))
 
 ## +  useful tools
 source(paste(codePath,"hyperParms.R", sep=""))
@@ -22,8 +21,9 @@ source(paste(codePath, "spatAutoCorrelation.R", sep=""))
 ## +  external functions
 source(paste(codePath,"invGamma.R",sep=""))
 source(paste(codePath,"mvrnorm.R",sep=""))
-source(paste(codePath,"fast.svd.R",sep=""))
-source(paste(codePath,"pseudoinverse.R",sep=""))
+# source(paste(codePath,"fast.svd.R",sep="")) 
+# source(paste(codePath,"pseudoinverse.R",sep=""))
+source(paste(codePath,"ginv.R",sep=""))
 source(paste(codePath,"simulate_network.R",sep=""))
 source(paste(codePath,"convert.R",sep=""))
   

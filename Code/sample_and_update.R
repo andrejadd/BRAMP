@@ -247,19 +247,73 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
 }
 
 
+    
 
 sampleBxy <- function(xi, y, Sig2_2Dall, delta2){
  
-    tryCatch({
+
+  Ml = (delta2 / (delta2+1)) * ginv( t(xi) %*% xi)
+      
+  out = mvrnorm.toleranceoff(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
     
-      Ml = (delta2 / (delta2+1)) * pseudoinverse( t(xi) %*% xi)
+  return(out)
+  
+}
 
-      eS <- eigen(Sig2_2Dall * Ml, symmetric = TRUE, EISPACK = TRUE)
 
-      if (!all(eS$values >= -tol * abs(eS$values[1]))) {
-        Ml = Ml + diag(rnorm(dim(xi)[2],0,0.00001))
-        cat("tol fail in sampleBxy\n")
+
+##
+##
+## This .debug method was used to find the problem with the mvrnorm crash (tolerance)
+##
+##       It appears the tolerance (tol) in pseudoinverse causes the calculation of weird inverse matrices that eventually
+##       lead to a crash.
+##
+##  source("Code/fast.svd.R")
+##  source("Code/pseudoinverse.R")
+##  load("DEBUG.DATA/debugsave1")
+##
+##
+##
+
+sampleBxy.debug <- function(xi, y, Sig2_2Dall, delta2){
+ 
+           
+      p.inv.mat = pseudoinverse( t(xi) %*% xi)
+      g.inv.mat = ginverse( t(xi) %*% xi)
+
+      ## same inverse ?
+      if(!all(p.inv.mat == g.inv.mat)) {
+
+        ## symmetry
+        mat.sym = c(T,T)
+        if(!isSymmetric(p.inv.mat)) {
+          mat.sym[1] = F
+        }
+        if(!isSymmetric(g.inv.mat)) {
+          mat.sym[2] = F
+        }
+
+        cat("inverse different: sym pseudo: ", mat.sym[1], ", sym g: ", mat.sym[2], "\n")
+      
       }
+
+      
+      Ml = (delta2 / (delta2+1)) * pseudoinverse( t(xi) %*% xi)
+      Ml.g = (delta2 / (delta2+1)) * ginverse( t(xi) %*% xi)
+      
+      eS = eigen(Sig2_2Dall * Ml, symmetric = TRUE, EISPACK = TRUE)
+      eS.g = eigen(Sig2_2Dall * Ml.g, symmetric = TRUE, EISPACK = TRUE)
+      
+      if (!all(eS$values >= -1e-06 * abs(eS$values[1]))) {
+        Ml = Ml + diag(rnorm(dim(xi)[2],0,0.00001))
+        cat("pseudoinverse - tol fail in sampleBxy\n")
+      }
+
+      if (!all(eS.g$values >= -1e-06 * abs(eS.g$values[1]))) {
+        cat("ginverse - tol fail in sampleBxy\n")
+      }
+
       
       ## using this for all will cause Eigenvalue out of tolerance error in mvrnorm
       #Ml = (delta2 / (delta2+1)) * pseudoinverse(t(xi) %*% xi + diag(rnorm(dim(xi)[2],0,0.00001)))
@@ -270,16 +324,16 @@ sampleBxy <- function(xi, y, Sig2_2Dall, delta2){
       ## ignores tolerance
       out = mvrnorm.toleranceoff(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
     
-    }, error = function(e) {
-      cat("Caught error while doing sampleBxy: ")
-      print(e)
+ #   }, error = function(e) {
+ #     cat("Caught error while doing sampleBxy: ")
+ #     print(e)
 
-      cat("saving all parameters to file debugsave1: ")
-      save(delta2, xi, y, Sig2_2Dall, Ml, file="debugsave1")
+ #     cat("saving all parameters to file debugsave1: ")
+ #     save(delta2, xi, y, Sig2_2Dall, Ml, file="debugsave1")
       
-      stop("DEBUG-E1: failed because of wrong Sigma , see output")    
+ #     stop("DEBUG-E1: failed because of wrong Sigma , see output")    
       
-    })
+ #   })
     
     return(out)
   }

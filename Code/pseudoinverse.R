@@ -23,9 +23,9 @@
 
 
 
-pseudoinverse <- function (m, tol)
-{
-    msvd <- fast.svd(m, tol)
+pseudoinverse <- function (m) {
+ 
+    msvd <- fast.svd(m)
     
     if (length(msvd$d) == 0)
     {
@@ -40,3 +40,6 @@ pseudoinverse <- function (m, tol)
             )
      }    
 }
+
+
+
