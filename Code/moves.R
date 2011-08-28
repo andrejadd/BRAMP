@@ -281,7 +281,6 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         
     ###
     ## Calculate the current state posterior, unshifted
-  #  prodPhi = 1     # product over current state
     sumPhi = 0
   
     ## Assign proper CP vector to temporary type (used in segcoord extraction)
@@ -318,24 +317,18 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
 #        prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
 
         tryCatch({
-          
           sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
-
-        }, error = function(e) {
-          cat("Caught error \n ")
+        }, warning = function(e) {
+          write("Caught warning in cp.shift (unshifted cp): saving data to DEBUG.DATA/warning_save.RData", stderr()) 
           print(e)
-          #browser()
+          save(gamma0, y, x, Pr, file="DEBUG.DATA/warning_save.RData")
         })
-
-
-
       }
     }
 
     ##
     ## Calculate the next state posterior, shifted
     ## NOTE, this is exactly the same as with current state, only the Eshift assigned as tmpXE or tmpYE
- #   prodPhiPlus = 1     # product over current state
     sumPhiPlus = 0
   
     ## Assign proper CP vector to temporary type (used in segcoord extraction)
@@ -373,12 +366,11 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
         
         tryCatch({
           sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
-        }, error = function(e) {
-          cat("Caught error \n ")
+        }, warning = function(e) {
+          write("Caught warning in cp.shift (shifted cp): saving data to DEBUG.DATA/warning_save.RData", stderr()) 
           print(e)
-          #browser()
+          save(gamma0, y, x, Pr, file="DEBUG.DATA/warning_save.RData")
         })
-
       }
     }
 
@@ -526,18 +518,10 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
     ## flip move is 4
     move = 4
 
-    tryCatch({
+    ## Sample the original parent
+    parent.orig = sample(c(which(S2Dall[1:q]==1), which(S2Dall[1:q]==1)),1) # needed when there is only one position  S[1:q]==1
     
-      ## Sample the original parent
-      parent.orig = sample(c(which(S2Dall[1:q]==1), which(S2Dall[1:q]==1)),1) # needed when there is only one position  S[1:q]==1
-      
-    }, error = function(e) {
-      cat("FIXME: Caught error in bdu.homogeneousStructure while doing parent.orig = sample(c..)\n ")
-      print(e)
-      stop("stopping")
-    })
-    
-                                        # Sample the new parent
+    ## Sample the new parent
     parent.new = sample(c(which(S2Dall==0), which(S2Dall==0)), 1) # needed when there is only one position  S==0
         
     stmp = S2Dall
@@ -570,35 +554,9 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
 
 #	  rflip = rflip * ((gamma0 + t(y) %*% Prstar %*% y)/(gamma0 + t(y) %*% Pr %*% y))^(-(length(y) + v0)/2)
 
-          ## this try catch is only for debugging
-          tryCatch({
-
-            ldebug = log(gamma0 + t(y) %*% Prstar %*% y)
-	
-          }, warning = function(e) {
-            cat("Caught warning while doing log(gamma0 + t(y) %*% Prstar %*% y): ")
-            print(e)
-
-            cat("gamma0: ") 
-            print.table(gamma0)
-            cat("saving all parameters to file debugsave: ")
-            save(gamma0, y, Prstar, file="debugsave")
-            
-            stop("DEBUG-E2: failed because of NaN , see output")    
-            
-          })
-
-	# log version
-          
-          tryCatch({
-             rfliplog = rfliplog + (-(length(y) + v0)/2) * ( log(gamma0 + t(y) %*% Prstar %*% y) - log(gamma0 + t(y) %*% Pr %*% y))
-           }, error = function(e) {
-             cat("Caught error \n ")
-             print(e)
-             #browser()
-           })
-          
-	}
+          ## log version
+          rfliplog = rfliplog + (-(length(y) + v0)/2) * ( log(gamma0 + t(y) %*% Prstar %*% y) - log(gamma0 + t(y) %*% Pr %*% y))
+        }
     }   
 
     u = runif(1,0,1)
@@ -617,23 +575,13 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
     ## Birth of an edge move
     ##########################
     if(u < rho3[1] && s < smax && (length(which(S2Dall == 0)) > 0 ) ){
-
       
       ## Variable move describing the move type  (1= Edge birth, 2= Edge death, 3= Update coefficient)
       move = 1
       
-      tryCatch({
-
-        ## Sample the additional edge
-        sstar = sample(c(which(S2Dall==0), which(S2Dall==0)), 1) # needed when there is only one position  S2Dall==0
-      }, error = function(e) {
-
-      	cat("FIXME: Caught error in bdu.homogeneousStructure() - birth edge move, sample() for sstar:\n")
-       	print(e)
-	stop("stopping")
-      })
+      ## Sample the additional edge
+      sstar = sample(c(which(S2Dall==0), which(S2Dall==0)), 1) # needed when there is only one position  S2Dall==0
       
-
       ## Proposed edges vector (with an additional edge)
       stmp = S2Dall
       stmp[sstar] = 1
@@ -666,48 +614,38 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
           ## Compute birth ratio, no log needed because no critical gamma() calculation
           ## orig 1D homog.:
           ##rbirth =    rbirth * ((gamma0 + t(y) %*% Pxlp1 %*% y) /(gamma0 + t(y) %*% Pxl %*% y))^(-(length(y) + v0)/2)/sqrt(1 + delta2)
-
-          tryCatch({
-            rbirth =rbirth * ((gamma0 + t(y) %*% Prplus %*% y) / (gamma0 + t(y) %*% Pr %*% y))^(-(v0 + omega)/2)/sqrt(1 + delta2)
-          }, error = function(e) {
-            cat("Caught error \n ")
-            print(e)
-            #browser()
-          })
-        
+          rbirth =rbirth * ((gamma0 + t(y) %*% Prplus %*% y) / (gamma0 + t(y) %*% Pr %*% y))^(-(v0 + omega)/2)/sqrt(1 + delta2)
         }
       }
 
       ## Sample u 
       u = runif(1,0,1)
-        
-      if(u <= min(1,rbirth)){
-        accept = 1
-        newS = stmp
-        if(DEBUGLVL1) { cat("e") }
-      }
+      
+      tryCatch({ ## BUG ID 3
+        if(u <= min(1,rbirth)){
+          accept = 1
+          newS = stmp
+          if(DEBUGLVL1) { cat("e") }
+        }
+      }, error = function(e) {
+        write("Error with rbirth in bdu.homogeneous: saving data producing rbirth to DEBUG.DATA/error_rbirth.RData", stderr()) 
+        print(e)
+        save(v0, gamma0, delta2, XE, YE, y, x, S2Dall, file="DEBUG.DATA/error_rbirth.RData")
+      })
             	  
      } else {
        
-      if(u < rho3[2] & s > 0){  # makes sure at least one edge exists (despite the bias and SAC edge)
+       if(u < rho3[2] & s > 0){  # makes sure at least one edge exists (despite the bias and SAC edge)
 
-        ##########################
-        ## Death of an edge move
-        ##########################
+         ##########################
+         ## Death of an edge move
+         ##########################
 
         ## Variable describing the move type  (1 for Edge birth, 2 for Edge death, 3 for Update coefficient)
         move=2
 
-        tryCatch({
-
-          ## Sample the edge to remove
-          sstar = sample(c(which(S2Dall[1:q]==1), which(S2Dall[1:q]==1)),1) # needed when there is only one position  S[1:q]==1
-
-	}, error = function(e){
-          cat("FIXME: Caught error in bdu.homogeneousStructure() - edge death move while doing sample() for sstar:\n")
-          print(e)
-          stop("stopping")
-        })
+        ## Sample the edge to remove
+        sstar = sample(c(which(S2Dall[1:q]==1), which(S2Dall[1:q]==1)),1) # needed when there is only one position  S[1:q]==1
 
         ## Proposed edges vector (after taking away one edge)
         stmp = S2Dall
@@ -735,14 +673,7 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
             Prminus = computeProjection(as.matrix(x[,which(stmp == 1)]), delta2)   # + 1 edge
           
             ## complies to TVDBN_SH1D
-            tryCatch({
-              rdeath = rdeath * ( (gamma0 + t(y) %*% Pr %*% y) / (gamma0 + t(y) %*% Prminus %*% y))^((length(y) + v0)/2)*(sqrt(1 + delta2))
-            }, error = function(e) {
-              cat("Caught error \n ")
-              print(e)
-              #browser()
-            })
-        
+            rdeath = rdeath * ( (gamma0 + t(y) %*% Pr %*% y) / (gamma0 + t(y) %*% Prminus %*% y))^((length(y) + v0)/2)*(sqrt(1 + delta2))
           }
         }
 
