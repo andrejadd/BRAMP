@@ -18,7 +18,7 @@ import glob
 ######## PARAMETER ------------------------
 
 
-BEOWULFDIR = "../beowulf_root/"  # here are the beowulf config settings 
+BEOWULFDIR = "../Helper/Beowulf_root/"  # here are the beowulf config settings 
 WORKINGDIR = os.getcwd()         # get current dir, need to change to this on each node
 STARTSCRIPTS = "Startscripts"
 RESULTDIR = "Results/Network_And_CPs/"  # use this to check if runs already exist
@@ -28,10 +28,11 @@ nodefile = BEOWULFDIR + '/nodes.config'
 idfile = BEOWULFDIR + '/jobid.last'
 
 
-interDispatchTime = 180          # time in seconds to wait until a full dispatch attempt is made again 
-nr_runs = 3                     # number of runs per unique job 
-defaultnodes = range(13,23)       # the nodes to compute
-maxiter = 300000                 # nr. of MCMC iteration steps
+interDispatchTime = 180           # time in seconds to wait until a full dispatch attempt is made again 
+start_run_id = 6
+nr_runs = 3                       # number of runs per unique job 
+defaultnodes = range(13,25)       # the nodes to compute
+maxiter = 1000000                 # nr. of MCMC iteration steps
 
 bestPredictors = 20 ## is obselete, keep for larger networks or remove
 
@@ -175,7 +176,7 @@ print "Starting with job-id " + str(jobid)
 JOBs = []
 
 # set vector of runs
-runids = range(1,(nr_runs + 1)) 
+runids = range(start_run_id,(start_run_id + nr_runs + 1)) 
 
 for network in networks:
 	for run in runids:
@@ -229,6 +230,7 @@ except IOError as (errno, strerror):
 
 
 
+
 # read in the available nodes from the config file
 cnodelist = []
 
@@ -237,7 +239,10 @@ try:
 
 	for line in f:
 		line = line.rstrip("\n")
-		cnodelist.append(line)	
+		
+		# exclude lines starting with # 
+		if line.find("#",0,1) == -1:
+			cnodelist.append(line)	
 		
 	f.close()
 
@@ -250,6 +255,7 @@ except ValueError:
 
 print cnodelist
 
+sys.exit()
 
 
 # matrix, each row for one node, column 1 : node name, 2 : nr. CPUs, 3 : load avg 
