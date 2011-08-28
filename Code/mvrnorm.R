@@ -43,7 +43,7 @@ mvrnorm.toleranceoff<-function (n = 1, mu, Sigma, tol = 1e-06, empirical = FALSE
     ev <- eS$values
     if (!all(ev >= -tol * abs(ev[1]))) {
       cat("tol fail in mvrnorm, cont. anyways\n")
-      
+  
     }
     
     X <- matrix(rnorm(p * n), n)

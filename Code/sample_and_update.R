@@ -254,7 +254,7 @@ sampleBxy <- function(xi, y, Sig2_2Dall, delta2){
 
   Ml = (delta2 / (delta2+1)) * ginv( t(xi) %*% xi)
       
-  out = mvrnorm.toleranceoff(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
+  out = mvrnorm(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
     
   return(out)
   
