@@ -36,9 +36,12 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
   acceptMove = array(0,3)
   
   ## everything important stored here and saved at the end to a file
-  Structsamples = list(struct = list(), XE = list(), YE = list(), iter=list())
+  Structsamples = list(struct = list(), XE = list(), YE = list(), iter=list(), regression.coeff=list())
   counters = list()
 
+  ## when to start saving the regression coefficients (takes up memory)
+  start.save.regr = niter - floor(niter * 1/5)
+  
   # do main iteration
   r = 1
   while(r < niter) {
@@ -126,6 +129,14 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
       Structsamples$XE[[length(Structsamples$XE) + 1]] = XE
       Structsamples$YE[[length(Structsamples$YE) + 1]] = YE
       Structsamples$iter[[length(Structsamples$iter) + 1]] = r
+
+      ## only save in later stage, because needs memory
+      if(r > start.save.regr) {
+        Structsamples$regression.coeff[[length(Structsamples$regression.coeff) + 1]] = B2Dall
+      } else {
+        Structsamples$regression.coeff[[length(Structsamples$regression.coeff) + 1]] = 1
+      }
+      
       counters[[length(counters) + 1]] = list(cptMove2=cptMove2, acceptMove2=acceptMove2, cptMove=cptMove, acceptMove=acceptMove)
  
     }

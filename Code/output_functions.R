@@ -4,7 +4,7 @@
 writeDataOut <- function(GLOBvar, Structsamples, counters) {
 
 
-  structoutfile = paste("./Results/Network_And_CPs/SC2D_m", GLOBvar$modelid, "_i", GLOBvar$target, "_run", GLOBvar$runid, sep="")
+  structoutfile = paste("./Results/SC2D_m", GLOBvar$modelid, "_i", GLOBvar$target, "_run", GLOBvar$runid, sep="")
   cat("\n[END] attempting to write Structsamples to: ", structoutfile, "\n")
 
   predictorSet = GLOBvar$posTF # copy out in order to write
