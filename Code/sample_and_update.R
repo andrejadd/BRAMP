@@ -88,10 +88,9 @@ sampledelta2Global <- function(X, Y, XE, YE, S2Dall, B2Dall, Sig2_2Dall, GLOBvar
 
 sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
   ### assignement of global variables used here ###
-  smax = GLOBvar$smax
   q = GLOBvar$q
   smax = GLOBvar$smax
-  n = GLOBvar$n
+  #n = GLOBvar$n
   xlocs = GLOBvar$xlocs
   ylocs = GLOBvar$ylocs
   XMphase = GLOBvar$XMphase
@@ -200,15 +199,30 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
   ## sample model structure, only one structure because this is homogeneous
   S = matrix(0, 1, q+2)
 
-  ## sample mean nr. edges (Lambda) with rgamma and sampleK (is the same inverse gamma for CPs and edges) 
-  sPred = sampleK(0, smax, rgamma(1, shape=alphalbd, rate = betalbd), 1)    # scale s= 1/rate => f(x)= 1/(s^a Gamma(a)) x^(a-1) e^-(x/s)
+  ## check if to sample from prior or set edges 
+  if(!GLOBvar$INIT.EDGES.FROM.FILE) {
+  
+    ## sample mean nr. edges (Lambda) with rgamma and sampleK (is the same inverse gamma for CPs and edges) 
+    sPred = sampleK(0, smax, rgamma(1, shape=alphalbd, rate = betalbd), 1)    # scale s= 1/rate => f(x)= 1/(s^a Gamma(a)) x^(a-1) e^-(x/s)
 
-  # if there are any edges..
-  if(sPred>0){
-    # set random position in Structure S to edge (1)
-    S[1, sample(1:q, sPred, replace=FALSE)] = array(1, sPred) # structure du model (1 si pred in the model)
+    ## if there are any edges..
+    if(sPred>0){
+      ## set random position in Structure S to edge (1)
+      S[1, sample(1:q, sPred, replace=FALSE)] = array(1, sPred) # structure du model (1 si pred in the model)
+    }
+  } else {
+
+    cat("attempting to initialize edges from file..\n")
+    
+    ## look up a file that has either on/off edges or probababilities, this might change -> check the function
+    S = initEdgesFromFile(target=GLOBvar$target, dataid=GLOBvar$modelid)
+
+    ## append the bias and SAC position because it was overwritten by the init function
+    S = cbind(S, c(0))
+    S = cbind(S, c(0))
+    
   }
-
+  
   ## we assume that there is a constant in each model, this is the last element that corresponds to the bias
   S[, q+1] = array(1,1)    ## bias edge
   S[, q+2] = array(1,1)    ## and this is the SAC node edge

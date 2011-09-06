@@ -117,7 +117,7 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   ### modifie par Sophie 02/07/09 :Ajout de PredNames et TargetNames
   GLOBvar = list(n=n, xlocs=xlocs, ylocs=ylocs,m=m, p=1, q=q, smax=smax, kmax.x=kmax.x, kmax.y=kmax.y, dyn=dyn, 
     minPhase=minPhase, XMphase=XMphase, YMphase=YMphase, posTF=posTF, niter=niter, birth_proposals=birth_proposals,
-    modelid=modelid, runid=runid, target=target)
+    modelid=modelid, runid=runid, target=target, INIT.EDGES.FROM.FILE=T)
 
   ## modifie par Sophie 01/03/09
   ### Create HyperParms Variables used in all functions

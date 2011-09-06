@@ -94,3 +94,28 @@ calculatePostProbs <- function(X, Y, l, GLOBvar, HYPERvar){
   return(post_probs);
 }
   
+##
+## method added 6.Sept.2011 by Andrej
+##
+
+initEdgesFromFile <- function(target, dataid) {
+
+  ## at what probability we accept an edge (not too low because we want to have the best edges in but not too much)
+  prob.cutoff = 0.4
+  
+  ## attempt to read file, this read in a talbe
+  ##  edge.pp.mat = read.table("../Data/Data_id2_edgeprobs.txt", header=F)
+
+  ## load from Rdata, post.edge.pp
+  load(paste("../Data/Data_id", dataid, "_edgeprobs.Rdata", sep=""))
+  edge.pp.mat = post.edge.pp
+  
+  ## get the edges for the target and remove target self-edge
+  edge.vec = edge.pp.mat[target,][-target]
+  
+  edge.vec = matrix((edge.vec > prob.cutoff) * rep(1, length(edge.vec)), nrow=1, ncol=length(edge.vec))
+
+  return(edge.vec)
+  
+  
+}
