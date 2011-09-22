@@ -1,4 +1,6 @@
 
+source(paste(codePath,"runtvDBN.R",sep=""))
+
 
 TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){
 
@@ -8,21 +10,18 @@ TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){
   ## modeltype means static (0 would be dynamic, only used to read in appropriate ymatrix .Rdata files)
   modeltype = 1
 
+  ## This variable is used to tell BRAM to not alter initially set edges during run (which are defined in a Data_id file, see initEdges..()
+  ## It can be NULL (no fixed edges) or a vector of edge indicies (e.g., c(1) but it is just a placeholder and set later)
+  ## GLOBvar$FIXED.INIT.EDGES will be set to this value and GLOBvar$INIT.EDGES.FROM.FILE will be set to a file from where to read these edges - which causes the initilization routine to read the fixed edges from a file.
+  FIXED.INIT.EDGES=c(1)
+  
   cat("dataid   : ", modelid, "\n")
   cat("type : ", modeltype, "\n")
   cat("target    : ", target, "\n")
   cat("runid     : ", runid, "\n")
   
-  
-### specify here the TVDBN directory 
-  path="./"
-  
   ## Unix time (seconds since 1970), should be fine for the cluster, might add/subtract milliseconds 
   set.seed(as.numeric(Sys.time()))
-
-  ## Import code
-  codePath=paste(path,"Code/",sep="")
-  source(paste(codePath,"runtvDBN.R",sep=""))
 
   ## function choosePriors:
   ## This function plots some examples of prior distribution for the number of breakpoints (changepoints, CP) and the number of incoming edges. 
@@ -33,17 +32,14 @@ TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){
                                         #choosePriors(5,paste(codePath,"k_priors.txt",sep=""))
   
   ## read in the data
-  indata = paste(path,"../Data/Data_id", modelid, ".Rdata",sep="")
+  indata = paste("../Data/Data_id", modelid, ".Rdata",sep="")
   cat("read Rdata file : ", indata, "\n")
 
   ## the main sample data that is loaded is a target/predictor matrix [nodes x locations] and a SAC (spatial autocorrelation) matrix with
   ## dame size. The SAC matrix has for each target and location a SAC node which is included into the linear regression 
   load(indata)
 
-  ## total sample points
-  n=Model$xlocs*Model$ylocs
-
-  cat("total location points: " , n, " with x: ",  Model$xlocs, " , y: ",  Model$ylocs, "\n")
+  cat("total location points: " , Model$xlocs*Model$ylocs, " with x: ",  Model$xlocs, " , y: ",  Model$ylocs, "\n")
 
   ## number of parent nodes
   q=dim(Model$Ymatrix)[1]-1
@@ -58,11 +54,7 @@ TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){
   ## maximal number of CPs, tweak this, One option: make dependent of number of locations -> but then each axis should have its own kmax (FIXME)
   kmax.x = max(floor(Model$xlocs/10), 10)
   kmax.y = min(floor(Model$ylocs/2), 2)
-  
-  
-  ## minima length of a segment (or a phase)
-  minPhase=2
-
+    
   ## hyperparameters for the number of CP and incoming edges (TF) 
   alphaCP=1
   betaCP=0.5
@@ -72,17 +64,15 @@ TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){
 #1# run TVDBN procedure:
 runtvDBN(fullData=Model$Ymatrix,
          sacData=Model$SAC.nodes,
-         n=n,
+         nr.locations=Model$xlocs*Model$ylocs,
          xlocs=Model$xlocs,
          ylocs= Model$ylocs,
          q=q,
-         minPhase=minPhase, 
          kmax.x=kmax.x,
          kmax.y=kmax.y,
          smax=smax,
          alphaCP=alphaCP, betaCP=betaCP, alphaTF=alphaTF, betaTF=betaTF,
          niter=niter,  
-	 outputFile=outputFile, 
-	 modelid=modelid, target=target, runid=runid )
+	 modelid=modelid, target=target, runid=runid, FIXED.INIT.EDGES=FIXED.INIT.EDGES )
 
 }

@@ -436,7 +436,7 @@ cp.shift <- function(ALTERX, XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, 
 
 
 ###################################################################
-# Update phases
+# Do the edge moves or just update of model parameters
 ###################################################################
 
 phase.update <- function(XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, HYPERvar,  DEBUGLVL1 = F, DEBUGLVL2 = F ) {
@@ -445,7 +445,6 @@ phase.update <- function(XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, HYPE
   
   ### assignement of global variables used here ###
   q = GLOBvar$q
-  smax = GLOBvar$smax
   
   ### assignement of hyperparameters variables used here ###
   c = HYPERvar$c
@@ -466,13 +465,13 @@ phase.update <- function(XE, YE, S2Dall, B2Dall, Sig2_2Dall, X, Y, GLOBvar, HYPE
   Lambda = rgamma(1, shape=s + alphalbd, rate=1 + betalbd)
   
   ## Compute acceptation probability vector rho
-  rho3 = computeRho3(s, 0, smax, c, Lambda)
+  rho3 = computeRho3(s, 0, GLOBvar$smax, c, Lambda)
   
   ## Sample u
   u = runif(1, 0, 1)
   
   ## Compute the corresponding move (Edge birth, Edge death or Update the regression coefficient) 
-  bduout = bdu.homogeneousStructure(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, q, v0, gamma0, smax, GLOBvar, HYPERvar, DEBUGLVL1, DEBUGLVL2)
+  bduout = bdu.homogeneousStructure(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, q, v0, gamma0, GLOBvar$smax, GLOBvar, HYPERvar, DEBUGLVL1, DEBUGLVL2)
 
 
   ## (+ variable move describing the move type  (1= CP birth, 2= CP death, 3= CP shift, 4= Update segments)
@@ -507,19 +506,35 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
   newS = S2Dall
   
   ## Current number of edges
-  s = sum(S2Dall) - 2 
+  nr.edges = sum(S2Dall) - 2 
+
+  ## in the case there are fixed edges we need to ignore these (because we are not allowed to operate on them)
+  ## This is of course not true for the edge birth move, where we look if the max. nr. of edges is reached
+  if(!is.null(GLOBvar$FIXED.INIT.EDGES)) {
+    nr.edges = nr.edges - length(GLOBvar$FIXED.INIT.EDGES)
+  }
   
   ## Choose between flip move and other moves
   choice = runif(1, 0, 1)
-  
+
   ## Flip Move
-  if(s > 0 && choice > 0.75) {    
+  if(nr.edges > 0 && choice > 0.75) {    
   
     ## flip move is 4
     move = 4
 
-    ## Sample the original parent
-    parent.orig = sample(c(which(S2Dall[1:q]==1), which(S2Dall[1:q]==1)),1) # needed when there is only one position  S[1:q]==1
+    ## sample from the existing edges
+    sample.from = which(S2Dall[1:q]==1)
+
+    ## in the case fixed edges exist..
+    if(!is.null(GLOBvar$FIXED.INIT.EDGES)) {
+
+      ## take them out the sample vector
+      sample.from = setdiff(sample.from, GLOBvar$FIXED.INIT.EDGES)
+    }
+    
+    ## Sample the original parent, the double vector in sample() is if there is only one edge
+    parent.orig = sample(c(sample.from, sample.from),1)  
     
     ## Sample the new parent
     parent.new = sample(c(which(S2Dall==0), which(S2Dall==0)), 1) # needed when there is only one position  S==0
@@ -571,10 +586,16 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
     
   } else {
 
+    not.max.edges = nr.edges < smax
+    
+    if(!is.null(GLOBvar$FIXED.INIT.EDGES)) {
+        not.max.edges = (length(GLOBvar$FIXED.INIT.EDGES) + nr.edges) < smax
+    }
+    
     ##########################
     ## Birth of an edge move
     ##########################
-    if(u < rho3[1] && s < smax && (length(which(S2Dall == 0)) > 0 ) ){
+    if(u < rho3[1] && not.max.edges && (length(which(S2Dall == 0)) > 0 ) ){
       
       ## Variable move describing the move type  (1= Edge birth, 2= Edge death, 3= Update coefficient)
       move = 1
@@ -634,18 +655,30 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
       })
             	  
      } else {
+
        
-       if(u < rho3[2] & s > 0){  # makes sure at least one edge exists (despite the bias and SAC edge)
+       if(u < rho3[2] & nr.edges > 0 ){  ## makes sure at least one edge exists (despite the bias and SAC edge)
 
          ##########################
          ## Death of an edge move
          ##########################
-
+         
         ## Variable describing the move type  (1 for Edge birth, 2 for Edge death, 3 for Update coefficient)
         move=2
 
+        ## sample from the existing edges
+        sample.from = which(S2Dall[1:q]==1)
+
+        ## in the case fixed edges exist..
+        if(!is.null(GLOBvar$FIXED.INIT.EDGES)) {
+
+          ## take them out the sample vector
+          sample.from = setdiff(sample.from, GLOBvar$FIXED.INIT.EDGES)
+
+        }
+        
         ## Sample the edge to remove
-        sstar = sample(c(which(S2Dall[1:q]==1), which(S2Dall[1:q]==1)),1) # needed when there is only one position  S[1:q]==1
+        sstar = sample(c(sample.from, sample.from),1) # needed when there is only one position  S[1:q]==1
 
         ## Proposed edges vector (after taking away one edge)
         stmp = S2Dall

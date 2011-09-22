@@ -41,7 +41,7 @@ main <- function(X, Y, initiation, GLOBvar, HYPERvar){
 
   ## when to start saving the regression coefficients (takes up memory)
   start.save.regr = niter - floor(niter * 1/5)
-  
+
   # do main iteration
   r = 1
   while(r < niter) {

@@ -33,47 +33,26 @@ source(paste(codePath,"convert.R",sep=""))
 ##modifie par Sophie 01/03/09: ajout de parametres
 ##modifie par Sophie 01/03/09: ajout de targetNamesFile
 ##### Main function to use to run the whole program
-runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
-                     multipleVar=TRUE, minPhase=2, smax, kmax.x, kmax.y, 
-                     alphaCP=1, betaCP=0.5, alphaTF=1, betaTF=0.5,
-                     bestPosMatFile=NULL, 
-                     niter=0, predNamesFile=NULL, 
-                     targetNamesFile=NULL,
-                     kpriorsfile=paste(codePath,"k_priors.txt",sep=""), 
-                     outputFile="tvDBNoutput",
-                     modelid=NULL, runid=NULL, target=NULL){
-  # runtvDBN: run whole program
-  # Description:
-  #
-  # Arguments:
-  # targetdata = target data (either the name of a file, or directly a matrix)
-  # preddata = optional, file with predictor data when differing from the target data (either the name of a file, or directly a matrix), default=NULL.
-  # q = number of existing parents
-  # n = number of locations along the x axis
+runtvDBN <- function(fullData,      ## all the data, response and predictors
+                     sacData,       ## data of spatial autocorrelation nodes
+                     q,             ## nr. of existing (putative) edges
+                     nr.locations,  ## total nr. of locations on the grid
+                     xlocs, ylocs,
+                     minPhase=2,
+                     smax,               ## max. number incoming edges (fan-in)
+                     kmax.x, kmax.y,     ## max. number of CP along x and y axis  
+                     alphaCP=1, betaCP=0.5, ## hyperparms for sampling the number k of CP : k ~ Gamma(alphaCP,betaCP)  (default: alphaCP=0.5, betaCP =1). You can use function choosePriors to set alphaCP and  betaCP according to the desired dimension penalisation.
+                     alphaTF=1, betaTF=0.5, ## hyperparms for sampling the number l of TF : l ~ Gamma(alphaTF,betaTF) (default: alphaTF=0.5, betaTF =1).  You can use function choosePriors to set alphaTF and  betaTF according to the desired dimension penalisation.
+                     niter=0,             ## number of iterations of the MCMC
+                     modelid=NULL,        ## id of Data aka simulation model
+                     runid=NULL,          ## id of run, can differ with same settings
+                     target=NULL,         ## the actual target node for which the inference is done
+                     FIXED.INIT.EDGES=NULL)  ## specifies if there are edges, which are not changed during run, see GLOBvar
+{
+
+
   # fixme: m = number of samples per location (default 1) , should be nr. of locations along the y axis
-
-  ## ?? brauche ich? p = number of response variables (default=1)
-                                        
-  # multipleVar = TRUE when a specific variance is estimated for each phase, FALSE otherwise (default: TRUE).
-  # minPhase = minimal length of a phase (>1 if no repetition, default: 2)
-  # kmax.x and kmax.y = maximal number of CP along x and y axis 
-  # smax = maximal number of TF 
-  # alphaCP, betaCP = hyperparms for sampling the number k of CP : k ~ Gamma(alphaCP,betaCP)  (default: alphaCP=0.5, betaCP =1). You can use function choosePriors to set alphaCP and  betaCP according to the desired dimension penalisation.
-  # alphaTF, betaTF= hyperparms for sampling the number l of TF : l ~ Gamma(alphaTF,betaTF) (default: alphaTF=0.5, betaTF =1).  You can use function choosePriors to set alphaTF and  betaTF according to the desired dimension penalisation.
-  # posResponse = row position (in targetdata) of targets to be analyzed (default: analize all genes)
-  # bestPosMatFile = file containing row position of predictors for each gene (see default below)
-  # niter = number of iterations (default: 20000)
-  # predNamesFile = file containing the names of the predictor (matrix format) (by default rownames of preddata will be used)
-  # outputFile = name of output file (default: tvDBNoutput)
   
-  # fixed parameters
-  # Position of each time point in the data (designed for the algorithm)
-  # AA: a help vector that increments from Mphase[1] = 0 to Mphase[n+1]= n, where 'n' is the nr. of timepoints in the serie
-  #     Mphase is used to map the indices from the data in R matrices to the data in the actual data (which uses 0 to start the first element)
-
-  # Do you want a 'BF' Result analysis ?
-  BFOut = FALSE
-
   # Which method to use for proposing a new network structure in the CP birth 
   # move:
   #      1 - Old (incorrect) method
@@ -88,39 +67,25 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   m = 1  
   dyn=0
 
+  ## NEEDED? TRUE when a specific variance is estimated for each segment, FALSE otherwise (default: TRUE).
+  multipleVar=TRUE
+  
   ##  Mphase=seq(1,n*m+1,by=m)-dyn*m
   XMphase=seq(1,xlocs * m+1,by=m) - dyn * m
   YMphase=seq(1,ylocs * m+1,by=m) - dyn * m
-
+ 
   
-  ## The predictor nodes for the target (default all) except the target itself
-  ## posTF is an array with the predictor indices, simple from 1 to q-1 (with excluded target) 
-  posTF=c(1:(q+1))[-c(target)]
+  ## Create Global Variables used in all functions
+  GLOBvar = list(n=nr.locations, xlocs=xlocs, ylocs=ylocs,m=m, p=1, q=q, smax=smax, kmax.x=kmax.x, kmax.y=kmax.y, dyn=dyn, 
+    minPhase=minPhase, XMphase=XMphase, YMphase=YMphase, niter=niter, birth_proposals=birth_proposals,
+    modelid=modelid, runid=runid, target=target, INIT.EDGES.FROM.FILE=NULL, FIXED.INIT.EDGES=FIXED.INIT.EDGES)
 
-  ## in case a predictor file is specified, try to read it and set posTF again 
-  if(!is.null(bestPosMatFile)) {
-
-    ## check if valid, read it and set posTF
-    if(is.character(bestPosMatFile) & file.exists(bestPosMatFile)){
-
-      cat("reading a bestPosMatFile..\n")
-      bestPosMat = read.table(bestPosMatFile)
-      posTF=as.matrix(bestPosMat)[target,1:q]
-      
-    } else {
-      stop(paste("File", bestPosMatFile,"is incorrect or does not exist\n"))
-    }
+  ## if this is not null it means we can set the file from where to read it
+  if(!is.null(FIXED.INIT.EDGES)) {
+    GLOBvar$INIT.EDGES.FROM.FILE = paste("../Data/Data_id", modelid, "_edgeprobs.Rdata", sep="")
   }
-
   
-  ### Create Global Variables used in all functions
-  ### modifie par Sophie 02/07/09 :Ajout de PredNames et TargetNames
-  GLOBvar = list(n=n, xlocs=xlocs, ylocs=ylocs,m=m, p=1, q=q, smax=smax, kmax.x=kmax.x, kmax.y=kmax.y, dyn=dyn, 
-    minPhase=minPhase, XMphase=XMphase, YMphase=YMphase, posTF=posTF, niter=niter, birth_proposals=birth_proposals,
-    modelid=modelid, runid=runid, target=target, INIT.EDGES.FROM.FILE=T)
-
-  ## modifie par Sophie 01/03/09
-  ### Create HyperParms Variables used in all functions
+  ## Create HyperParms Variables used in all functions
   HYPERvar = HyperParms(alphaCP, betaCP, alphaTF, betaTF)
 
   ## NOTE: fullData and sacData are already scaled for the hebrides data, doing it again via scale() does not bring changes
@@ -128,6 +93,9 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   ## Build response Y and predictor X
   ## extract the target values and scale
   Y = as.vector(scale(fullData[target,]))
+
+  ## Helper vector of putative predictor nodes (default all) except the target itself
+  posTF=c(1:(q+1))[-c(target)]
 
   ## extract only predictors (excluding the target defined in posTF) and scale
   X = scale(t(fullData[posTF,]))
@@ -145,6 +113,13 @@ runtvDBN <- function(fullData, sacData, q, n, xlocs, ylocs, m,
   ## initialize system
   initiation = init(X, Y, GLOBvar, HYPERvar)
   print("Initialisation ok")
+
+  ## check if this is a fixed set (which is not altered), in this case we need to increase the nr. of max. edges
+  if(!is.null(GLOBvar$FIXED.INIT.EDGES)) {
+    GLOBvar$smax =  GLOBvar$smax + sum(initiation$initState$S2Dall) - 2
+    GLOBvar$FIXED.INIT.EDGES = which(initiation$initState$S2Dall[1:(length(initiation$initState$S2Dall) - 2)] == 1)
+  }
+
   
   ## run niter iterations
   print("Starting tvDBN iterations...")

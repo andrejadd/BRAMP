@@ -89,8 +89,6 @@ sampledelta2Global <- function(X, Y, XE, YE, S2Dall, B2Dall, Sig2_2Dall, GLOBvar
 sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
   ### assignement of global variables used here ###
   q = GLOBvar$q
-  smax = GLOBvar$smax
-  #n = GLOBvar$n
   xlocs = GLOBvar$xlocs
   ylocs = GLOBvar$ylocs
   XMphase = GLOBvar$XMphase
@@ -200,10 +198,10 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
   S = matrix(0, 1, q+2)
 
   ## check if to sample from prior or set edges 
-  if(!GLOBvar$INIT.EDGES.FROM.FILE) {
+  if(is.null(GLOBvar$INIT.EDGES.FROM.FILE)) {
   
     ## sample mean nr. edges (Lambda) with rgamma and sampleK (is the same inverse gamma for CPs and edges) 
-    sPred = sampleK(0, smax, rgamma(1, shape=alphalbd, rate = betalbd), 1)    # scale s= 1/rate => f(x)= 1/(s^a Gamma(a)) x^(a-1) e^-(x/s)
+    sPred = sampleK(0, GLOBvar$smax, rgamma(1, shape=alphalbd, rate = betalbd), 1)    # scale s= 1/rate => f(x)= 1/(s^a Gamma(a)) x^(a-1) e^-(x/s)
 
     ## if there are any edges..
     if(sPred>0){
@@ -212,12 +210,25 @@ sampleParms <- function(X, GLOBvar, HYPERvar, DEBUGLVL1=F){
     }
   } else {
 
-    cat("attempting to initialize edges from file..\n")
-    
-    ## look up a file that has either on/off edges or probababilities, this might change -> check the function
-    S = initEdgesFromFile(target=GLOBvar$target, dataid=GLOBvar$modelid)
+    cat("attempting to initialize edges from file.. ", GLOBvar$INIT.EDGES.FROM.FILE, "\n")
 
-    ## append the bias and SAC position because it was overwritten by the init function
+    ## at what probability we accept an edge (not too low because we want to have the best edges in but not too much)
+    prob.cutoff = 0.4
+  
+    ## attempt to read file, this read in a talbe
+    ##  edge.pp.mat = read.table("../Data/Data_id2_edgeprobs.txt", header=F)
+
+    ## load from Rdata, post.edge.pp
+    load(GLOBvar$INIT.EDGES.FROM.FILE)
+    edge.pp.mat = post.edge.pp
+  
+    ## get the edges for the target and remove target self-edge
+    S = edge.pp.mat[GLOBvar$target,][-GLOBvar$target]
+
+    ## create the matrix with values of '1' where an edge is above the prob. cut-off
+    S = matrix((S > prob.cutoff) * rep(1, length(S)), nrow=1, ncol=length(S))
+
+    ## append the bias and SAC position 
     S = cbind(S, c(0))
     S = cbind(S, c(0))
     
