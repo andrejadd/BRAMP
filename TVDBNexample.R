@@ -1,5 +1,6 @@
 
-source(paste(codePath,"runtvDBN.R",sep=""))
+
+source("Code/runtvDBN.R")
 
 
 TVDBNexample <- function(modelid=NULL, target=NULL, runid=NULL, niter=NULL){

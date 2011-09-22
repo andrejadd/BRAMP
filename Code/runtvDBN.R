@@ -6,7 +6,7 @@ codePath=paste(getwd(),"/Code/",sep="")
 print(codePath)
 
 ## +  main functions
-source(paste(codePath,"init.R",sep=""))
+source(paste(codePath,"Code/init.R", sep="")
 source(paste(codePath,"moves.R",sep=""))
 source(paste(codePath,"main.R",sep=""))
 source(paste(codePath,"output_functions.R", sep=""))
