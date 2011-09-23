@@ -731,8 +731,18 @@ bdu.homogeneousStructure <- function(u, rho3, X, Y, XE, YE, S2Dall, Sig2_2Dall, 
   ## create regression parameters from scratch, this will replace the original one fully
   B2Dall = matrix(0, 0, q+4) # +4 because xcoord,ycoord,bias regr.,SAC regr.
 
-  # update the variance sigma globally
-  Sig2_2Dall = updateSigGlobal(xlocs, XMphase, YMphase, XE, YE, X,Y, S2Dall, delta2, HYPERvar$v0, HYPERvar$gamma0)
+  ## BUG ID 4
+  tryCatch({
+    
+    Sig2_2Dall = updateSigGlobal(xlocs, XMphase, YMphase, XE, YE, X,Y, S2Dall, delta2, HYPERvar$v0, HYPERvar$gamma0)
+
+  }, error = function(e) {
+
+    write("Caught with updateSigGlobal: saving data to DEBUG.DATA/error_bugid4.RData", stderr()) 
+    print(e)
+    save(xlocs, XMphase, YMphase, XE, YE, X, Y, S2Dall, delta2, file="DEBUG.DATA/error_bugid4.RData")
+  })
+
   
   ## loop over each current segment
   for(xsegid in 1:(length(XE)-1)) {
