@@ -5,15 +5,10 @@ initEngine <- function(X, HYPERvar, additional.parents, nr.parents, start.budget
                        FIXED.INIT.EDGES){
 
   ### assignement of hyperparameters variables used here ###
-  ##AA needed here ???
-  alphaD = HYPERvar$alphaD
-  betaD = HYPERvar$betaD
-  alphalbd = HYPERvar$alphalbd
+  alphalbd = HYPERvar$alphalbd 
   betalbd = HYPERvar$betalbd
   v0 = HYPERvar$v0
   gamma0 = HYPERvar$gamma0
-  alphad2 = HYPERvar$alphad2
-  betad2 = HYPERvar$betad2
   delta2 = HYPERvar$delta2
 
   ## create segment data type, has single segment in it
@@ -46,7 +41,7 @@ initEngine <- function(X, HYPERvar, additional.parents, nr.parents, start.budget
     ## if there are any edges..
     if(sPred>0){
       ## set random position in Structure S to edge (1)
-      S[1, sample(1:nr.parents, sPred, replace=FALSE)] = array(1, sPred) # structure du model (1 si pred in the model)
+      S[1, sample(1:nr.parents, sPred, replace=FALSE)] = array(1, sPred) 
     }
   } else {
 

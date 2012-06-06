@@ -1,6 +1,6 @@
 
 
-HyperParms <- function(alphaCP, betaCP, alphaTF, betaTF){
+HyperParms <- function(alphaTF, betaTF){
 
   #####################################################################
   ### rjMCMC hyperparameters 
@@ -29,13 +29,7 @@ HyperParms <- function(alphaCP, betaCP, alphaTF, betaTF){
   
   #######################################################################
   #######################################################################
-  
- 
-  ## for the number of Change Points (CP)
-  # for D sampling (D ~ Ga(alphaD,betaD)
-  alphaD = alphaCP
-  betaD = betaCP
-
+    
   ## sample delta2, this is not the real one , but for the real one (calculated in sampledelta2Global()) we need data that comes later
   delta2 = rinvgamma(1, shape=alphad2, scale=betad2)
 
@@ -44,9 +38,9 @@ HyperParms <- function(alphaCP, betaCP, alphaTF, betaTF){
   alphalbd = alphaTF
   betalbd = betaTF
     
-  cat("[INIT] Priors: aCP: ",alphaCP,", bCP: ", betaCP, ", aTF: ",alphaTF,", bTF: ", betaTF, "\n") 
+  cat("[INIT] Priors: aTF: ",alphaTF,", bTF: ", betaTF, "\n") 
   
-  HYPERvar = list(cD=cD, alphaD=alphaD, betaD=betaD, c=c, v0=v0, gamma0=gamma0, alphad2=alphad2, betad2=betad2, alphalbd=alphalbd, betalbd=betalbd, delta2=delta2)
+  HYPERvar = list(cD=cD, c=c, v0=v0, gamma0=gamma0, alphad2=alphad2, betad2=betad2, alphalbd=alphalbd, betalbd=betalbd, delta2=delta2)
 
   return(HYPERvar)
 }

@@ -1,0 +1,6 @@
+
+- fix move proposals in Code/main.R
+- put delta2 where it belongs (its under Hyperparameters but should it?)
+- make the push.dsh.jobs.py script easier to read, maybe use a parameter vector such as job.params = [waittime, dataids, targets, run.ids, iterations, additional.param]
+     from this the JOB.queue is then created and I can have all important in one line
+- clean up more and simplify, are all fct. gone that I don't need?

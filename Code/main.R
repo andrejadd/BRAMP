@@ -29,30 +29,33 @@ main <- function(X, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
     r = r + 1
 
+    
+    ## ----------->   FIXME!!!!
+    ## the move probabilities in vector rho1 - calculate in a different fashion or even set fixed
+    ##    The move probabilities below come from the BRAM which used segment proposals in the probabilities below
+    ##    We dont need this and setting to fixed portions should be ok, e.g. (add segment, remove segment, shift cut, edge move) = (0.2, 0.2, 0.2, 0.4)
+    ## TEST the difference on synthetic data! Could this lead to worse convergence ?
+
     ## get number of segments
-    getNrSegments
     k = getNrSegments(Grid.obj)
     
     ## mean nr. of changepoints (lambda)    
-    mean.nr.segments = rgamma(1, shape= k + HYPERvar$alphaD, rate = 1 + HYPERvar$betaD)
+    mean.nr.segments = rgamma(1, shape= k + 1, rate = 1 + 0.5)
 
-    ## the move probabilities - calculate in a different fashion
-    ## FIXME!!!!
     rho=array(1,4)
     cD = 0.2
     rho[1] = cD * min(1, mean.nr.segments / (k+1) )                                            ## segment cut depends on mean nr. of segments  
     if(k == 0) { rho[2] = rho[1] } else { rho[2] = rho[1]+ cD * min(1, k / mean.nr.segments) } ## segment merge
     if(k > 0) { rho[3] = rho[2]+(1-rho[2])/3 } else{ rho[3] = rho[2] }        ## cp shift, will be edge move if ignored below
 
-    #print.table(rho)
-    
     ## Sample u to choose one of the 4 moves : CP birth, CP death, CP shift, Update phases.
     u1 = runif(1, 0, 1)
     
- ## FIXME
-#    rho[1] = 0.5
-#    rho[2] = 0.6
-#    rho[3] = 1
+    ## FIXME, see above
+    #    rho[1] = 0.5
+    #    rho[2] = 0.6
+    #    rho[3] = 1
+    
     ## Run 1 out of the 4 moves (depending on the value of u)
     if (u1 < rho[1]){
       ## Segment split (birth) move: return the new model if the move is accepted, the previous model otherwise.
