@@ -44,7 +44,7 @@ HyperParms <- function(alphaCP, betaCP, alphaTF, betaTF){
   alphalbd = alphaTF
   betalbd = betaTF
     
-  print(paste("Priors: aCP=",alphaCP,", bCP= ", betaCP, " and aTF=",alphaTF,", bTF= ", betaTF) )
+  cat("[INIT] Priors: aCP: ",alphaCP,", bCP: ", betaCP, ", aTF: ",alphaTF,", bTF: ", betaTF, "\n") 
   
   HYPERvar = list(cD=cD, alphaD=alphaD, betaD=betaD, c=c, v0=v0, gamma0=gamma0, alphad2=alphad2, betad2=betad2, alphalbd=alphalbd, betalbd=betalbd, delta2=delta2)
 

@@ -31,7 +31,15 @@
 ## Kevin Rompala 5/6/2003
 ## fixed KQ 3/8/2005
 
-"rinvgamma" <-
-  function(n, shape, scale) {
-    return(1 / rgamma(n, shape=shape, scale=1/scale))
-  }
+rinvgamma <- function(n, shape, scale) {
+
+# AA , Debugging  
+#  tryCatch({
+#    aa = 1 / rgamma(n, shape=shape, scale=1/scale)
+#  }, warning = function(w) {
+#    print(w)
+#    browser()
+#  })
+  
+  return(1 / rgamma(n, shape=shape, scale=1/scale))
+}

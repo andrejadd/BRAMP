@@ -1,4 +1,20 @@
-# function that read input data, either as matrix or as file name
+
+
+timeout <- function(expr, seconds = 60)  {   ## used to wait for a keystroke, use with ' z <- try(silent=TRUE, timeout(readline(prompt="Hit me: "), seconds=5))'
+         # Set up a background process that will send a signal
+         # to the current R process after 'seconds' seconds.
+         # Evaluate expr with an interrupt handler installed
+         # to catch the interrupt.
+         # If expr finishes before that time it will kill the killer.
+  
+         killer.pid <- system(intern = TRUE, paste(" (sleep", seconds, " ; kill -INT", Sys.getpid(), ")>/dev/null&\n echo $!"))
+         on.exit(system(paste("kill", killer.pid, "> /dev/null 2>&1")))
+         withCallingHandlers(expr, interrupt=function(...)stop("Timed  out", call.=FALSE))
+ }
+
+
+
+                                        # function that read input data, either as matrix or as file name
 readInput <- function(data){
   # if data is character, i.e. a file path,
   if(is.character(data)){
@@ -50,7 +66,7 @@ choosePriors<-function(kmax,priorsPath=paste(priorsPath,"k_priors.txt",sep="")){
 }
 
 
-## AA: called from main.R
+
 computeRho4 = function(k, kmin, kmax, c, lambda){
   # INPUT:l= k the number of hidden states
   #          kmax the maximal number of hidden states
@@ -128,131 +144,201 @@ bp.computeHammingAlpha<-function(birth,lNew,kminus,Ekl,Estar,Ekr,yL,PxL,yR,PxR,y
   return(res)
 }
 
-cp.computeAlpha <- function(birth, X, Y, xlocs, ylocs, ALTERX, XMphase, YMphase, E, Eplus, E.other,  poskl, HYPERvar, S2Dall, D, DEBUG_BIRTH_EXT=F) {
+##
+## The acceptance probability of doing a cut shift. This is easy since we do not change the nr. of segments or nr. of edges, only
+## the membership of the locations to one of the two segments.
+##
+## The prior and proposal are also invariant and are terminated in the posterior ratio but check this again ! (FIXME)
+##
+##
 
-  gamma0 = HYPERvar$gamma0
-  v0 = HYPERvar$v0
-  delta2 = HYPERvar$delta2
+shift.computeAlpha <- function(X, Y, old.set, proposed.set, seg.ids, HYPERvar, DEBUG_BIRTH_EXT=0) {
+
+  edge.struct = old.set$edge.struct
   
-
-  ###### product of posterior prob of current state : Phi_h
   ##
-  #prodPhi = 1     # product over current state
+  ## Posterior of old set (no shift) - Current State
+  ##
   sumPhi = 0
+
+  ## get first segment
+  x.child1 = extractData(old.set, X, seg.ids[1])
+  y.child1 = extractData(old.set, Y, seg.ids[1])
+
+tryCatch( {
+  Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta2)
+}, error=function(e) { 
+   rnd.id = ceiling(runif(1,1,100000))
+   save(file=paste("debug.out.", rnd.id, sep=""), x.child1, seg.ids, proposed.set, old.set, X, Y, edge.struct) 
+   print(e)
+   stop("encountered Error wrote to debug file id: ", rnd.id, "\n")
+} 
+)
+  omega.child1 = length(y.child1)
   
-  ## 1. extract parameters that are in the current state segments
-  if(ALTERX) { xsegid = poskl; tmpYE = E.other; tmpXE = E } else { ysegid = poskl; tmpXE = E.other; tmpYE = E  }
-  
-  for(i in 1:(length(E.other)-1)) {
+  ## get second segment
+  x.child2 = extractData(old.set, X, seg.ids[2])
+  y.child2 = extractData(old.set, Y, seg.ids[2])
+  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta2)
+  omega.child2 = length(y.child2)
 
-    ## Assign proper segment id
-    if(ALTERX) { ysegid = i } else { xsegid = i }
-    
-     ## get segment coordinates
-    segcoord = c(XMphase[tmpXE[xsegid]], YMphase[tmpYE[ysegid]],XMphase[tmpXE[xsegid+1]]-1, YMphase[tmpYE[ysegid+1]]-1)
-
-
-    if(DEBUG_BIRTH_EXT == TRUE) {  cat("[prodPhi] xsegid: ", xsegid, ", ysegid: ", ysegid, ",  segcoord ")
-                                  print.table(segcoord) }
-    
-    ## get the predictor data
-    x = extractNodes(X, segcoord, xlocs,F)
-
-    ## get the target data
-    y = extractNodes(Y, segcoord, xlocs,F)
-
-    ## calculate projection matrix
-    Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
-    
-    ## number of locations 
-    omega = length(y)
-
-    ## original equation  without log transform (makes it necessary to multiply)
-    ## prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
-
-    if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
-      #browser()
-    }
-    
-    tryCatch({
-      sumPhi  = sumPhi  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
-    }, error = function(e) {
-      cat("Caught error \n ")
-      print(e)
-      #browser()
-    })
-  
-  }
+  tryCatch({
+    sumPhi  = lgamma((HYPERvar$v0 + omega.child1) / 2) + (-(HYPERvar$v0 + omega.child1) / 2) * log( (HYPERvar$gamma0 + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$v0 + omega.child2) / 2) + (-(HYPERvar$v0 + omega.child2) / 2) * log( (HYPERvar$gamma0 + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
+  }, error = function(e) {
+    cat("Caught error \n ")
+    print(e)
+  })
 
 
-  ###### product of posterior prob of next state : Phi^+_h
   ##
-  #prodPhiPlus = 1 # over next state
+  ## Posterior of proposed set (with shift) - Next State
+  ##
   sumPhiPlus = 0
 
-  ## Assign proper CP vector to temporary type (used in segcoord extraction)
-  if(ALTERX) {tmpYE = E.other; tmpXE = Eplus } else { tmpXE = E.other; tmpYE = Eplus }
+  ## get first segment of proposed set
+  x.child1 = extractData(proposed.set, X, seg.ids[1])
+  y.child1 = extractData(proposed.set, Y, seg.ids[1])
+ 
+tryCatch( {
+ Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta2)
+}, error=function(e) { 
+   rnd.id = ceiling(runif(1,1,100000))
+   save(file=paste("debug.out.", rnd.id, sep=""), x.child1, seg.ids, old.set, proposed.set, X, Y, edge.struct) 
+   print(e)
+   stop("encountered Error wrote to debug file id: ", rnd.id, "\n")
+} 
+)
+ 
+  omega.child1 = length(y.child1)
+
   
-  for(j in poskl:(poskl+1)) {
+  ## get second segment
+  x.child2 = extractData(proposed.set, X, seg.ids[2])
+  y.child2 = extractData(proposed.set, Y, seg.ids[2])
+  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta2)
+  omega.child2 = length(y.child2)
 
-    for(i in 1:(length(E.other)-1)) {
+  tryCatch({
+    sumPhiPlus  = lgamma((HYPERvar$v0 + omega.child1) / 2) + (-(HYPERvar$v0 + omega.child1) / 2) * log( (HYPERvar$gamma0 + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$v0 + omega.child2) / 2) + (-(HYPERvar$v0 + omega.child2) / 2) * log( (HYPERvar$gamma0 + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
+  }, error = function(e) {
+    cat("Caught error \n ")
+    print(e)
+  })
 
-      ## Assign proper segment id
-      if(ALTERX) { xsegid = j; ysegid = i } else { xsegid = i; ysegid = j}
+
+  ##
+  ## compute acceptance chance
+  ##
+
+  alpha = min(1, exp( sumPhiPlus - sumPhi ))
+ 
+  return(alpha)
+
+}
+
+###########################################################################################################################################
+##
+## Compute acceptance of segment split (cut), returns the log of the acceptance probability
+##            Take inverse of this to get the probability of a merge (cut remove)
+##
+## Why I'm not passing Node pointers instead of segment IDs and Budgets? Because child node pointer, e.g., not known yet for cut move
+##
+############################################################################################################################################
+
+cp.computeAlpha <- function(HYPERvar, X, Y, old.set, proposed.set, parent.id, child.ids, parent.budget, child.budget, DEBUG_BIRTH_EXT=0) {
+
+  edge.struct = old.set$edge.struct
+
+  ## does not matter from which set, stays the same
+  nr.edges = sum(edge.struct) - old.set$additional.parents
+
+  ###### Posterior Prob. of Current state - this is the state of a single segment (not split yet or merged)
+  sumPhi = 0
+
+#  if(DEBUG_BIRTH_EXT == 2) {  cat("  [computeAlpha] IDs: ", child.ids[1], " - ", child.ids[2]) }
       
-      ## get segment coordinates
-      segcoord = c(XMphase[tmpXE[xsegid]], YMphase[tmpYE[ysegid]],XMphase[tmpXE[xsegid+1]]-1, YMphase[tmpYE[ysegid+1]]-1)
+  ## get the full data, i.e. all predictors of the parent
+  x = extractData(old.set, X, parent.id)
+  y = extractData(old.set, Y, parent.id)
+  
+  ## Parent: calculate projection matrix
+  Pr = computeProjection(as.matrix(x[,which(edge.struct == 1)]), HYPERvar$delta2)
+    
+  ## Parent: number of locations 
+  omega = length(y)
 
-      if(DEBUG_BIRTH_EXT == TRUE) {  cat("[prodPhiPlus] xsegid: ", xsegid, ", ysegid: ", ysegid, ",  segcoord ")
-                                     print.table(segcoord) }
-      ## get the predictor data
-      x = extractNodes(X, segcoord, xlocs,F)
-      
-      ## get the target data
-      y = extractNodes(Y, segcoord, xlocs,F)
-      
-      ## calculate projection matrix
-      Pr = computeProjection(as.matrix(x[,which(S2Dall == 1)]), delta2)
+  ## original equation  without log transform (makes it necessary to multiply)
+  ## prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
 
-      ## number of locations
-      omega = length(y)
-
-      ##  prodPhiPlus = prodPhiPlus * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
-      tryCatch({
-        sumPhiPlus  = sumPhiPlus  + lgamma((v0+omega)/2) + (-(v0+omega)/2) * log( (gamma0+ t(y) %*% Pr %*% y)/2)
-      }, error = function(e) {
-          cat("Caught error \n ")
-          print(e)
-          #browser()
-        })
-
-
-    }
+  if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
+    stop("dimension mismatch for projected target data in cp.computeAlpha")
   }
 
-  ## nr edges s
-  s = sum(S2Dall) - 1
+  tryCatch({
+    sumPhi  = lgamma((HYPERvar$v0 + omega)/2) + (-(HYPERvar$v0 + omega)/2) * log( (HYPERvar$gamma0 + t(y) %*% Pr %*% y)/2)
+  }, error = function(e) {
+    stop("Caught error \n ")
+    print(e)
+  })
 
-  ## nr CPs k
-  k = length(E) - 2
 
-  ## this is the exponent |Phi+| - |Phi| = |Phi| = k of other axis, in eq. (15), since |Phi+| = 2|Phi| and |Phi_h| = |CPs other axis|   
-  dSegmentNr = length(E.other) - 1
+  ###### Posterior Prob two segments (next state for split, current state for merge)
+  ##
+  sumPhiPlus = 0
 
-#  alpha1a =  D / (c - 1 - k) * ( (gamma0/2)^(v0/2) / (gamma(v0/2) * (delta2+1)^((s+1)/2) ))
-#  alpha1b = prodPhiPlus / prodPhi
+
+  ## get first child (which matches the parent id)
+  x.child1 = extractData(proposed.set, X, child.ids[1])
+  y.child1 = extractData(proposed.set, Y, child.ids[1])
+
+  Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta2)
+  omega.child1 = length(y.child1)
+
   
-#  alpha2a =  log(D / (c - 1 - k))+(v0/2)*log(gamma0/2) - lgamma(v0/2) - log((delta2+1)^((s+1)/2)) 
-#  alpha2b = sumPhiPlus - sumPhi
+  ## get second child
+  x.child2 = extractData(proposed.set, X, child.ids[2])
+  y.child2 = extractData(proposed.set, Y, child.ids[2])
 
-#  alpha1 = D / (c - 1 - k) * ( (gamma0/2)^(v0/2) / (gamma(v0/2) * (delta2+1)^((s+1)/2) ))^dSegmentNr *  prodPhiPlus / prodPhi
+  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta2)
+  omega.child2 = length(y.child2)
 
-  if(ALTERX) { c = xlocs } else { c = ylocs}
+  tryCatch({
+    sumPhiPlus  = lgamma((HYPERvar$v0 + omega.child1) / 2) + (-(HYPERvar$v0 + omega.child1) / 2) * log( (HYPERvar$gamma0 + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$v0 + omega.child2) / 2) + (-(HYPERvar$v0 + omega.child2) / 2) * log( (HYPERvar$gamma0 + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
+  }, error = function(e) {
+    cat("Caught error \n ")
+    print(e)
+  })
 
-  alpha = birth * ( log(D / (c - 1 - k)) + dSegmentNr *( (v0/2)*log(gamma0/2) - lgamma(v0/2) - log((delta2+1)^((s+1)/2))) + sumPhiPlus - sumPhi )
+  ## get the dimension for the halfperimeter, Ending Norm means it is scaled into the [0,1] interval
+  parent.dim = getSegmentDimScale(old.set, parent.id)
+  
+  ## get the child dimensions
+  child1.dim = getSegmentDimScale(proposed.set, child.ids[1])  
+  child2.dim = getSegmentDimScale(proposed.set, child.ids[2])  
 
-  return(exp(alpha))
+  ## log prior ratio
+  log.prior.ratio = log(exp(-1 * sum(child1.dim) * child.budget)) + log(exp(-1 * sum(child2.dim) * child.budget)) - log(exp(-1 * sum(parent.dim) * parent.budget)) 
 
+  #cat("prior ratio: " , exp(log.prior.ratio), "\n")
+  
+  ## Proposal ratio: Q(M_t+1, M_t) / Q(M_t+1; M_t )
+  ##
+  ##   where M_t+1 is the next state with an applied cut
+  ##         M_t   is current state with not cut (equal to merged)
+  ## Q is in both cases uniform discret distributed
+  ## Q(M_t+1; M_t) : chance of choosing a segment for a cut ~ all leaf nodes
+  ## Q(M_t, M_t+1) : chance of choosing a leaf pair for a merge
+ 
+  ## the number of segments that can be cut corresponds to all the segments in our segment.map
+  ## the leaf pairs that can be merged are in the proposed set (M_t+1) , in the case of a real merge move, this is inverted anyways later
+  log.proposal.ratio = log( getNrSegments(old.set) / getNrLeafPairs(proposed.set$mondrian.tree) )  
+ # cat("FIXME: check log.proposal.ratio\n")  
+
+  ## take out segment prior
+  alpha =  log.proposal.ratio + log.prior.ratio + ( (HYPERvar$v0 / 2)*log(HYPERvar$gamma0 / 2) - lgamma(HYPERvar$v0 / 2) - log((HYPERvar$delta2 + 1)^((nr.edges + 1) / 2)) ) + sumPhiPlus - sumPhi 
+ 
+  
+  return(alpha)
 
 }
 
@@ -313,8 +399,8 @@ bp.computePrecompAlpha<-function(birth,lNew,kminus,Ekl,Estar,Ekr,yL,PxL,yR,PxR,y
     #test1 = log(factorial(q-lNew)/factorial(q)) + log(D^lNew);
     #test2 = -log(sum(D^(0:smax)/factorial(0:smax)))
    
-    #browser()
-	logR = logR - log(prop_prob);
+
+  logR = logR - log(prop_prob);
 	
   logR=birth*logR
 

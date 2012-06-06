@@ -21,26 +21,31 @@ import glob
 BEOWULFDIR = "../Helper/Beowulf_root/"  # here are the beowulf config settings 
 WORKINGDIR = os.getcwd()         # get current dir, need to change to this on each node
 STARTSCRIPTS = "Startscripts"
-RESULTDIR = "Results/Network_And_CPs/"  # use this to check if runs already exist
+RESULTDIR = "Results/"  # use this to check if runs already exist
 NODELOGDIR = "Nodelogs"
 
 nodefile = BEOWULFDIR + '/nodes.config'
 idfile = BEOWULFDIR + '/jobid.last'
 
+startbudget = 2
 
-interDispatchTime = 180           # time in seconds to wait until a full dispatch attempt is made again 
-start_run_id = 6
-nr_runs = 3                       # number of runs per unique job 
-defaultnodes = range(13,25)       # the nodes to compute
-maxiter = 1000000                 # nr. of MCMC iteration steps
+interDispatchTime = 300           # time in seconds to wait until a full dispatch attempt is made again 
+start_run_id = 2
+nr_runs = 1                       # number of runs per unique job 
+
+defaultnodes = range(13,119)
+maxiter = 500000                 # nr. of MCMC iteration steps
 
 bestPredictors = 20 ## is obselete, keep for larger networks or remove
 
 
-
 ############# THE DATA ------------------------------------------
 
-networks = range(1,2) 
+networks = range(2,3)
+
+# weak predation:
+#networks = range(201, 231) + range(401,431) + range(601,631) + range(801,831)
+#networks = range(100801,100820)
 
 #networks = range(161,171)
 
@@ -55,102 +60,11 @@ networks = range(1,2)
 
 
 
-## add  exceptions here 
+## Use this, if the different data sets have varying numbers of nodes
 nodehash = {}
 
-# frank data 1
-nodehash[3011] = range(1,15)
-nodehash[3012] = range(1,22)
-nodehash[3013] = range(1,20)
-nodehash[3014] = range(1,20)
-nodehash[3015] = range(1,23)
-nodehash[3016] = range(1,21)
-nodehash[3017] = range(1,21)
-nodehash[3018] = range(1,21)
-nodehash[3019] = range(1,21)
-nodehash[3020] = range(1,20)
-
-
-# frank data 2
-nodehash[3211] = range(1,16)
-nodehash[3212] = range(1,19)
-nodehash[3213] = range(1,23)
-nodehash[3214] = range(1,17)
-nodehash[3215] = range(1,18)
-nodehash[3216] = range(1,17)
-nodehash[3217] = range(1,19)
-nodehash[3218] = range(1,21)
-nodehash[3219] = range(1,23)
-nodehash[3220] = range(1,18)
-
-
-# andrej data diff. interaction strengths
-# spat.beta = -4, interaction 4
-nodehash[1041] = range(1,11)
-nodehash[1042] = range(1,11)
-nodehash[1043] = range(1,13)
-nodehash[1044] = range(1,12)
-nodehash[1045] = range(1,13)
-nodehash[1046] = range(1,13)
-nodehash[1047] = range(1,13)
-nodehash[1048] = range(1,14)
-nodehash[1049] = range(1,12)
-nodehash[1050] = range(1,13)
-
-# spat.beta = -4, interaction 6
-nodehash[1061] = range(1,12)
-nodehash[1062] = range(1,12)
-nodehash[1081] = range(1,12)
-nodehash[1083] = range(1,12)
-
-# spatial beta data -1, interaction 4
-nodehash[4101] = range(1,11)
-nodehash[4102] = range(1,12)
-nodehash[4103] = range(1,12)
-nodehash[4104] = range(1,12)
-nodehash[4105] = range(1,12)
-nodehash[4106] = range(1,13)
-nodehash[4107] = range(1,13)
-nodehash[4108] = range(1,11)
-nodehash[4109] = range(1,13)
-nodehash[4110] = range(1,14)
-
-
-# spatial beta data -2, interaction 4
-nodehash[4201] = range(1,13)
-nodehash[4202] = range(1,13)
-nodehash[4203] = range(1,12)
-nodehash[4204] = range(1,12)
-nodehash[4205] = range(1,13)
-nodehash[4206] = range(1,14)
-nodehash[4207] = range(1,14)
-nodehash[4208] = range(1,14)
-nodehash[4209] = range(1,14)
-nodehash[4210] = range(1,13)
-
-# spatial beta data -6, intStr. 4
-nodehash[4601] = range(1,12)
-nodehash[4602] = range(1,13)
-nodehash[4603] = range(1,13)
-nodehash[4604] = range(1,13)
-nodehash[4605] = range(1,13)
-nodehash[4606] = range(1,13)
-nodehash[4607] = range(1,12)
-nodehash[4608] = range(1,12)
-nodehash[4609] = range(1,14)
-nodehash[4610] = range(1,13)
-
-# spatial beta data -6, intStr. 4
-nodehash[4801] = range(1,11)
-nodehash[4802] = range(1,13)
-nodehash[4803] = range(1,11)
-nodehash[4804] = range(1,14)
-nodehash[4805] = range(1,11)
-nodehash[4806] = range(1,13)
-nodehash[4807] = range(1,14)
-nodehash[4808] = range(1,11)
-nodehash[4809] = range(1,14)
-nodehash[4810] = range(1,14)
+## e.g.:
+#nodehash[3011] = range(1,15)
 
 
 
@@ -176,7 +90,7 @@ print "Starting with job-id " + str(jobid)
 JOBs = []
 
 # set vector of runs
-runids = range(start_run_id,(start_run_id + nr_runs + 1)) 
+runids = range(start_run_id,(start_run_id + nr_runs)) 
 
 for network in networks:
 	for run in runids:
@@ -203,17 +117,22 @@ for network in networks:
 				resexists = "yes"
 				
 
-			# only create job when result and log file not exist
-			if resexists == "no" and logexists == "no":
-				
-				JOBs.append([jobid, network, node, run, bestPredictors, maxiter])
-				print "adding job: " + str(jobid) + ", model: " + str(network) + ", node: " + str(node) + ",run: " + str(run)
+			# only create job when log file not exists, a result file not be overwritten by BRAM
+#			if resexists == "no" and logexists == "no":
+#			if logexists == "no":
+
+			## FIXME: Need to rethink this> check for existing log file is not really working since it does not considers different runs
+			##        So everything relayed on the existence of a result file. This checks now BRAM in order to be able to proceed with 
+			##        a MCMC chain (open, check chain and iterations, continue or exit)
+
+			JOBs.append([jobid, network, node, run, bestPredictors, maxiter, startbudget])
+			print "adding job: " + str(jobid) + ", model: " + str(network) + ", node: " + str(node) + ",run: " + str(run)
 				# increment, although, job not created, just to not conflict with running jobs ids and logs
-				jobid += 1
+			jobid += 1
 
-			else:
+#			else:
 
-				print "skip job, log exists: " + logexists + ", result exists: " + resexists
+#				print "skip job, log exists: " + logexists + ", result exists: " + resexists
 
 
 
@@ -255,7 +174,7 @@ except ValueError:
 
 print cnodelist
 
-sys.exit()
+
 
 
 # matrix, each row for one node, column 1 : node name, 2 : nr. CPUs, 3 : load avg 
@@ -355,7 +274,7 @@ while len(JOBs) > 0:
                         f = open(runfile, 'w')
 
                         # run the R code (niced)
-                        f.write('nice -n 19 cat Rstarter_beowulf.R | nice -n 19 R --vanilla --args ' + str(nextjob[1]) + " " +  str(nextjob[2]) + " " + str(nextjob[3]) + " " + str(nextjob[4]) + " " + str(nextjob[5])+  " >> " + nodelogstd + " 2>> " + nodelogerr + "\n")
+                        f.write('nice -n 19 cat Rstarter_beowulf.R | nice -n 19 R --vanilla --args ' + str(nextjob[1]) + " " +  str(nextjob[2]) + " " + str(nextjob[3]) + " " + str(nextjob[4]) + " " + str(nextjob[5])+ " " + str(nextjob[6])+  " >> " + nodelogstd + " 2>> " + nodelogerr + "\n")
                 
                         f.close()
 
