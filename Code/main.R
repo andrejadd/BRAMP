@@ -82,13 +82,71 @@ main <- function(X, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     cptMove[out$move] = cptMove[out$move]+1
     acceptMove[out$move] = acceptMove[out$move]+out$accept
 
-    ## In case I decide to make a delta2 update in phase.update (just before updating the regression parameters) then I should check if this update
-    ## happened and dont do it here.
-    ## However, right now I do the delta2 update only here. So updates to the regr. parameters will profit from it in the next call to phase.update
-    #cat("FIXME: update delta2 from phase.update (if global delta2 in phase.update will be made)\n")
-    
-    ## Update delta2, global
-    HYPERvar$delta2 = sampledelta2Global(Grid.obj, X, Y, HYPERvar, F)
+    ## If some move was accepted or the edge moves were selected, we need to update the edge weights
+    ## FIXME: it would be wiser to always update all segment weights, this is to gain performance but check
+    ##        the draw back of this!
+    if(out$accept == 1 || out$move > 3) {
+
+#      cat("move: ", out$move)
+#      if(!is.null(out$changed.segids)) { cat(", seg.ids: "); print.table(out$changed.segids) }
+#      browser()
+
+     
+      ## upate variance, globally (over all segments) - and before calculating the regression coefficient
+      Grid.obj$sigma2 = updateSigGlobal(Grid.obj, X,Y, HYPERvar$delta2, HYPERvar$v0, HYPERvar$gamma0)
+
+      ## check if we should update the weights of all segments - this is the case after a segment update move (move > 3)
+      if(out$move > 3) {
+        out$changed.segids = getSegmentIDs(Grid.obj)
+      }
+      
+      ## update the weights for the segments that changed
+      for(seg.id in out$changed.segids) {
+      
+        ## create regression coefficient for new segment 
+        x = extractData(Grid.obj, X, seg.id)
+        y = extractData(Grid.obj, Y, seg.id)
+      
+        Pr = computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta2)
+      
+        ## sample weight vector ( + 2 means Bias and SAC edge)
+        weight.vec = array(0, Grid.obj$nr.parents + Grid.obj$additional.parents)      
+
+        xi = x[,which(Grid.obj$edge.struct==1)]
+
+        Ml = ( HYPERvar$delta2 / ( HYPERvar$delta2 + 1)) * ginv( t(xi) %*% xi)
+      
+        weight.vec[which(Grid.obj$edge.struct == 1)] = mvrnorm(1, mu=Ml %*% t(xi) %*% y, Sigma = (Grid.obj$sigma2 * Ml))
+
+        
+        ## check if weights for this seg id already exists:
+        ## extract row in the Regr.Coeff. matrix for this seg.id
+        seg.row = which( Grid.obj$edge.weights[,1] == seg.id)
+
+        if(length(seg.row) == 1) {   # if the entry exists
+
+          ## replace the old entry 
+          Grid.obj$edge.weights[seg.row,] = c(seg.id, weight.vec)
+
+        } else {
+
+          ## append to matrix
+          Grid.obj$edge.weights = rbind(Grid.obj$edge.weights, c(seg.id, weight.vec))
+        }
+
+       
+
+        
+      }
+
+      ## Update of delta2 must come after update of edge weights because it needs the edge weights of all segment; in the case of a cut however
+      ## the weights vector of the new segment is only created above. 
+      HYPERvar$delta2 = sampledelta2Global(Grid.obj, X, Y, HYPERvar, F)
+      
+      
+    }
+   
+
         
     ## Save Data
     ## every 10th iteration (to save memory and MCMC thin-out)
@@ -128,7 +186,7 @@ main <- function(X, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     #  print status every X and save data to disk iteration 
     if((r %% 500) == 0) {
        cat("\nr: ", r, "\t")
-       cat("mem(Structsamples): ", object.size(MCMC.chain)/1048600)
+       cat("memory (MByte): ", object.size(MCMC.chain)/1048600)
        
      }
         

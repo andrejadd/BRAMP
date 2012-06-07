@@ -57,19 +57,6 @@ sampledelta2Global <- function(seg.set, X, Y, HYPERvar, DEBUGLVL2 =F) {
 
     
 
-sampleBxy <- function(xi, y, Sig2_2Dall, delta2){
- 
-
-  Ml = (delta2 / (delta2+1)) * ginv( t(xi) %*% xi)
-      
-  out = mvrnorm(1, mu=Ml %*% t(xi) %*% y, Sigma=Sig2_2Dall * Ml)
-    
-  return(out)
-  
-}
-
-
-
 
 ## AA, change arguments, instead of extracting from Sall, Ball, X, Y - directly pass from moves.R since they are already used there
 updateSigGlobal <- function(seg.set, X, Y, delta2, v0, gamma0){

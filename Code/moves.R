@@ -96,28 +96,12 @@ cut.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
   if(!is.nan(alpha) & u <= alpha){
 
     if(DEBUGLVL == 2) cat("  -> accepted\n")
-    
     if(DEBUGLVL == 3) cat("C")
     
     ## Acceptation of the birth of the new CP (boolean = 1)
     accept=1
-    
-    ## upate variance, globally (over all segments) - and before calculating the regression coefficient
-    proposed.set$sigma2 = updateSigGlobal(proposed.set, X,Y, HYPERvar$delta2, HYPERvar$v0, HYPERvar$gamma0)
-    
-    ## create regression coefficient for new segment 
-    x = extractData(proposed.set, X, new.id)
-    y = extractData(proposed.set, Y, new.id)
-    
-    Pr = computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta2)
-    
-    ## create regression coefficient vector ( + 2 means Bias and SAC edge)
-    newB = array(0, Grid.obj$nr.parents + Grid.obj$additional.parents)      
-    newB[which(Grid.obj$edge.struct == 1)] = sampleBxy(x[,which(Grid.obj$edge.struct==1)], y, proposed.set$sigma2, HYPERvar$delta2)
 
-    ## append to edge weights matrix
-    proposed.set$edge.weights = rbind(proposed.set$edge.weights, c(new.id, newB))
-    
+    ## assign proposed state to current state
     Grid.obj = proposed.set
 
     ## do this here because alterations to the tree affect the pointer, if I would have made this on proposed.set before it would
@@ -128,14 +112,10 @@ cut.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
     ##
     ## start DEBUGGING
     ##
-
-    
     if(DEBUGLVL == 2) {
 
       heatmap(Grid.obj$segment.map,Colv=NA,Rowv=NA,scale="none", col=grey.colors(20,start=1,end=0))
       drawTree(Grid.obj$mondrian.tree)
-
-#      browser()
       
       z <- try(silent=TRUE, timeout(readline(prompt="Hit me: "), seconds=50))
       z = ""
@@ -147,15 +127,14 @@ cut.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
     ##
     ## END DEBUGGING
     ##
+
   } else {
     if(DEBUGLVL == 2) cat("  -> not accepted\n")
   }
 
-#  if(DEBUGLVL == 2) cat("  nr. segments: ", length(getSegmentIDs(Grid.obj)), "\n")
-  
   ##  Return all variables
   ## (+ variable move describing the move type  (1= CP birth, 2= CP death, 3= CP shift, 4= Update phases)
-  return(list(Grid.obj=Grid.obj, accept=accept, move=1, alpha=alpha))
+  return(list(Grid.obj=Grid.obj, accept=accept, move=1, alpha=alpha, changed.segids=c(leaf.id, new.id)))
   
 }
 
@@ -215,29 +194,22 @@ merge.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
     accept=1
 
     ## delete the parameters for the deleted segment id
-    ## FIXME: I could bind edge weights to a Mondrian tree node.. 
+    ## MAYBE FIXME: I could bind edge weights to a Mondrian tree node.. 
     proposed.set$edge.weights = proposed.set$edge.weights[which(proposed.set$edge.weights[,1] != max(child1.id, child2.id)),,drop=F]     # drop=F makes sure the matrix is not transformed to vector when single row is left
-
-    ## !! FIXME: recalc the edge weights after merge!!!
 
     ## overwrite old state segment set
     Grid.obj = proposed.set
 
     ## delete the two childs
-
     if(!delLeaf(Grid.obj$mondrian.tree, child1.id)) stop("failed to delete leaf")
     if(!delLeaf(Grid.obj$mondrian.tree, child2.id)) stop("failed to delete leaf")
-    
-    # no need to update the variance because only needed for calculating the regression coefficient B
-    # Sig2_2Dall = updateSigGlobal(XE, YE, X,Y, Grid.obj$edge.struct, delta2, HYPERvar$v0, HYPERvar$gamma0)
-    
+        
     if(DEBUGLVL == 2) {
 
       cat(" -> accepted\n")
       heatmap(Grid.obj$segment.map,Colv=NA,Rowv=NA,scale="none", col=grey.colors(20,start=1,end=0))
       drawTree(Grid.obj$mondrian.tree)
 
-#      browser()
       z <- try(silent=TRUE, timeout(readline(prompt="Hit me: "), seconds=50))
       z=""
       if(z == "q") { stop("USER EXIT") }
@@ -250,13 +222,11 @@ merge.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
   } else {
     if(DEBUGLVL == 2) cat(" -> not accepted\n")
   }
-    
 
-#  if(DEBUGLVL == 2) cat("  nr. segments: ", length(getSegmentIDs(Grid.obj)), "\n")
   
   ##  Return all variables
   ## (+ variable move describing the move type  (1= Segment split, 2= Segm. merge, 3= Segment grow, 4= Update phases)
-  return(list(Grid.obj=Grid.obj, accept=accept, move=2, alpha=alpha))
+  return(list(Grid.obj=Grid.obj, accept=accept, move=2, alpha=alpha, changed.segids=c(min(child1.id, child2.id))))
 
 }
 
@@ -372,28 +342,6 @@ shift.cut <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0, counter=0) {
     
     ## Acceptation of shift
     accept=1
-
-    ## upate variance, globally (over all segments) - and before calculating the regression coefficient
-    proposed.set$sigma2 = updateSigGlobal(proposed.set, X,Y, HYPERvar$delta2, HYPERvar$v0, HYPERvar$gamma0)
-    
-    ## update the regression coefficient for the new aligned segments
-    for(seg.id in c(child1.id, child2.id)) {
-      
-      ## create regression coefficient for new segment 
-      x = extractData(proposed.set, X, seg.id)
-      y = extractData(proposed.set, Y, seg.id)
-    
-      ## sample edge weights
-      newB = array(0, Grid.obj$nr.parents + Grid.obj$additional.parents)
-      newB[which(proposed.set$edge.struct == 1)] = sampleBxy(x[, which(proposed.set$edge.struct == 1)], y, proposed.set$sigma2, HYPERvar$delta2)
-
-      ## which row in the Regr.Coeff. matrix
-      seg.row = which( proposed.set$edge.weights[,1] == seg.id)
-
-      ## replace the old entry for this segment
-      proposed.set$edge.weights[seg.row,] = c(seg.id, newB)
-    }
-
     
     if(DEBUGLVL == 2) {
       
@@ -417,7 +365,7 @@ shift.cut <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0, counter=0) {
   
   ##  Return all variables
   ## (+ variable move describing the move type  (1= cut, 2= merge, 3= shift, 4= Update phases)
-  return(list(Grid.obj=Grid.obj, accept=accept, move=3, alpha=alpha))
+  return(list(Grid.obj=Grid.obj, accept=accept, move=3, alpha=alpha, changed.segids=c(child1.id, child2.id)))
 
 }
 
@@ -449,10 +397,8 @@ segment.update <- function(Grid.obj, X, Y, HYPERvar,  DEBUGLVL = 0) {
 
   ## assignments
   Grid.obj$edge.struct = bduout$struct
-  Grid.obj$edge.weights = bduout$weights
-  Grid.obj$sigma2 = bduout$sigma2
   
-  ## (+ variable move describing the move type  (1= CP birth, 2= CP death, 3= CP shift, 4= Update segments)
+  ## (+ variable move describing the move type  (1= CP birth, 2= CP death, 3= CP shift, 4..7= Update segments)
   return( list( Grid.obj=Grid.obj, move=bduout$move, accept=bduout$accept))
 
 }
@@ -678,50 +624,9 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
   }
 
   
-  ##
-  ## Update Sigma2
-  ##
-  ## BUG ID 4
-  tryCatch({
-    
-    Sig2_2Dall = updateSigGlobal(Grid.obj, X,Y, HYPERvar$delta2, HYPERvar$v0, HYPERvar$gamma0)
-    
-  }, error = function(e) {
-    
-    write("Caught with updateSigGlobal: saving data to DEBUG.DATA/error_bugid4.RData", stderr()) 
-    print(e)
-    save(Grid.obj, X, Y, Grid.obj$edge.struct, HYPERvar$delta2, file="DEBUG.DATA/error_bugid4.RData")
-  })
-
-  ##
-  ## Updating weights of each segment (regardless if structure changed)
-  ##
-
-  ## create regression parameters from scratch, this will replace the original one fully
-  B2Dall = matrix(0, 0, (1 + Grid.obj$nr.parents + Grid.obj$additional.parents)) # +1: seg.id; nr.parent: regr.coeff; additional.parents: bias, sac
   
-  
-  for(seg.id in getSegmentIDs(Grid.obj)) {
-    
-    if(DEBUGLVL == 2) {  cat("[regrcoeff update] seg.id: ", seg.id) }
-    
-    ## create regression coefficient for new segment 
-    x = extractData(Grid.obj, X, seg.id)
-    y = extractData(Grid.obj, Y, seg.id)
-    
-    ## sample edge weights
-    ## AA22.02.2011, +2 because of additional bias and SAC edge
-    newB = array(0, Grid.obj$nr.parents + Grid.obj$additional.parents)
-    newB[which(newS == 1)] = sampleBxy(x[, which(newS == 1)], y, Sig2_2Dall, HYPERvar$delta2)
-    
-    ## set B
-    B2Dall = rbind(B2Dall, c(seg.id, newB))
-    
-  }
-
-
   ##  Return all variables
-  return(list( u=u, move=move, accept=accept, struct=newS, weights=B2Dall, sigma2=Sig2_2Dall)) 
+  return(list( u=u, move=move, accept=accept, struct=newS)) 
 }
 
 
