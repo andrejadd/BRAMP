@@ -34,14 +34,14 @@ start_run_id = 2
 nr_runs = 1                       # number of runs per unique job 
 
 defaultnodes = range(1,11)
-maxiter = 5000                 # nr. of MCMC iteration steps
+maxiter = 10000                 # nr. of MCMC iteration steps
 
 bestPredictors = 20 ## is obselete, keep for larger networks or remove
 
 
 ############# THE DATA ------------------------------------------
 
-networks = range(40,43)
+networks = range(40,50)
 
 # weak predation:
 #networks = range(201, 231) + range(401,431) + range(601,631) + range(801,831)

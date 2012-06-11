@@ -24,22 +24,3 @@
        (alpha + 1) * log(x) - (beta/x)
     return(exp(log.density))
   }
-
-## generate draws from the inverse gamma density (using
-## the gamma simulator)
-##
-## Kevin Rompala 5/6/2003
-## fixed KQ 3/8/2005
-
-rinvgamma <- function(n, shape, scale) {
-
-# AA , Debugging  
-#  tryCatch({
-#    aa = 1 / rgamma(n, shape=shape, scale=1/scale)
-#  }, warning = function(w) {
-#    print(w)
-#    browser()
-#  })
-  
-  return(1 / rgamma(n, shape=shape, scale=1/scale))
-}

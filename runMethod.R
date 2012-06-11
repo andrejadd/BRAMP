@@ -6,7 +6,6 @@ source(paste(codePath,"main.R",sep=""))
 source(paste(codePath,"initEngine.R",sep=""))
 source(paste(codePath,"segments.R", sep=""))
 source(paste(codePath,"util.R",sep=""))   #requires pseudoinverse
-source(paste(codePath,"sample_and_update.R",sep=""))  #requires pseudoinverse  
 source(paste(codePath,"spatAutoCorrelation.R", sep=""))
 source(paste(codePath,"invGamma.R",sep=""))
 source(paste(codePath,"mvrnorm.R",sep=""))
@@ -186,12 +185,13 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, start.bu
 
     ## INIT hyper parameters
     ## for the signal-to-noise ratio, delta2 ~ IG(alphad2,betad2)
-    alphad2 = 2
-    betad2 = 0.2 
+    alpha.snr = 2
+    beta.snr = 0.2
+    v0 = 1 # as in BRAM
     
     HYPERvar = list( c = 0.5, # for edge move proposals
-      v0 = 1, gamma0 = 0.1,   # for weight variance sigma2
-      alphad2=alphad2, betad2=betad2, delta2=rinvgamma(1, shape=alphad2, scale=betad2),  # for signal-to-noise delta2 ~ IG(alphad2, betad2)
+      alpha.var = v0/2, beta.var = v0/2,   # for weight variance sigma2, v0/2 as in Marcos AISTATs paper
+      alpha.snr=alpha.snr, beta.snr=beta.snr, delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr)),  # for signal-to-noise (snr) delta2 ~ IG(alphad2, betad2)
       alphalbd = 1, betalbd = 0.5  # for parent nodes
       )
     
@@ -221,7 +221,7 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, start.bu
       target=target,
       INIT.EDGES.FROM.FILE=INIT.EDGES.FROM.FILE,
       FIXED.INIT.EDGES=FIXED.INIT.EDGES
-      )
+    )
     
     cat("ok\n")
     

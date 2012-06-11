@@ -123,7 +123,7 @@ shift.computeAlpha <- function(X, Y, old.set, proposed.set, seg.ids, HYPERvar, D
   y.child1 = extractData(old.set, Y, seg.ids[1])
 
 tryCatch( {
-  Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta2)
+  Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta.snr)
 }, error=function(e) { 
    rnd.id = ceiling(runif(1,1,100000))
    save(file=paste("debug.out.", rnd.id, sep=""), x.child1, seg.ids, proposed.set, old.set, X, Y, edge.struct) 
@@ -136,11 +136,11 @@ tryCatch( {
   ## get second segment
   x.child2 = extractData(old.set, X, seg.ids[2])
   y.child2 = extractData(old.set, Y, seg.ids[2])
-  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta2)
+  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta.snr)
   omega.child2 = length(y.child2)
 
   tryCatch({
-    sumPhi  = lgamma((HYPERvar$v0 + omega.child1) / 2) + (-(HYPERvar$v0 + omega.child1) / 2) * log( (HYPERvar$gamma0 + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$v0 + omega.child2) / 2) + (-(HYPERvar$v0 + omega.child2) / 2) * log( (HYPERvar$gamma0 + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
+    sumPhi  = lgamma((HYPERvar$alpha.var + omega.child1) / 2) + (-(HYPERvar$alpha.var + omega.child1) / 2) * log( (HYPERvar$beta.var + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$alpha.var + omega.child2) / 2) + (-(HYPERvar$alpha.var + omega.child2) / 2) * log( (HYPERvar$beta.var + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
   }, error = function(e) {
     cat("Caught error \n ")
     print(e)
@@ -157,7 +157,7 @@ tryCatch( {
   y.child1 = extractData(proposed.set, Y, seg.ids[1])
  
 tryCatch( {
- Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta2)
+ Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta.snr)
 }, error=function(e) { 
    rnd.id = ceiling(runif(1,1,100000))
    save(file=paste("debug.out.", rnd.id, sep=""), x.child1, seg.ids, old.set, proposed.set, X, Y, edge.struct) 
@@ -172,11 +172,11 @@ tryCatch( {
   ## get second segment
   x.child2 = extractData(proposed.set, X, seg.ids[2])
   y.child2 = extractData(proposed.set, Y, seg.ids[2])
-  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta2)
+  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta.snr)
   omega.child2 = length(y.child2)
 
   tryCatch({
-    sumPhiPlus  = lgamma((HYPERvar$v0 + omega.child1) / 2) + (-(HYPERvar$v0 + omega.child1) / 2) * log( (HYPERvar$gamma0 + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$v0 + omega.child2) / 2) + (-(HYPERvar$v0 + omega.child2) / 2) * log( (HYPERvar$gamma0 + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
+    sumPhiPlus  = lgamma((HYPERvar$alpha.var + omega.child1) / 2) + (-(HYPERvar$alpha.var + omega.child1) / 2) * log( (HYPERvar$beta.var + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$alpha.var + omega.child2) / 2) + (-(HYPERvar$alpha.var + omega.child2) / 2) * log( (HYPERvar$beta.var + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
   }, error = function(e) {
     cat("Caught error \n ")
     print(e)
@@ -219,20 +219,20 @@ cp.computeAlpha <- function(HYPERvar, X, Y, old.set, proposed.set, parent.id, ch
   y = extractData(old.set, Y, parent.id)
   
   ## Parent: calculate projection matrix
-  Pr = computeProjection(as.matrix(x[,which(edge.struct == 1)]), HYPERvar$delta2)
+  Pr = computeProjection(as.matrix(x[,which(edge.struct == 1)]), HYPERvar$delta.snr)
     
   ## Parent: number of locations 
   omega = length(y)
 
   ## original equation  without log transform (makes it necessary to multiply)
-  ## prodPhi = prodPhi * gamma((v0+omega)/2) * ((gamma0+ t(y) %*% Pr %*% y)/2)^(-(v0+omega)/2)
+  ## prodPhi = prodPhi * gamma((alpha.var+omega)/2) * ((beta.var+ t(y) %*% Pr %*% y)/2)^(-(alpha.var+omega)/2)
 
   if( (dim(Pr)[1] != length(y)) || (dim(Pr)[2] != length(y))) {
     stop("dimension mismatch for projected target data in cp.computeAlpha")
   }
 
   tryCatch({
-    sumPhi  = lgamma((HYPERvar$v0 + omega)/2) + (-(HYPERvar$v0 + omega)/2) * log( (HYPERvar$gamma0 + t(y) %*% Pr %*% y)/2)
+    sumPhi  = lgamma((HYPERvar$alpha.var + omega)/2) + (-(HYPERvar$alpha.var + omega)/2) * log( (HYPERvar$beta.var + t(y) %*% Pr %*% y)/2)
   }, error = function(e) {
     stop("Caught error \n ")
     print(e)
@@ -248,7 +248,7 @@ cp.computeAlpha <- function(HYPERvar, X, Y, old.set, proposed.set, parent.id, ch
   x.child1 = extractData(proposed.set, X, child.ids[1])
   y.child1 = extractData(proposed.set, Y, child.ids[1])
 
-  Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta2)
+  Proj.child1 = computeProjection(as.matrix(x.child1[,which(edge.struct == 1)]), HYPERvar$delta.snr)
   omega.child1 = length(y.child1)
 
   
@@ -256,11 +256,11 @@ cp.computeAlpha <- function(HYPERvar, X, Y, old.set, proposed.set, parent.id, ch
   x.child2 = extractData(proposed.set, X, child.ids[2])
   y.child2 = extractData(proposed.set, Y, child.ids[2])
 
-  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta2)
+  Proj.child2 = computeProjection(as.matrix(x.child2[,which(edge.struct == 1)]), HYPERvar$delta.snr)
   omega.child2 = length(y.child2)
 
   tryCatch({
-    sumPhiPlus  = lgamma((HYPERvar$v0 + omega.child1) / 2) + (-(HYPERvar$v0 + omega.child1) / 2) * log( (HYPERvar$gamma0 + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$v0 + omega.child2) / 2) + (-(HYPERvar$v0 + omega.child2) / 2) * log( (HYPERvar$gamma0 + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
+    sumPhiPlus  = lgamma((HYPERvar$alpha.var + omega.child1) / 2) + (-(HYPERvar$alpha.var + omega.child1) / 2) * log( (HYPERvar$beta.var + t(y.child1) %*% Proj.child1 %*% y.child1)/2) +  lgamma((HYPERvar$alpha.var + omega.child2) / 2) + (-(HYPERvar$alpha.var + omega.child2) / 2) * log( (HYPERvar$beta.var + t(y.child2) %*% Proj.child2 %*% y.child2) / 2)
   }, error = function(e) {
     cat("Caught error \n ")
     print(e)
@@ -292,7 +292,7 @@ cp.computeAlpha <- function(HYPERvar, X, Y, old.set, proposed.set, parent.id, ch
  # cat("FIXME: check log.proposal.ratio\n")  
 
   ## take out segment prior
-  alpha =  log.proposal.ratio + log.prior.ratio + ( (HYPERvar$v0 / 2)*log(HYPERvar$gamma0 / 2) - lgamma(HYPERvar$v0 / 2) - log((HYPERvar$delta2 + 1)^((nr.edges + 1) / 2)) ) + sumPhiPlus - sumPhi 
+  alpha =  log.proposal.ratio + log.prior.ratio + ( (HYPERvar$alpha.var / 2)*log(HYPERvar$beta.var / 2) - lgamma(HYPERvar$alpha.var / 2) - log((HYPERvar$delta.snr + 1)^((nr.edges + 1) / 2)) ) + sumPhiPlus - sumPhi 
  
   
   return(alpha)
@@ -300,10 +300,10 @@ cp.computeAlpha <- function(HYPERvar, X, Y, old.set, proposed.set, parent.id, ch
 }
 
 
-computeProjection = function(x, delta2){
+computeProjection = function(x, delta.snr){
   # INPUT: len, delimiting breakpoints.
   #        x, the observations of X in the corresponding state
-  #        delta2.
+  #        delta.snr.
   # OUTPUT: the projection matrix Px.
   # depends on: .
 
@@ -313,7 +313,7 @@ computeProjection = function(x, delta2){
   moins = matrix(0,len,len)
 
   if(prod(dim(x))>0){
-    moins = (delta2/(delta2+1))* x%*%ginv(t(x)%*%x)%*%t(x)
+    moins = (delta.snr/(delta.snr+1))* x%*%ginv(t(x)%*%x)%*%t(x)
   }
 
   Px=diag(1,len)-moins

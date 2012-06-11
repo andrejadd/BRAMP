@@ -470,14 +470,14 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
       omega = length(y)
       
       ## calculate projection matrix
-      Pr = computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta2)       # current structure 
-      Prstar = computeProjection(as.matrix(x[,which(stmp == 1)]), HYPERvar$delta2)     # proposed structure
+      Pr = computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta.snr)       # current structure 
+      Prstar = computeProjection(as.matrix(x[,which(stmp == 1)]), HYPERvar$delta.snr)     # proposed structure
 
       ## normal way
-      ##	  rflip = rflip * ((gamma0 + t(y) %*% Prstar %*% y)/(gamma0 + t(y) %*% Pr %*% y))^(-(length(y) + v0)/2)
+      ##	  rflip = rflip * ((beta.var + t(y) %*% Prstar %*% y)/(beta.var + t(y) %*% Pr %*% y))^(-(length(y) + alpha.var)/2)
       
       ## log version (better)
-      rfliplog = rfliplog + (-(length(y) + HYPERvar$v0)/2) * ( log(HYPERvar$gamma0 + t(y) %*% Prstar %*% y) - log(HYPERvar$gamma0 + t(y) %*% Pr %*% y))
+      rfliplog = rfliplog + (-(length(y) + HYPERvar$alpha.var)/2) * ( log(HYPERvar$beta.var + t(y) %*% Prstar %*% y) - log(HYPERvar$beta.var + t(y) %*% Pr %*% y))
         
     }   
 
@@ -529,16 +529,16 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
         y = extractData(Grid.obj, Y, seg.id)
 
         ## calculate projection matrix
-        Pr =     computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta2)       # current structure 
-        Prplus = computeProjection(as.matrix(x[,which(stmp == 1)]), HYPERvar$delta2)     # + 1 edge
+        Pr =     computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta.snr)       # current structure 
+        Prplus = computeProjection(as.matrix(x[,which(stmp == 1)]), HYPERvar$delta.snr)     # + 1 edge
 
         ## number of locations
         omega = length(y)
 
         ## Compute birth ratio, no log needed because no critical gamma() calculation
         ## orig 1D homog.:
-        ##rbirth =    rbirth * ((gamma0 + t(y) %*% Pxlp1 %*% y) /(gamma0 + t(y) %*% Pxl %*% y))^(-(length(y) + v0)/2)/sqrt(1 + HYPERvar$delta2)
-        rbirth =rbirth * ((HYPERvar$gamma0 + t(y) %*% Prplus %*% y) / (HYPERvar$gamma0 + t(y) %*% Pr %*% y))^(-(HYPERvar$v0 + omega)/2)/sqrt(1 + HYPERvar$delta2)
+        ##rbirth =    rbirth * ((beta.var + t(y) %*% Pxlp1 %*% y) /(beta.var + t(y) %*% Pxl %*% y))^(-(length(y) + alpha.var)/2)/sqrt(1 + HYPERvar$delta.snr)
+        rbirth =rbirth * ((HYPERvar$beta.var + t(y) %*% Prplus %*% y) / (HYPERvar$beta.var + t(y) %*% Pr %*% y))^(-(HYPERvar$alpha.var + omega)/2)/sqrt(1 + HYPERvar$delta.snr)
         
       }
 
@@ -555,7 +555,7 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
       }, error = function(e) {
         write("Error with rbirth in bdu.homogeneous: saving data producing rbirth to DEBUG.DATA/error_rbirth.RData", stderr()) 
         print(e)
-        save(HYPERvar$v0, HYPERvar$gamma0, HYPERvar$delta2, y, x, Grid.obj$edge.struct, Grid.obj, file="DEBUG.DATA/error_rbirth.RData")
+        save(HYPERvar$alpha.var, HYPERvar$beta.var, HYPERvar$delta.snr, y, x, Grid.obj$edge.struct, Grid.obj, file="DEBUG.DATA/error_rbirth.RData")
       })
             	  
      } else {
@@ -600,11 +600,11 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
            y = extractData(Grid.obj, Y, seg.id)
            
            ## calculate projection matrix
-           Pr =      computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta2)       # current structure 
-           Prminus = computeProjection(as.matrix(x[,which(stmp == 1)]), HYPERvar$delta2)         # - 1 edge
+           Pr =      computeProjection(as.matrix(x[,which(Grid.obj$edge.struct == 1)]), HYPERvar$delta.snr)       # current structure 
+           Prminus = computeProjection(as.matrix(x[,which(stmp == 1)]), HYPERvar$delta.snr)         # - 1 edge
           
            ## complies to TVDBN_SH1D
-           rdeath = rdeath * ( (HYPERvar$gamma0 + t(y) %*% Pr %*% y) / (HYPERvar$gamma0 + t(y) %*% Prminus %*% y))^((length(y) + HYPERvar$v0) / 2)*(sqrt(1 + HYPERvar$delta2))
+           rdeath = rdeath * ( (HYPERvar$beta.var + t(y) %*% Pr %*% y) / (HYPERvar$beta.var + t(y) %*% Prminus %*% y))^((length(y) + HYPERvar$alpha.var) / 2)*(sqrt(1 + HYPERvar$delta.snr))
          }
         
 
