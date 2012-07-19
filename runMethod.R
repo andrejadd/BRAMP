@@ -15,15 +15,17 @@ source(paste(codePath,"Tree.R",sep=""))
 
 
 
-runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, start.budget=1, ENABLE.SAC=T){
- 
+runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.prefix=NULL, ENABLE.SAC=T) {  
   
   ## remove all but arguments  
-  rm(list= ls()[ls()!="dataid" && ls()!= "target" && ls()!="runid" && ls()!="niter" && ls()!="start.budget" && ls()!="ENABLE.SAC"])
+  rm(list= ls()[ls()!="dataid" && ls()!= "target" && ls()!="runid" && ls()!="niter" && ls()!="data.prefix" && ls()!="ENABLE.SAC"])
 
-  method.name = "BRAMP"
+  method.name = "BRAMPi"
   
   end.iter = niter
+
+  ## the Mondrian process start budget
+  start.budget = 1
   
   ## the start of iteration can be changed through loading an already existing result file
   start.iter = 1
@@ -32,8 +34,9 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, start.bu
   set.seed(as.numeric(Sys.time()))
 
   ## the file we write to
-  result.file = paste("./Results/SC2D_m", dataid, "_i", target, "_run", runid, sep="")
+  result.file = paste("./Results/Result_", data.prefix, "_id", dataid, "_n", target, "_run", runid, sep="")
 
+  
   ## flag that tells if to proceed MCMC chain from previous run
   PROCEED.CHAIN = F
 
@@ -109,21 +112,13 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, start.bu
 
     # FIXED.INIT.EDGES=seq(1,12) ## use for the Outer Hebrides data when soil attributes (node 1..12) shall be fixed
 
-    
-    ## setup Data directory
-    DATA.TYPE = "LOTKA.VOLTERRA"
-    if(dataid < 100) DATA.TYPE = "SYNTHETIC"
-    if(dataid < 10) DATA.TYPE = "HEBRIDES.PLANTS"
-    
-    indata = paste("../Data/", DATA.TYPE, "/Data_id", dataid, ".Rdata",sep="")
+    indata = paste("../Data/", data.prefix, "/Data_", data.prefix, "_id", dataid, ".Rdata",sep="")
 
     cat("[", method.name, "] Input: ", indata,"\n")
-    
     
     ## the main sample data that is loaded is a target/predictor matrix [nodes x locations] and a SAC (spatial autocorrelation) matrix with
     ## dame size. The SAC matrix has for each target and location a SAC node which is included into the linear regression 
     load(indata)
-    
     
     ## number of putative parents (sign q)
     nr.parents=dim(Model$Ymatrix)[1]-1

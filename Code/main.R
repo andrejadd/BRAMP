@@ -16,22 +16,21 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
   acceptMove = array(0,7)
 
   if(is.null(MCMC.chain)) {
-    MCMC.chain = list(Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list()), counters=list() )
+    MCMC.chain = list(Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list()), counters=list(), delta.snr = c() )
   }
   
   ## everything important stored here and saved at the end to a file
   ## Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list())
   
   ## when to start saving the regression coefficients (takes up memory)
-  start.save.regr = end.iter - floor(end.iter * 1/5)
+  start.save.regr = 1 #end.iter - floor(end.iter * 1/5)
 
   # do main iteration
   r = start.iter
-  
+
   while(r < end.iter) {
 
     r = r + 1
-
     
     ## ----------->   FIXME!!!!
     ## the move probabilities in vector rho1 - calculate in a different fashion or even set fixed
@@ -88,121 +87,119 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     ## If some move was accepted or the edge moves were selected, we need to update the edge weights
     ## FIXME: it would be wiser to always update all segment weights, this is to gain performance but check
     ##        the draw back of this!
-  #  if(out$accept == 1 || out$move > 3) {
+   if(out$accept == 1 || out$move > 3) {
 
 ## --------------- UPDATE PARAMETERS ----------------------------------------------------------------------
 
     
-    parents.vec = which(Grid.obj$edge.struct == 1)
-    segidx.vec = getSegmentIDs(Grid.obj)
+     parents.vec = which(Grid.obj$edge.struct == 1)
+     segidx.vec = getSegmentIDs(Grid.obj)
 
     
-    ## the means for the weights, updated below and used for the information sharing
-    mu.vec = Grid.obj$mu.on.prior[parents.vec]
+     ## the means for the weights, updated below and used for the information sharing
+     mu.vec = Grid.obj$mu.on.prior[parents.vec]
     
-    ## the covariance matrix Sigma_n, updated at the very bottom, here fixed for testing
-    Cov.mat = Grid.obj$Cov.mat.on.prior[parents.vec, parents.vec]
+     ## the covariance matrix Sigma_n, updated at the very bottom, here fixed for testing
+     Cov.mat = Grid.obj$Cov.mat.on.prior[parents.vec, parents.vec]
         
-    ## signal to noise ratio, updated below
-    delta.snr = HYPERvar$delta.snr                 
+     ## signal to noise ratio, updated below
+     delta.snr = HYPERvar$delta.snr                 
 
     
 ##-------- variance (sigma.var) for edge weight udpate -----------------------------------------------------------------------
 
     
-    ## sigma (variance) hyper parameters
-    alpha.var = HYPERvar$alpha.var
-    beta.var = HYPERvar$beta.var
+     ## sigma (variance) hyper parameters
+     alpha.var = HYPERvar$alpha.var
+     beta.var = HYPERvar$beta.var
        
     
-    ## loop segment
-    for(segidx in segidx.vec) {
+     ## loop segment
+     for(segidx in segidx.vec) {
         
-      ## get nr. of observations (locations)
-      n.obs = getNrElements(Grid.obj, segidx)
- 
-      ## get the predictor and target data
-      x = extractData(Grid.obj, data, segidx)
-      X = t(as.matrix(x[, parents.vec]))   # took transpose to make it conform with Marcos Code for testing (might change, see below transposes of X)
-      
-      ## what is the projection matrix exactly doing, need it?
-                                        #        matPx = computeProjection(as.matrix(x[, which(seg.set$edge.struct == 1)]), delta.snr)
+       ## get nr. of observations (locations)
+       n.obs = getNrElements(Grid.obj, segidx)
+       
+       ## get the predictor and target data
+       x = extractData(Grid.obj, data, segidx)
+       X = t(as.matrix(x[, parents.vec]))   # took transpose to make it conform with Marcos Code for testing (might change, see below transposes of X)
+       
+       ## what is the projection matrix exactly doing, need it?
+       ## matPx = computeProjection(as.matrix(x[, which(seg.set$edge.struct == 1)]), delta.snr)
         
-      y = extractData(Grid.obj, Y, segidx)
+       y = extractData(Grid.obj, Y, segidx)
 
-      ## thats a [locs,parents] x [parents,1] ; since mu.vec is a vector with length parents, %*% tranforms it to a [parents,1] matrix
-      mu.tilde = t(X) %*% mu.vec
+       ## thats a [locs,parents] x [parents,1] ; since mu.vec is a vector with length parents, %*% tranforms it to a [parents,1] matrix
+       mu.tilde = t(X) %*% mu.vec
 
-      inv.Sigma.tilde = diag(n.obs) - t(X) %*% ginv( ginv(delta.snr * Cov.mat) + X %*% t(X) ) %*% X
-        
-      mahalanobis.dist = t(y - mu.tilde) %*% inv.Sigma.tilde %*% (y - mu.tilde)
-
-      alpha.var = alpha.var + (n.obs/2)
-        
-      beta.var = beta.var + (mahalanobis.dist/2)
-
-    }
-
-    ## IF RGAMMA FAILS ("NaNs produced") shape or scale are negative, catch this above
-    inv.variance = rgamma(1,shape=alpha.var, scale=(1/beta.var))
-    sigma.var = 1 / inv.variance
-
-    ## save (but if calculated befor every weight sampling , might be not needed)
-    Grid.obj$sigma.var = sigma.var
+       inv.Sigma.tilde = diag(n.obs) - t(X) %*% ginv( ginv(delta.snr * Cov.mat) + X %*% t(X) ) %*% X
+       
+       mahalanobis.dist = t(y - mu.tilde) %*% inv.Sigma.tilde %*% (y - mu.tilde)
+       
+       alpha.var = alpha.var + (n.obs/2)
+       
+       beta.var = beta.var + (mahalanobis.dist/2)
+       
+     }
+     
+     ## IF RGAMMA FAILS ("NaNs produced") shape or scale are negative, catch this above
+     inv.variance = rgamma(1,shape=alpha.var, scale=(1/beta.var))
+     sigma.var = 1 / inv.variance
+     
+     ## save (but if calculated befor every weight sampling , might be not needed)
+     Grid.obj$sigma.var = sigma.var
     
 
 ## ------- weights and signal-to-noise ratio (delta) update -------------------------------------------------------------------
 
-    ## sigma (variance) hyper parameters
-    alpha.snr = HYPERvar$alpha.snr
-    beta.snr  = HYPERvar$beta.snr
+     ## sigma (variance) hyper parameters
+     beta.snr  = HYPERvar$beta.snr
 
-    ## reset weight matrix, the +1 is for the segment idx
-    Grid.obj$edge.weights = matrix(0,nrow=0,ncol=(total.nr.parents+1))
+     ## reset weight matrix, the +1 is for the segment idx
+     Grid.obj$edge.weights = matrix(0,nrow=0,ncol=(total.nr.parents+1))
 
-    ## update the weights for the segments that changed
-    for(segidx in segidx.vec) {
+     ## update the weights for the segments that changed
+     for(segidx in segidx.vec) {
 
-      ## get nr. of observations (locations)
-      n.obs = getNrElements(Grid.obj, segidx)
+       ## get nr. of observations (locations)
+       n.obs = getNrElements(Grid.obj, segidx)
       
-      ## get the predictor and target data
-      x = extractData(Grid.obj, data, segidx)
-      X = t(as.matrix(x[, parents.vec]))   # took transpose to make it conform with Marcos Code for testing (might change, see below transposes of X)
-      y = extractData(Grid.obj, Y, segidx)
+       ## get the predictor and target data
+       x = extractData(Grid.obj, data, segidx)
+       X = t(as.matrix(x[, parents.vec]))   # took transpose to make it conform with Marcos Code for testing (might change, see below transposes of X)
+       y = extractData(Grid.obj, Y, segidx)
 
 
-      ## mean and covariance for weight
-      Sigma.inv.star = ginv(delta.snr * Cov.mat) + X %*% t(X)
-      mu.star = ginv(Sigma.inv.star) %*% (ginv(delta.snr * Cov.mat) %*% mu.vec + X %*% y)
+       ## mean and covariance for weight
+       Sigma.inv.star = ginv(delta.snr * Cov.mat) + X %*% t(X)
+       mu.star = ginv(Sigma.inv.star) %*% (ginv(delta.snr * Cov.mat) %*% mu.vec + X %*% y)
 
-      ## sample weights for existing edges
-      weights = mvrnorm(mu=mu.star, Sigma= sigma.var * ginv(Sigma.inv.star))
-      weights = t(weights)
+       ## sample weights for existing edges
+       weights = mvrnorm(mu=mu.star, Sigma= sigma.var * ginv(Sigma.inv.star))
+       weights = t(weights)
 
-      ## assign to proper edge idx
-      full.weights = rep(0, total.nr.parents)
-      full.weights[parents.vec] = weights
+       ## assign to proper edge idx
+       full.weights = rep(0, total.nr.parents)
+       full.weights[parents.vec] = weights
 
-      ## append with seg id
-      Grid.obj$edge.weights = rbind(Grid.obj$edge.weights, c(segidx, full.weights))
+       ## append with seg id
+       Grid.obj$edge.weights = rbind(Grid.obj$edge.weights, c(segidx, full.weights))
 
-      ## calculate scale (beta) for signal-to-noise delta, Note vector transpose different than in equation:   (w - mu) inv(Cov) t(w - mu)
-      ##                                                   because (w - mu) gives a 1x3 matrix, whereas we would expect a 3x1 to appear
-      beta.snr = drop(beta.snr + 0.5 * inv.variance * (weights - mu.vec) %*% ginv(Cov.mat) %*% t(weights - mu.vec) )
-    }
+       ## calculate scale (beta) for signal-to-noise delta, Note vector transpose different than in equation:   (w - mu) inv(Cov) t(w - mu)
+       ##                                                   because (w - mu) gives a 1x3 matrix, whereas we would expect a 3x1 to appear
+       beta.snr = drop(beta.snr + 0.5 * inv.variance * (weights - mu.vec) %*% ginv(Cov.mat) %*% t(weights - mu.vec) )
+     }
     
-    ## alpha + (nr.segs * nr. active parents)/2 
-    alpha.snr = HYPERvar$alpha.snr + (length(segidx.vec) * length(parents.vec))/2
-    
-    ## sample signal-to-noise delta 
-    inv.delta.snr  = rgamma(1, shape=alpha.snr, scale=(1/beta.snr));
-    delta.snr = 1 / inv.delta.snr;
+     ## alpha + (nr.segs * nr. active parents)/2 
+     alpha.snr = HYPERvar$alpha.snr + (length(segidx.vec) * length(parents.vec))/2
+     
+     ## sample signal-to-noise delta 
+     inv.delta.snr  = rgamma(1, shape=alpha.snr, scale=(1/beta.snr));
+     delta.snr = 1 / inv.delta.snr;
 
     ## and update
     HYPERvar$delta.snr = delta.snr;
-    
-           
+               
 
 ## ------------ resample mean and covariance for the weights ----------------------------------------------------------
       
@@ -223,9 +220,10 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
     Grid.obj$Cov.mat.on.prior = diag(total.nr.parents) ## simple Covariance, option to do more sophisticated?
     
-    #} # end parameter updates
+    } # end parameter updates
 
 
+    
     ## Save Data
     ## every 10th iteration (to save memory and MCMC thin-out)
     if((r %% 10) == 0) {
@@ -233,10 +231,13 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
       # save data, this is written to the major outfile
       MCMC.chain$Structsamples$struct[[length(MCMC.chain$Structsamples$struct) + 1]] = Grid.obj$edge.struct
       MCMC.chain$Structsamples$iter[[length(MCMC.chain$Structsamples$iter) + 1]] = r
-
+      MCMC.chain$delta.snr = c(MCMC.chain$delta.snr, HYPERvar$delta.snr)
+      MCMC.chain$counters[[length(MCMC.chain$counters) + 1]] = list(cptMove=cptMove, acceptMove=acceptMove)
+ 
       
       ## only save in later stage, because needs memory
       if(r > start.save.regr) {
+
         MCMC.chain$Structsamples$regression.coeff[[length(MCMC.chain$Structsamples$regression.coeff) + 1]] = Grid.obj$edge.weights
 
 
@@ -256,9 +257,9 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
         MCMC.chain$Structsamples$regression.coeff[[length(MCMC.chain$Structsamples$regression.coeff) + 1]] = 1
         MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = NaN ## means nothing was recorded
       }
+
       
-      MCMC.chain$counters[[length(MCMC.chain$counters) + 1]] = list(cptMove=cptMove, acceptMove=acceptMove)
- 
+      
     }
 
     #  print status every X and save data to disk iteration 

@@ -14,9 +14,12 @@ import time
 import subprocess
 import sys
 import glob
+import pdb   # to use debugging , pdb.set_trace()
 
 ######## PARAMETER ------------------------
 
+SSH_PUBLICKEY_CONNECT = False   # set this to false if only to run it locally without dsh,ssh (when publickey ssh fails)
+CPU_USAGE = 0.5
 
 BEOWULFDIR = "../Helper/Beowulf_root/"  # here are the beowulf config settings 
 WORKINGDIR = os.getcwd()         # get current dir, need to change to this on each node
@@ -27,47 +30,27 @@ NODELOGDIR = "Nodelogs"
 nodefile = BEOWULFDIR + '/nodes.config'
 idfile = BEOWULFDIR + '/jobid.last'
 
-startbudget = 1
 
-interDispatchTime = 300           # time in seconds to wait until a full dispatch attempt is made again 
-start_run_id = 2
-nr_runs = 1                       # number of runs per unique job 
-
-defaultnodes = range(1,11)
-maxiter = 10000                 # nr. of MCMC iteration steps
-
-bestPredictors = 20 ## is obselete, keep for larger networks or remove
+interDispatchTime = 180           # time in seconds to wait until a full dispatch attempt is made again 
+start_run_id = 1
+nr_runs = 2                       # number of runs per unique job 
+defaultnodes = range(1,11)      # the nodes to compute
+maxiter = 50000                 # nr. of MCMC iteration steps
 
 
-############# THE DATA ------------------------------------------
+## Data ------------------------------------------
 
-networks = range(40,50)
-
-# weak predation:
-#networks = range(201, 231) + range(401,431) + range(601,631) + range(801,831)
-#networks = range(100801,100820)
-
-#networks = range(161,171)
-
-#networks = range(1000101,1000121) +  range(1000601,1000621) + range(1000801,1000821) 
-
-#networks = range(601,630) + range(801,830)
-
-#networks = range(100001,100031) + range(100101,100131) + range(100201,100231) + range(100301,100331) + range(100401,100431) + range(100601,100631) + range(100801,100831)
-
-#networks = range(100101,100131) + range(100201,100231) + range(100301,100331) + range(100401,100431) + range(100601,100631) + range(100801,100831)
-#networks = range(100201,100221) + range(100401,100421) + range(100601,100621) + range(100801,100821)
+datasets = []
+#datasets.append([range(1,2), "Synthetic-Stationary-InfSharing-epsilon0"])
+datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0"])
+datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.125"])
+datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.25"])
+datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.5"])
+datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon1"])
 
 
-
-## Use this, if the different data sets have varying numbers of nodes
+## add  exceptions here 
 nodehash = {}
-
-## e.g.:
-#nodehash[3011] = range(1,15)
-
-
-
 
 # read next available jobid from BEOWULF directory
 try:
@@ -91,48 +74,42 @@ JOBs = []
 
 # set vector of runs
 runids = range(start_run_id,(start_run_id + nr_runs)) 
+#pdb.set_trace()
 
-for network in networks:
-	for run in runids:
+for dset in datasets:
+	for network in dset[0]:
+		for run in runids:
 
-		if nodehash.has_key(network):
-			nodes = nodehash[network]
-		else:
-			nodes = defaultnodes
+			if nodehash.has_key(network):
+				nodes = nodehash[network]
+			else:
+				nodes = defaultnodes
+				
+			for node in nodes:
 
-		for node in nodes:
-
-			# check if log file already exists
-			lfile = NODELOGDIR + "/log_oID*_D" + str(network) + "_N" + str(node) + "_*"
+				# check if log file already exists
+				lfile = NODELOGDIR + "/log_oID*_D" + str(network) + "_N" + str(node) + "_*"
 									
-			# check if run already exists
-			dfile = RESULTDIR + "SC2D_m" + str(network) + "_i" + str(node) + "_run" + str(run)
+				# check if run already exists
+				dfile = RESULTDIR + "SC2D_m" + str(network) + "_i" + str(node) + "_run" + str(run)
 			
-			logexists = "no"
-			resexists = "no"
+				logexists = "no"
+				resexists = "no"
 
-			if len(glob.glob(lfile)) == 1:
-				logexists = "yes"
-			if os.path.exists(dfile):
-				resexists = "yes"
+				if len(glob.glob(lfile)) == 1:
+					logexists = "yes"
+				if os.path.exists(dfile):
+					resexists = "yes"
 				
 
-			# only create job when log file not exists, a result file not be overwritten by BRAM
-#			if resexists == "no" and logexists == "no":
-#			if logexists == "no":
-
-			## FIXME: Need to rethink this> check for existing log file is not really working since it does not considers different runs
-			##        So everything relayed on the existence of a result file. This checks now BRAM in order to be able to proceed with 
-			##        a MCMC chain (open, check chain and iterations, continue or exit)
-
-			JOBs.append([jobid, network, node, run, bestPredictors, maxiter, startbudget])
-			print "adding job: " + str(jobid) + ", model: " + str(network) + ", node: " + str(node) + ",run: " + str(run)
-				# increment, although, job not created, just to not conflict with running jobs ids and logs
-			jobid += 1
-
-#			else:
-
-#				print "skip job, log exists: " + logexists + ", result exists: " + resexists
+				# only create job when result and log file not exist
+				if resexists == "no" and logexists == "no":
+					JOBs.append([jobid, network, node, run, maxiter, dset[1]])
+					print "added job: " + str(jobid) + ", model: " + str(network) + ", node: " + str(node) + ",run: " + str(run) + ", dataprefix: " + dset[1]
+					# increment, although, job not created, just to not conflict with running jobs ids and logs
+					jobid += 1
+				else:
+					print "skip job, log exists: " + logexists + ", result exists: " + resexists
 
 
 
@@ -181,26 +158,43 @@ print cnodelist
 # is filled on the CPU detect loop below
 CPUs = []
 
-# read out the nr. of cores per node
-for cnode in cnodelist:
-	tmppipe = subprocess.Popen('dsh -m ' + cnode + ' -- grep processor /proc/cpuinfo ', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+if SSH_PUBLICKEY_CONNECT:
+	# read out the nr. of cores per node
+	for cnode in cnodelist:
+		tmppipe = subprocess.Popen('dsh -m ' + cnode + ' -- grep processor /proc/cpuinfo ', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	
+		# get output from pipe
+		procinfos = tmppipe.communicate()
+
+		# check for error
+		# check if there were errors (probably ssh failure)
+		if len(procinfos[1]) > 0:   # some text here
+			print("failure on cpuinfo " + cnode + ": " + procinfos[1] + "\n")
+			continue
+                                
+		# get nr. of cpus on the node
+		nrprocs = procinfos[0].count("processor") 
+		print("cnode: " + cnode + " , nr. CPUs: " + str(nrprocs))
+	
+		# save ,this matrix is used to assign jobs
+		CPUs.append([cnode, nrprocs, -1])
+else:
+	tmppipe = subprocess.Popen('grep processor /proc/cpuinfo ', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	
 	# get output from pipe
 	procinfos = tmppipe.communicate()
 
-	# check for error
 	# check if there were errors (probably ssh failure)
 	if len(procinfos[1]) > 0:   # some text here
-		print("failure on cpuinfo " + cnode + ": " + procinfos[1] + "\n")
-		continue
-                                
+		print("failure to get cpuinfo from /proc/cpuinfo\n")
+	                                
 	# get nr. of cpus on the node
 	nrprocs = procinfos[0].count("processor") 
-	print("cnode: " + cnode + " , nr. CPUs: " + str(nrprocs))
+	print("  local nr. cores: " + str(nrprocs))
 	
 	# save ,this matrix is used to assign jobs
-	CPUs.append([cnode, nrprocs, -1])
-
+	CPUs.append(['localhost', nrprocs, -1])
+	
 
 
 # loop as long there are jobs present
@@ -212,8 +206,11 @@ while len(JOBs) > 0:
 		cnode = nodeentry[0]
 
 		# get uptime info
-		tmppipe = subprocess.Popen("dsh -m " + cnode + " -- uptime", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-           
+		if SSH_PUBLICKEY_CONNECT:
+			tmppipe = subprocess.Popen("dsh -m " + cnode + " -- uptime", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		else:
+			tmppipe = subprocess.Popen("uptime", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			
         	# returns a list, first element -> stdout, second -> stderr
 		uptime = tmppipe.communicate()
 
@@ -246,9 +243,10 @@ while len(JOBs) > 0:
 			continue
 	
 		# since load avg is not normalized in respect to the nr. of cpus it can be just subtracted
-		slotnr = max(0, int(round(nodeentry[1] - nodeentry[2])))
-		
-		print("cnode: " + cnode + ", cpus: " + str(nodeentry[1]) + ", lavg: " + str(nodeentry[2]) + ", slots: " + str(slotnr))
+		cores_available = int(round(nodeentry[1] * CPU_USAGE))
+		slotnr = max(0, int(round(cores_available - nodeentry[2])))
+
+		print("cnode: " + cnode + ", cpus: " + str(nodeentry[1]) + ", lavg: " + str(nodeentry[2]) + ", slots: " + str(slotnr) + " (of " + str(cores_available) + " cores available)" )
 		
 		for slot in range(0,slotnr):
 
@@ -264,8 +262,8 @@ while len(JOBs) > 0:
 			
 
 			# define log file
-			nodelogstd = NODELOGDIR + "/log_oID" + str(nextjob[0]) + "_D" + str(nextjob[1]) + "_N" + str(nextjob[2]) + "_" + cnode
-			nodelogerr = NODELOGDIR + "/log_eID" + str(nextjob[0]) + "_D" + str(nextjob[1]) + "_N" + str(nextjob[2]) + "_" + cnode
+			nodelogstd = NODELOGDIR + "/log_" + nextjob[5] + "_job" + str(nextjob[0]) + "_id" + str(nextjob[1]) + "_n" + str(nextjob[2]) + "_" + cnode
+			nodelogerr = NODELOGDIR + "/err_" + nextjob[5] + "_job" + str(nextjob[0]) + "_id" + str(nextjob[1]) + "_n" + str(nextjob[2]) + "_" + cnode
 			
 
 			# create run file
@@ -274,7 +272,7 @@ while len(JOBs) > 0:
                         f = open(runfile, 'w')
 
                         # run the R code (niced)
-                        f.write('nice -n 19 cat Rstarter_dshjob.R | nice -n 19 R --vanilla --args ' + str(nextjob[1]) + " " +  str(nextjob[2]) + " " + str(nextjob[3]) + " " + str(nextjob[4]) + " " + str(nextjob[5])+ " " + str(nextjob[6])+  " >> " + nodelogstd + " 2>> " + nodelogerr + "\n")
+                        f.write("nice -n 19 cat Rstarter_beowulf.R | nice -n 19 R --vanilla --args " + str(nextjob[1]) + " " +  str(nextjob[2]) + " " + str(nextjob[3]) + " " + str(nextjob[4]) + " " + str(nextjob[5]) + " >> " + nodelogstd + " 2>> " + nodelogerr + "\n")
                 
                         f.close()
 
@@ -282,7 +280,13 @@ while len(JOBs) > 0:
 			os.system("chmod u+x " + runfile)
 
                         # exec the shell script on the node
-                        cmttmp = 'dsh -m ' + cnode + ' -- \" cd ' + WORKINGDIR + ' ; ' + runfile + ' \"  &'
+			if SSH_PUBLICKEY_CONNECT:
+				cmttmp = 'dsh -m ' + cnode + ' -- \" cd ' + WORKINGDIR + ' ; ' + runfile + ' \"  &'
+			else:
+			#	cmttmp = 'cd ' + WORKINGDIR + ' ; ' + runfile + ' &'
+				cmttmp = runfile + ' &'
+		
+			##pdb.set_trace()
  			subprocess.Popen(cmttmp, shell=True)
 
 			# no need to sleep but doing it anyways

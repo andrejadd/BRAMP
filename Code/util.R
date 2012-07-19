@@ -435,3 +435,19 @@ sampleValidateCPs <-function (candidateCPs, min.seglocs, E, E.other, Y, ALTERX, 
 
   return(cp.new)
 }
+
+
+
+## Sample k from a truncated Poisson distribution, (eq 4.5)
+sampleK <- function(mini, maxi, lambda, nb){
+  # AA: mini: minimal nr. of endges (set to 0)
+  #     maxi: max nr. edges (=smax)
+  #     lambda: nr. of expected edges
+  #     nb: 1
+  # it basically says, sample the probability of each k in [mini..maxi] following a poission distribution with given lambda
+  # this is the part with prob, then select one k in [mini..maxi] dependent on the probability
+  if( mini == maxi) { print("Error with sampling from a truncated Poisson: mini = maxi") }
+  out = sample( mini:maxi, nb, replace=TRUE, prob=lambda^(mini:maxi)/apply(matrix(mini:maxi, 1, maxi-mini+1), 2, factorial))
+  return(out)
+  
+}
