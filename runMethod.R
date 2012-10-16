@@ -35,7 +35,6 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
 
   ## the file we write to
   result.file = paste("./Results/Result_", data.prefix, "_id", dataid, "_n", target, "_run", runid, sep="")
-
   
   ## flag that tells if to proceed MCMC chain from previous run
   PROCEED.CHAIN = F
@@ -114,6 +113,9 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
 
     indata = paste("../Data/", data.prefix, "/Data_", data.prefix, "_id", dataid, ".Rdata",sep="")
 
+    ## try another format 
+    if(!file.exists(indata)) indata = paste("../Data/", data.prefix, "/Data_id", dataid, ".Rdata", sep="")
+ 	
     cat("[", method.name, "] Input: ", indata,"\n")
     
     ## the main sample data that is loaded is a target/predictor matrix [nodes x locations] and a SAC (spatial autocorrelation) matrix with

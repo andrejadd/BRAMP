@@ -4,3 +4,6 @@ Results
 Startscripts
 Nodelogs
 DEBUG.DATA
+nohup.log
+nohup.out
+.gitignore

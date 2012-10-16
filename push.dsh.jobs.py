@@ -31,22 +31,30 @@ nodefile = BEOWULFDIR + '/nodes.config'
 idfile = BEOWULFDIR + '/jobid.last'
 
 
-interDispatchTime = 180           # time in seconds to wait until a full dispatch attempt is made again 
+interDispatchTime = 30           # time in seconds to wait until a full dispatch attempt is made again 
 start_run_id = 1
-nr_runs = 2                       # number of runs per unique job 
-defaultnodes = range(1,11)      # the nodes to compute
-maxiter = 50000                 # nr. of MCMC iteration steps
-
+nr_runs = 1                       # number of runs per unique job 
+defaultnodes = range(1,11)        # the nodes to compute
+maxiter = 400000                  # nr. of MCMC iteration steps
+#maxiter = 1000
 
 ## Data ------------------------------------------
 
 datasets = []
-#datasets.append([range(1,2), "Synthetic-Stationary-InfSharing-epsilon0"])
-datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0"])
-datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.125"])
-datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.25"])
-datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.5"])
-datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon1"])
+datasets.append([range(201,230), "LOTKA.VOLTERRA"])
+datasets.append([range(801,830), "LOTKA.VOLTERRA"])
+datasets.append([range(401,430), "LOTKA.VOLTERRA"])
+datasets.append([range(601,630), "LOTKA.VOLTERRA"])
+
+
+# Synthetic data, Mondrian process
+# datasets.append([range(61,81), "SYNTHETIC"])
+
+# epsilon test data
+#datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.125"])
+#datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.25"])
+#datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon0.5"])
+#datasets.append([range(1,11), "Synthetic-Stationary-InfSharing-epsilon1"])
 
 
 ## add  exceptions here 
@@ -87,29 +95,33 @@ for dset in datasets:
 				
 			for node in nodes:
 
+				## ENABLE THIS CODE TO CHECK IF LOG OR RESULT FILE ALREADY EXISTS AND SKIP THIS JOB
+				## HOWEVER! IT'S BETTER TO DO THIS IN THE ACTUAL PROGRAM BECAUSE RESULTS FILE NAME CAN 
+				## CHANGE AND THIS HERE WON'T WORK ANYMORE
 				# check if log file already exists
-				lfile = NODELOGDIR + "/log_oID*_D" + str(network) + "_N" + str(node) + "_*"
+				# lfile = NODELOGDIR + "/log_oID*_D" + str(network) + "_N" + str(node) + "_*"
 									
 				# check if run already exists
-				dfile = RESULTDIR + "SC2D_m" + str(network) + "_i" + str(node) + "_run" + str(run)
+				# dfile = RESULTDIR + "SC2D_m" + str(network) + "_i" + str(node) + "_run" + str(run)
 			
-				logexists = "no"
-				resexists = "no"
+				# logexists = "no"
+				# resexists = "no"
 
-				if len(glob.glob(lfile)) == 1:
-					logexists = "yes"
-				if os.path.exists(dfile):
-					resexists = "yes"
+				# if len(glob.glob(lfile)) == 1:
+				# 	logexists = "yes"
+				# if os.path.exists(dfile):
+				# 	resexists = "yes"
 				
 
 				# only create job when result and log file not exist
-				if resexists == "no" and logexists == "no":
-					JOBs.append([jobid, network, node, run, maxiter, dset[1]])
-					print "added job: " + str(jobid) + ", model: " + str(network) + ", node: " + str(node) + ",run: " + str(run) + ", dataprefix: " + dset[1]
-					# increment, although, job not created, just to not conflict with running jobs ids and logs
-					jobid += 1
-				else:
-					print "skip job, log exists: " + logexists + ", result exists: " + resexists
+				#if resexists == "no" and logexists == "no":
+				JOBs.append([jobid, network, node, run, maxiter, dset[1]])
+				print "added job: " + str(jobid) + ", model: " + str(network) + ", node: " + str(node) + ",run: " + str(run) + ", dataprefix: " + dset[1]
+				# increment, although, job not created, just to not conflict with running jobs ids and logs
+				jobid += 1
+				
+                                #else:
+				#	print "skip job, log exists: " + logexists + ", result exists: " + resexists
 
 
 
