@@ -15,10 +15,10 @@ source(paste(codePath,"Tree.R",sep=""))
 
 
 
-runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.prefix=NULL, ENABLE.SAC=T) {  
+runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.prefix=NULL, ENABLE.SAC=T, path.prefix=NULL) {  
   
   ## remove all but arguments  
-  rm(list= ls()[ls()!="dataid" && ls()!= "target" && ls()!="runid" && ls()!="niter" && ls()!="data.prefix" && ls()!="ENABLE.SAC"])
+  rm(list= ls()[ls()!="dataid" && ls()!= "target" && ls()!="runid" && ls()!="niter" && ls()!="data.prefix" && ls()!="ENABLE.SAC"  && ls()!="path.prefix"])
 
   method.name = "BRAMPi"
   
@@ -38,6 +38,7 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
   
   ## flag that tells if to proceed MCMC chain from previous run
   PROCEED.CHAIN = F
+  RESULT.EXISTS = F
 
   ## flags result file existence
   result.exists.str = ""
@@ -52,13 +53,21 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
 
   ## check if a previous result file exists
   if(file.exists(result.file)) {
-    
-    ## open to see if I can generate more iterations
-    load(result.file)
+
+    ## using try because sometimes the file can be wrong (e.g. zero), an error would occur
+    tryCatch({    
+    	## open to see if I can generate more iterations
+    	load(result.file)
+    }, error = function(e) {
+        RESULT.EXISTS = F	
+	cat("[", method.name, "] Something wrong while trying to open existent Results file, starting MCMC to overwrite this file\n.")
+    })
 
     ## are all objects there to proceed chain?
     if(!is.null(Grid.obj) && !is.null(MCMC.chain) && !is.null(X) && !is.null(Y) && !is.null(HYPERvar)) {
 
+      RESULT.EXISTS = T
+      
       iters = MCMC.chain$Structsamples$iter
 
       last.iter = iters[[length(iters)]]
@@ -71,23 +80,21 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
         
         ## flag that we proceed this file, skips all the init stuff below!
         PROCEED.CHAIN = T
-
+	
         cat("[", method.name, "] Proceeding with chain from ", start.iter, " -> ", end.iter, "\n")
         
       } else {
         result.exists.str = paste("and chain has all iterations (", last.iter, " and required were ", end.iter, ").",sep="")
       } 
       
-    } else {
-      result.exists.str = "but chain data missing."
-    }
+    } 
     
   }
 
 
   ## if a result exists and the chain is ok or some data does not exist (old version), do nothing
-  #if(RESULT.EXISTS && !PROCEED.CHAIN) {
-  if(nchar(result.exists.str) > 0) {
+  if(RESULT.EXISTS && !PROCEED.CHAIN) {
+  #if(nchar(result.exists.str) > 0) {
     ## nothing to do
     cat("[", method.name, "] Skipping run: result file exists (",result.file,") ",result.exists.str, "\n")
     cat("[", method.name, "] Exit.\n")
@@ -111,10 +118,10 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
 
     # FIXED.INIT.EDGES=seq(1,12) ## use for the Outer Hebrides data when soil attributes (node 1..12) shall be fixed
 
-    indata = paste("../Data/", data.prefix, "/Data_", data.prefix, "_id", dataid, ".Rdata",sep="")
+    indata = paste("../Data/", path.prefix, "/Data_", data.prefix, "_id", dataid, ".Rdata",sep="")
 
     ## try another format 
-    if(!file.exists(indata)) indata = paste("../Data/", data.prefix, "/Data_id", dataid, ".Rdata", sep="")
+    if(!file.exists(indata)) indata = paste("../Data/", path.prefix, "/Data_id", dataid, ".Rdata", sep="")
  	
     cat("[", method.name, "] Input: ", indata,"\n")
     
@@ -122,8 +129,8 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
     ## dame size. The SAC matrix has for each target and location a SAC node which is included into the linear regression 
     load(indata)
     
-    ## number of putative parents (sign q)
-    nr.parents=dim(Model$Ymatrix)[1]-1
+    ## number of putative parents, excluding self-loop (sign q)
+    nr.parents=nrow(Model$Ymatrix) - 1
     
     ## Maximum number of parent nodes (fan-in restriction). A low limit is needed 
     ## for birth proposals based on precomupted posterior distribution (method 4),

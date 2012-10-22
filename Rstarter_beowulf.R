@@ -5,6 +5,7 @@ target  = commandArgs()[5]
 run = commandArgs()[6]
 maxiter = commandArgs()[7]
 data.prefix = commandArgs()[8]
+path.prefix = commandArgs()[9]
 
-runMethod(dataid=as.integer(network), target=as.integer(target), runid=as.integer(run), niter=as.integer(maxiter), data.prefix=data.prefix)
+runMethod(dataid=as.integer(network), target=as.integer(target), runid=as.integer(run), niter=as.integer(maxiter), data.prefix=data.prefix, path.prefix=path.prefix)
 
