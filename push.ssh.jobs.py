@@ -145,9 +145,10 @@ CPUs = []
 if SSH_PUBLICKEY_CONNECT:
 	# read out the nr. of cores per node
 	for cnode in cnodelist:
-		tmppipe = subprocess.Popen('dsh -m ' + cnode + ' -- grep processor /proc/cpuinfo ', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		#tmppipe = subprocess.Popen('dsh -m ' + cnode + ' -- grep processor /proc/cpuinfo ', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	
-		# get output from pipe
+		tmppipe = subprocess.Popen('ssh ' + cnode + ' grep processor /proc/cpuinfo ', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		# get output from pipe/
 		procinfos = tmppipe.communicate()
 
 		# check for error
@@ -191,7 +192,9 @@ while len(JOBs) > 0:
 
 		# get uptime info
 		if SSH_PUBLICKEY_CONNECT:
-			tmppipe = subprocess.Popen("dsh -m " + cnode + " -- uptime", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			#tmppipe = subprocess.Popen("dsh -m " + cnode + " -- uptime", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+			tmppipe = subprocess.Popen("ssh " + cnode + " uptime", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		else:
 			tmppipe = subprocess.Popen("uptime", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			
@@ -265,7 +268,9 @@ while len(JOBs) > 0:
 
                         # exec the shell script on the node
 			if SSH_PUBLICKEY_CONNECT:
-				cmttmp = 'dsh -m ' + cnode + ' -- \" cd ' + WORKINGDIR + ' ; ' + runfile + ' \"  &'
+				cmttmp = 'ssh ' + cnode + ' \" cd ' + WORKINGDIR + ' ; ' + runfile + ' \"  &'
+				
+				#cmttmp = 'dsh -m ' + cnode + ' -- \" cd ' + WORKINGDIR + ' ; ' + runfile + ' \"  &'
 			else:
 			#	cmttmp = 'cd ' + WORKINGDIR + ' ; ' + runfile + ' &'
 				cmttmp = runfile + ' &'
