@@ -19,7 +19,7 @@ import pdb   # to use debugging , pdb.set_trace()
 ######## PARAMETER ------------------------
 
 SSH_PUBLICKEY_CONNECT = True   # set this to false if only to run it locally without dsh,ssh (when publickey ssh fails)
-CPU_USAGE = 0.4
+CPU_USAGE = 0.5
 
 BEOWULFDIR = "../Helper/Beowulf_root/"  # here are the beowulf config settings 
 WORKINGDIR = os.getcwd()         # get current dir, need to change to this on each node
@@ -32,8 +32,8 @@ idfile = BEOWULFDIR + '/jobid.last'
 
 
 interDispatchTime = 30           # time in seconds to wait until a full dispatch attempt is made again 
-start_run_id = 2
-nr_runs = 1                      # number of runs per unique job 
+start_run_id = 1
+nr_runs = 2                      # number of runs per unique job 
 defaultnodes = range(1,11)      # the nodes to compute
 maxiter = 50000                 # nr. of MCMC iteration steps
 
@@ -42,11 +42,19 @@ maxiter = 50000                 # nr. of MCMC iteration steps
 
 datasets = []
 
-#datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0", "SYNTHETIC.INFSHARING/MONDRIAN_CP"])
-datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0.125", "SYNTHETIC.INFSHARING/MONDRIAN_CP"])
-datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0.25", "SYNTHETIC.INFSHARING/MONDRIAN_CP"])
-datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0.5", "SYNTHETIC.INFSHARING/MONDRIAN_CP"])
-datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.1", "SYNTHETIC.INFSHARING/MONDRIAN_CP"])
+## Lotka-Volterra Simulated data
+#datasets.append([range(201,231), "LOTKA.VOLTERRA"])
+#datasets.append([range(801,831), "LOTKA.VOLTERRA", "LOTKA.VOLTERRA"])
+#datasets.append([range(401,431), "LOTKA.VOLTERRA", "LOTKA.VOLTERRA"])
+#datasets.append([range(601,631), "LOTKA.VOLTERRA"])
+
+
+## Information Sharing data with different epsilons
+datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0", "SYNTHETIC.INFSHARING/MONDRIAN_CP/RndNodes.WithoutErrorBias"])
+datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0.125", "SYNTHETIC.INFSHARING/MONDRIAN_CP/RndNodes.WithoutErrorBias"])
+datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0.25", "SYNTHETIC.INFSHARING/MONDRIAN_CP/RndNodes.WithoutErrorBias"])
+datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.0.5", "SYNTHETIC.INFSHARING/MONDRIAN_CP/RndNodes.WithoutErrorBias"])
+datasets.append([range(1,21), "SYNTHETIC.INFSHARING.EPSILON.1", "SYNTHETIC.INFSHARING/MONDRIAN_CP/RndNodes.WithoutErrorBias"])
 
 
 
