@@ -16,7 +16,7 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
   acceptMove = array(0,7)
 
   if(is.null(MCMC.chain)) {
-    MCMC.chain = list(Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list()), counters=list(), delta.snr = c() )
+    MCMC.chain = list(Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list()), counters=list(), delta.snr = c(), params=matrix(0,nrow=0, ncol=6) )
   }
   
   ## everything important stored here and saved at the end to a file
@@ -112,7 +112,6 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
      ## sigma (variance) hyper parameters
      alpha.var = HYPERvar$alpha.var
      beta.var = HYPERvar$beta.var
-       
     
      ## loop segment
      for(segidx in segidx.vec) {
@@ -192,6 +191,8 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     
      ## alpha + (nr.segs * nr. active parents)/2 
      alpha.snr = HYPERvar$alpha.snr + (length(segidx.vec) * length(parents.vec))/2
+     ## save alpha.snr back to HYPERvar??
+
      
      ## sample signal-to-noise delta 
      inv.delta.snr  = rgamma(1, shape=alpha.snr, scale=(1/beta.snr));
@@ -231,7 +232,11 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
       # save data, this is written to the major outfile
       MCMC.chain$Structsamples$struct[[length(MCMC.chain$Structsamples$struct) + 1]] = Grid.obj$edge.struct
       MCMC.chain$Structsamples$iter[[length(MCMC.chain$Structsamples$iter) + 1]] = r
+
+      MCMC.chain$params = rbind(MCMC.chain$params, c(HYPERvar$alpha.snr, HYPERvar$beta.snr, HYPERvar$delta.snr, HYPERvar$alpha.var, HYPERvar$beta.var, Grid.obj$sigma.var))
+      
       MCMC.chain$delta.snr = c(MCMC.chain$delta.snr, HYPERvar$delta.snr)
+      
       MCMC.chain$counters[[length(MCMC.chain$counters) + 1]] = list(cptMove=cptMove, acceptMove=acceptMove)
  
       
