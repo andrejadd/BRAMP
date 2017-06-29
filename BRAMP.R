@@ -15,28 +15,28 @@ source(paste(codePath,"Tree.R",sep=""))
 
 
 
-runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.prefix=NULL, ENABLE.SAC=T, path.prefix=NULL) {  
+BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, ENABLE.SAC=T, result.file = 'none_sense_file', SAC.nodes=NULL) {  
   
   ## remove all but arguments  
-  rm(list= ls()[ls()!="dataid" && ls()!= "target" && ls()!="runid" && ls()!="niter" && ls()!="data.prefix" && ls()!="ENABLE.SAC"  && ls()!="path.prefix"])
+  ## rm(list= ls()[ls() != "X"ls()!="indata" && ls()!= "target" && ls()!="nr_iterations" && ls()!="ENABLE.SAC"  && ls()!="result.file"])
 
-  method.name = "BRAMPi"
   
-  end.iter = niter
+  method.name = "BRAMP"
+  
+  ## Start with this iteration (required when a simulation is continued).
+  end.iter = nr_iterations
 
-  ## the Mondrian process start budget
+  ## The Mondrian process start budget.
   start.budget = 1
   
-  ## the start of iteration can be changed through loading an already existing result file
+  ## The start of iteration can be changed through loading an already existing result file.
   start.iter = 1
  
   ## Unix time (seconds since 1970), should be fine for the cluster, might add/subtract milliseconds 
   set.seed(as.numeric(Sys.time()))
 
-  ## the file we write to
-  result.file = paste("./Results/Result_", data.prefix, "_id", dataid, "_n", target, "_run", runid, sep="")
-  
   ## flag that tells if to proceed MCMC chain from previous run
+  ## ! Do not change, this is done by checks below !
   PROCEED.CHAIN = F
   RESULT.EXISTS = F
 
@@ -46,69 +46,98 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
   ## set these here, so check below will not fail (otherwise I would use exists() but even then I have to check for NULL)
   Grid.obj = NULL
   MCMC.chain = NULL
-  X = NULL
-  Y = NULL
 
-  cat("[", method.name, "] data id", dataid, ", target: ", target, ", runid: ", runid, "\n")
-
-  ## check if a previous result file exists
+  cat("[", method.name, "] Target node: ", target, "\n")
+ 
+  ##
+  ## Check if a result file was passed and if it exists.
+  ##  If yes, extract the MCMC chain and the corresponding data (which means no data file is needed)
+  ##  and proceed running the chain, if the number of iterations ('nr_iteration') passed to BRAMP() is larger 
+  ##  than the chain in the result file.
+  ##
+  
   if(file.exists(result.file)) {
 
-    ## using try because sometimes the file can be wrong (e.g. zero), an error would occur
+    ## Try to open file
     tryCatch({    
-    	## open to see if I can generate more iterations
+      
+      ## Load previous MCMC chain, includes the 'mcmc_result' data structure.
     	load(result.file)
+      
     }, error = function(e) {
         RESULT.EXISTS = F	
-	cat("[", method.name, "] Something wrong while trying to open existent Results file, starting MCMC to overwrite this file\n.")
+	cat("[", method.name, "] Something wrong while trying to open existing results file, starting simulation from scratch.\n.")
     })
 
-    ## are all objects there to proceed chain?
-    if(!is.null(Grid.obj) && !is.null(MCMC.chain) && !is.null(X) && !is.null(Y) && !is.null(HYPERvar)) {
-
-      RESULT.EXISTS = T
+    ##
+    ## Check if the 'mcmc_result' data structure was loaded
+    ##
+    if(!is.null(mcmc_result)) {
       
+      RESULT.EXISTS = T
+    
+      ## 
+      ## Extract necessary data from the previous MCMC run
+      ## This also includes the data itself (X and Y) and the hyper-parameters
+      ## 
+      MCMC.chain = mcmc_result$MCMC.chain
+      Grid.obj = mcmc_result$Grid.obj
+      X = mcmc_result$X
+      Y = mcmc_result$Y
+      HYPERvar = mcmc_result$HYPERvar
+      
+      ## extract the number of iterations this chain was run before  
       iters = MCMC.chain$Structsamples$iter
 
+      ## this is the last iteration number
       last.iter = iters[[length(iters)]]
 
-      ## check if less iters are in the chain (the added value just makes sure we don't start senseless for small iteration amount)
+      ## check if less iterations are in the chain than requested
+      ## (The added value of 100 is to make sure we don't start senseless for small amounts of iterations)
       if( (last.iter + 100) < end.iter) {
 
         ## set the iteration from which to continue
         start.iter = last.iter + 1
         
-        ## flag that we proceed this file, skips all the init stuff below!
+        ## flag that we will proceed with this MCMC chain. This skips all the initialization stuff below.
         PROCEED.CHAIN = T
 	
         cat("[", method.name, "] Proceeding with chain from ", start.iter, " -> ", end.iter, "\n")
         
       } else {
-        result.exists.str = paste("and chain has all iterations (", last.iter, " and required were ", end.iter, ").",sep="")
-      } 
+        
+        result.exists.str = paste("and chain has all iterations (", last.iter, " and requested were ", end.iter, ").",sep="")
+      
+        } 
       
     } 
     
   }
 
 
-  ## if a result exists and the chain is ok or some data does not exist (old version), do nothing
+  ## If the result file exists and the chain is complete given the requested number of iterations, exit..
   if(RESULT.EXISTS && !PROCEED.CHAIN) {
-  #if(nchar(result.exists.str) > 0) {
-    ## nothing to do
-    cat("[", method.name, "] Skipping run: result file exists (",result.file,") ",result.exists.str, "\n")
-    cat("[", method.name, "] Exit.\n")
-    return(1)
+  
+      cat("[", method.name, "] Exiting simulation: result file exists ", result.exists.str, "\n")
+     
+      return(1)
       
   }
   
-  ## look if we start a chain
+  ## 
+  ## This is executed if we do not proceed from an old chain.
+  ##  It will initialize some variables and load the input data.
   if(!PROCEED.CHAIN) {
 
-    ## this will hold the actual values of the chain states, I declare it here because it is passed and might be filled
-    ## when I load a already existing chain
+    ## This will hold the actual values of the chain states.
     MCMC.chain = NULL
 
+    ## number of putative parents
+    nr.parents = ncol(X)
+    
+    ## Add the bias (intercept) node; this is just a '1' for the first column.
+    X = cbind(X,array(1,length(X[,1])))
+    
     ## This variable is used to tell the method not to alter some specific initially set edges during run
     ## It should be NULL if no fixed edges are assumed (except of course the bias and optional the SAC edge)
     ##    otherwise it is a vector with the parent node indices that define the fixed incoming edges
@@ -117,85 +146,66 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
     FIXED.INIT.EDGES=NULL
 
     # FIXED.INIT.EDGES=seq(1,12) ## use for the Outer Hebrides data when soil attributes (node 1..12) shall be fixed
-
-    indata = paste("../Data/", path.prefix, "/Data_", data.prefix, "_id", dataid, ".Rdata",sep="")
-
-    ## try another format 
-    if(!file.exists(indata)) indata = paste("../Data/", path.prefix, "/Data_id", dataid, ".Rdata", sep="")
- 	
-    cat("[", method.name, "] Input: ", indata,"\n")
-    
-    ## the main sample data that is loaded is a target/predictor matrix [nodes x locations] and a SAC (spatial autocorrelation) matrix with
-    ## dame size. The SAC matrix has for each target and location a SAC node which is included into the linear regression 
-    load(indata)
-    
-    ## number of putative parents, excluding self-loop (sign q)
-    nr.parents=nrow(Model$Ymatrix) - 1
+   
     
     ## Maximum number of parent nodes (fan-in restriction). A low limit is needed 
     ## for birth proposals based on precomupted posterior distribution (method 4),
     ## otherwise you can set smax = q
     smax = min(8,nr.parents);
     
-    ## minimum number of locations in a segment
+    ## Minimum number of locations in a segment. Don't make this too small, otherwise there is 
+    ## not enough data to make proper calculations. 
     minSegsize = 9
     
-    cat("[", method.name, "] locs: " , Model$xlocs*Model$ylocs, " with x: ",  Model$xlocs, " , y: ",  Model$ylocs, ", start.budget: ", start.budget, ", parents: ", nr.parents, ", fan-in: ", smax, ", minSegsize: ", minSegsize, "\n")
+    cat("[", method.name, "] Number locations: " , xlocs * ylocs, " with x: ",  xlocs, " , y: ",  ylocs, ", start.budget: ", start.budget, ", parent nodes: ", nr.parents, ", fan-in: ", smax, ", minimum segment size: ", minSegsize, "\n")
 
+  
+   
 
-    ## NOTE: fullData and sacData are already scaled for the hebrides data, doing it again via scale() does not bring changes
-    ##       just keeping it for other maybe not scaled data
-    ## Build response Y and predictor X
-    ## extract the target values and scale
-    Y = as.vector(scale(Model$Ymatrix[target,]))
-    
-    ## Helper vector of putative predictor nodes (default all) except the target itself
-    posTF=c(1:(nr.parents + 1))[-c(target)]
-    
-    ## extract only predictors (excluding the target defined in posTF) and scale
-    X = scale(t(Model$Ymatrix[posTF,]))
-    
-    ## add the bias node
-    X = cbind(X,array(1,length(X[,1])))
-
-    ## check if we want spatial autocorrelation (SAC Nodes)
+    ## Check if we want spatial autocorrelation (SAC Nodes).
     if(ENABLE.SAC) {
-
-      ## check if SAC nodes already provided
-      if(!is.null(Model$SAC.nodes)) {
+      
+      ## Check if SAC nodes already provided.
+      if(!is.null(SAC.nodes)) {
         
-        ## add a constant vector to predictor data (representing the bias nodes) and the spatial autocorrelation data of the target node
-        X = cbind(X, as.vector(scale(Model$SAC.nodes[target,])))
+        ## Add a constant vector to predictor data (representing the bias nodes) and the spatial autocorrelation data of the target node.
+        X = cbind(X, as.vector(scale(SAC.nodes[target,])))
         
       } else {
-        ## otherwise, try to calculate the SAC nodes
-        spatAC = spatAutoCorrelation(Y,Model$xlocs, Model$ylocs)
+        ## .. otherwise, try to calculate the SAC nodes.
+        spatAC = spatAutoCorrelation(Y, xlocs, ylocs)
         
-        ## scale the SAC node and append to X
+        ## Scale the SAC node and append to the design matrix 'X'.
         X = cbind(X, scale(spatAC))
       }
       
-      additional.parents = 2  # bias and SAC parent
+      ## Define the additional incoming edges: the bias and the SAC node
+      additional.parents = 2  
       
-      cat("[", method.name, "] enabled spatial autocorrelation (SAC) node\n")
+      cat("[", method.name, "] Enabled spatial autocorrelation (SAC) node\n")
       
     } else {
       
-      additional.parents = 1 # the bias parent
+      ## Only define the bias as additional edge, since the SAC node is not included.
+      additional.parents = 1 
 
-      cat("[", method.name, "] disabled spatial autocorrelation (SAC) node\n")
+      cat("[", method.name, "] Disabled spatial autocorrelation (SAC) node\n")
 
     }
 
-    ## INIT hyper parameters
-    ## for the signal-to-noise ratio, delta2 ~ IG(alphad2,betad2)
+    ## Initialize the hyper-parameters
+    ## For the signal-to-noise (SNR) ratio: delta2 ~ IG(alpha.snr,beta.snr)
     alpha.snr = 2
     beta.snr = 0.2
-    v0 = 1 # as in BRAM
+    v0 = 1 
     
+    ## Inverse Gamma for the SNR
+    delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr))
+
+                       
     HYPERvar = list( c = 0.5, # for edge move proposals
       alpha.var = v0/2, beta.var = v0/2,   # for weight variance sigma2, v0/2 as in Marcos AISTATs paper
-      alpha.snr=alpha.snr, beta.snr=beta.snr, delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr)),  # for signal-to-noise (snr) delta2 ~ IG(alphad2, betad2)
+      alpha.snr=alpha.snr, beta.snr=beta.snr, delta.snr = delta.snr,  
       alphalbd = 1, betalbd = 0.5  # for parent nodes
       )
     
@@ -211,15 +221,15 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
     #}
     
     cat("[", method.name, "] Init.. ")
-  
+ 
     ## Initialisation of first iteration parameters
      Grid.obj = initEngine(X=X,
       HYPERvar=HYPERvar,
       additional.parents=additional.parents,
       nr.parents=nr.parents,
       start.budget=start.budget,
-      xlocs=Model$xlocs,
-      ylocs=Model$ylocs,
+      xlocs=xlocs,
+      ylocs=ylocs,
       minSegsize=minSegsize,
       smax=smax,
       target=target,
@@ -238,19 +248,28 @@ runMethod <- function(dataid=NULL, target=NULL, runid=NULL, niter=NULL, data.pre
   }
   
     
-    
-  ## run niter iterations
+  
+  ##
+  ##  
+  ## Execute the main MCMC procedure in main()
+  ##
+  ##
   cat("[", method.name, "] Starting MCMC chain.. \n")
+  
   result = main(X, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar)
+  
+  
+  ## Add the hyper variables for further reference
+  ## Will be used when chain is continued in another run. 
+  result$HYPERvar = HYPERvar
+  
+  ## Add the predictor data and target node data for further reference
+  result$X = X
+  result$Y = Y
+  
   cat("\n---------------------------------------------------\n")
-  cat("End of iterations")
+  cat("End of MCMC iterations")
   
-  cat("\n[END] attempting to write MCMC.chain and Grid.obj to: ", result.file, "\n")
-
-  ## retrieve chain and last state
-  MCMC.chain = result$MCMC.chain
-  Grid.obj = result$Grid.obj
-  
-  save(MCMC.chain, Grid.obj, X, Y, HYPERvar, file = result.file)
+  return(result)
   
 }

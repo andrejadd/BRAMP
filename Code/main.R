@@ -269,8 +269,8 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
     #  print status every X and save data to disk iteration 
     if((r %% 500) == 0) {
-       cat("\nr: ", r, "\t")
-       cat("memory (MByte): ", object.size(MCMC.chain)/1048600)
+       cat("\nIteration: ", r, "\t")
+       cat("Memory used (MByte): ", object.size(MCMC.chain)/1048600)
        
      }
         

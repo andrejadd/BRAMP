@@ -4,7 +4,8 @@ This is the software implementation of the Bayesian regression and Mondrian proc
 
 `Aderhold, Andrej, Dirk Husmeier, and V. Anne Smith. "Reconstructing ecological networks with hierarchical Bayesian regression and Mondrian processes." AISTATS. 2013.`
 
-Needs cleaning up and proper generic entry function (replacing current run_Method.R) to make it easier to use for everyone else. 
+The main function is BRAMP(), which takes an Rdata input file, the number of iterations to run, and the target node for which to run the simulation as input. See run_Example.R on how to call BRAMP().
+
 
 
 ## TODO
@@ -16,6 +17,3 @@ Needs cleaning up and proper generic entry function (replacing current run_Metho
 - add the synthetic data generator? or better to leave it in one package? 
 - put in basic evaluation script that is currently in another place.
 
-Maybe not important for future use because its specific to an SGE/PBS cluster.:
-
-- make the push.dsh.jobs.py script easier to read, maybe use a parameter vector such as job.params = [waittime, dataids, targets, run.ids, iterations, additional.param]. From this the JOB.queue is then created and I can have all important in one line
