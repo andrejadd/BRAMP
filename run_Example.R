@@ -6,7 +6,7 @@ target_node = 1
 
 ## Input data file and result file
 input_data = "Data/Data_id10.Rdata"
-result_file = paste("Results/Data_id10_target", target_node, ".Rdata", sep="")
+result_file = paste("Data_id10_target", target_node, ".Rdata", sep="")
 
 
 
