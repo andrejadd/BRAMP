@@ -15,15 +15,14 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
   cptMove = array(0,7)
   acceptMove = array(0,7)
 
+  ## Initialize MCMC.chain data structure.
   if(is.null(MCMC.chain)) {
     MCMC.chain = list(Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list()), counters=list(), delta.snr = c(), params=matrix(0,nrow=0, ncol=6) )
   }
   
-  ## everything important stored here and saved at the end to a file
-  ## Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list())
-  
-  ## when to start saving the regression coefficients (takes up memory)
-  start.save.regr = 1 #end.iter - floor(end.iter * 1/5)
+  ## Specify from what iteration on to start saving the regression coefficients 
+  ## (This takes up memory)
+  start.save.regr = 1 # or some time later: end.iter - floor(end.iter * 1/5)
 
   # do main iteration
   r = start.iter
@@ -48,9 +47,9 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     cD = 0.2
     rho[1] = cD * min(1, mean.nr.segments / (k+1) )                                            ## segment cut depends on mean nr. of segments  
     if(k == 0) { rho[2] = rho[1] } else { rho[2] = rho[1]+ cD * min(1, k / mean.nr.segments) } ## segment merge
-    if(k > 0) { rho[3] = rho[2]+(1-rho[2])/3 } else{ rho[3] = rho[2] }        ## cp shift, will be edge move if ignored below
+    if(k > 0) { rho[3] = rho[2]+(1-rho[2])/3 } else{ rho[3] = rho[2] }                         ## cp shift, will be edge move if ignored below
 
-    ## Sample u to choose one of the 4 moves : CP birth, CP death, CP shift, Update phases.
+    ## Sample a uniform number 'u1' to choose one of the 4 moves : CP birth, CP death, CP shift, Update phases.
     u1 = runif(1, 0, 1)
     
     ## FIXME, see above
@@ -60,34 +59,39 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     
     ## Run 1 out of the 4 moves (depending on the value of u)
     if (u1 < rho[1]){
-      ## Segment split (birth) move: return the new model if the move is accepted, the previous model otherwise.
+      
+      ## Make the Mondrian split movement.
       out = cut.segment(Grid.obj, data, Y, HYPERvar, DEBUGLVL)
 
     } else if(u1 < rho[2]){
      
-      ## Segment merge 
+      ## Make the Mondrian merge movement.
       out = merge.segment(Grid.obj, data, Y, HYPERvar, DEBUGLVL)
 
     } else if(u1 < rho[3]){
 
-      ## shift cut 
+      ## Make the Mondrian shift movement of a boundary (cut). 
       out = shift.cut(Grid.obj, data, Y, HYPERvar, DEBUGLVL, counter=r)
 
 
     } else {
+      
       ## Update phases: return the new model if the move is accepted, the previous model otherwise.
       out = segment.update(Grid.obj, data, Y, HYPERvar, DEBUGLVL)
-    }
     
-    ## apply changes made in the move functions
+      }
+    
+    ## Apply changes made in the move functions.
     Grid.obj = out$Grid.obj
     cptMove[out$move] = cptMove[out$move]+1
     acceptMove[out$move] = acceptMove[out$move]+out$accept
 
     ## If some move was accepted or the edge moves were selected, we need to update the edge weights
-    ## FIXME: it would be wiser to always update all segment weights, this is to gain performance but check
-    ##        the draw back of this!
-   if(out$accept == 1 || out$move > 3) {
+    ##
+    ## NOTE: It might be wiser to always update the edge weights of each segment. This here is done
+    ##       to gain some computing performance. Check if inference quality get much better if we do 
+    ##       the update more often (I doubt it).
+    if(out$accept == 1 || out$move > 3) {
 
 ## --------------- UPDATE PARAMETERS ----------------------------------------------------------------------
 
@@ -113,7 +117,7 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
      alpha.var = HYPERvar$alpha.var
      beta.var = HYPERvar$beta.var
     
-     ## loop segment
+     ## Loop over each segment.
      for(segidx in segidx.vec) {
         
        ## get nr. of observations (locations)
@@ -225,59 +229,67 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
 
     
-    ## Save Data
-    ## every 10th iteration (to save memory and MCMC thin-out)
+    ## Save the MCMC chain with a thin-out of 10, i.e. only every 10th iteration to save memory.
     if((r %% 10) == 0) {
 
-      # save data, this is written to the major outfile
+      ## Save the edge structure and the number of the iteration
       MCMC.chain$Structsamples$struct[[length(MCMC.chain$Structsamples$struct) + 1]] = Grid.obj$edge.struct
       MCMC.chain$Structsamples$iter[[length(MCMC.chain$Structsamples$iter) + 1]] = r
-
-      MCMC.chain$params = rbind(MCMC.chain$params, c(HYPERvar$alpha.snr, HYPERvar$beta.snr, HYPERvar$delta.snr, HYPERvar$alpha.var, HYPERvar$beta.var, Grid.obj$sigma.var))
       
+      ## Save some of the parameters - important for continuing a run of the chain.
+      MCMC.chain$params = rbind(MCMC.chain$params, c(HYPERvar$alpha.snr, HYPERvar$beta.snr, HYPERvar$delta.snr, HYPERvar$alpha.var, HYPERvar$beta.var, Grid.obj$sigma.var))
       MCMC.chain$delta.snr = c(MCMC.chain$delta.snr, HYPERvar$delta.snr)
       
+      ## Save the counters record the number of accepted moves - can be used for later analysis.
       MCMC.chain$counters[[length(MCMC.chain$counters) + 1]] = list(cptMove=cptMove, acceptMove=acceptMove)
  
-      
-      ## only save in later stage, because needs memory
+      ##
+      ## Only save in later stage, because needs memory
+      ##
       if(r > start.save.regr) {
 
+        ## Save the edge weights, i.e. regression coefficients.
         MCMC.chain$Structsamples$regression.coeff[[length(MCMC.chain$Structsamples$regression.coeff) + 1]] = Grid.obj$edge.weights
 
 
-	## check if segmentation exists
+	      ## Check if segmentation exists.
       	if(max(Grid.obj$segment.map) > 1) {
-        			     ## save segmentation matrix only if there are more than one segment
-           MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = Grid.obj$segment.map
-           #Structsamples$mondrian.tree[[length(Structsamples$mondrian.tree) + 1]] = Grid.obj$mondrian.tree
-        
+      	  
+          ## Save segmentation matrix only if there are more than one segment
+          MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = Grid.obj$segment.map
+          
         } else {
-          ## only a single segment: put placeholder to save memory
+          
+          ## This means that there is only a single segment, use a place holder '1', instead of saving the whole
+          ## segment matrix
           MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = 1
         }
 
 
       } else {
+        
+        ## Do not save any valueable information, instead put a placeholder into the list for the regression coefficients
+        ##  and the segmentation map. 
+        ## The reason for this is to use the index of these lists as a lookup for the iteration in the chain.
         MCMC.chain$Structsamples$regression.coeff[[length(MCMC.chain$Structsamples$regression.coeff) + 1]] = 1
         MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = NaN ## means nothing was recorded
+      
       }
 
-      
-      
     }
 
-    #  print status every X and save data to disk iteration 
+    
+    ##  Prints the memory usage of the MCMC.chain data structure. 
     if((r %% 500) == 0) {
        cat("\nIteration: ", r, "\t")
        cat("Memory used (MByte): ", object.size(MCMC.chain)/1048600)
        
      }
         
-  } # end iteration
+  } ## End of main MCMC iteration loop
 
- 
- 
+
   return(list(MCMC.chain=MCMC.chain, Grid.obj=Grid.obj))
+
 }
 

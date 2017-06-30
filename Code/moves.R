@@ -403,9 +403,12 @@ segment.update <- function(Grid.obj, X, Y, HYPERvar,  DEBUGLVL = 0) {
 
 }
 
+
+##################################################################################################
 ##
-## edge move function for homogeneous structure
+## Do an edge move, i.e. either delete, add, or flip a parent node. 
 ##
+##################################################################################################
 
 edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DEBUGLVL = 0){
 
@@ -421,21 +424,27 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
   ## Current number of edges
   nr.edges = sum(Grid.obj$edge.struct) - Grid.obj$additional.parents 
 
-  ## in the case there are fixed edges we need to ignore these (because we are not allowed to operate on them)
-  ## This is of course not true for the edge birth move, where we look if the max. nr. of edges is reached
+  ## In the case there are fixed edges we need to ignore these (because we are not allowed to operate on them)
+  ## This is of course not true for the edge birth move, where we look if the max. nr. of edges is reached.
   if(!is.null(Grid.obj$FIXED.INIT.EDGES)) {
     nr.edges = nr.edges - length(Grid.obj$FIXED.INIT.EDGES)
   }
   
-  ## Choose between flip move and other moves
+  ## Choose between flip move and other moves.
   choice = runif(1, 0, 1)
 
-  ## Flip Move
+  
+  ##
+  ## Exchange two parents (add one, delete one at the same time), i.e. flip two edges.
+  ##
   if(nr.edges > 0 && choice > 0.75) {    
 
     if(DEBUGLVL == 1)  cat("\n[edges] flip ..") 
 
-    ## flip move is 4
+    ## Variable move describing the move type.  
+    ##   5 : edge birth
+    ##   6 : edge death
+    ##   7 : edge flip
     move = 7
 
     ## sample from the existing edges
@@ -499,15 +508,18 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
         not.max.edges = (length(Grid.obj$FIXED.INIT.EDGES) + nr.edges) < Grid.obj$smax
     }
     
-    ##########################
-    ## Birth of an edge move
-    ##########################
+    ##
+    ## Add a parent, i.e. birth of an edge
+    ##
     if(u < rho3[1] && not.max.edges && (length(which(Grid.obj$edge.struct == 0)) > 0 ) ){
 
 
       if(DEBUGLVL == 1)  cat("\n[edges] birth ..") 
 
-      ## Variable move describing the move type  (1= Edge birth, 2= Edge death, 3= Update coefficient)
+      ## Variable move describing the move type  
+      ##   5 : edge birth
+      ##   6 : edge death
+      ##   7 : edge flip
       move = 5
       
       ## Sample the additional edge
@@ -560,15 +572,17 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
             	  
      } else {
 
-       
+       ##
+       ## Delete a parent, i.e. death of an edge.
+       ##
        if(u < rho3[2] & nr.edges > 0 ){  ## makes sure at least one edge exists (despite the bias and SAC edge)
 
-         ##########################
-         ## Death of an edge move
-         ##########################
          if(DEBUGLVL == 1) { cat("\n[edges] death ..") }
 
-         ## Variable describing the move type  (1 for Edge birth, 2 for Edge death, 3 for Update coefficient)
+         ## Variable move describing the move type  
+         ##   5 : edge birth
+         ##   6 : edge death
+         ##   7 : edge flip
          move=6
 
          ## sample from the existing edges
@@ -611,8 +625,9 @@ edge.move.homogeneousStructure <- function(u, rho3, X, Y, Grid.obj, HYPERvar, DE
          ## Sample u 
          u<-runif(1,0,1)
 	  
+         ## If smaller, accept the move and save the new structure into newS.
          if(u <= min(1,rdeath)){
-           ## Boolean for the acceptation of the CP death move (=1 if birth accepted, 0 otherwise)
+
            accept = 1
            newS = stmp
 
