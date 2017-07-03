@@ -15,7 +15,6 @@ initEngine <- function(X, HYPERvar, additional.parents, nr.parents, start.budget
     additional.parents=additional.parents,
     nr.parents=nr.parents,
     smax=smax,
-    target=target,
     FIXED.INIT.EDGES=FIXED.INIT.EDGES
     )
 
@@ -46,29 +45,6 @@ initEngine <- function(X, HYPERvar, additional.parents, nr.parents, start.budget
 
     ## set the edges that are fixed to 1
     structure[1,FIXED.INIT.EDGES] = 1
-    
-    ## If you want to initialize edges from a file ..maybe use this later
-    #cat("[initEngine] initializing preset edges from file.. ", INIT.EDGES.FROM.FILE, "\n")
-
-    ## at what probability we accept an edge (not too low because we want to have the best edges in but not too much)
-    #prob.cutoff = 0.4
-  
-    ## attempt to read file, this read in a talbe
-    ##  edge.pp.mat = read.table("../Data/Data_id2_edgeprobs.txt", header=F)
-
-    ## load from Rdata, post.edge.pp
-    #load(INIT.EDGES.FROM.FILE)
-    #edge.pp.mat = post.edge.pp
-  
-    ## get the edges for the target and remove target self-edge
-    #S = edge.pp.mat[target,][-target]
-
-    ## create the matrix with values of '1' where an edge is above the prob. cut-off
-    #S = matrix((S > prob.cutoff) * rep(1, length(S)), nrow=1, ncol=length(S))
-
-    ## append the bias and SAC position 
-    #S = cbind(S, c(0))
-    #S = cbind(S, c(0))
     
   }
 

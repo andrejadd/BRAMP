@@ -39,7 +39,7 @@ batch.test <- function() {
 }
 
 createGrid <- function(xlocs, ylocs, minSegsize, start.budget = 1, additional.parents,
-                       nr.parents, smax, target, FIXED.INIT.EDGES) {
+                       nr.parents, smax, FIXED.INIT.EDGES) {
 
   
   data.obj = list(
@@ -53,7 +53,6 @@ createGrid <- function(xlocs, ylocs, minSegsize, start.budget = 1, additional.pa
     additional.parents=additional.parents,
     nr.parents = nr.parents,
     smax = smax,
-    target = target,
     FIXED.INIT.EDGES = FIXED.INIT.EDGES
     )
 

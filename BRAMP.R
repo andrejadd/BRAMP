@@ -6,7 +6,7 @@ source(paste(codePath,"main.R",sep=""))
 source(paste(codePath,"initEngine.R",sep=""))
 source(paste(codePath,"segments.R", sep=""))
 source(paste(codePath,"util.R",sep=""))   #requires pseudoinverse
-source(paste(codePath,"spatAutoCorrelation.R", sep=""))
+
 source(paste(codePath,"invGamma.R",sep=""))
 source(paste(codePath,"mvrnorm.R",sep=""))
 source(paste(codePath,"ginv.R",sep=""))
@@ -20,21 +20,49 @@ source(paste(codePath,"Tree.R",sep=""))
 ##
 ##   Y             : a m-length vector with the number of 'm' observations for the target node.
 ##   X             : a n-by-m matrix with 'n' nodes and 'm' observations.
+##   y_SAC_node    : a m-length vector with the spatial autocorrelation data. Can be left NULL
+##                   if not used.
 ##   xlocs         : an integer defining the number of observations along the x-axis.
 ##   ylocs         : an integer defining the number of observations along the x-axis.
-##      [Note that (xlocs * ylocs) = m]. 
-##   (TAKE THIS OUT, REQUIRED BY SAC node, MOVE SAC code elsewhere) target : an integer defining the target node
+##                   [Note that (xlocs * ylocs) == m]. 
 ##   nr_iterations : the number of MCMC iterations to run.
 ##   chain_thinout : save samples from the chain every 'chain_thinout' iteration.
-##   ENABLE.SAC    : here ?
-##   result.file   : here ? 
-##   SAC.nodes     : here ?
+##   result.file   : A result file from a previous MCMC simulation. If 'nr_iterations' is 
+##                   greater than the iterations in the result file, the simulation is continued
+##                   until 'nr_iterations'. 
 ##
-BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinout = 10, ENABLE.SAC=T, result.file = 'none_sense_file', SAC.nodes=NULL) {  
+BRAMP <- function(Y = NULL, 
+                  X = NULL, 
+                  y_SAC_node = NULL, 
+                  xlocs = 0, 
+                  ylocs = 0, 
+                  nr_iterations = 0, 
+                  chain_thinout = 10, 
+                  result.file = 'none_sense_file' 
+                  ) {  
   
-  ## remove all but arguments  
-  ## rm(list= ls()[ls() != "X"ls()!="indata" && ls()!= "target" && ls()!="nr_iterations" && ls()!="ENABLE.SAC"  && ls()!="result.file"])
-
+  ##
+  ## Make some initial checks.
+  ##
+  
+  if((xlocs * ylocs) != nrow(X))
+    stop("Number of total observation has to match (xlocs * ylocs).")
+  
+  if(length(y) != nrow(X))
+    stop("Length of response vector y has to match row number in design matrix X.")
+  
+  if(!is.null(y_SAC_node))
+    if(length(y) != length(y_SAC_node))
+      stop("Length of response vector y has to match length of SAC vector y_SAC_node.")
+  
+  if(nr_iterations <= 0)
+    stop("Specify valid iteration number greater than 0.")
+  
+  if(chain_thinout < 1) 
+    stop("Specify valid chain_thinout greater or equal to 1.")
+  
+  
+  
   
   method.name = "BRAMP"
   
@@ -62,7 +90,6 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinou
   Grid.obj = NULL
   MCMC.chain = NULL
 
-  cat("[", method.name, "] Target node: ", target, "\n")
  
   ##
   ## Check if a result file was passed and if it exists.
@@ -142,15 +169,16 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinou
   ## 
   ## This is executed if we do not proceed from an old chain.
   ##  It will initialize some variables and load the input data.
+  ##
   if(!PROCEED.CHAIN) {
 
-    ## This will hold the actual values of the chain states.
+    ## Initialize brand new chain.
     MCMC.chain = NULL
 
-    ## number of putative parents
+    ## Get number of available parent nodes.
     nr.parents = ncol(X)
     
-    ## Add the bias (intercept) node; this is just a '1' for the first column.
+    ## Add the bias (intercept) node - this is just a '1' at the last column.
     X = cbind(X,array(1,length(X[,1])))
     
     ## This variable is used to tell the method not to alter some specific initially set edges during run
@@ -179,31 +207,26 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinou
     ## If the SAC node, below, is added, it will be added as another additional node.
     additional.parents = 1
 
+    
     ##
-    ## Add the  spatial autocorrelation (SAC) node, if enabled.
+    ## Check if the SAC node data was provided to the BRAMP() function call.
+    ##   If Yes, add it to the design matrix.
     ##
-    if(ENABLE.SAC) {
+    if(!is.null(y_SAC_node)) {
+
+        ## Add the SAC node data after it was scaled.
+        X = cbind(X, as.vector(scale(y_SAC_node)))
+     
+        ## Remember the SAC node as additional parent node.
+        additional.parents = additional.parents + 1  
       
-      ## Check if SAC nodes already provided.
-      if(!is.null(SAC.nodes)) {
-        
-        ## Add a constant vector to predictor data (representing the bias nodes) and the spatial autocorrelation data of the target node.
-        X = cbind(X, as.vector(scale(SAC.nodes[target,])))
-        
-      } else {
-        ## .. otherwise, try to calculate the SAC nodes.
-        spatAC = spatAutoCorrelation(Y, xlocs, ylocs)
-        
-        ## Scale the SAC node and append to the design matrix 'X'.
-        X = cbind(X, scale(spatAC))
-      }
+        cat("[", method.name, "] Spatial autocorrelation (SAC) node added.\n")
       
-      ## Add the SAC node as additional parent node.
-      additional.parents = additional.parents + 1  
+    } else {
       
-      cat("[", method.name, "] Enabled spatial autocorrelation (SAC) node\n")
+      cat("[", method.name, "] No Spatial autocorrelation (SAC) node provided.\n")
       
-    } 
+    }
 
     
     ## Initialize the hyper-parameters
@@ -212,14 +235,16 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinou
     beta.snr = 0.2
     v0 = 1 
     
-    ## Inverse Gamma for the SNR
+    ## Inverse Gamma for the SNR. 
     delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr))
 
     ## Initialize the hyper-parameter variable list.                   
-    HYPERvar = list( c = 0.5, # for edge move proposals
+    HYPERvar = list( c = 0.5,              # for edge move proposals.
       alpha.var = v0/2, beta.var = v0/2,   # for weight variance sigma2, v0/2 as in Marcos AISTATs paper
-      alpha.snr=alpha.snr, beta.snr=beta.snr, delta.snr = delta.snr,  
-      alphalbd = 1, betalbd = 0.5  # for parent nodes
+      alpha.snr = alpha.snr,               # alpha parameter for SNR sampling.
+      beta.snr = beta.snr,                 # beta parameter for SNR sampling.
+      delta.snr = delta.snr,               # the sampled SNR value.
+      alphalbd = 1, betalbd = 0.5          # for the parent nodes.
       )
     
     ## Initialize MCMC.chain data structure, if it was not previously loaded with a pre-existing chain.
@@ -237,7 +262,7 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinou
     
     
     ## Note, this is just a placeholder, define the file below and look into initEngine to make use
-    ## of predefined edges (e.g. from another method like Lasso)
+    ## of predefined edges.
     INIT.EDGES.FROM.FILE = NULL
     
     ## if this is not null it means we can set the file from where to read it
@@ -257,7 +282,6 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinou
       ylocs=ylocs,
       minSegsize=minSegsize,
       smax=smax,
-      target=target,
       INIT.EDGES.FROM.FILE=INIT.EDGES.FROM.FILE,
       FIXED.INIT.EDGES=FIXED.INIT.EDGES
     )
@@ -281,10 +305,10 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinou
   ##
   cat("[", method.name, "] Starting MCMC chain.. \n")
   
-  result = main(X, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar)
+  result = main(Y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar)
   
   
-  ## Add the hyper variables for further reference
+  ## Add the hyper variables for further reference.
   ## Will be used when chain is continued in another run. 
   result$HYPERvar = HYPERvar
   

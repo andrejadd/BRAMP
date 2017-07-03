@@ -3,7 +3,7 @@
 ####
 #### main function
 
-main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
+main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
   DEBUGLVL = 0
 
@@ -68,23 +68,23 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     if (u1 < rho[1]){
       
       ## Make the Mondrian split movement.
-      out = cut.segment(Grid.obj, data, Y, HYPERvar, DEBUGLVL)
+      out = cut.segment(Grid.obj, X, y, HYPERvar, DEBUGLVL)
 
     } else if(u1 < rho[2]){
      
       ## Make the Mondrian merge movement.
-      out = merge.segment(Grid.obj, data, Y, HYPERvar, DEBUGLVL)
+      out = merge.segment(Grid.obj, X, y, HYPERvar, DEBUGLVL)
 
     } else if(u1 < rho[3]){
 
       ## Make the Mondrian shift movement of a boundary (cut). 
-      out = shift.cut(Grid.obj, data, Y, HYPERvar, DEBUGLVL, counter=r)
+      out = shift.cut(Grid.obj, X, y, HYPERvar, DEBUGLVL, counter=r)
 
 
     } else {
       
       ## Update phases: return the new model if the move is accepted, the previous model otherwise.
-      out = segment.update(Grid.obj, data, Y, HYPERvar, DEBUGLVL)
+      out = segment.update(Grid.obj, X, y, HYPERvar, DEBUGLVL)
     
       }
     
@@ -124,27 +124,26 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
      alpha.var = HYPERvar$alpha.var
      beta.var = HYPERvar$beta.var
     
-     ## Loop over each segment.
-     for(segidx in segidx.vec) {
+    ## Loop over each segment.
+    for(segidx in segidx.vec) {
         
-       ## get nr. of observations (locations)
-       n.obs = getNrElements(Grid.obj, segidx)
+      ## Get number of observations for this segment.
+      n.obs = getNrElements(Grid.obj, segidx)
        
-       ## get the predictor and target data
-       x = extractData(Grid.obj, data, segidx)
-       X = t(as.matrix(x[, parents.vec]))   # took transpose to make it conform with Marcos Code for testing (might change, see below transposes of X)
-       
-       ## what is the projection matrix exactly doing, need it?
-       ## matPx = computeProjection(as.matrix(x[, which(seg.set$edge.struct == 1)]), delta.snr)
-        
-       y = extractData(Grid.obj, Y, segidx)
+      ## Get the design matrix for this segment.
+      X_tmp = extractData(Grid.obj, X, segidx)
+      X_tmp = t(as.matrix(X_tmp[, parents.vec]))  
 
-       ## thats a [locs,parents] x [parents,1] ; since mu.vec is a vector with length parents, %*% tranforms it to a [parents,1] matrix
-       mu.tilde = t(X) %*% mu.vec
+      ## Get response data for this segment.     
+      y_tmp = extractData(Grid.obj, y, segidx)
 
-       inv.Sigma.tilde = diag(n.obs) - t(X) %*% ginv( ginv(delta.snr * Cov.mat) + X %*% t(X) ) %*% X
+       ## That is matrix multiplication with: [locs,parents] x [parents,1].
+       ## Because mu.vec is a vector with length parents, %*% tranforms it to a [parents,1] matrix.
+       mu.tilde = t(X_tmp) %*% mu.vec
+
+       inv.Sigma.tilde = diag(n.obs) - t(X_tmp) %*% ginv( ginv(delta.snr * Cov.mat) + X_tmp %*% t(X_tmp) ) %*% X_tmp
        
-       mahalanobis.dist = t(y - mu.tilde) %*% inv.Sigma.tilde %*% (y - mu.tilde)
+       mahalanobis.dist = t(y_tmp - mu.tilde) %*% inv.Sigma.tilde %*% (y_tmp - mu.tilde)
        
        alpha.var = alpha.var + (n.obs/2)
        
@@ -174,18 +173,19 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
        ## get nr. of observations (locations)
        n.obs = getNrElements(Grid.obj, segidx)
       
-       ## get the predictor and target data
-       x = extractData(Grid.obj, data, segidx)
-       X = t(as.matrix(x[, parents.vec]))   # took transpose to make it conform with Marcos Code for testing (might change, see below transposes of X)
-       y = extractData(Grid.obj, Y, segidx)
+       
+       ## Get the predictor and response data for the segment.
+       X_tmp = extractData(Grid.obj, X, segidx)
+       X_tmp = t(as.matrix(X_tmp[, parents.vec]))  
+       y_tmp = extractData(Grid.obj, y, segidx)
 
 
        ## mean and covariance for weight
-       Sigma.inv.star = ginv(delta.snr * Cov.mat) + X %*% t(X)
-       mu.star = ginv(Sigma.inv.star) %*% (ginv(delta.snr * Cov.mat) %*% mu.vec + X %*% y)
+       Sigma.inv.star = ginv(delta.snr * Cov.mat) + X_tmp %*% t(X_tmp)
+       mu.star = ginv(Sigma.inv.star) %*% (ginv(delta.snr * Cov.mat) %*% mu.vec + X_tmp %*% y_tmp)
 
        ## sample weights for existing edges
-       weights = mvrnorm(mu=mu.star, Sigma= sigma.var * ginv(Sigma.inv.star))
+       weights = mvrnorm(mu = mu.star, Sigma = sigma.var * ginv(Sigma.inv.star))
        weights = t(weights)
 
        ## assign to proper edge idx
@@ -195,17 +195,19 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
        ## append with seg id
        Grid.obj$edge.weights = rbind(Grid.obj$edge.weights, c(segidx, full.weights))
 
-       ## calculate scale (beta) for signal-to-noise delta, Note vector transpose different than in equation:   (w - mu) inv(Cov) t(w - mu)
-       ##                                                   because (w - mu) gives a 1x3 matrix, whereas we would expect a 3x1 to appear
+       ## Calculate the scale (beta) parameter for the signal-to-noise delta parameter.
+       ##  Note: The vector transpose is different than in equation: (w - mu) inv(Cov) t(w - mu).
+       ##        This is because (w - mu) gives a 1x3 matrix, whereas we would expect a 3x1 matrix.
        beta.snr = drop(beta.snr + 0.5 * inv.variance * (weights - mu.vec) %*% ginv(Cov.mat) %*% t(weights - mu.vec) )
      }
     
-     ## alpha + (nr.segs * nr. active parents)/2 
+     ## Update the alpha hyper-parameter for the SNR sample: 
+     ##     alpha = alpha + ((nr.segs * nr. active parents)/2) 
      alpha.snr = HYPERvar$alpha.snr + (length(segidx.vec) * length(parents.vec))/2
-     ## save alpha.snr back to HYPERvar??
+     ## FIXME: save alpha.snr back to HYPERvar, is this necessary ?
 
      
-     ## sample signal-to-noise delta 
+     ## Sample the signal-to-noise delta parameter.
      inv.delta.snr  = rgamma(1, shape=alpha.snr, scale=(1/beta.snr));
      delta.snr = 1 / inv.delta.snr;
 
@@ -213,7 +215,7 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
     HYPERvar$delta.snr = delta.snr;
                
 
-## ------------ resample mean and covariance for the weights ----------------------------------------------------------
+## ------------ Resample mean and covariance for the regression coefficients (weights) ----------------------------------------------------------
       
 
     nr.segs = length(segidx.vec)
