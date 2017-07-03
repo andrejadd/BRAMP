@@ -14,14 +14,14 @@ result_file = paste("Results/Example_output_target", target_node, ".Rdata", sep=
 ## 
 ## Load input data:
 ##
-##   data_mat  : A m-by-n matrix where m is the number of observations (rows) and n is the number of nodes (columns).
-##   xlocs     : Number of locations (observations) along the x-axis.
-##   ylocs     : Number of locations (observations) along the y-axis.
+##   data_mat   : A m-by-n matrix where m is the number of observations (rows) and n is the number of nodes (columns).
+##   xlocs      : Number of locations (observations) along the x-axis.
+##   ylocs      : Number of locations (observations) along the y-axis.
 ##               (Note: xlocs * ylocs must be equal to 'm')
 ## Optional:
 ##
-##   SAC.nodes : a n-by-m matrix that contains a spatial autocorrelation node for each node (n) and observation (m)  
-##               If this is not provided but ENABLE.SAC is True, the function spatAutoCorrelation() below will attempt to calculate it.
+##   y_SAC_node : A m-length vector that contains the spatial autocorrelation data for the target.
+##                Can be calculated with function spatAuroCorrelation(), see below.
 ##
 load(input_data)
 
