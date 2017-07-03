@@ -14,8 +14,23 @@ source(paste(codePath,"convert.R",sep="")) ## need this ??
 source(paste(codePath,"Tree.R",sep=""))
 
 
-
-BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, ENABLE.SAC=T, result.file = 'none_sense_file', SAC.nodes=NULL) {  
+##
+##
+## This is the main BRAMP function. The function arguments are
+##
+##   Y             : a m-length vector with the number of 'm' observations for the target node.
+##   X             : a n-by-m matrix with 'n' nodes and 'm' observations.
+##   xlocs         : an integer defining the number of observations along the x-axis.
+##   ylocs         : an integer defining the number of observations along the x-axis.
+##      [Note that (xlocs * ylocs) = m]. 
+##   (TAKE THIS OUT, REQUIRED BY SAC node, MOVE SAC code elsewhere) target : an integer defining the target node
+##   nr_iterations : the number of MCMC iterations to run.
+##   chain_thinout : save samples from the chain every 'chain_thinout' iteration.
+##   ENABLE.SAC    : here ?
+##   result.file   : here ? 
+##   SAC.nodes     : here ?
+##
+BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, chain_thinout = 10, ENABLE.SAC=T, result.file = 'none_sense_file', SAC.nodes=NULL) {  
   
   ## remove all but arguments  
   ## rm(list= ls()[ls() != "X"ls()!="indata" && ls()!= "target" && ls()!="nr_iterations" && ls()!="ENABLE.SAC"  && ls()!="result.file"])
@@ -159,10 +174,14 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, ENABLE.SAC=T
     
     cat("[", method.name, "] Number locations: " , xlocs * ylocs, " with x: ",  xlocs, " , y: ",  ylocs, ", start.budget: ", start.budget, ", parent nodes: ", nr.parents, ", fan-in: ", smax, ", minimum segment size: ", minSegsize, "\n")
 
-  
-   
+    ## Defines the number of additional entries in the design matrix
+    ## A value of 1 stands for the additional bias node. 
+    ## If the SAC node, below, is added, it will be added as another additional node.
+    additional.parents = 1
 
-    ## Check if we want spatial autocorrelation (SAC Nodes).
+    ##
+    ## Add the  spatial autocorrelation (SAC) node, if enabled.
+    ##
     if(ENABLE.SAC) {
       
       ## Check if SAC nodes already provided.
@@ -179,20 +198,14 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, ENABLE.SAC=T
         X = cbind(X, scale(spatAC))
       }
       
-      ## Define the additional incoming edges: the bias and the SAC node
-      additional.parents = 2  
+      ## Add the SAC node as additional parent node.
+      additional.parents = additional.parents + 1  
       
       cat("[", method.name, "] Enabled spatial autocorrelation (SAC) node\n")
       
-    } else {
-      
-      ## Only define the bias as additional edge, since the SAC node is not included.
-      additional.parents = 1 
+    } 
 
-      cat("[", method.name, "] Disabled spatial autocorrelation (SAC) node\n")
-
-    }
-
+    
     ## Initialize the hyper-parameters
     ## For the signal-to-noise (SNR) ratio: delta2 ~ IG(alpha.snr,beta.snr)
     alpha.snr = 2
@@ -202,13 +215,25 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, ENABLE.SAC=T
     ## Inverse Gamma for the SNR
     delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr))
 
-                       
+    ## Initialize the hyper-parameter variable list.                   
     HYPERvar = list( c = 0.5, # for edge move proposals
       alpha.var = v0/2, beta.var = v0/2,   # for weight variance sigma2, v0/2 as in Marcos AISTATs paper
       alpha.snr=alpha.snr, beta.snr=beta.snr, delta.snr = delta.snr,  
       alphalbd = 1, betalbd = 0.5  # for parent nodes
       )
     
+    ## Initialize MCMC.chain data structure, if it was not previously loaded with a pre-existing chain.
+    if(is.null(MCMC.chain)) {
+      MCMC.chain = list(Structsamples = list(segment.map = list(), 
+                                             struct = list(), 
+                                             iter=list(),
+                                             regression.coeff=list(), 
+                                             mondrian.tree=list()), 
+                        counters=list(), 
+                        delta.snr = c(), 
+                        params=matrix(0,nrow=0, ncol=6),
+                        chain_thinout = chain_thinout)
+    }
     
     
     ## Note, this is just a placeholder, define the file below and look into initEngine to make use
@@ -247,7 +272,7 @@ BRAMP <- function(Y, X, xlocs, ylocs, target, nr_iterations = NULL, ENABLE.SAC=T
     }
   }
   
-    
+  
   
   ##
   ##  

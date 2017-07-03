@@ -7,26 +7,33 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
   DEBUGLVL = 0
 
+  
   ## used extensively for updates and end of MCMC
   total.nr.parents = Grid.obj$total.nr.parents
-  
+
+    
   ## counting Segment moves (1..3) and edge update moves (4..7)
   ##  counters = list() ## this will hold the move counters from below
   cptMove = array(0,7)
   acceptMove = array(0,7)
 
-  ## Initialize MCMC.chain data structure.
-  if(is.null(MCMC.chain)) {
-    MCMC.chain = list(Structsamples = list(segment.map = list(), struct = list(), iter=list(), regression.coeff=list(), mondrian.tree=list()), counters=list(), delta.snr = c(), params=matrix(0,nrow=0, ncol=6) )
-  }
   
   ## Specify from what iteration on to start saving the regression coefficients 
   ## (This takes up memory)
   start.save.regr = 1 # or some time later: end.iter - floor(end.iter * 1/5)
 
-  # do main iteration
+  
+  ##
+  ## Use as running counter of the current MCMC iteration.
+  ##
   r = start.iter
 
+  
+  ##
+  ##
+  ## Main MCMC Loop. 
+  ##
+  ##
   while(r < end.iter) {
 
     r = r + 1
@@ -230,7 +237,7 @@ main <- function(data, Y, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
     
     ## Save the MCMC chain with a thin-out of 10, i.e. only every 10th iteration to save memory.
-    if((r %% 10) == 0) {
+    if((r %% (MCMC.chain$chain_thinout)) == 0) {
 
       ## Save the edge structure and the number of the iteration
       MCMC.chain$Structsamples$struct[[length(MCMC.chain$Structsamples$struct) + 1]] = Grid.obj$edge.struct
