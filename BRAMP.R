@@ -1,12 +1,12 @@
 
 codePath=paste(getwd(),"/Code/",sep="")
 
-source(paste(codePath,"moves.R",sep=""))
-source(paste(codePath,"main.R",sep=""))
+source(paste(codePath,"mcmc_main.R",sep=""))
+source(paste(codePath,"edge_moves.R",sep=""))
+source(paste(codePath,"mondrian_moves.R",sep=""))
 source(paste(codePath,"initEngine.R",sep=""))
 source(paste(codePath,"segments.R", sep=""))
 source(paste(codePath,"util.R",sep=""))   #requires pseudoinverse
-
 source(paste(codePath,"invGamma.R",sep=""))
 source(paste(codePath,"mvrnorm.R",sep=""))
 source(paste(codePath,"ginv.R",sep=""))
@@ -38,7 +38,10 @@ BRAMP <- function(Y = NULL,
                   ylocs = 0, 
                   nr_iterations = 0, 
                   chain_thinout = 10, 
-                  result.file = 'none_sense_file' 
+                  result.file = 'none_sense_file',
+                  mcmc_rnd_seed = NULL,
+                  fixed_edges = NULL,
+                  edge_fanin = 5
                   ) {  
   
   ##
@@ -75,9 +78,6 @@ BRAMP <- function(Y = NULL,
   ## The start of iteration can be changed through loading an already existing result file.
   start.iter = 1
  
-  ## Unix time (seconds since 1970), should be fine for the cluster, might add/subtract milliseconds 
-  set.seed(as.numeric(Sys.time()))
-
   ## flag that tells if to proceed MCMC chain from previous run
   ## ! Do not change, this is done by checks below !
   PROCEED.CHAIN = F
@@ -108,7 +108,7 @@ BRAMP <- function(Y = NULL,
       
     }, error = function(e) {
         RESULT.EXISTS = F	
-	cat("[", method.name, "] Something wrong while trying to open existing results file, starting simulation from scratch.\n.")
+	      cat("[", method.name, "] Something wrong while trying to open existing results file, starting simulation from scratch.\n.")
     })
 
     ##
@@ -175,26 +175,26 @@ BRAMP <- function(Y = NULL,
     ## Initialize brand new chain.
     MCMC.chain = NULL
 
+    
+    ## Set random generator seed if provided. Variable 'mcmc_rnd_seed' is 
+    ##  saved into MCMC.chain$mcmc_rnd_seed for later reference.
+    if(!is.null(mcmc_rnd_seed)) {
+      set.seed(mcmc_rnd_seed)
+    } 
+    
+    
     ## Get number of available parent nodes.
     nr.parents = ncol(X)
+    
     
     ## Add the bias (intercept) node - this is just a '1' at the last column.
     X = cbind(X,array(1,length(X[,1])))
     
-    ## This variable is used to tell the method not to alter some specific initially set edges during run
-    ## It should be NULL if no fixed edges are assumed (except of course the bias and optional the SAC edge)
-    ##    otherwise it is a vector with the parent node indices that define the fixed incoming edges
-    
-    ## check if this makes sense, seems confusing: FIXED.INIT.EDGES will be set to this value and INIT.EDGES.FROM.FILE will be set to a file from where to read these edges - which causes the initilization routine to read the fixed edges from a file.
-    FIXED.INIT.EDGES=NULL
-
-    # FIXED.INIT.EDGES=seq(1,12) ## use for the Outer Hebrides data when soil attributes (node 1..12) shall be fixed
-   
     
     ## Maximum number of parent nodes (fan-in restriction). A low limit is needed 
     ## for birth proposals based on precomupted posterior distribution (method 4),
     ## otherwise you can set smax = q
-    smax = min(8,nr.parents);
+    smax = min(edge_fanin,nr.parents);
     
     ## Minimum number of locations in a segment. Don't make this too small, otherwise there is 
     ## not enough data to make proper calculations. 
@@ -207,6 +207,9 @@ BRAMP <- function(Y = NULL,
     ## If the SAC node, below, is added, it will be added as another additional node.
     additional.parents = 1
 
+    
+    
+   
     
     ##
     ## Check if the SAC node data was provided to the BRAMP() function call.
@@ -252,50 +255,38 @@ BRAMP <- function(Y = NULL,
       MCMC.chain = list(Structsamples = list(struct = list(), 
                                              iter=list(),
                                              mondrian.tree=list()),
-			segment_map = list(),             ## Samples of the the Mondrian map of segments.
-			betas = list(),                   ## Samples of the edge weights for each segment.
+			                  segment_map = list(),             ## Samples of the the Mondrian map of segments.
+			                  betas = list(),                   ## Samples of the edge weights for each segment.
                         counters=list(),                  ## Keep track of acceptance and rejection moves.
                         delta.snr = c(),                  ## Samples of the SNR parameter
                         params=matrix(0,nrow=0, ncol=6),
                         chain_thinout = chain_thinout,    ## save the chain samples in every 'chain_thinout' iteration (saves memory) 
-			iteration_save_betas = 1          ## start to save betas (edge weights) from iteration 'iteration_save_betas (saves memory)
+			                  iteration_save_betas = 1,         ## start to save betas (edge weights) from iteration 'iteration_save_betas (saves memory)
+			                  mcmc_rnd_seed = mcmc_rnd_seed
 			)
     }
     
     
-    ## Note, this is just a placeholder, define the file below and look into initEngine to make use
-    ## of predefined edges.
-    INIT.EDGES.FROM.FILE = NULL
-    
-    ## if this is not null it means we can set the file from where to read it
-    #if(!is.null(FIXED.INIT.EDGES)) {
-    #  INIT.EDGES.FROM.FILE = paste("../Data/", DATA.TYPE, "/Data_id", dataid, "_edgeprobs.Rdata", sep="")
-    #}
-    
+
     cat("[", method.name, "] Init.. ")
+    
  
     ## Initialisation of first iteration parameters
-     Grid.obj = initEngine(X=X,
-      HYPERvar=HYPERvar,
-      additional.parents=additional.parents,
-      nr.parents=nr.parents,
-      start.budget=start.budget,
-      xlocs=xlocs,
-      ylocs=ylocs,
-      minSegsize=minSegsize,
-      smax=smax,
-      INIT.EDGES.FROM.FILE=INIT.EDGES.FROM.FILE,
-      FIXED.INIT.EDGES=FIXED.INIT.EDGES
-    )
+     Grid.obj = initEngine(X = X,
+      HYPERvar = HYPERvar,
+      additional.parents = additional.parents,
+      nr.parents = nr.parents,
+      start.budget = start.budget,
+      xlocs = xlocs,
+      ylocs = ylocs,
+      minSegsize = minSegsize,
+      smax = smax,
+      fixed_edges = fixed_edges
+      )
     
     cat("ok\n")
     
-    ## check if this is a fixed set (which is not altered), in this case we need to increase the nr. of max. edges
-    ## FIXME: move to initEngine()
-    if(!is.null(FIXED.INIT.EDGES)) {
-      Grid.obj$smax =  Grid.obj$smax + sum(Grid.obj$edge.struct) - Grid.obj$additional.parents
-      Grid.obj$FIXED.INIT.EDGES = which(Grid.obj$edge.struct[1:(length(Grid.obj$edge.struct) - Grid.obj$additional.parents )] == 1)
-    }
+   
   }
   
   
@@ -307,7 +298,7 @@ BRAMP <- function(Y = NULL,
   ##
   cat("[", method.name, "] Starting MCMC chain.. \n")
   
-  result = main(Y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar)
+  result = mcmc_main(Y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar)
   
   
   ## Add the hyper variables for further reference.

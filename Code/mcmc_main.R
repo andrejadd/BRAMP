@@ -1,9 +1,11 @@
-####
-####
-####
-#### main function
+##
+##
+##
+## The main function that runs the MCMC simulation.
+##
+##
 
-main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
+mcmc_main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
   DEBUGLVL = 0
 
@@ -23,7 +25,7 @@ main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
   ##
   r = start.iter
 
-  
+ 
   ##
   ##
   ## Main MCMC Loop. 
@@ -77,9 +79,9 @@ main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
 
 
     } else {
-      
-      ## Update phases: return the new model if the move is accepted, the previous model otherwise.
-      out = segment.update(Grid.obj, X, y, HYPERvar, DEBUGLVL)
+     
+      ## Execute edge moves (add, delete, flip):
+      out = edge_moves(Grid.obj, X, y, HYPERvar, DEBUGLVL)
     
       }
     

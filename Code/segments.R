@@ -39,7 +39,7 @@ batch.test <- function() {
 }
 
 createGrid <- function(xlocs, ylocs, minSegsize, start.budget = 1, additional.parents,
-                       nr.parents, smax, FIXED.INIT.EDGES) {
+                       nr.parents, smax, fixed_edges) {
 
   
   data.obj = list(
@@ -53,7 +53,7 @@ createGrid <- function(xlocs, ylocs, minSegsize, start.budget = 1, additional.pa
     additional.parents=additional.parents,
     nr.parents = nr.parents,
     smax = smax,
-    FIXED.INIT.EDGES = FIXED.INIT.EDGES
+    fixed_edges = fixed_edges
     )
 
   ## the location matrix, where each location/element has a segment id assigned to it
