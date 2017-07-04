@@ -16,12 +16,7 @@ main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
   ##  counters = list() ## this will hold the move counters from below
   cptMove = array(0,7)
   acceptMove = array(0,7)
-
   
-  ## Specify from what iteration on to start saving the regression coefficients 
-  ## (This takes up memory)
-  start.save.regr = 1 # or some time later: end.iter - floor(end.iter * 1/5)
-
   
   ##
   ## Use as running counter of the current MCMC iteration.
@@ -255,23 +250,24 @@ main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
       ##
       ## Only save in later stage, because needs memory
       ##
-      if(r > start.save.regr) {
+
+      if(r > MCMC.chain$iteration_save_betas) {
 
         ## Save the edge weights, i.e. regression coefficients.
-        MCMC.chain$Structsamples$regression.coeff[[length(MCMC.chain$Structsamples$regression.coeff) + 1]] = Grid.obj$edge.weights
+        MCMC.chain$betas[[length(MCMC.chain$betas) + 1]] = Grid.obj$edge.weights
 
 
-	      ## Check if segmentation exists.
+	## Check if segmentation exists.
       	if(max(Grid.obj$segment.map) > 1) {
       	  
           ## Save segmentation matrix only if there are more than one segment
-          MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = Grid.obj$segment.map
+          MCMC.chain$segment_map[[length(MCMC.chain$segment_map) + 1]] = Grid.obj$segment.map
           
         } else {
           
           ## This means that there is only a single segment, use a place holder '1', instead of saving the whole
           ## segment matrix
-          MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = 1
+          MCMC.chain$segment_map[[length(MCMC.chain$segment_map) + 1]] = 1
         }
 
 
@@ -280,8 +276,8 @@ main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
         ## Do not save any valueable information, instead put a placeholder into the list for the regression coefficients
         ##  and the segmentation map. 
         ## The reason for this is to use the index of these lists as a lookup for the iteration in the chain.
-        MCMC.chain$Structsamples$regression.coeff[[length(MCMC.chain$Structsamples$regression.coeff) + 1]] = 1
-        MCMC.chain$Structsamples$segment.map[[length(MCMC.chain$Structsamples$segment.map) + 1]] = NaN ## means nothing was recorded
+        MCMC.chain$betas[[length(MCMC.chain$betas) + 1]] = 1
+        MCMC.chain$segment_map[[length(MCMC.chain$segment_map) + 1]] = NaN ## means nothing was recorded
       
       }
 

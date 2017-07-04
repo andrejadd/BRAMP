@@ -249,15 +249,17 @@ BRAMP <- function(Y = NULL,
     
     ## Initialize MCMC.chain data structure, if it was not previously loaded with a pre-existing chain.
     if(is.null(MCMC.chain)) {
-      MCMC.chain = list(Structsamples = list(segment.map = list(), 
-                                             struct = list(), 
+      MCMC.chain = list(Structsamples = list(struct = list(), 
                                              iter=list(),
-                                             regression.coeff=list(), 
-                                             mondrian.tree=list()), 
-                        counters=list(), 
-                        delta.snr = c(), 
+                                             mondrian.tree=list()),
+			segment_map = list(),             ## Samples of the the Mondrian map of segments.
+			betas = list(),                   ## Samples of the edge weights for each segment.
+                        counters=list(),                  ## Keep track of acceptance and rejection moves.
+                        delta.snr = c(),                  ## Samples of the SNR parameter
                         params=matrix(0,nrow=0, ncol=6),
-                        chain_thinout = chain_thinout)
+                        chain_thinout = chain_thinout,    ## save the chain samples in every 'chain_thinout' iteration (saves memory) 
+			iteration_save_betas = 1          ## start to save betas (edge weights) from iteration 'iteration_save_betas (saves memory)
+			)
     }
     
     

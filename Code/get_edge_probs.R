@@ -4,16 +4,16 @@
 ##  over the binary edge indicators of the chain samples, starting from the middle
 ##  of the chain. 
 ##
-get_edge_probs <- function(mcmc_res_var) {
+get_edge_probs <- function(mcmc_res_var, start_index = NULL) {
 
   
   ## Get the edge samples and number of samples
   edge_samples = mcmc_res_var$MCMC.chain$Structsamples$struct
   nr_samples = length(edge_samples)
   
-  
-  ## Specify from what index position to take the samples from.
-  start_index = floor(nr_samples / 2)
+  if(is.null(start_index))
+    ## Specify from what index position to take the samples from.
+    start_index = floor(nr_samples / 2)
   
   
   ## Number of edges in each samples. 
