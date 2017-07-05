@@ -1,13 +1,14 @@
 
-source("BRAMP.R")
+# source("BRAMP.R")
 
+runExample <- function() {
 
 ## Target node for which to calculate the parent probabilities
 target_node = 1
 
 ## Input data file and result file
-input_data = "Data/Example_Data.Rdata"
-result_file = paste("Results/Example_output_target", target_node, ".Rdata", sep="")
+#input_data = "../Data/Example_Data.Rdata"
+result_file = paste("../Results/Example_output_target", target_node, ".Rdata", sep="")
 
 
 ## 
@@ -22,7 +23,7 @@ result_file = paste("Results/Example_output_target", target_node, ".Rdata", sep=
 ##   y_SAC_node : A m-length vector that contains the spatial autocorrelation data for the target.
 ##                Can be calculated with function spatAuroCorrelation(), see below.
 ##
-load(input_data)
+load(example_data)
 
 
 ## Extract the target values and scale it.
@@ -104,3 +105,4 @@ print(edge_probs)
 
 
 
+}

@@ -1,5 +1,8 @@
 #source('analysis_functions.R')
 
+
+eval_cPPeach <- function() {
+
 save.file = TRUE;
 gene.number = 10;
 #phase.number = 2;
@@ -133,3 +136,5 @@ for(gene in 1:gene.number) {
 #}
 #
 #print(networks)
+
+}

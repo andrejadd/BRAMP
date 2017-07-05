@@ -1,0 +1,28 @@
+\name{BRAMP}
+\alias{BRAMP}
+\title{Bayesian Regression and Mondrian Process}
+\description{
+  Runs MCMC simulations for network inference in a two-dimensional grid.
+}
+\usage{
+BRAMP <- function(y, X, y_SAC_node, xlocs, ylocs, nr_iterations, chain_thinout, result_file, mcmc_rnd_seed, fixed_edges, edge_fanin)  
+
+}
+\arguments{
+  \item{y}{A m-length vector with the number of 'm' observations for the target node.}
+  \item{X}{A n-by-m matrix with 'n' nodes and 'm' observations.}
+}
+\seealso{
+  \code{\link{save}}.
+}
+\examples{
+## save all data
+save(list = ls(), file= "all.RData")
+
+## restore the saved values to the current environment
+load("all.RData")
+
+## restore the saved values to the workspace
+load("all.RData", .GlobalEnv)
+}
+\keyword{baysian regression}

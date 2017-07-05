@@ -1,1 +1,1 @@
-export(BRAMP)
+export(BRAMP, runExample)

@@ -1,5 +1,5 @@
 
-codePath=paste(getwd(),"/Code/",sep="")
+codePath=paste(getwd(),"/R/",sep="")
 
 source(paste(codePath,"mcmc_main.R",sep=""))
 source(paste(codePath,"edge_moves.R",sep=""))
