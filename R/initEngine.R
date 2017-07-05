@@ -2,10 +2,7 @@
 initEngine <- function(X, HYPERvar, additional.parents, nr.parents, start.budget,
                        xlocs, ylocs, minSegsize, smax, target, fixed_edges){
 
-  ### assignement of hyperparameters variables used here ###
-  alphalbd = HYPERvar$alphalbd 
-  betalbd = HYPERvar$betalbd
-
+ 
   ## create segment data type, has single segment in it
   Seg.set = createGrid(xlocs = xlocs, 
                        ylocs = ylocs,

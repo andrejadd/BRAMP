@@ -5,17 +5,17 @@
 ##
 ##
 
-mcmc_main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar){
+mcmc_main <- function(y, X, MCMC.chain, Grid.obj, HYPERvar, start.iter, end.iter){
 
+  
   DEBUGLVL = 0
 
   
   ## used extensively for updates and end of MCMC
   total.nr.parents = Grid.obj$total.nr.parents
 
-    
-  ## counting Segment moves (1..3) and edge update moves (4..7)
-  ##  counters = list() ## this will hold the move counters from below
+  
+  ## Counting the segment moves (1..3) and edge update moves (4..7)
   cptMove = array(0,7)
   acceptMove = array(0,7)
   
@@ -259,7 +259,7 @@ mcmc_main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar
         MCMC.chain$betas[[length(MCMC.chain$betas) + 1]] = Grid.obj$edge.weights
 
 
-	## Check if segmentation exists.
+	      ## Check if segmentation exists.
       	if(max(Grid.obj$segment.map) > 1) {
       	  
           ## Save segmentation matrix only if there are more than one segment
@@ -296,7 +296,7 @@ mcmc_main <- function(y, X, start.iter, end.iter, MCMC.chain, Grid.obj, HYPERvar
   } ## End of main MCMC iteration loop
 
 
-  return(list(MCMC.chain=MCMC.chain, Grid.obj=Grid.obj))
+  return(list(MCMC.chain = MCMC.chain, Grid.obj = Grid.obj, HYPERvar = HYPERvar, y = y, X = X))
 
 }
 

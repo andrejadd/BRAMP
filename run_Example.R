@@ -1,10 +1,5 @@
 
 source("BRAMP.R")
-source("Code/get_edge_probs.R")
-source("Code/get_mean_edge_weights.R")
-source("Code/spatAutoCorrelation.R")
-
-
 
 
 ## Target node for which to calculate the parent probabilities
@@ -48,6 +43,8 @@ X = scale(data_mat[,-target_node])
 ##  and for 'niter' number of iterations. 
 ##
 mcmc_result = BRAMP(y, X, y_SAC_node, xlocs, ylocs, nr_iterations = 1000)
+print(mcmc_result)
+
 save(file=result_file, "mcmc_result")
 
 
@@ -62,9 +59,9 @@ BRAMP(y, X, NULL, xlocs, ylocs, nr_iterations = 1000)
 ##             set.seed(as.numeric(Sys.time())) 
 ##
 BRAMP(y, X, NULL, xlocs, ylocs, nr_iterations = 1000, mcmc_rnd_seed = 1)
-
-
 cat("\n")
+
+
 ##
 ## Continue a previous MCMC simulation by specifying the file name of an old result file.
 ##  This will continue the chain if 'nr_iterations' is greater than in the result file.
