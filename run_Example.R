@@ -69,8 +69,8 @@ cat("\n")
 ## Continue a previous MCMC simulation by specifying the file name of an old result file.
 ##  This will continue the chain if 'nr_iterations' is greater than in the result file.
 ##
-#mcmc_result = BRAMP(y, X, y_SAC_node, xlocs, ylocs, nr_iterations = 2000, result.file=result_file)
-#save(file=result_file, "mcmc_result")
+mcmc_result = BRAMP(y, X, y_SAC_node, xlocs, ylocs, nr_iterations = 2000, result.file=result_file)
+save(file=result_file, "mcmc_result")
 
 
 ## Calculate edge probabilities from the chain samples.
