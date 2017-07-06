@@ -32,9 +32,21 @@ source(paste(codePath,"spatAutoCorrelation.R",sep=""))
 ##                   [Note that (xlocs * ylocs) == m]. 
 ##   nr_iterations : the number of MCMC iterations to run.
 ##   chain_thinout : save samples from the chain every 'chain_thinout' iteration.
-##   result_file   : A result file from a previous MCMC simulation. If 'nr_iterations' is 
-##                   greater than the iterations in the result file, the simulation is continued
-##                   until 'nr_iterations'. 
+##   mcmc_obj      : A MCMC data structure of class 'bramp'. The same that is returned from BRAMP().
+##                   If this is passed as argument back to BRAMP _and_ 'nr_iterations' is greater
+##                   than the iterations in 'mcmc_obj', the MCMC simulation is continued.
+##
+## Returns:
+##
+##   A data structure of class 'bramp' containing the following variables:
+##
+##    MCMC.chain   : A list containing all records related to the chain samples.
+##    Grid.obj     ' A structure containing variables related to the Mondrian process and segmentation. 
+##    HYPERvar     : A list of hyper-parameters.
+##    edge_probs   : A vector with the edge probabilities extracted from the MCMC chain.
+##    mean_coefficients : A vector with the mean regression coefficients extracted from the MCMC chain.
+##    X            : The n-by-m design matrix.
+##    y            : The m-length response vector.
 ##
 BRAMP <- function(y = NULL, 
                   X = NULL, 
@@ -43,38 +55,39 @@ BRAMP <- function(y = NULL,
                   ylocs = 0, 
                   nr_iterations = 0, 
                   chain_thinout = 10, 
-                  result_file = NULL,
+                  mcmc_obj = NULL,
                   mcmc_rnd_seed = NULL,
                   fixed_edges = NULL,
                   edge_fanin = 5
                   ) {  
   
-  ##
-  ## Make some initial checks.
-  ##
+    ##
+    ## Make some initial checks.
+    ##
   
   
-  ## if no result file was specified, check the input data
-  if(is.null(result_file)) {
-  
-      if((xlocs * ylocs) != nrow(X))
-      stop("Number of total observation has to match (xlocs * ylocs).")
-  
-    if(length(y) != nrow(X))
-      stop("Length of response vector y has to match row number in design matrix X.")
+    ## If no 'mcmc_obj' variable was passed, check the input data necessary to
+    ##  run a MCMC simulation from scratch.
+    if(is.null(mcmc_obj)) {
+      
+        if((xlocs * ylocs) != nrow(X))
+            stop("Number of total observation has to match (xlocs * ylocs).")
+        
+        if(length(y) != nrow(X))
+            stop("Length of response vector y has to match row number in design matrix X.")
+        
+        if(!is.null(y_SAC_node))
+            if(length(y) != length(y_SAC_node))
+                stop("Length of response vector y has to match length of SAC vector y_SAC_node.")
+        
+        if(chain_thinout < 1) 
+            stop("Specify valid chain_thinout greater or equal to 1.")
+    }
     
-    if(!is.null(y_SAC_node))
-      if(length(y) != length(y_SAC_node))
-        stop("Length of response vector y has to match length of SAC vector y_SAC_node.")
-
-    if(chain_thinout < 1) 
-      stop("Specify valid chain_thinout greater or equal to 1.")
-  }
-  
-  
-  if(nr_iterations <= 0)
-    stop("Specify valid iteration number greater than 0.")
-  
+    
+    if(nr_iterations <= 0)
+        stop("Specify valid iteration number greater than 0.")
+    
   
   
   
@@ -89,7 +102,7 @@ BRAMP <- function(y = NULL,
   start.budget = 1
   
   
-  ## The start of iteration can be changed through loading an already existing result file.
+    ## The start of iteration can be changed through loading an already existing 'mcmc_obj'
   start.iter = 1
  
   
@@ -104,84 +117,61 @@ BRAMP <- function(y = NULL,
   HYPERvar = NULL
 
  
-  ##
-  ## Check if a result file was passed and if it exists.
-  ##  If yes, extract the MCMC chain and the corresponding data (which means no data file is needed)
-  ##  and proceed running the chain, if the number of iterations ('nr_iteration') passed to BRAMP() is larger 
-  ##  than the chain in the result file.
-  ##
+    ##
+    ## Check if the 'mcmc_obj' variable was passed to BRAMP().
+    ##  If yes, extract the MCMC chain and the data. This also means that no additional data has to
+    ##  be considered. Continue running the MCMC chain, if the number of iterations ('nr_iteration')
+    ## passed to BRAMP() is larger than the chain in the result file.
+    ##
   
-  if(!is.null(result_file)) {
+    if(!is.null(mcmc_obj)) {
   
-    ## Check if 'mcmc_result' was 
-    ## Try to load file with 'mcmc_result' data.
-    tryCatch({    
-      
-      ## Load previous MCMC chain, includes the 'mcmc_result' data structure.
-    	load(result_file)
-      
-    }, error = function(e) {
+        ## Check if the data structure is of class 'bramp'.
+        if(class(mcmc_obj) != "bramp") {
+            cat("[", method.name, "] Variable 'mcmc_obj' is not of class 'bramp'. Exiting ...\n")
+            return(-1)
+        }
+    
+
+        ## 
+        ## Extract necessary data from the previous MCMC run
+        ## This also includes the data itself (X and Y) and the hyper-parameters
+        ## 
+        MCMC.chain = mcmc_obj$MCMC.chain
+        Grid.obj = mcmc_obj$Grid.obj
+        HYPERvar = mcmc_obj$HYPERvar
         
-      cat("[", method.name, "] Failed to load result file ", result_file, ". Exiting ...\n")
-      return(-1)
-    })
-
-    
-    ## Check if the data structure was loaded.
-    ## Do NOT use exists() because it also looks into the global user environment
-    ## i.e. outside this function.
-    if(!any("mcmc_result" == ls())) {
-      cat("[", method.name, "] Failed to load 'mcmc_result' data structure from result file ", result_file, ". Exiting ...\n")
-      return(-1)
-    }
-  
-    
-    ## Check if the data structure is of class 'bramp'.
-    if(class(mcmc_result) != "bramp") {
-      cat("[", method.name, "] Loaded 'mcmc_result' data structure is not of class 'bramp' ", result_file, ". Exiting ...\n")
-      return(-1)
-    }
-    
-
-    ## 
-    ## Extract necessary data from the previous MCMC run
-    ## This also includes the data itself (X and Y) and the hyper-parameters
-    ## 
-    MCMC.chain = mcmc_result$MCMC.chain
-    Grid.obj = mcmc_result$Grid.obj
-    HYPERvar = mcmc_result$HYPERvar
-    
-    
-    ## Load the data.
-    X = mcmc_result$X
-    y = mcmc_result$y
-    
-    
-    ## Extract the number of iterations this chain was run before.  
-    iters = MCMC.chain$Structsamples$iter
-    last.iter = iters[[length(iters)]]
-
-    
-    ## Check if less iterations are in the chain than requested
-    ## (The added value of 10 is to make sure we don't start senseless for small amounts of iterations)
-    if( (last.iter + 10) < end.iter) {
-
-      ## set the iteration from which to continue
-      start.iter = last.iter + 1
         
-      ## flag that we will proceed with this MCMC chain. This skips all the initialization stuff below.
-      PROCEED_CHAIN = T
-	
-      cat("[", method.name, "] Proceeding with chain from ", start.iter, " -> ", end.iter, "\n")
+        ## Load the data.
+        X = mcmc_obj$X
+        y = mcmc_obj$y
+    
+    
+        ## Extract the number of iterations this chain was run before.  
+        iters = MCMC.chain$Structsamples$iter
+        last.iter = iters[[length(iters)]]
+
+    
+        ## Check if less iterations are in the chain than requested
+        ## (The added value of 10 is to make sure we don't start senseless for small amounts of iterations)
+        if( (last.iter + 10) < end.iter) {
+
+            ## set the iteration from which to continue
+            start.iter = last.iter + 1
+            
+            ## flag that we will proceed with this MCMC chain. This skips all the initialization stuff below.
+            PROCEED_CHAIN = T
+            
+            cat("[", method.name, "] Proceeding with chain from ", start.iter, " -> ", end.iter, "\n")
         
-    } else {
+        } else {
        
-      cat("[", method.name, "] Chain in result file has complete iteration count: ", last.iter, " and requested were ", end.iter, ".",sep="")
-      return(-1)
+            cat("[", method.name, "] Chain in result file has complete iteration count: ", last.iter, " and requested were ", end.iter, ".",sep="")
+            return(-1)
       
-    } 
+        } 
 
-  } ## End of reading the result file.
+    } ## End of reading the result file.
 
   
   ## 
@@ -246,41 +236,41 @@ BRAMP <- function(y = NULL,
     }
 
     
-    ## Initialize the hyper-parameters
-    ## For the signal-to-noise (SNR) ratio: delta2 ~ IG(alpha.snr,beta.snr)
-    alpha.snr = 2
-    beta.snr = 0.2
-    v0 = 1 
+      ## Initialize the hyper-parameters
+      ## For the signal-to-noise (SNR) ratio: delta2 ~ IG(alpha.snr,beta.snr)
+      alpha.snr = 2
+      beta.snr = 0.2
+      v0 = 1 
     
     
-    ## Inverse Gamma for the SNR. 
-    delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr))
+      ## Inverse Gamma for the SNR. 
+      delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr))
 
     
-    ## Initialize the hyper-parameter variable list.                   
-    HYPERvar = list( c = 0.5,              # for edge move proposals.
-      alpha.var = v0/2, beta.var = v0/2,   # for weight variance sigma2, v0/2 as in Marcos AISTATs paper
-      alpha.snr = alpha.snr,               # alpha parameter for SNR sampling.
-      beta.snr = beta.snr,                 # beta parameter for SNR sampling.
-      delta.snr = delta.snr,               # the sampled SNR value.
-      alphalbd = 1, betalbd = 0.5          # for the parent nodes.
-      )
+      ## Initialize the hyper-parameter variable list.                   
+      HYPERvar = list( c = 0.5,              # for edge move proposals.
+                      alpha.var = v0/2, beta.var = v0/2,   # for weight variance sigma2, v0/2 as in Marcos AISTATs paper
+                      alpha.snr = alpha.snr,               # alpha parameter for SNR sampling.
+                      beta.snr = beta.snr,                 # beta parameter for SNR sampling.
+                      delta.snr = delta.snr,               # the sampled SNR value.
+                      alphalbd = 1, betalbd = 0.5          # for the parent nodes.
+                      )
     
     
-    ## Initialize MCMC.chain data structure.
-    MCMC.chain = list(Structsamples = list(struct = list(), 
-                                           iter=list(),
-                                           mondrian.tree=list()),
-			                  segment_map = list(),             ## Samples of the the Mondrian map of segments.
-			                  betas = list(),                   ## Samples of the edge weights for each segment.
+      ## Initialize MCMC.chain data structure.
+      MCMC.chain = list(Structsamples = list(struct = list(), 
+                                             iter=list(),
+                                             mondrian.tree=list()),
+                        segment_map = list(),             ## Samples of the the Mondrian map of segments.
+                        betas = list(),                   ## Samples of the edge weights for each segment.
                         counters=list(),                  ## Keep track of acceptance and rejection moves.
                         delta.snr = c(),                  ## Samples of the SNR parameter
                         params=matrix(0,nrow=0, ncol=6),
                         chain_thinout = chain_thinout,    ## save the chain samples in every 'chain_thinout' iteration (saves memory) 
-			                  iteration_save_betas = 1,         ## start to save betas (edge weights) from iteration 'iteration_save_betas (saves memory)
-			                  mcmc_rnd_seed = mcmc_rnd_seed
-			)
-    
+                        iteration_save_betas = 1,         ## start to save betas (edge weights) from iteration 'iteration_save_betas (saves memory)
+                        mcmc_rnd_seed = mcmc_rnd_seed
+                        )
+      
 
     cat("[", method.name, "] Init.. ")
     
