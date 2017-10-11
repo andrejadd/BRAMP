@@ -5,7 +5,7 @@
 \title{This is the main BRAMP function.}
 \usage{
 BRAMP(y = NULL, X = NULL, y_SAC_node = NULL, xlocs = 0, ylocs = 0,
-  nr_iterations = 0, chain_thinout = 10, result_file = NULL,
+  nr_iterations = 0, chain_thinout = 10, mcmc_obj = NULL,
   mcmc_rnd_seed = NULL, fixed_edges = NULL, edge_fanin = 5)
 }
 \arguments{
@@ -23,13 +23,13 @@ BRAMP(y = NULL, X = NULL, y_SAC_node = NULL, xlocs = 0, ylocs = 0,
 
 \item{chain_thinout}{Save samples from the chain every 'chain_thinout' iteration.}
 
-\item{result_file}{A result file from a previous MCMC simulation that should be continued. If 'nr_iterations' is greater than the iterations in the result file, the simulation is continued until 'nr_iterations'.}
-
 \item{mcmc_rnd_seed}{Integer value specifying a random seed.}
 
 \item{fixed_edges}{Vector of edge indicators that should not be change by an edge move.}
 
 \item{edge_fanin}{Maximum number of incoming edges for the response.}
+
+\item{result_file}{A result file from a previous MCMC simulation that should be continued. If 'nr_iterations' is greater than the iterations in the result file, the simulation is continued until 'nr_iterations'.}
 }
 \description{
 This is the main BRAMP function.

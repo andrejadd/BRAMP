@@ -1,7 +1,9 @@
 
 
+eval_cPP <- function() {
+
 save.file = TRUE;
-gene.number = 10;
+gene.number = 10;            
 
 ## AA
 timeseries.length = 500;
@@ -13,53 +15,53 @@ cp_dist = list()
 networkid = 6
 
 filename = paste("CPsamples_n", networkid, "_i", sep="")
-  
+
 
 # CP counter
 cp_dist = matrix(0, 1, timeseries.length+1);
-  
+
 for(gene in 1:gene.number) {
-    
-    # Load file containing changepoints (results$cp_samples) and networks
-    # (results$edge_samples)
-    load(file=paste(filename, gene, sep=""))
-    
-    cat("Gene: ", (gene - 1), " , nr. of CP samples: ", length(CPsamples), "\n")
-    	
-    # Calculate change-point posterior distribution
-    cp_dist_tmp = matrix(0, 1, timeseries.length+1);
-    
-    # Sum changepoints for gene and increase CP counter for specific time position cp_inds.
-    # -- What data is this
 
-    if(length(CPsamples) >1) {
+# Load file containing changepoints (results$cp_samples) and networks
+# (results$edge_samples)
+load(file=paste(filename, gene, sep=""))
 
-      for(sample in 1:length(CPsamples)) {
-    
-        cp_inds = CPsamples[[sample]]
-        cp_dist_tmp[cp_inds] = cp_dist_tmp[cp_inds] + 1;
-      
-      }
-    }
-    
-        
-    # Add posterior distribution of changepoints for the current gene
-    # Basically using P(AuB) = P(A) + P(B) - P(AnB) where I've assumed 
-    # independence, i.e. P(AnB) = P(A)*P(B)
-    
-    cp_dist = cp_dist + (cp_dist_tmp/nrsamples) - ( (cp_dist_tmp/nrsamples) * cp_dist);
+cat("Gene: ", (gene - 1), " , nr. of CP samples: ", length(CPsamples), "\n")
+
+# Calculate change-point posterior distribution
+cp_dist_tmp = matrix(0, 1, timeseries.length+1);
+
+# Sum changepoints for gene and increase CP counter for specific time position cp_inds.
+# -- What data is this
+
+if(length(CPsamples) >1) {
+
+for(sample in 1:length(CPsamples)) {
+
+cp_inds = CPsamples[[sample]]
+cp_dist_tmp[cp_inds] = cp_dist_tmp[cp_inds] + 1;
+
+}
+}
+
+
+# Add posterior distribution of changepoints for the current gene
+# Basically using P(AuB) = P(A) + P(B) - P(AnB) where I've assumed 
+# independence, i.e. P(AnB) = P(A)*P(B)
+
+cp_dist = cp_dist + (cp_dist_tmp/nrsamples) - ( (cp_dist_tmp/nrsamples) * cp_dist);
 
 #    print.table(cp_dist)
-      
-  
+
+
 
 }
 
 # Plot changepoint posterior distribution
 
 if(save.file) {
-  postscript(file = paste("CPsamples_PPavg_n", networkid, ".eps", sep=""))
-  par(lwd=4, ps=20)
+postscript(file = paste("CPsamples_PPavg_n", networkid, ".eps", sep=""))
+par(lwd=4, ps=20)
 }
 
 plot(1, 1, type='n', ylim=c(0,1), xlim=c(1, timeseries.length),xlab="Timepoints", ylab="Posterior Probability");
@@ -123,3 +125,4 @@ dev.off()
 #}
 #
 #print(networks)
+}
