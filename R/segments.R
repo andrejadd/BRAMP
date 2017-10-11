@@ -1,42 +1,6 @@
 
 
-##
-## Split and Merge are straight forward
-##
-## When growing a structure:
-## 1. get adjacent segments
-##           getAdjacentSegments(newobj, segid)
-## 2. check which neighbors are too small to grow into
-##          getNrElements(segset, segid)
-##
-## 3. growSegment(newobj, segid, segid.into)
-##
-## extractData() 
-##
-##
 
-batch.test <- function() {
-
-  newobj = createSegments(20,20)
-
-  newobj = splitSegment(newobj, 1, "x", 8)
-
-  newobj = splitSegment(newobj, 2, "y", 6)
-
-  newobj = mergeSegment(newobj, 3, 1)
-
-  newobj = splitSegment(newobj, 2, "x", 4)
-
-  newobj = splitSegment(newobj, 2, "y", 13)
-
-
-  ## get adjacent segment IDs
-  newobj = getAdjacentSegments(newobj, 2)
-
-
-  return(newobj)
-
-}
 
 createGrid <- function(xlocs, ylocs, minSegsize, start.budget = 1, additional.parents,
                        nr.parents, smax, fixed_edges) {
@@ -108,14 +72,15 @@ initMondrian <- function(data.obj) {
         axis="y"                                              ## y axis
         if(runif(1) < (seg.dim[1]/(sum(seg.dim)))) axis="x"   ## x axis
 
-        ## get cut position 
+        # Get cut position. 
         positions = getSplitPositions(data.obj, leaf.id, axis)
         
-        ## extract random position
+        # Extract random position.
         position = sample(c(positions,positions), 1)
 
-        ## do the cut
-        proposed.set = splitSegment(data.obj, parent.id=leaf.id, axis=axis, position=position, parent.budget=budget, child.budget = (budget - cost) )
+        # Split the segment
+        proposed.set = splitSegment(data.obj, parent.id = leaf.id, axis = axis, 
+                                    position = position)
 
     
         new.id = proposed.set$last.added.id
@@ -193,10 +158,11 @@ expdist <- function(mean) {   ## my exponential distr. sampler
 }
 
 
-splitSegment <- function(data.obj=NULL, parent.id=NULL, new.id=NULL, axis=NULL, position=NULL) {
+splitSegment <- function(data.obj = NULL, parent.id = NULL, new.id = NULL, 
+                         axis = NULL, position = NULL) {
 
   ## get locations of elements belonging to the parent segment
-  x.ij = which(data.obj$segment.map == parent.id, arr.ind=T)
+  x.ij = which(data.obj$segment.map == parent.id, arr.ind = T)
 
   ## get lowest none-used segment id that is larger than the parent.id (the compare vector starts width the parent.id)
   ## the last constraint is important because the larger id will be discarded with a merge

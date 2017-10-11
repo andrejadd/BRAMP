@@ -1,10 +1,8 @@
-##
-##
-##
-## The main function that runs the MCMC simulation.
-##
-##
 
+#' The main function that runs the MCMC simulation.
+#'
+#'
+#' @importFrom utils object.size 
 mcmc_main <- function(y, X, MCMC.chain, Grid.obj, HYPERvar, start.iter, end.iter){
 
   

@@ -1,11 +1,12 @@
 
 
-#####################################################################################
-##
-## Cut a Segment
-## 
-#####################################################################################
 
+
+#' Cut a Segment
+#' 
+#'
+#' @importFrom grDevices grey.colors
+#' @importFrom stats heatmap
 cut.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
 
   if(DEBUGLVL == 1) cat("START segment.split > ")
@@ -115,7 +116,7 @@ cut.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
     ##
     if(DEBUGLVL == 2) {
 
-      heatmap(Grid.obj$segment.map,Colv=NA,Rowv=NA,scale="none", col=grey.colors(20,start=1,end=0))
+      heatmap(Grid.obj$segment.map,Colv=NA,Rowv=NA,scale="none", col = grey.colors(20,start=1,end=0))
       drawTree(Grid.obj$mondrian.tree)
       
       z <- try(silent=TRUE, timeout(readline(prompt="Hit me: "), seconds=50))
@@ -141,12 +142,10 @@ cut.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
 
 
 
-#####################################################################################
-##
-## Segment merge
-##
-#####################################################################################
-
+#' Merge a two segments.
+#'
+#'
+#' @importFrom grDevices grey.colors
 merge.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
 
   if(DEBUGLVL == 1) { cat("START segment.merge > \n") }
@@ -229,25 +228,24 @@ merge.segment <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0) {
   
   ##  Return all variables
   ## (+ variable move describing the move type  (1= Segment split, 2= Segm. merge, 3= Segment grow, 4= Update phases)
-  return(list(Grid.obj=Grid.obj, accept=accept, move=2, alpha=alpha, changed.segids=c(min(child1.id, child2.id))))
+  return(list(Grid.obj = Grid.obj, accept = accept, move = 2, alpha = alpha, 
+              changed.segids = c(min(child1.id, child2.id))))
 
 }
 
 
-#################################################################################################
-# Shift an existing cut in a leaf pair
-#
-# Description: this moves just repositions the cut, i.e. x or y and locations in the same manner
-#               we would set a new cut.
-#
-# FIXME: Maybe we could create two moves: one that slightly shifts a cut along his orientation
-#                                         another that changes the orientation: x -> y, y -> x        
-#
-# In all cases, the prior should not change because halfperimeter and cost of cut stay the same
-#################################################################################################
+#' Shift an existing cut in a leaf pair.
+#' This moves just repositions the cut, i.e. x or y and locations in the same 
+#' manner we would set a new cut. 
+#' FIXME: Maybe we could create two moves: one that slightly shifts a cut along 
+#' his orientation another that changes the orientation: x -> y, y -> x        
+#' In all cases, the prior should not change because halfperimeter and cost of 
+#' cut stay the same.
+#'
+#' @importFrom grDevices grey.colors
 shift.cut <- function(Grid.obj, X, Y, HYPERvar, DEBUGLVL = 0, counter=0) {
 
-  if(DEBUGLVL == 1) { cat("START segment.merge > \n") }
+  if (DEBUGLVL == 1) { cat("START segment.merge > \n") }
 
   ## get the blocks that can be merge (leafs)
   leaf.pair = getRandomLeafPair(Grid.obj)

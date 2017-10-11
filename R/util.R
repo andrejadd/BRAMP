@@ -14,9 +14,15 @@ timeout <- function(expr, seconds = 60)  {   ## used to wait for a keystroke, us
 
 
 
-                                        # function that read input data, either as matrix or as file name
-readInput <- function(data){
-  # if data is character, i.e. a file path,
+                                        
+#' Read input data, either as matrix or as file name.
+#' 
+#' @param data Path name to file or matrix or data.frame to be read.
+#' 
+#' @importFrom utils read.table
+readInput <- function(data) {
+    
+  # Check if data is a character string, i.e. a path to a file.
   if(is.character(data)){
     # if file exists
     if(file.exists(data)){
@@ -26,6 +32,7 @@ readInput <- function(data){
        stop(paste("input file path",data,"is not valid\n"))
      }
   }
+    
   # if data is already a matrix
   if(is.matrix(data)){
     return(as.matrix(data))
@@ -46,24 +53,24 @@ readInput <- function(data){
 ## AA: not used, but maybe later for defining priors in text file
 ##
 # function which show teh available prior distributions for kmax given as a parameter
-choosePriors<-function(kmax,priorsPath=paste(priorsPath,"k_priors.txt",sep="")){
-	priors=read.table(priorsPath,header=T)
-	index=which(priors[,1]==kmax)
-	
-	if(length(index)>1){
-		par(mfrow=(c(ceiling(length(index)/2),2)),cex=1)
-		for(i in index[2:1]){
-			plot(0:kmax,priors[i,4:(kmax+4)],type="h",lwd=5,col=2,main=paste("alpha=",priors[i,2],", beta= ", priors[i,3]),ylab="Prior probability",xlab="Number of changepoints or TF")
-		}
-		for(i in index[3:length(index)]){
-			plot(0:kmax,priors[i,4:(kmax+4)],type="h",lwd=5,col=4,main=paste("alpha=",priors[i,2],", beta= ", priors[i,3]),ylab="Prior probability",xlab="Number of changepoints or TF")
-		}
-	}else{
-		par(mfrow=(c(1,1)),cex=1)
-		plot(0:kmax,priors[index,4:(kmax+4)],type="h",lwd=5,col=2,main=paste("alpha=",priors[index,2],", beta= ", priors[index,3]),ylab="Prior probability",xlab="Number of changepoints or TF")
-	}
-	
-}
+# choosePriors<-function(kmax,priorsPath=paste(priorsPath,"k_priors.txt",sep="")){
+# 	priors=read.table(priorsPath,header=T)
+# 	index=which(priors[,1]==kmax)
+# 	
+# 	if(length(index)>1){
+# 		par(mfrow=(c(ceiling(length(index)/2),2)),cex=1)
+# 		for(i in index[2:1]){
+# 			plot(0:kmax,priors[i,4:(kmax+4)],type="h",lwd=5,col=2,main=paste("alpha=",priors[i,2],", beta= ", priors[i,3]),ylab="Prior probability",xlab="Number of changepoints or TF")
+# 		}
+# 		for(i in index[3:length(index)]){
+# 			plot(0:kmax,priors[i,4:(kmax+4)],type="h",lwd=5,col=4,main=paste("alpha=",priors[i,2],", beta= ", priors[i,3]),ylab="Prior probability",xlab="Number of changepoints or TF")
+# 		}
+# 	}else{
+# 		par(mfrow=(c(1,1)),cex=1)
+# 		plot(0:kmax,priors[index,4:(kmax+4)],type="h",lwd=5,col=2,main=paste("alpha=",priors[index,2],", beta= ", priors[index,3]),ylab="Prior probability",xlab="Number of changepoints or TF")
+# 	}
+# 	
+# }
 
 
 
@@ -356,84 +363,6 @@ LtoS = function(L){
     L = L %% 2^(i)
   }
   return(s[1:q])
-}
-
-
-
-sampleValidateCPs <-function (candidateCPs, min.seglocs, E, E.other, Y, ALTERX, xlocs, type, cp.pos) {
-
-  ##
-  ## This part is specific to 2D change-points and for the case that not all locations in the grid a valid (sampled) patches
-  ##   With small segments it can happen that only very little actual sampled locations exist, if there is only 1 location for instance
-  ##   the method will crash after calculating the projection matrix.
-  ##   The code here makes sure each segment will have a minimum number of valid locations to work with, if not the change-point is rejected
-
-  ## this is returned
-  cp.new = NaN
-
-  ## loop as long no CP was valid and elements in candidateCPs exist
-  while(length(candidateCPs) > 0) {
-
-    ## flag for invalid cp found
-    invalid.cp = FALSE
-
-    ## sample the new changepoint uniformly
-    cp.tmp = sample(c(candidateCPs, candidateCPs),1)
-
-    ## remove in the case cp.tmp was invalid and while continuous
-    candidateCPs = candidateCPs[-which(candidateCPs == cp.tmp)]
-
-    ## create candidate changepoint vector E
-    if(type == "shift") {     ## replace the cp when shifted 
-      E.tmp = E
-      E.tmp[cp.pos] = cp.tmp
-    } else {                  ## insert the cp 
-      
-      E.tmp = sort(c(E,cp.tmp))
-    }
-
-    ## get position of new cp
-    E.new.pos = which(E.tmp == cp.tmp)
-    
-    ## extract cp of affected segments (left and right of new one )
-    E.tmp = E.tmp[c(E.new.pos - 1, E.new.pos, E.new.pos + 1)]
-
-
-    for(a.coord in 1:(length(E.tmp)-1)) {
-      start.c1 = E.tmp[a.coord]
-      end.c1 = E.tmp[a.coord+1]
-      
-      for (b.coord in 1:(length(E.other)-1) ) {
-        
-        start.c2 = E.other[b.coord]
-        end.c2 = E.other[b.coord+1]
-
-        ## construct actual coordinates, note the 3rd and 4th coord. are -1 because the segment only extends but not includes the right/bottom changepoint
-        if(ALTERX) { segcoord = c(start.c1, start.c2, end.c1-1, end.c2-1) }
-        else { segcoord = c( start.c2, start.c1, end.c2-1, end.c1-1) }
-
-        ## extract valid locations
-        y = extractNodes(Y, segcoord, xlocs, F)
-
-        ## check if size is sufficient, then mark as invalid
-        if(length(y) < min.seglocs) {
-          #cat("nonvalid: ", length(y), " - ", type, ", ALTERX: ", ALTERX, "\n") 
-          invalid.cp = TRUE
-          break
-        }
-      }
-    }
-
-    ## check if cp creates valid segments
-    if(!invalid.cp) {
-
-      cp.new = cp.tmp
-      break
-    }
-      
-  }
-
-  return(cp.new)
 }
 
 

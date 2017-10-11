@@ -1,0 +1,5 @@
+.RData
+.Rbuildignore
+.Rhistory
+run_Example_testing.R
+.Rproj.user

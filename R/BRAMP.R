@@ -1,41 +1,22 @@
 
-codePath=paste(getwd(),"/Code/",sep="")
 
-source(paste(codePath,"mcmc_main.R",sep=""))
-source(paste(codePath,"edge_moves.R",sep=""))
-source(paste(codePath,"mondrian_moves.R",sep=""))
-source(paste(codePath,"initEngine.R",sep=""))
-source(paste(codePath,"segments.R", sep=""))
-source(paste(codePath,"util.R",sep=""))   #requires pseudoinverse
-source(paste(codePath,"invGamma.R",sep=""))
-source(paste(codePath,"mvrnorm.R",sep=""))
-source(paste(codePath,"ginv.R",sep=""))
-source(paste(codePath,"convert.R",sep="")) ## need this ??
-source(paste(codePath,"Tree.R",sep=""))
-
-source(paste(codePath,"print_bramp.R",sep=""))
-source(paste(codePath,"get_mean_edge_weights.R",sep=""))
-source(paste(codePath,"get_edge_probs.R",sep=""))
-source(paste(codePath,"spatAutoCorrelation.R",sep=""))
-
-
-##
-##
-## This is the main BRAMP function. The function arguments are
-##
-##   Y             : a m-length vector with the number of 'm' observations for the target node.
-##   X             : a n-by-m matrix with 'n' nodes and 'm' observations.
-##   y_SAC_node    : a m-length vector with the spatial autocorrelation data. Can be left NULL
-##                   if not used.
-##   xlocs         : an integer defining the number of observations along the x-axis.
-##   ylocs         : an integer defining the number of observations along the x-axis.
-##                   [Note that (xlocs * ylocs) == m]. 
-##   nr_iterations : the number of MCMC iterations to run.
-##   chain_thinout : save samples from the chain every 'chain_thinout' iteration.
-##   result_file   : A result file from a previous MCMC simulation. If 'nr_iterations' is 
-##                   greater than the iterations in the result file, the simulation is continued
-##                   until 'nr_iterations'. 
-##
+#' This is the main BRAMP function. 
+#'
+#' @param  y           m-length vector with the number of 'm' observations for the target node.
+#' @param  X           n-by-m matrix with 'n' nodes and 'm' observations.
+#' @param  y_SAC_node  m-length vector with the spatial autocorrelation data. Can be left NULL if not used.
+#' @param  xlocs       Integer defining the number of observations along the x-axis.
+#' @param  ylocs       Integer defining the number of observations along the x-axis. Note that xlocs * ylocs == m. 
+#' @param  nr_iterations Number of MCMC iterations to run.
+#' @param  chain_thinout Save samples from the chain every 'chain_thinout' iteration.
+#' @param  result_file   A result file from a previous MCMC simulation that should be continued. If 'nr_iterations' is greater than the iterations in the result file, the simulation is continued until 'nr_iterations'. 
+#' @param  mcmc_rnd_seed Integer value specifying a random seed.
+#' @param  fixed_edges   Vector of edge indicators that should not be change by an edge move.
+#' @param  edge_fanin    Maximum number of incoming edges for the response.
+#' 
+#' @importFrom stats rgamma rnorm runif
+#' 
+#' @export 
 BRAMP <- function(y = NULL, 
                   X = NULL, 
                   y_SAC_node = NULL, 
@@ -111,14 +92,16 @@ BRAMP <- function(y = NULL,
   ##  than the chain in the result file.
   ##
   
-  if(!is.null(result_file)) {
+  if (!is.null(result_file)) {
   
-    ## Check if 'mcmc_result' was 
-    ## Try to load file with 'mcmc_result' data.
+    mcmc_result <- NULL
+    
+    # Check if 'mcmc_result' was 
+    # Try to load file with 'mcmc_result' data.
     tryCatch({    
       
       ## Load previous MCMC chain, includes the 'mcmc_result' data structure.
-    	load(result_file)
+      load(result_file)
       
     }, error = function(e) {
         
@@ -127,26 +110,25 @@ BRAMP <- function(y = NULL,
     })
 
     
-    ## Check if the data structure was loaded.
-    ## Do NOT use exists() because it also looks into the global user environment
-    ## i.e. outside this function.
-    if(!any("mcmc_result" == ls())) {
+    # Check if the data structure was loaded.
+    # Do NOT use exists() because it also looks into the global user environment
+    # i.e. outside this function.
+    if (is.null(mcmc_result)) {
       cat("[", method.name, "] Failed to load 'mcmc_result' data structure from result file ", result_file, ". Exiting ...\n")
       return(-1)
     }
   
     
-    ## Check if the data structure is of class 'bramp'.
-    if(class(mcmc_result) != "bramp") {
+    # Check if the data structure is of class 'bramp'.
+    if (class(mcmc_result) != "bramp") {
       cat("[", method.name, "] Loaded 'mcmc_result' data structure is not of class 'bramp' ", result_file, ". Exiting ...\n")
       return(-1)
     }
     
 
-    ## 
-    ## Extract necessary data from the previous MCMC run
-    ## This also includes the data itself (X and Y) and the hyper-parameters
-    ## 
+     
+    # Extract necessary data from the previous MCMC run.
+    # This also includes the data itself (X and Y) and the hyper-parameters.
     MCMC.chain = mcmc_result$MCMC.chain
     Grid.obj = mcmc_result$Grid.obj
     HYPERvar = mcmc_result$HYPERvar
@@ -254,7 +236,7 @@ BRAMP <- function(y = NULL,
     
     
     ## Inverse Gamma for the SNR. 
-    delta.snr = (1 / rgamma(1, shape=alpha.snr, scale=1/beta.snr))
+    delta.snr = (1 / rgamma(1, shape = alpha.snr, scale = 1/beta.snr))
 
     
     ## Initialize the hyper-parameter variable list.                   
